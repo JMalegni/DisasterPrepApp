@@ -4,5 +4,5 @@ https://docs.google.com/document/d/1AqlqfLv0ep_GPZMLgyIsQL3TgxWH8Y1IurmQbzIX6wI/
 Meeting Logs:
 https://docs.google.com/document/d/1vG8EA2VPTZuDtPJCGiWu-9gSbDitUNxlLf3mCkdLpHU/edit?usp=sharing
 
-
-
+Figma Frontend:
+https://www.figma.com/design/SxNZmgx06SzZ2opdISkQlf/Frontend-View?node-id=0-1&t=oOwFs4FIQTqDBWJz-1
