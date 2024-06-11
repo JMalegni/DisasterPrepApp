@@ -6,3 +6,6 @@ https://docs.google.com/document/d/1vG8EA2VPTZuDtPJCGiWu-9gSbDitUNxlLf3mCkdLpHU/
 
 Figma Frontend:
 https://www.figma.com/design/SxNZmgx06SzZ2opdISkQlf/Frontend-View?node-id=0-1&t=oOwFs4FIQTqDBWJz-1
+
+App Design Document:
+https://docs.google.com/document/d/1ONm_IvXLYOh2QlIJSZWFQgjfM6M1FzbcJRVsFK10rig/edit?usp=sharing
