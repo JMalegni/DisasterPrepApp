@@ -1,2 +1,4 @@
 This file is for logging any non-source contributions not reflected in the repository.
 Format: Name - Date - Task Description.
+
+Nicholas DeSanctis - 6/12/24 - Resolved project structure for pip package; single run command for web server initialization
