@@ -80,7 +80,10 @@ def deleteuser(request,id):
     return render(request,'allusers.html',{'list':users_list})
 
 def disasterprep(request):
-    return render(request, 'disasterprep.html')
+    if request.method == 'GET':
+        return render(request, 'disasterprep.html')
+    if request.method == 'POST':
+        return render(request, 'home.html')
 
 def logout(request):
     del request.session["user_email"]

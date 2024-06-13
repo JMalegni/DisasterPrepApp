@@ -15,7 +15,7 @@
                     <h5 class="card-title">Disaster Prep</h5>
                 </div>
                 <div class="card-body">
-                    <form action="{% url 'familyinfo' %}" method="POST">
+                    <form action="{% url 'disasterprep' %}" method="POST">
                     {% csrf_token %}
                         <div class="form-group">
                             <label>What disaster is this plan for:</label>
