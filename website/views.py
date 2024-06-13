@@ -83,6 +83,12 @@ def disasterprep(request):
     if request.method == 'GET':
         return render(request, 'disasterprep.html')
     if request.method == 'POST':
+        return render(request, 'disasterchecklist.html')
+
+def disasterchecklist(request):
+    if request.method == 'GET':
+        return render(request, 'disasterchecklist.html')
+    if request.method == 'POST':
         return render(request, 'home.html')
 
 def logout(request):
