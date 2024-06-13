@@ -79,6 +79,9 @@ def deleteuser(request,id):
     users_list = Users.objects.all()
     return render(request,'allusers.html',{'list':users_list})
 
+def disasterprep(request):
+    return render(request, 'disasterprep.html')
+
 def logout(request):
     del request.session["user_email"]
     return render(request,'login.html')
