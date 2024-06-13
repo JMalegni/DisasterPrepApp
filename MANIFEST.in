@@ -1,0 +1,6 @@
+include LICENSE
+include README.md
+include setup.py
+recursive-include ecom *
+recursive-include website *
+recursive-include website/static *

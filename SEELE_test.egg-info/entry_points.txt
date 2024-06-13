@@ -1,0 +1,3 @@
+[console_scripts]
+yourmother = ecom.entrypoint:main
+
