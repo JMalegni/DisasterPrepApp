@@ -38,9 +38,13 @@ def signup(request):
             user.password = password
             user.mobile = mobile
             user.save()
-            return render(request,'signup.html',{'msg':'Successfully Signup','tag':'success'})
+            return render(request, 'familyinfo.html')
+            #return render(request,'signup.html',{'msg':'Successfully Signup','tag':'success'})
         except Exception:
             return render(request,'signup.html',{'msg':'Error on Signup','tag':'danger'})
+
+def familyinfo(request):
+    return render(request, 'profile.html')
 
 def profile(request):
     return render(request,'profile.html')
