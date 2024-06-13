@@ -1,0 +1,36 @@
+Metadata-Version: 2.1
+Name: seele
+Version: 0.1
+Summary: SEELE Web Development server package
+Home-page: https://github.com/JMalegni/DisasterPrepApp
+Author: Nicholas DeSanctis
+Author-email: nickdesanctis17@gmail.com
+Project-URL: Source, https://github.com/JMalegni/DisasterPrepApp
+Classifier: Development Status :: 3 - Alpha
+Classifier: Framework :: Django
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: django>=5.0.6
+Requires-Dist: django-bootstrap4>=23.4
+Requires-Dist: sqlparse>=0.3.1
+
+CURRENT PROJECT IS SAMPLE, SOURCED FROM PRABHAT MISHRA:
+https://github.com/prabhatx/django-basic-project
+
+Project Description:
+
+  This app will provide an educational infographic and personalized disaster preparation checklist based on a user's specific circumstance
+
+Command for Manual Build and Install of django server:
+
+  clone repo into an empty folder, move into DisasterPrepApp directory, run "python manage.py runserver" (substitute python for python3 in linux), follow the url given.
+
+Repository Link:
+
+  https://github.com/JMalegni/DisasterPrepApp
+
+Run Command:
+
+

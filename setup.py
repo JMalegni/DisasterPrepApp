@@ -1,8 +1,8 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='SEELE-test',
-    version='1.1.0',
+    name='seele',
+    version='0.1',
     packages=find_packages(),
     include_package_data=True,
     install_requires=[
@@ -12,7 +12,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'yourmother=ecom.entrypoint:main',
+            'seele_start=seele_app.entrypoint:main',
         ],
     },
     classifiers=[
@@ -23,7 +23,7 @@ setup(
     ],
     author='Nicholas DeSanctis',
     author_email='nickdesanctis17@gmail.com',
-    description='Test of pip for SEELE development',
+    description='SEELE Web Development server package',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
     url='https://github.com/JMalegni/DisasterPrepApp',
