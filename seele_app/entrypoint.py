@@ -4,7 +4,7 @@ import sqlite3
 from datetime import datetime
 
 def main():
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ecom.settings')
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'seele_app.settings')
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
