@@ -19,32 +19,70 @@ def login(request):
                 request.session["user_email"] = email
                 return render(request,'profile.html')
             else:
-                return render(request,'login.html',{'msg':'Enter Correct Password','tag':'danger'})
+                return render(request,'login.html',{'msg':'Enter correct password','tag':'danger'})
         except Exception:
-            return render(request,'login.html',{'msg':'Enter Correct Email','tag':'danger'})
+            return render(request,'login.html',{'msg':'Enter correct email','tag':'danger'})
+
 def signup(request):
     if request.method == 'GET':
         return render(request,'signup.html')
+    
     if request.method == 'POST':
         try:
             name = request.POST.get('name')
             email = request.POST.get('email')
             password = request.POST.get('password')
-            mobile = request.POST.get('mobile')
-            #print(name,email,password,mobile)
-            user = Users()
-            user.name = name
-            user.email = email
-            user.password = password
-            user.mobile = mobile
-            user.save()
+            confirm_password = request.POST.get('confirm_password')
+
+            if password != confirm_password:
+                return render(request, 'signup.html', {'msg': 'Passwords do not match', 'tag': 'danger'})
+            
+            if Users.objects.filter(email = email).exists():
+                return render(request, 'signup.html', {'msg': 'Email address is already associated with an account', 'tag': 'danger'})
+            
+            request.session['signup_data'] = {
+                'name': name,
+                'email': email,
+                'password': password,
+            }
+
             return render(request, 'familyinfo.html')
             #return render(request,'signup.html',{'msg':'Successfully Signup','tag':'success'})
+
         except Exception:
             return render(request,'signup.html',{'msg':'Error on Signup','tag':'danger'})
 
 def familyinfo(request):
-    return render(request, 'profile.html')
+    if request.method == 'GET':
+        return render(request, 'familyinfo.html')
+    
+    if request.method == 'POST':
+        try:
+            signup_data = request.session.get('signup_data', {})
+            if not signup_data:
+                return render(request, 'signup.html', {'msg': 'Please try again'})
+            
+            
+            location = request.POST.get('location')
+            family_size_str = request.POST.get('family_size')
+            family_size = int(family_size_str)
+
+            if family_size < 1 or family_size > 10:
+                return render(request, 'familyinfo.html', {'msg': 'Please enter a family size between 1 and 10', 'tag': 'danger'})
+            
+            user = Users()
+            user.name = signup_data['name']
+            user.email = signup_data['email']
+            user.password = signup_data['password']
+            user.location = location
+            user.family_size = family_size
+            user.save()
+
+            del request.session['signup_data']      
+            return render(request, 'profile.html')
+    
+        except Exception:
+            return render(request,'familysize.html',{'msg':'Error on Signup','tag':'danger'})
 
 def profile(request):
     return render(request,'profile.html')
@@ -65,11 +103,9 @@ def edituser(request,id):
         name = request.POST.get('name')
         email = request.POST.get('email')
         password = request.POST.get('password')
-        mobile = request.POST.get('mobile')
         user = Users.objects.get(id=id)
         user.name = name
         user.password = password
-        user.mobile = mobile
         user.save()
         users_list = Users.objects.all()
         return render(request,'allusers.html',{'list':users_list})
