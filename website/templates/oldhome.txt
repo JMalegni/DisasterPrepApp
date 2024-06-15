@@ -1,0 +1,11 @@
+{% extends 'layout.html' %}
+
+
+
+{% block content %}
+<div class="jumbotron">
+    <h1>Welcome to S.E.E.L.E</h1>
+    <h2>S.E.E.L.E stands for Strategic Emergency Education for Localized Events</h2>
+    <h3>[Reformat this page and add more info]</h3>
+</div>
+{% endblock %}
