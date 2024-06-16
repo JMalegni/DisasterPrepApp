@@ -9,64 +9,75 @@
     <title>S.E.E.L.E Home</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="signup">Sign Up</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="login">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="disasterprep">Disaster Prep</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="profile">Profiles</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="logout">Logout</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    <div class="jumbotron">
-        <div class="container">
-            <h1>S.E.E.L.E</h1>
-            <h2>Strategic Emergency Education for Localized Events</h2>
-            <div class="row mt-4">
-                <div class="col-md-4">
-                    <div class="card card-custom">
-                        <div class="card-body">
-                            <h3>What S.E.E.L.E is</h3>
-                            <p class="card-text">S.E.E.L.E is a web app that helps you personally prepare for a wide range of disasters. From Typhoons to Earthquakes, we've got you covered.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card card-custom">
-                        <div class="card-body">
-                            <h3>Who we are</h3>
-                            <p class="card-text">We’re a multicultural group of students from the University of Florida and Kyoto University, committed to making disaster preparation easier for all.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card card-custom">
-                        <div class="card-body">
-                            <h3>How it works</h3>
-                            <p class="card-text">S.E.E.L.E creates a personalized checklist for emergency supplies that can help during times of crisis, and can provide users information via an infographic with important information regarding the disaster.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="mt-4">
-                <img src="{% static 'images/girl_default.png' %}" alt="Example Image" class="small-image img-fluid mt-4">
-                <img src="{% static 'images/seal_default.png' %}" alt="Example Image" class="small-image img-fluid mt-4">
-                <img src="{% static 'images/boy_default.png' %}" alt="Example Image" class="small-image img-fluid mt-4">
-            </div>
-            <a href="#" class="btn btn-primary mt-4">Get Started</a>
-        </div>
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+        <ul class="navbar-nav ml-auto">
+            {% if request.session.user_email %}
+            <!-- Display these links if user is logged in -->
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'disasterprep' %}">Disaster Prep</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+            </li>
+            {% else %}
+            <!-- Display these links if user is not logged in -->
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'signup' %}">Sign Up</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'login' %}">Login</a>
+            </li>
+            {% endif %}
+        </ul>
     </div>
+</nav>
+<div class="jumbotron">
+    <div class="container">
+        <h1>S.E.E.L.E</h1>
+        <h2>Strategic Emergency Education for Localized Events</h2>
+        <div class="row mt-4">
+            <div class="col-md-4">
+                <div class="card card-custom">
+                    <div class="card-body">
+                        <h3>What S.E.E.L.E is</h3>
+                        <p class="card-text">S.E.E.L.E is a web app that helps you personally prepare for a wide range of disasters. From Typhoons to Earthquakes, we've got you covered.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-custom">
+                    <div class="card-body">
+                        <h3>Who we are</h3>
+                        <p class="card-text">We’re a multicultural group of students from the University of Florida and Kyoto University, committed to making disaster preparation easier for all.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-custom">
+                    <div class="card-body">
+                        <h3>How it works</h3>
+                        <p class="card-text">S.E.E.L.E creates a personalized checklist for emergency supplies that can help during times of crisis, and can provide users information via an infographic with important information regarding the disaster.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mt-4">
+            <img src="{% static 'images/girl_default.png' %}" alt="Example Image" class="small-image img-fluid mt-4">
+            <img src="{% static 'images/seal_default.png' %}" alt="Example Image" class="small-image img-fluid mt-4">
+            <img src="{% static 'images/boy_default.png' %}" alt="Example Image" class="small-image img-fluid mt-4">
+        </div>
+        {% if request.session.user_email %}
+        <!-- Display personalized content for logged-in users -->
+        <a href="{% url 'profile' %}" class="btn btn-primary mt-4">View Profile</a>
+        {% else %}
+        <!-- Display call to action for new visitors -->
+        <a href="#" class="btn btn-primary mt-4">Get Started</a>
+        {% endif %}
+    </div>
+</div>
 </body>
 </html>

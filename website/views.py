@@ -1,10 +1,17 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Users
 
-# Create your views here.
-
 def home(request):
-    return render(request,'home.html')
+    if request.user.is_authenticated:
+        context = { #this is for displaying navbar buttons on homepage
+            'authenticated': True,
+            # Add more context variables as needed
+        }
+    else:
+        context = {
+            'authenticated': False,
+        }
+    return render(request, 'home.html', context)
 
 def login(request):
     if request.method == 'GET':
@@ -17,10 +24,10 @@ def login(request):
             user = Users.objects.get(email=email)
             if user.password == password:
                 request.session["user_email"] = email
-                return render(request,'profile.html')
+                return redirect('profile')
             else:
                 return render(request,'login.html',{'msg':'Enter correct password','tag':'danger'})
-        except Exception:
+        except Users.DoesNotExist:
             return render(request,'login.html',{'msg':'Enter correct email','tag':'danger'})
 
 def signup(request):
@@ -46,7 +53,7 @@ def signup(request):
                 'password': password,
             }
 
-            return render(request, 'familyinfo.html')
+            return redirect('familyinfo')
             #return render(request,'signup.html',{'msg':'Successfully Signup','tag':'success'})
 
         except Exception:
@@ -62,7 +69,6 @@ def familyinfo(request):
             if not signup_data:
                 return render(request, 'signup.html', {'msg': 'Please try again'})
 
-
             location = request.POST.get('location')
             family_size_str = request.POST.get('family_size')
             family_size = int(family_size_str)
@@ -70,19 +76,32 @@ def familyinfo(request):
             if family_size < 1 or family_size > 10:
                 return render(request, 'familyinfo.html', {'msg': 'Please enter a family size between 1 and 10', 'tag': 'danger'})
 
-            user = Users()
-            user.name = signup_data['name']
-            user.email = signup_data['email']
-            user.password = signup_data['password']
-            user.location = location
-            user.family_size = family_size
+            medical_issues = request.POST.get('medical_issues', '')  # Default to empty string if not provided
+
+            medication_amount_str = request.POST.get('medication_amount', '0')  # Default to '0' if not provided
+            medication_amount = int(medication_amount_str) if medication_amount_str else 0  # Ensure it defaults to 0 if empty
+
+            user = Users(
+                name=signup_data['name'],
+                email=signup_data['email'],
+                password=signup_data['password'],
+                location=location,
+                family_size=family_size,
+                medical_issues=medical_issues,
+                medication_amount=medication_amount
+            )
             user.save()
 
-            del request.session['signup_data']
-            return render(request, 'profile.html')
+            # Automatically log in the user
+            request.session['user_email'] = user.email
 
-        except Exception:
-            return render(request,'familysize.html',{'msg':'Error on Signup','tag':'danger'})
+            del request.session['signup_data']
+            return redirect('disasterprep')  # Redirect to disasterprep page
+
+        except Exception as e:
+            return render(request, 'familyinfo.html', {'msg': 'Error on Signup: ' + str(e), 'tag': 'danger'})
+
+
 
 def profile(request):
     return render(request,'profile.html')
@@ -132,31 +151,59 @@ def disasterprep(request):
             return redirect('login')
 
 def generate_checklist(user, disaster_type):
-    # Example checklist generation logic
+    family_size = user.family_size
     checklist = []
-    if disaster_type == 'Disaster 1':
+
+    if disaster_type == 'Typhoon':
         checklist = [
-            "Stock up on non-perishable food items",
-            "Prepare a first aid kit",
-            "Secure important documents",
-            f"Ensure there is enough water for {user.family_size} people",
-            "Create an emergency contact list"
+            f"{family_size * 3 * 3} Liters of water",
+            f"{family_size * 3 * 2000} calories of non-perishable food",
+            f"{family_size} sets of clothes (one for each family member)",
+            "First aid kit",
+            "Important documents (Passport, Will, ID cards)",
+            "Cash",
+            "Emergency contact list",
+            "Radio",
+            "Flashlights and batteries",
         ]
-    elif disaster_type == 'Disaster 2':
+
+        medical_issue = user.medical_issues
+        medication_amount = user.medication_amount if user.medication_amount else 0
+
+        if medical_issue and medication_amount == 0:
+            checklist.append(f"Medication for {medical_issue} for 3 days")
+        elif medical_issue and medication_amount != 0:
+            checklist.append(f"Medication for {medical_issue}: {medication_amount * 3} units")
+
+
+#       if woman in family:
+#           checklist.append("Sanitary napkins/tampons")
+#           checklist.append("Lotion/cleansing sheets")
+#       if baby in family:
+#           checklist.append("baby formula/food")
+#           checklist.append("diapers")
+#       if child in family:
+#           checklist.append("Books/toys")
+#
+#
+#
+    elif disaster_type == 'Earthquake':
         checklist = [
-            "Evacuate the area",
+            "Secure heavy furniture to walls",
+            "Create a family emergency plan",
             "Prepare an emergency bag",
-            "Check local emergency alerts",
-            "Plan for pets and livestock",
-            "Backup computer data"
+            f"Have enough food and water for {family_size} people for at least 3 days",
+            "Keep a whistle to signal for help",
+            "Learn basic first aid"
         ]
-    elif disaster_type == 'Disaster 3':
+    elif disaster_type == 'Flood':
         checklist = [
-            "Reinforce your home",
-            "Stay informed about weather updates",
-            "Prepare for power outages",
-            "Ensure medical supplies are on hand",
-            f"Create a communication plan for {user.family_size} people"
+            "Know your evacuation routes",
+            "Move valuables to higher ground",
+            f"Stock up on {family_size * 3} days of food and water",
+            "Prepare an emergency kit with essentials",
+            "Ensure you have waterproof bags for important documents",
+            "Plan for pets and livestock"
         ]
     else:
         checklist = ["Select a valid disaster type"]
@@ -167,7 +214,7 @@ def disasterchecklist(request):
     if request.method == 'GET':
         return render(request, 'disasterchecklist.html')
     if request.method == 'POST':
-        return render(request, 'home.html')
+        return redirect('home')
 
 def logout(request):
     del request.session["user_email"]
