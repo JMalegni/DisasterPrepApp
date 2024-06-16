@@ -5,7 +5,6 @@ def home(request):
     if request.user.is_authenticated:
         context = { #this is for displaying navbar buttons on homepage
             'authenticated': True,
-            # Add more context variables as needed
         }
     else:
         context = {
@@ -81,6 +80,10 @@ def familyinfo(request):
             medication_amount_str = request.POST.get('medication_amount', '0')  # Default to '0' if not provided
             medication_amount = int(medication_amount_str) if medication_amount_str else 0  # Ensure it defaults to 0 if empty
 
+            women_bool = request.POST.get('women_bool') == 'on'
+            child_bool = request.POST.get('child_bool') == 'on'
+            baby_bool = request.POST.get('baby_bool') == 'on'
+
             user = Users(
                 name=signup_data['name'],
                 email=signup_data['email'],
@@ -88,7 +91,10 @@ def familyinfo(request):
                 location=location,
                 family_size=family_size,
                 medical_issues=medical_issues,
-                medication_amount=medication_amount
+                medication_amount=medication_amount,
+                women_bool=women_bool,
+                child_bool=child_bool,
+                baby_bool=baby_bool,
             )
             user.save()
 
@@ -175,18 +181,20 @@ def generate_checklist(user, disaster_type):
         elif medical_issue and medication_amount != 0:
             checklist.append(f"Medication for {medical_issue}: {medication_amount * 3} units")
 
+        women = user.women_bool
+        baby = user.baby_bool
+        child = user.child_bool
+        if women:
+            checklist.append("Sanitary napkins/tampons")
+            checklist.append("Lotion/cleansing sheets")
+        if baby:
+            checklist.append("Baby formula/food")
+            checklist.append("Diapers")
+        if child:
+            checklist.append("Books/toys")
 
-#       if woman in family:
-#           checklist.append("Sanitary napkins/tampons")
-#           checklist.append("Lotion/cleansing sheets")
-#       if baby in family:
-#           checklist.append("baby formula/food")
-#           checklist.append("diapers")
-#       if child in family:
-#           checklist.append("Books/toys")
-#
-#
-#
+
+
     elif disaster_type == 'Earthquake':
         checklist = [
             "Secure heavy furniture to walls",
