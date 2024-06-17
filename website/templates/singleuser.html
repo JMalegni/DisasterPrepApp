@@ -1,5 +1,7 @@
-{% extends 'layout.html' %}
+{% extends 'base.html' %}
+{% load i18n static %}
 
+{% block title %}{% trans "Home" %}{% endblock %}
 {% block content %}
 <div class="container" style="margin-top: 20px;">
     <h1 class="text-info">Single User Details</h1>
