@@ -29,6 +29,9 @@
                 {% else %}
                 <!-- Display these links if user is not logged in -->
                 <li class="nav-item">
+                    <a class="nav-link" href="{% url 'home' %}">Home</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="{% url 'signup' %}">Sign Up</a>
                 </li>
                 <li class="nav-item">
