@@ -1,0 +1,105 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-06-15 21:55-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: seele_app/settings.py:21
+msgid "English"
+msgstr "英語"
+
+#: seele_app/settings.py:22
+msgid "Japanese"
+msgstr "日本語"
+
+#: seele_app/settings.py:23
+msgid "Simple Japanese"
+msgstr "やさしいにほんご"
+
+#: website/templates/home.html:9
+msgid "S.E.E.L.E Home"
+msgstr "S.E.E.L.Eホーム"
+
+#: website/templates/home.html:16
+msgid "Sign Up"
+msgstr "サインアップ"
+
+#: website/templates/home.html:19
+msgid "Login"
+msgstr "ログイン"
+
+#: website/templates/home.html:22
+msgid "Disaster Prep"
+msgstr "災害の準備"
+
+#: website/templates/home.html:25
+msgid "Profiles"
+msgstr "プロフィル"
+
+#: website/templates/home.html:28
+msgid "Logout"
+msgstr "ログアウト"
+
+#: website/templates/home.html:35
+msgid "S.E.E.L.E"
+msgstr "S.E.E.L.E"
+
+#: website/templates/home.html:36
+msgid "Strategic Emergency Education for Localized Events"
+msgstr "Strategic Emergency Education for Localized Events"
+
+#: website/templates/home.html:41
+msgid "What S.E.E.L.E is"
+msgstr "S.E.E.L.Eとは"
+
+#: website/templates/home.html:42
+msgid ""
+"S.E.E.L.E is a web app that helps you personally prepare for a wide range of "
+"disasters. From Typhoons to Earthquakes, we've got you covered."
+msgstr "S.E.E.L.E はさまざまな災害の準備を個人的に行う人に役立つ ウェブサイトです。"
+"台風や地震でも、人々が安全になるように役立ちます。"
+
+#: website/templates/home.html:49
+msgid "Who we are"
+msgstr "S.E.E.L.Eの部員たちは"
+
+#: website/templates/home.html:50
+msgid ""
+"We’re a multicultural group of students from the University of Florida and "
+"Kyoto University, committed to making disaster preparation easier for all."
+msgstr "私たちはフロリダ大学の学生と京都大学の大学院生です。すべての人にとって災害"
+"への備えが容易になるよう取り組んでいます"
+
+#: website/templates/home.html:57
+msgid "How it works"
+msgstr "使い方は"
+
+#: website/templates/home.html:58
+msgid ""
+"S.E.E.L.E creates a personalized checklist for emergency supplies that can "
+"help during times of crisis, and can provide users information via an "
+"infographic with important information regarding the disaster."
+msgstr "S.E.E.L.E は、災害の準備をやさしくなるために、個人的なチェックリストを作成して、"
+"災害に関する重要な情報を含むインフォグラフィックをユーザーに発表します。"
+
+#: website/templates/home.html:64 website/templates/home.html:65
+#: website/templates/home.html:66
+msgid "Example Image"
+msgstr "サンプル画像"
+
+#: website/templates/home.html:68
+msgid "Get Started"
+msgstr "始める"
