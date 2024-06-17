@@ -1,0 +1,50 @@
+{% load static i18n %}
+<!DOCTYPE html>
+<html lang="{% get_current_language as LANGUAGE_CODE %}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>{% block title %}{% trans "S.E.E.L.E Home" %}{% endblock %}</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'signup' %}">{% trans "Sign Up" %}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}">{% trans "Login" %}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'disasterprep' %}">{% trans "Disaster Prep" %}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'profile' %}">{% trans "Profiles" %}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">{% trans "Logout" %}</a>
+                </li>
+                <li class="nav-item">
+                    <form action="{% url 'set_language' %}" method="post" class="form-inline my-2 my-lg-0">
+                        {% csrf_token %}
+                        <select name="language" onchange="this.form.submit()" class="form-control">
+                            <option value="en" {% if LANGUAGE_CODE == 'en' %}selected{% endif %}>English</option>
+                            <option value="jp" {% if LANGUAGE_CODE == 'jp' %}selected{% endif %}>Japanese</option>
+                            <option value="sjp" {% if LANGUAGE_CODE == 'sjp' %}selected{% endif %}>Simple Japanese</option>
+                        </select>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container-fluid">
+        {% block content %}{% endblock %}
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

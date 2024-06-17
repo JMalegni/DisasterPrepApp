@@ -14,13 +14,15 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from website.views import home,login,signup,familyinfo,profile,allusers,disasterprep,disasterchecklist,logout,singleuser,edituser,deleteuser
- 
+from django.urls import path, include
+from website.views import *
+
+from django.conf.urls.i18n import i18n_patterns
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',home,name="home"),
+    # path('i18n/', include('django.conf.urls.i18n')),
     path('login/',login,name="login"),
     path('signup/',signup,name="signup"),
     path('familyinfo/',familyinfo,name="familyinfo"),
@@ -33,3 +35,8 @@ urlpatterns = [
     path('edituser/<int:id>/',edituser,name="edituser"),
     path('deleteuser/<int:id>/',deleteuser,name="deleteuser"),
 ]
+
+urlpatterns += i18n_patterns(
+    path('', include('seele_app.urls_i18n')),
+    path('i18n/', include('django.conf.urls.i18n')),
+)

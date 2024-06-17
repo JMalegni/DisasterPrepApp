@@ -22,14 +22,26 @@
                             <label>Family Size</label>
                             <input type="text" placeholder="Number of Family Members" class="form-control" name="family_size" required>
                         </div>
+                        {{ form.as_p }}
+                        <div class="form-group form-check">
+                            <input type="checkbox" class="form-check-input" id="id_women_bool" name="women_bool">
+                            <label class="form-check-label" for="id_women_bool">Women in the Family</label>
+                        </div>
+                        <div class="form-group form-check">
+                            <input type="checkbox" class="form-check-input" id="id_child_bool" name="child_bool">
+                            <label class="form-check-label" for="id_child_bool">Children in the Family</label>
+                        </div>
+                        <div class="form-group form-check">
+                            <input type="checkbox" class="form-check-input" id="id_baby_bool" name="baby_bool">
+                            <label class="form-check-label" for="id_baby_bool">Babies in the Family</label>
+                        </div>
                         <div class="form-group">
-                            <label>Medical Issues:</label>
-                            <select class="form-control" id="MedicalIssues">
-                                <option>(None)</option>
-                                <option>Medical Issue 1</option>
-                                <option>Medical Issue 2</option>
-                                <option>Medical Issue 3</option>
-                            </select>
+                            <label>Medical Issues (optional):</label>
+                            <input type="text" placeholder="Enter medical condition" class="form-control" name="medical_issues">
+                        </div>
+                        <div class="form-group">
+                            <label>Medication Amount (optional):</label>
+                            <input type="number" class="form-control" name="medication_amount" placeholder="Amount of medication needed per day">
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-success">Signup</button>
