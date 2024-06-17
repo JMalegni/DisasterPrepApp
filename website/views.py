@@ -222,6 +222,12 @@ def disasterchecklist(request):
     if request.method == 'GET':
         return render(request, 'disasterchecklist.html')
     if request.method == 'POST':
+        return render(request, 'disasterposter.html')
+
+def disasterposter(request):
+    if request.method == 'GET':
+        return render(request, 'disasterposter.html')
+    if request.method == 'POST':
         return redirect('home')
 
 def logout(request):

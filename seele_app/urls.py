@@ -30,6 +30,7 @@ urlpatterns = [
     path('allusers/',allusers,name="allusers"),
     path('disasterprep/',disasterprep,name="disasterprep"),
     path('disasterchecklist/',disasterchecklist,name="disasterchecklist"),
+    path('disasterposter/', disasterposter, name="disasterposter"),
     path('logout/',logout,name="logout"),
     path('singleuser/<int:id>/',singleuser,name="singleuser"),
     path('edituser/<int:id>/',edituser,name="edituser"),
