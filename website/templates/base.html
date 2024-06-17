@@ -12,21 +12,26 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <ul class="navbar-nav ml-auto">
+                {% if request.session.user_email %}
+                <!-- Display these links if user is logged in -->
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'signup' %}">{% trans "Sign Up" %}</a>
+                    <a class="nav-link" href="{% url 'disasterprep' %}">Disaster Prep</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'login' %}">{% trans "Login" %}</a>
+                    <a class="nav-link" href="{% url 'profile' %}">Profile</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'disasterprep' %}">{% trans "Disaster Prep" %}</a>
+                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                </li>
+                {% else %}
+                <!-- Display these links if user is not logged in -->
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'signup' %}">Sign Up</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'profile' %}">{% trans "Profiles" %}</a>
+                    <a class="nav-link" href="{% url 'login' %}">Login</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'logout' %}">{% trans "Logout" %}</a>
-                </li>
+                {% endif %}
                 <li class="nav-item">
                     <form action="{% url 'set_language' %}" method="post" class="form-inline my-2 my-lg-0">
                         {% csrf_token %}
