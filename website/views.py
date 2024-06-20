@@ -1,5 +1,8 @@
 from django.shortcuts import render, redirect
 from .models import Users
+import requests
+
+APIKey = "5b3ce3597851110001cf6248f1495139fccf4eb9a4494f7bddb5a976"
 
 def home(request):
     if request.user.is_authenticated:
@@ -152,6 +155,7 @@ def disasterprep(request):
         try:
             user = Users.objects.get(email=email)
             checklist = generate_checklist(user, disaster_type)
+            # TODO: Change render to redirect
             return render(request, 'disasterchecklist.html', {'checklist': checklist})
         except Users.DoesNotExist:
             return redirect('login')
@@ -222,9 +226,13 @@ def disasterchecklist(request):
     if request.method == 'GET':
         return render(request, 'disasterchecklist.html')
     if request.method == 'POST':
-        return render(request, 'disasterposter.html')
+        return redirect('disasterposter')
 
 def disasterposter(request):
+    """response = requests.get(
+        f"https://api.openrouteservice.org/v2/directions/driving-car?api_key={APIKey}&start=8.681495,49.41461&end=8.687872,49.420318")
+    print(response.status_code)
+    print(response.json())"""
     if request.method == 'GET':
         return render(request, 'disasterposter.html')
     if request.method == 'POST':
