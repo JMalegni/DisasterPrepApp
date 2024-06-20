@@ -17,25 +17,22 @@
                 <div class="card-body">
                     <div id="map" style="height: 360px;"></div>
                     <script>
-                        var map = L.map('map').setView([39.75621, -104.99404], 15);
+                        var map = L.map('map').setView([49.41461, 8.681495], 15);
                         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                             maxZoom: 19,
                             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
                         }).addTo(map);
-                        var geojsonFeature = {
-                            "type": "Feature",
-                            "properties": {
-                                "name": "Coors Field",
-                                "amenity": "Baseball Stadium",
-                                "popupContent": "This is where the Rockies play!"
-                            },
-                            "geometry": {
-                                "type": "Point",
-                                "coordinates": [-104.99404, 39.75621]
-                            }
-                        };
-                        var myLayer = L.geoJSON().addTo(map);
-                        myLayer.addData(geojsonFeature);
+                        var str = '{{ geoJSON | safe }}'
+                        var result = {'bbox': [8.681423, 49.414599, 8.690123, 49.420514], 'type': 'Feature', 'properties': {'segments': [{'distance': 1408.8, 'duration': 281.9, 'steps': [{'distance': 1.8, 'duration': 0.4, 'type': 11, 'instruction': 'Head west on Gerhart-Hauptmann-Straße', 'name': 'Gerhart-Hauptmann-Straße', 'way_points': [0, 1]}, {'distance': 313.8, 'duration': 75.3, 'type': 1, 'instruction': 'Turn right onto Wielandtstraße', 'name': 'Wielandtstraße', 'way_points': [1, 6]}, {'distance': 500.8, 'duration': 76.4, 'type': 1, 'instruction': 'Turn right onto Mönchhofstraße', 'name': 'Mönchhofstraße', 'way_points': [6, 15]}, {'distance': 251.9, 'duration': 60.5, 'type': 0, 'instruction': 'Turn left onto Erwin-Rohde-Straße', 'name': 'Erwin-Rohde-Straße', 'way_points': [15, 19]}, {'distance': 126.8, 'duration': 30.4, 'type': 1, 'instruction': 'Turn right onto Moltkestraße', 'name': 'Moltkestraße', 'way_points': [19, 20]}, {'distance': 83.0, 'duration': 7.5, 'type': 2, 'instruction': 'Turn sharp left onto Handschuhsheimer Landstraße, B 3', 'name': 'Handschuhsheimer Landstraße, B 3', 'way_points': [20, 22]}, {'distance': 130.6, 'duration': 31.4, 'type': 0, 'instruction': 'Turn left onto Roonstraße', 'name': 'Roonstraße', 'way_points': [22, 23]}, {'distance': 0.0, 'duration': 0.0, 'type': 10, 'instruction': 'Arrive at Roonstraße, straight ahead', 'name': '-', 'way_points': [23, 23]}]}], 'summary': {'distance': 1408.8, 'duration': 281.9}, 'way_points': [0, 23]}, 'geometry': {'coordinates': [[8.681495, 49.414599], [8.68147, 49.414599], [8.681488, 49.41465], [8.681423, 49.415746], [8.681656, 49.41659], [8.681826, 49.417081], [8.681881, 49.417392], [8.682461, 49.417389], [8.682676, 49.417387], [8.683595, 49.417372], [8.68536, 49.417365], [8.686407, 49.417365], [8.68703, 49.41736], [8.687467, 49.417351], [8.688212, 49.417358], [8.688802, 49.417381], [8.68871, 49.418194], [8.688647, 49.418465], [8.688539, 49.418964], [8.688398, 49.41963], [8.690123, 49.419833], [8.689854, 49.420217], [8.689653, 49.420514], [8.687871, 49.420322]], 'type': 'LineString'}}
+                        document.write(str)
+                        try {
+                            var geojsonFeature = JSON.parse(str);
+                            document.write(typeof geojsonFeature);
+                            var myLayer = L.geoJSON().addTo(map);
+                            myLayer.addData(geojsonFeature);
+                        } catch (error) {
+                            document.write(error);
+                        }
                     </script>
                     {% if geoJSON %}
                     <h1>{{ geoJSON }}</h1>
