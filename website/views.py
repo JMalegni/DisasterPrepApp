@@ -1,5 +1,10 @@
+import os
 from django.shortcuts import render, redirect
+from django.http import HttpResponse
+from django.conf import settings
+from django.shortcuts import render, get_object_or_404
 from .models import Users
+from .utils import checklist_image
 
 def home(request):
     if request.user.is_authenticated:
@@ -152,7 +157,9 @@ def disasterprep(request):
         try:
             user = Users.objects.get(email=email)
             checklist = generate_checklist(user, disaster_type)
-            return render(request, 'disasterchecklist.html', {'checklist': checklist})
+            request.session['disaster_type'] = disaster_type
+            request.session['checklist'] = checklist
+            return render(request, 'disasterchecklist.html', {'checklist': checklist, 'user_id': user.id})
         except Users.DoesNotExist:
             return redirect('login')
 
@@ -192,9 +199,6 @@ def generate_checklist(user, disaster_type):
             checklist.append("Diapers")
         if child:
             checklist.append("Books/toys")
-
-
-
     elif disaster_type == 'Earthquake':
         checklist = [
             "Secure heavy furniture to walls",
@@ -219,17 +223,93 @@ def generate_checklist(user, disaster_type):
     return checklist
 
 def disasterchecklist(request):
+    # Checks to see if user is logged in, if they are, website will allow user to make checklist
     if request.method == 'GET':
-        return render(request, 'disasterchecklist.html')
-    if request.method == 'POST':
-        return render(request, 'disasterposter.html')
+        user_email = request.session.get("user_email")
+
+        if not user_email:
+            return redirect('login')
+        
+        user = get_object_or_404(Users, email=user_email)
+        return render(request, 'disasterchecklist.html', {'user_id': user.id})
+
+    return redirect('disasterposter', user_id=request.POST.get('user_id'))
+
 
 def disasterposter(request):
     if request.method == 'GET':
         return render(request, 'disasterposter.html')
-    if request.method == 'POST':
-        return redirect('home')
+    
+    elif request.method == 'POST':
+        # Gets disaster type and checklist based on whats saved in the session
+        disaster_type = request.session.get('disaster_type')
+        checklist = request.session.get('checklist')
+        facts = generate_facts(disaster_type)
 
+        # If disaster type or checklist does not exist, it redirects the user to disasterprep
+        if not disaster_type or not checklist:
+            return redirect('disasterprep')
+
+        # Creates checklist image
+        image_name = checklist_image(checklist, disaster_type, facts)
+
+        # Makes sure static url and image filename are defined, if not returns error
+        if image_name and settings.STATIC_URL:
+            image_url = f"{settings.STATIC_URL}images/{image_name}"
+            context = {'image_url': image_url}
+
+        else:
+            context = {'error_message': 'Error creating checklist'}
+
+        return render(request, 'disasterposter.html', context)
+    
+def generate_facts(disaster_type):
+    facts = []
+
+    if disaster_type == 'Typhoon':
+        facts = [
+            "Typhoon fact 1",
+            "Typhoon fact 2",
+            "Typhoon fact 3",
+            "Typhoon fact 4",
+            "Typhoon fact 5",
+        ]
+
+    elif disaster_type == 'Earthquake':
+        facts = [
+            "Earthquake fact 1",
+            "Earthquake fact 2",
+            "Earthquake fact 3",
+            "Earthquake fact 4",
+            "Earthquake fact 5",
+        ]
+
+    elif disaster_type == 'Flood':
+        facts = [
+            "Flood fact 1",
+            "Flood fact 2",
+            "Flood fact 3",
+            "Flood fact 4",
+            "Flood fact 5",
+        ]
+
+    return facts
+
+def download_poster(request):
+    # Gets the path for the image
+    image_path = os.path.join(settings.STATIC_ROOT, 'images', 'disaster_poster.png')
+    
+    # Checks to see if the image exist
+    if os.path.exists(image_path):
+        # Opens image in binary read mode
+        with open(image_path, 'rb') as f:
+            response = HttpResponse(f.read(), content_type='image/png')
+            # Identifies that the response should act as an attachment
+            response['Content-Disposition'] = 'attachment; filename="disaster_poster.png"'
+            return response
+    else:
+        return HttpResponse("Image not found", status=404)
+        
 def logout(request):
     del request.session["user_email"]
     return render(request,'login.html')

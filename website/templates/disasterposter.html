@@ -1,30 +1,21 @@
-
 {% extends 'base.html' %}
 {% load i18n static %}
 
-{% block title %}{% trans "Home" %}{% endblock %}
+{% block title %}{% trans "Disaster Poster" %}{% endblock %}
 {% block content %}
-<div class="container" style="margin-top: 20px">
-    <div class="row">
-        <div class="col-md-8">
-            {% if msg %}
-            <div class="alert alert-{{tag}}">{{msg}}</div>
-            {% endif %}
-            <div class="card">
-                <div class="card-header">
-                    <h5 class="card-title">Emergency Guide</h5>
-                </div>
-                <div class="card-body">
-                    <form action="{% url 'disasterposter' %}" method="POST">
-                        {% csrf_token %}
-                        <div class="form-group" style="margin-top: 20px;">
-                            <button type="submit" class="btn btn-success">Complete Checklist</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
+<head>
+    <meta charset="UTF-8">
+    <title>Disaster Poster</title>
+</head>
+<body>
+    <h1>Disaster Poster</h1>
+    {% if error_message %}
+        <p>{{ error_message }}</p>
+    {% elif image_url %}
+        <img src="{{ image_url }}" alt="Disaster Poster">
+        <div>
+            <a href="{% url 'download_poster' %}" class="btn btn-primary">Download Image</a>
         </div>
-        <div class="col-md-4"></div>
-    </div>
-</div>
+    {% endif %}
+</body>
 {% endblock %}
