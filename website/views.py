@@ -226,7 +226,9 @@ def disasterchecklist(request):
     if request.method == 'GET':
         return render(request, 'disasterchecklist.html')
     if request.method == 'POST':
-        return redirect('disasterposter')
+        response = requests.get(
+            f"https://api.openrouteservice.org/v2/directions/driving-car?api_key={APIKey}&start=8.681495,49.41461&end=8.687872,49.420318")
+        return render(request, 'disasterposter.html', {'geoJSON': response.json()})
 
 def disasterposter(request):
     """response = requests.get(

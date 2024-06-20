@@ -23,6 +23,9 @@
                             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
                         }).addTo(map);
                     </script>
+                    {% if geoJSON %}
+                    <h1>{{ geoJSON }}</h1>
+                    {% endif %}
                     <!--<img src="{% static 'images/girl_default.png' %}" alt="{% trans "Example Image" %}" class="small-image img-fluid mt-4">-->
                 </div>
             </div>
