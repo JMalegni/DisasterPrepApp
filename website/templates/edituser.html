@@ -8,37 +8,36 @@
         <div class="col-md-4">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="card-title">Update User Profile</h5>
+                    <h5 class="card-title">{% trans "Update User Profile" %}</h5>
                 </div>
                 <div class="card-body">
                     <form action="{% url 'edituser' user.id %}" method="POST">
                     {% csrf_token %}
                         <div class="form-group">
-                            <label>Name</label>
-                            <input type="text" value="{{user.name}}" placeholder="Full Name" class="form-control" name="name" required>
+                            <label>{% trans "Name" %}</label>
+                            <input type="text" value="{{user.name}}" placeholder="{% trans "Full Name" %}" class="form-control" name="name" required>
                         </div>
                         <div class="form-group">
-                            <label>Email</label>
-                            <input type="email" value="{{user.email}}" placeholder="Email" class="form-control" name="email" readonly>
+                            <label>{% trans "Email" %}</label>
+                            <input type="email" value="{{user.email}}" placeholder="{% trans "Email" %}" class="form-control" name="email" readonly>
                         </div>
                         <div class="form-group">
-                            <label>Password</label>
-                            <input type="text" value="{{user.password}}" placeholder="Password" class="form-control" name="password" required>
+                            <label>{% trans "Password" %}</label>
+                            <input type="text" value="{{user.password}}" placeholder="{% trans "Password" %}" class="form-control" name="password" required>
                         </div>
                         <div class="form-group">
-                            <label>Mobile</label>
-                            <input type="number" value="{{user.mobile}}" placeholder="Mobile" class="form-control" name="mobile" required>
+                            <label>{% trans "Mobile" %}</label>
+                            <input type="number" value="{{user.mobile}}" placeholder="{% trans "Mobile" %}" class="form-control" name="mobile" required>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-warning">Update User</button>
+                            <button type="submit" class="btn btn-warning">{% trans "Update User" %}</button>
                         </div>
                     </form>
                 </div>
-               
             </div>
         </div>
         <div class="col-md-8">
-
+            <!-- Additional content can go here -->
         </div>
     </div>
 </div>

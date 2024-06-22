@@ -1,0 +1,2 @@
+[console_scripts]
+yourmother = seele_app.entrypoint:main

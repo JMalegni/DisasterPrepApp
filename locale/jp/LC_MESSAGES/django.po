@@ -3,12 +3,11 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-15 21:55-0400\n"
+"POT-Creation-Date: 2024-06-23 01:00-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,89 +16,550 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: seele_app/settings.py:21
-msgid "English"
-msgstr "英語"
-
-#: seele_app/settings.py:22
-msgid "Japanese"
-msgstr "日本語"
-
-#: seele_app/settings.py:23
-msgid "Simple Japanese"
-msgstr "やさしいにほんご"
-
-#: website/templates/home.html:9
+#: build/lib/website/templates/base.html:9 website/templates/base.html:11
 msgid "S.E.E.L.E Home"
 msgstr "S.E.E.L.Eホーム"
 
-#: website/templates/home.html:16
-msgid "Sign Up"
-msgstr "サインアップ"
+#: build/lib/website/templates/base.html:18
+#: build/lib/website/templates/base.html:32
+#: build/lib/website/templates/disasterchecklist.html:4
+#: build/lib/website/templates/disasterposter.html:5
+#: build/lib/website/templates/disasterprep.html:4
+#: build/lib/website/templates/familyinfo.html:4
+#: website/templates/allusers.html:4 website/templates/base.html:20
+#: website/templates/base.html:34 website/templates/disasterposter.html:52
+#: website/templates/disasterprep.html:4 website/templates/edituser.html:4
+#: website/templates/familyinfo.html:4 website/templates/home.html:5
+#: website/templates/layout.html:25 website/templates/login.html:4
+#: website/templates/profile.html:4 website/templates/signup.html:4
+#: website/templates/singleuser.html:4
+msgid "Home"
+msgstr "ホーム"
 
-#: website/templates/home.html:19
-msgid "Login"
-msgstr "ログイン"
-
-#: website/templates/home.html:22
+#: build/lib/website/templates/base.html:21 website/templates/base.html:23
+#: website/templates/disasterprep.html:15 website/templates/layout.html:35
 msgid "Disaster Prep"
 msgstr "災害の準備"
 
-#: website/templates/home.html:25
-msgid "Profiles"
+#: build/lib/website/templates/base.html:24 website/templates/base.html:26
+#: website/templates/layout.html:29
+msgid "Profile"
 msgstr "プロフィル"
 
-#: website/templates/home.html:28
+#: build/lib/website/templates/base.html:27 website/templates/base.html:29
+#: website/templates/layout.html:38
 msgid "Logout"
 msgstr "ログアウト"
 
-#: website/templates/home.html:35
-msgid "S.E.E.L.E"
-msgstr "S.E.E.L.E"
+#: build/lib/website/templates/base.html:35 website/templates/base.html:37
+#: website/templates/signup.html:36
+msgid "Sign Up"
+msgstr "サインアップ"
 
-#: website/templates/home.html:36
-msgid "Strategic Emergency Education for Localized Events"
-msgstr "Strategic Emergency Education for Localized Events"
+#: build/lib/website/templates/base.html:38 website/templates/base.html:40
+#: website/templates/layout.html:42 website/templates/login.html:28
+msgid "Login"
+msgstr "ログイン"
 
-#: website/templates/home.html:41
+#: build/lib/website/templates/base.html:45 seele_app/settings.py:21
+msgid "English"
+msgstr "英語"
+
+#: build/lib/website/templates/base.html:46
+msgid "Japanese"
+msgstr "日本語"
+
+#: build/lib/website/templates/base.html:47
+msgid "Simple Japanese"
+msgstr "やさしいにほんご"
+
+#: seele_app/settings.py:22
+msgid "日本語"
+msgstr "日本語"
+
+#: seele_app/settings.py:23
+msgid "やさしいにほんご"
+msgstr "やさしいにほんご"
+
+#: website/templates/disasterchecklist.html:4
+msgid "Disaster Checklist"
+msgstr "災害のチェックリスト"
+
+#: website/templates/disasterchecklist.html:15
+msgid "Emergency Bag Checklist"
+msgstr "緊急バッグのチェックリスト"
+
+#: website/templates/disasterchecklist.html:28
+msgid "No checklist available"
+msgstr "チェックリストはありません"
+
+#: website/templates/disasterchecklist.html:33
+msgid "Generate Poster"
+msgstr "ポスターを生成"
+
+#: website/templates/disasterposter.html:4
+#: website/templates/disasterposter.html:20
+msgid "Disaster Poster"
+msgstr "災害ポスター"
+
+#: website/templates/disasterposter.html:14
+msgid "Emergency Poster"
+msgstr "緊急ポスター"
+
+
+#: website/templates/disasterposter.html:36 website/templates/home.html:42
+#: website/templates/home.html:43 website/templates/home.html:44
+msgid "Example Image"
+msgstr "サンプル画像"
+
+#: website/templates/disasterposter.html:43
+msgid "Actions"
+msgstr "アクション"
+
+#: website/templates/disasterposter.html:47
+msgid "Download"
+msgstr "ダウンロード"
+
+#: website/templates/disasterprep.html:21
+msgid "What disaster is this plan for:"
+msgstr "この計画はどの災害のためのものですか："
+
+#: website/templates/disasterprep.html:23
+msgid "(None)"
+msgstr "（なし）"
+
+#: website/templates/disasterprep.html:24
+msgid "Typhoon"
+msgstr "台風"
+
+#: website/templates/disasterprep.html:25
+msgid "Earthquake"
+msgstr "地震"
+
+#: website/templates/disasterprep.html:26
+msgid "Flood"
+msgstr "洪水"
+
+#: website/templates/disasterprep.html:30
+msgid "Generate Plan"
+msgstr "計画を生成"
+
+#: website/templates/edituser.html:11
+msgid "Update User Profile"
+msgstr "ユーザープロファイルを更新"
+
+#: website/templates/edituser.html:17 website/templates/singleuser.html:9
+msgid "Name"
+msgstr "名前"
+
+#: website/templates/edituser.html:18
+msgid "Full Name"
+msgstr "フルネーム"
+
+#: website/templates/edituser.html:21 website/templates/edituser.html:22
+#: website/templates/singleuser.html:10
+msgid "Email"
+msgstr "メール"
+
+#: website/templates/edituser.html:25 website/templates/edituser.html:26
+#: website/templates/login.html:24 website/templates/login.html:25
+#: website/templates/signup.html:28 website/templates/signup.html:29
+#: website/templates/singleuser.html:11
+msgid "Password"
+msgstr "パスワード"
+
+#: website/templates/edituser.html:29 website/templates/edituser.html:30
+#: website/templates/singleuser.html:12
+msgid "Mobile"
+msgstr "携帯電話"
+
+#: website/templates/edituser.html:33
+msgid "Update User"
+msgstr "ユーザーを更新"
+
+#: website/templates/familyinfo.html:14
+msgid "Family Information"
+msgstr "家族情報"
+
+#: website/templates/familyinfo.html:20 website/templates/familyinfo.html:21
+msgid "Location"
+msgstr "所在"
+
+#: website/templates/familyinfo.html:24
+msgid "Family Size"
+msgstr "家族のサイズ"
+
+#: website/templates/familyinfo.html:25
+msgid "Number of Family Members"
+msgstr "家族の人数"
+
+#: website/templates/familyinfo.html:30
+msgid "There are women in my family."
+msgstr "家族に女性がいます。"
+
+#: website/templates/familyinfo.html:34
+msgid "There are children in my family."
+msgstr "家族に子供がいます。"
+
+#: website/templates/familyinfo.html:38
+msgid "There are infants in my family."
+msgstr "家族に赤ちゃんがいます。"
+
+#: website/templates/familyinfo.html:41
+msgid "Medical Issues (optional):"
+msgstr "医療上の問題（オプション）："
+
+#: website/templates/familyinfo.html:42
+msgid "Enter medical condition"
+msgstr "医療状態を入力"
+
+#: website/templates/familyinfo.html:45
+msgid "Medication Amount (optional):"
+msgstr "薬の量（オプション）："
+
+#: website/templates/familyinfo.html:46
+msgid "Amount of medication needed per day"
+msgstr "1日に必要な薬の量"
+
+#: website/templates/familyinfo.html:49
+msgid "Continue"
+msgstr "続ける"
+
+#: website/templates/home.html:16
 msgid "What S.E.E.L.E is"
 msgstr "S.E.E.L.Eとは"
 
-#: website/templates/home.html:42
+#: website/templates/home.html:17
 msgid ""
 "S.E.E.L.E is a web app that helps you personally prepare for a wide range of "
 "disasters. From Typhoons to Earthquakes, we've got you covered."
-msgstr "S.E.E.L.E はさまざまな災害の準備を個人的に行う人に役立つ ウェブサイトです。"
-"台風や地震でも、人々が安全になるように役立ちます。"
+msgstr ""
+"S.E.E.L.E はさまざまな災害の準備を個人的に行う人に役立つ ウェブサイトです。台"
+"風や地震でも、人々が安全になるように役立ちます。"
 
-#: website/templates/home.html:49
+#: website/templates/home.html:25
 msgid "Who we are"
 msgstr "S.E.E.L.Eの部員たちは"
 
-#: website/templates/home.html:50
+#: website/templates/home.html:26
 msgid ""
 "We’re a multicultural group of students from the University of Florida and "
 "Kyoto University, committed to making disaster preparation easier for all."
-msgstr "私たちはフロリダ大学の学生と京都大学の大学院生です。すべての人にとって災害"
-"への備えが容易になるよう取り組んでいます"
+msgstr ""
+"私たちはフロリダ大学の学生と京都大学の大学院生です。すべての人にとって災害へ"
+"の備えが容易になるよう取り組んでいます"
 
-#: website/templates/home.html:57
+#: website/templates/home.html:34
 msgid "How it works"
 msgstr "使い方は"
 
-#: website/templates/home.html:58
+#: website/templates/home.html:35
 msgid ""
 "S.E.E.L.E creates a personalized checklist for emergency supplies that can "
 "help during times of crisis, and can provide users information via an "
 "infographic with important information regarding the disaster."
-msgstr "S.E.E.L.E は、災害の準備をやさしくなるために、個人的なチェックリストを作成して、"
-"災害に関する重要な情報を含むインフォグラフィックをユーザーに発表します。"
+msgstr ""
+"S.E.E.L.E は、災害の準備をやさしくなるために、個人的なチェックリストを作成し"
+"て、災害に関する重要な情報を含むインフォグラフィックをユーザーに発表します。"
 
-#: website/templates/home.html:64 website/templates/home.html:65
-#: website/templates/home.html:66
-msgid "Example Image"
-msgstr "サンプル画像"
+#: website/templates/layout.html:7
+msgid "Django Website"
+msgstr "Djangoのウェブサイト"
 
-#: website/templates/home.html:68
-msgid "Get Started"
-msgstr "始める"
+#: website/templates/layout.html:17
+msgid "S.E.E.L.E"
+msgstr "S.E.E.L.E"
+
+#: website/templates/layout.html:18
+msgid "Toggle navigation"
+msgstr "ナビゲーションを切り替え"
+
+#: website/templates/layout.html:32
+msgid "Users"
+msgstr "ユーザー"
+
+#: website/templates/layout.html:45
+msgid "Signup"
+msgstr "サインアップ"
+
+#: website/templates/layout.html:63
+msgid "Powered By Django"
+msgstr "Djangoによって供給されています"
+
+#: website/templates/login.html:14
+msgid "Login Form"
+msgstr "ログインフォーム"
+
+#: website/templates/login.html:20 website/templates/login.html:21
+#: website/templates/signup.html:24 website/templates/signup.html:25
+msgid "Email Address"
+msgstr "メールアドレス"
+
+#: website/templates/login.html:33
+msgid "New Users Signup"
+msgstr "新しいユーザーサインアップ"
+
+#: website/templates/login.html:33 website/templates/signup.html:41
+msgid "Here"
+msgstr "ここ"
+
+#: website/templates/profile.html:7
+msgid "User Profile"
+msgstr "ユーザープロフィール"
+
+#: website/templates/profile.html:9
+#, python-format
+msgid "Successfully Login %(request.session.user_email)s"
+msgstr "正常にログイン %(request.session.user_email)s"
+
+#: website/templates/signup.html:14
+msgid "Signup Form"
+msgstr "サインアップフォーム"
+
+#: website/templates/signup.html:20 website/templates/signup.html:21
+msgid "Username"
+msgstr "ユーザー名"
+
+#: website/templates/signup.html:32
+msgid "Confirm Password"
+msgstr "パスワードを認証する"
+
+#: website/templates/signup.html:33
+msgid "Re-enter Password"
+msgstr "パスワードを再入力"
+
+#: website/templates/signup.html:41
+msgid "Existing Users: Login"
+msgstr "既存ユーザーのログイン"
+
+#: website/templates/singleuser.html:7
+msgid "Single User Details"
+msgstr "単一ユーザーの詳細"
+
+#: website/templates/singleuser.html:8
+msgid "User ID"
+msgstr "ユーザーID"
+
+#: website/views.py:30
+msgid "Enter correct password"
+msgstr "正しいパスワードを入力してください"
+
+#: website/views.py:32
+msgid "Enter correct email"
+msgstr "正しいメールアドレスを入力してください"
+
+#: website/views.py:45
+msgid "Passwords do not match"
+msgstr "パスワードが一致しません"
+
+#: website/views.py:48
+msgid "Email address is already associated with an account"
+msgstr "メールアドレスはすでにアカウントに関連付けられています"
+
+#: website/views.py:59
+msgid "Error on Signup"
+msgstr "サインアップ時のエラー"
+
+#: website/views.py:68
+msgid "Please try again"
+msgstr "もう一度試してください"
+
+#: website/views.py:75
+msgid "Please enter a family size between 1 and 10"
+msgstr "家族の人数を1から10の間で入力してください"
+
+#: website/views.py:105
+msgid "Error on Signup: "
+msgstr "サインアップ時のエラー: "
+
+#: website/views.py:161
+msgid "{} Liters of water"
+msgstr ""
+
+#: website/views.py:162
+msgid "{} calories of non-perishable food"
+msgstr ""
+
+#: website/views.py:163
+msgid "{} sets of clothes (one for each family member)"
+msgstr ""
+
+#: website/views.py:164
+msgid "First aid kit"
+msgstr "救急セット"
+
+#: website/views.py:165
+msgid "Important documents (Passport, Will, ID cards)"
+msgstr "重要書類（パスポート、遺言書、IDカード）"
+
+#: website/views.py:166
+msgid "Cash"
+msgstr "現金"
+
+#: website/views.py:167
+msgid "Emergency contact list"
+msgstr "緊急連絡先リスト"
+
+#: website/views.py:168
+msgid "Radio"
+msgstr "ラジオ"
+
+#: website/views.py:169
+msgid "Flashlights and batteries"
+msgstr "懐中電灯と電池"
+
+#: website/views.py:176
+#, fuzzy
+#| msgid "Medication for {medical_issue} for 3 days"
+msgid "Medication for {} for 3 days"
+msgstr "3日分の{medical_issue}の薬"
+
+#: website/views.py:178
+#, fuzzy
+#| msgid "Medication for {medical_issue}: {medication_amount * 3} units"
+msgid "Medication for {}: {} units"
+msgstr "{medical_issue}の薬：{medication_amount * 3}単位"
+
+#: website/views.py:181
+msgid "Sanitary napkins/tampons"
+msgstr "生理用ナプキン/タンポン"
+
+#: website/views.py:182
+msgid "Lotion/cleansing sheets"
+msgstr "ローション/クレンジングシート"
+
+#: website/views.py:184
+msgid "Baby formula/food"
+msgstr "粉ミルク/ベビーフード"
+
+#: website/views.py:185
+msgid "Diapers"
+msgstr "おむつ"
+
+#: website/views.py:187
+msgid "Books/toys"
+msgstr "本/おもちゃ"
+
+#: website/views.py:190
+msgid "Secure heavy furniture to walls"
+msgstr "重い家具を壁に固定する"
+
+#: website/views.py:191
+msgid "Create a family emergency plan"
+msgstr "家族の緊急計画を作成する"
+
+#: website/views.py:192
+msgid "Prepare an emergency bag"
+msgstr "緊急バッグを準備する"
+
+#: website/views.py:193
+#, fuzzy
+#| msgid ""
+#| "Have enough food and water for {family_size} people for at least 3 days"
+msgid "Have enough food and water for {} people for at least 3 days"
+msgstr "{family_size}人分の食料と水を少なくとも3日分用意する"
+
+#: website/views.py:194
+msgid "Keep a whistle to signal for help"
+msgstr "助けを求めるために笛を持っておく"
+
+#: website/views.py:195
+msgid "Learn basic first aid"
+msgstr "基本的な応急処置を学ぶ"
+
+#: website/views.py:199
+msgid "Know your evacuation routes"
+msgstr "避難経路を知っておく"
+
+#: website/views.py:200
+msgid "Move valuables to higher ground"
+msgstr "貴重品を高い場所に移動する"
+
+#: website/views.py:201
+#, fuzzy
+#| msgid "Stock up on {family_size * 3} days of food and water"
+msgid "Stock up on {} days of food and water"
+msgstr "{family_size * 3}日分の食料と水を備蓄する"
+
+#: website/views.py:202
+msgid "Prepare an emergency kit with essentials"
+msgstr "必需品を備えた緊急キットを準備する"
+
+#: website/views.py:203
+msgid "Ensure you have waterproof bags for important documents"
+msgstr "重要書類用の防水バッグを用意する"
+
+#: website/views.py:204
+msgid "Plan for pets and livestock"
+msgstr "ペットや家畜の計画を立てる"
+
+#: website/views.py:207
+msgid "Select a valid disaster type"
+msgstr "有効な災害タイプを選択してください"
+
+#: website/views.py:269
+msgid "Typhoon fact 1"
+msgstr "台風の事実 1"
+
+#: website/views.py:270
+msgid "Typhoon fact 2"
+msgstr "台風の事実 2"
+
+#: website/views.py:271
+msgid "Typhoon fact 3"
+msgstr "台風の事実 3"
+
+#: website/views.py:272
+msgid "Typhoon fact 4"
+msgstr "台風の事実 4"
+
+#: website/views.py:273
+msgid "Typhoon fact 5"
+msgstr "台風の事実 5"
+
+#: website/views.py:277
+msgid "Earthquake fact 1"
+msgstr "地震の事実 1"
+
+#: website/views.py:278
+msgid "Earthquake fact 2"
+msgstr "地震の事実 2"
+
+#: website/views.py:279
+msgid "Earthquake fact 3"
+msgstr "地震の事実 3"
+
+#: website/views.py:280
+msgid "Earthquake fact 4"
+msgstr "地震の事実 4"
+
+#: website/views.py:281
+msgid "Earthquake fact 5"
+msgstr "地震の事実 5"
+
+#: website/views.py:285
+msgid "Flood fact 1"
+msgstr "洪水の事実 1"
+
+#: website/views.py:286
+msgid "Flood fact 2"
+msgstr "洪水の事実 2"
+
+#: website/views.py:287
+msgid "Flood fact 3"
+msgstr "洪水の事実 3"
+
+#: website/views.py:288
+msgid "Flood fact 4"
+msgstr "洪水の事実 4"
+
+#: website/views.py:289
+msgid "Flood fact 5"
+msgstr "洪水の事実 5"
+
+#: website/views.py:302
+msgid "Image not found"
+msgstr "画像が見つかりません"
+
+#~ msgid "Error creating checklist"
+#~ msgstr "チェックリストの作成エラー"

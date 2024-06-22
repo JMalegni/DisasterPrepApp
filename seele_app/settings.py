@@ -19,8 +19,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 LANGUAGE_CODE = 'en'
 LANGUAGES = [
     ('en', _('English')),
-    ('jp', _('Japanese')),
-    ('sjp', _('Simple Japanese')),
+    ('jp', _('日本語')),
+    ('sjp', _('やさしいにほんご')),
 ]
 LOCALE_PATHS = [
     os.path.join(BASE_DIR, 'locale'),

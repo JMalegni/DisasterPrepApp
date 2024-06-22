@@ -4,11 +4,11 @@
 {% block title %}{% trans "Home" %}{% endblock %}
 {% block content %}
 <div class="container" style="margin-top: 20px;">
-    <h1 class="text-info">Single User Details</h1>
-    <h2>User ID : {{user.id}}</h2>
-    <h2>Name : {{user.name}}</h2>
-    <h2>Email : {{user.email}}</h2>
-    <h2>Password : {{user.password}}</h2>
-    <h2>Mobile : {{user.mobile}}</h2>
+    <h1 class="text-info">{% trans "Single User Details" %}</h1>
+    <h2>{% trans "User ID" %} : {{ user.id }}</h2>
+    <h2>{% trans "Name" %} : {{ user.name }}</h2>
+    <h2>{% trans "Email" %} : {{ user.email }}</h2>
+    <h2>{% trans "Password" %} : {{ user.password }}</h2>
+    <h2>{% trans "Mobile" %} : {{ user.mobile }}</h2>
 </div>
 {% endblock %}
