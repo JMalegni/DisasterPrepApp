@@ -45,7 +45,6 @@ html, body {
 }
 .small-image {
     width: 175px; /* Adjust the size as needed */
-    margin-top: 20px;
 }
 .btn-primary {
     background-color: #E74C3C; /* Soft Red */
@@ -53,4 +52,37 @@ html, body {
 }
 .btn-primary:hover {
     background-color: #C0392B; /* Darker Red */
+}
+
+.guide {
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+}
+
+.guide-desc {
+    position: relative;
+    visibility: hidden;
+    opacity: 0;
+    color: #000000;
+    flex: 33.33%
+}
+
+.guide:hover .guide-desc{
+    visibility: visible;
+    opacity: 1;
+}
+
+.btn:hover {
+    transform: scale(1.2);
+    position: relative;
+}
+
+.btn:hover:after {
+    content: url(../images/seal_happy.png);
+    left: 250em;
+    bottom: 1ex;
+    display: block;
+    position: absolute;
+    zoom: 3%;
 }

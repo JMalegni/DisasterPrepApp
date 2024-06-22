@@ -38,10 +38,25 @@
                 </div>
             </div>
         </div>
-        <div class="mt-4">
-            <img src="{% static 'images/girl_default.png' %}" alt="{% trans "Example Image" %}" class="small-image img-fluid mt-4">
-            <img src="{% static 'images/seal_default.png' %}" alt="{% trans "Example Image" %}" class="small-image img-fluid mt-4">
-            <img src="{% static 'images/boy_default.png' %}" alt="{% trans "Example Image" %}" class="small-image img-fluid mt-4">
+        <br><br>
+        <h3>{% trans "Meet Our Guides!" %}</h3>
+        <div class="row mt-4">
+            <div class="guide col mt-4" id="kyo-guide">
+                <img src="{% static 'images/girl_default.png' %}" alt="Kyodai Girl Image" class="small-image img-fluid mt-4">
+                <p class="guide-desc">{% trans "こんにちは! My name is Kyodai-san and I am here to help you get prepared for any disaster that comes." %}</p>
+            </div>
+
+            <div class="guide col mt-4" id="seele-guide">
+                <img src="{% static 'images/seal_default.png' %}" alt="Seele Image" class="small-image img-fluid mt-4">
+                <p class="guide-desc">{% trans "Yahallo! Please allow me, Seele-san, to be at your service against all disaster!" %}</p>
+            </div>
+
+            <div class="guide col mt-4" id="fl-guide">
+                <img src="{% static 'images/boy_default.png' %}" alt="Florida Boy Image" class="small-image img-fluid mt-4">
+                <p class="guide-desc">{% trans "What's up! The name's Ricky and we got you covered for any disaster!" %}</p>
+            </div>
+
+
         </div>
         {% if request.session.user_email %}
         <a href="{% url 'profile' %}" class="btn btn-primary mt-4">View Profile</a>
