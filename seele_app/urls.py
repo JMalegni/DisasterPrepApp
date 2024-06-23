@@ -16,7 +16,6 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from website.views import *
-
 from django.conf.urls.i18n import i18n_patterns
 
 urlpatterns = [
@@ -31,6 +30,8 @@ urlpatterns = [
     path('disasterprep/',disasterprep,name="disasterprep"),
     path('disasterchecklist/',disasterchecklist,name="disasterchecklist"),
     path('disasterposter/', disasterposter, name="disasterposter"),
+    path('disasterposter/<int:user_id>/', disasterposter, name="disasterposter"),
+    path('download/', download_poster, name='download_poster'),
     path('logout/',logout,name="logout"),
     path('singleuser/<int:id>/',singleuser,name="singleuser"),
     path('edituser/<int:id>/',edituser,name="edituser"),
