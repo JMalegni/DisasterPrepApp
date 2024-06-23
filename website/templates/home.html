@@ -48,20 +48,20 @@
 
             <div class="guide col mt-4" id="seele-guide">
                 <img src="{% static 'images/seal_default.png' %}" alt="Seele Image" class="small-image img-fluid mt-4">
-                <p class="guide-desc">{% trans "Yahallo! Please allow me, Seele-san, to be at your service against all disaster!" %}</p>
+                <p class="guide-desc">{% trans "Yahallo! Please allow me, Seele-san, to be at your service against all disasters!" %}</p>
             </div>
 
             <div class="guide col mt-4" id="fl-guide">
                 <img src="{% static 'images/boy_default.png' %}" alt="Florida Boy Image" class="small-image img-fluid mt-4">
-                <p class="guide-desc">{% trans "What's up! The name's Ricky and we got you covered for any disaster!" %}</p>
+                <p class="guide-desc">{% trans "What's up! The name's Ricky and we got you covered for any disasters!" %}</p>
             </div>
 
 
         </div>
         {% if request.session.user_email %}
-        <a href="{% url 'profile' %}" class="btn btn-primary mt-4">View Profile</a>
+        <a href="{% url 'profile' %}" title="Create and view checklists!" id="view-profile-btn" class="btn btn-primary mt-4">View Profile</a>
         {% else %}
-        <a href="{% url 'signup' %}" class="btn btn-primary mt-4">Get Started</a>
+        <a href="{% url 'signup' %}" title="Get started now!" id="start-btn" class="btn btn-primary mt-4">Get Started</a>
         {% endif %}
     </div>
 </div>

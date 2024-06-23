@@ -72,13 +72,14 @@ html, body {
     visibility: visible;
     opacity: 1;
 }
-
-.btn:hover {
+#view-profile-btn:hover,
+#start-btn:hover {
     transform: scale(1.2);
     position: relative;
 }
 
-.btn:hover:after {
+#view-profile-btn:hover:after,
+#start-btn:hover:after {
     content: url(../images/seal_happy.png);
     left: 250em;
     bottom: 1ex;
@@ -99,3 +100,11 @@ html, body {
 #who-we-are:hover #uf-x-kyodai {
     opacity: 1;
 }
+
+/*#login-box,*/
+/*#signup-box {*/
+/*    display: block;*/
+/*    margin-right: auto;*/
+/*    margin-left: auto;*/
+/*    position: relative;*/
+/*}*/
