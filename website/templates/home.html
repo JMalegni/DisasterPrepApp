@@ -21,10 +21,10 @@
             </div>
             <div class="col-md-4">
                 <div class="card card-custom">
-                    <div class="card-body">
+                    <div class="card-body" id="who-we-are">
                         <h3>{% trans "Who we are" %}</h3>
                         <p class="card-text">{% trans "We’re a multicultural group of students from the University of Florida and Kyoto University, committed to making disaster preparation easier for all." %}</p>
-
+                        <img src="{% static 'images/uf-x-kyodai.png' %}" alt="UF x Kyodai" id="uf-x-kyodai" class="hover-img">
                     </div>
                 </div>
             </div>
@@ -61,7 +61,7 @@
         {% if request.session.user_email %}
         <a href="{% url 'profile' %}" class="btn btn-primary mt-4">View Profile</a>
         {% else %}
-        <a href="#" class="btn btn-primary mt-4">Get Started</a>
+        <a href="{% url 'signup' %}" class="btn btn-primary mt-4">Get Started</a>
         {% endif %}
     </div>
 </div>

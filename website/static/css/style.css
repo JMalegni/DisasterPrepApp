@@ -29,7 +29,7 @@ html, body {
     color: #2C3E50; /* Dark Blue */
 }
 .card-custom {
-    height: 250px; /* Standardize the height of the description boxes */
+    height: 300px; /* Standardize the height of the description boxes */
     background-color: #FFFFFF; /* White background for cards */
     border: 1px solid #BDC3C7; /* Light Grey Border */
     margin-bottom: 20px;
@@ -85,4 +85,17 @@ html, body {
     display: block;
     position: absolute;
     zoom: 3%;
+}
+
+#uf-x-kyodai {
+    width: 300px;
+    postition: relative;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+#who-we-are:hover #uf-x-kyodai {
+    opacity: 1;
 }
