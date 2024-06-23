@@ -3,19 +3,59 @@
 
 {% block title %}{% trans "Disaster Poster" %}{% endblock %}
 {% block content %}
-<head>
-    <meta charset="UTF-8">
-    <title>Disaster Poster</title>
-</head>
-<body>
-    <h1>Disaster Poster</h1>
-    {% if error_message %}
-        <p>{{ error_message }}</p>
-    {% elif image_url %}
-        <img src="{{ image_url }}" alt="Disaster Poster">
-        <div>
-            <a href="{% url 'download_poster' %}" class="btn btn-primary">Download Image</a>
+<div class="container" style="margin-top: 20px">
+    <div class="row">
+        <div class="col-md-10">
+            {% if msg %}
+            <div class="alert alert-{{tag}}">{{msg}}</div>
+            {% endif %}
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">Emergency Poster</h5>
+                </div>
+                <div class="card-body">
+                    {% if error_message %}
+                        <p>{{ error_message }}</p>
+                    {% elif image_url %}
+                        <img src="{{ image_url }}" alt="Disaster Poster">
+
+                    {% endif %}
+                    {% if geoJSON %}
+                    <div id="map" style="height: 360px;"></div>
+                    <script>
+                        var map = L.map('map').setView([49.41746, 8.684683], 15);
+                        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                            maxZoom: 19,
+                            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+                        }).addTo(map);
+                        var str = '{{ geoJSON | safe }}'
+                        var geojsonFeature = JSON.parse(str);
+                        var myLayer = L.geoJSON().addTo(map);
+                        myLayer.addData(geojsonFeature);
+                    </script>
+                    {% endif %}
+                    <!--<img src="{% static 'images/girl_default.png' %}" alt="{% trans "Example Image" %}" class="small-image img-fluid mt-4">-->
+                </div>
+            </div>
         </div>
-    {% endif %}
-</body>
+        <div class="col-md-2">
+            <div class="card">
+                <div class="card-header" style="text-align: center;">
+                    <h5 class="card-title">Actions</h5>
+                </div>
+                <div class="card-body">
+                    <div style="text-align: center;">
+                        <a href="{% url 'download_poster' %}" class="btn btn-success">Download</a>
+                    </div>
+                    <form action="{% url 'disasterprep' %}" method="GET">
+                        {% csrf_token %}
+                        <div class="form-group" style="margin-top: 10px; text-align: center;">
+                            <button type="submit" class="btn btn-success">Home</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

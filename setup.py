@@ -10,6 +10,7 @@ setup(
         'django-bootstrap4>=23.4',
         'sqlparse>=0.3.1',
         'pillow>=10.3.0',
+        'requests>=2.32.3',
     ],
     entry_points={
         'console_scripts': [
