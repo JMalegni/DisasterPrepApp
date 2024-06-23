@@ -302,5 +302,8 @@ def download_poster(request):
         return HttpResponse(_("Image not found"), status=404)
 
 def logout(request):
-    del request.session["user_email"]
-    return render(request, 'login.html')
+    try:
+        del request.session["user_email"]
+    except KeyError as err:
+        return HttpResponse(_("No user logged in"), status=404)
+    return redirect("login")
