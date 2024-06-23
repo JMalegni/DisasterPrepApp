@@ -17,27 +17,27 @@
                 {% if request.session.user_email %}
                 <!-- Display these links if user is logged in -->
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'home' %}">Home</a>
+                    <a class="nav-link" href="{% url 'home' %}">{% trans "Home" %}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'disasterprep' %}">Disaster Prep</a>
+                    <a class="nav-link" href="{% url 'disasterprep' %}">{% trans "Disaster Prep" %}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+                    <a class="nav-link" href="{% url 'profile' %}">{% trans "Profile" %}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                    <a class="nav-link" href="{% url 'logout' %}">{% trans "Logout" %}</a>
                 </li>
                 {% else %}
                 <!-- Display these links if user is not logged in -->
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'home' %}">Home</a>
+                    <a class="nav-link" href="{% url 'home' %}">{% trans "Home" %}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'signup' %}">Sign Up</a>
+                    <a class="nav-link" href="{% url 'signup' %}">{% trans "Sign Up" %}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'login' %}">Login</a>
+                    <a class="nav-link" href="{% url 'login' %}">{% trans "Login" %}</a>
                 </li>
                 {% endif %}
                 <li class="nav-item">
@@ -45,8 +45,8 @@
                         {% csrf_token %}
                         <select name="language" onchange="this.form.submit()" class="form-control">
                             <option value="en" {% if LANGUAGE_CODE == 'en' %}selected{% endif %}>English</option>
-                            <option value="jp" {% if LANGUAGE_CODE == 'jp' %}selected{% endif %}>Japanese</option>
-                            <option value="sjp" {% if LANGUAGE_CODE == 'sjp' %}selected{% endif %}>Simple Japanese</option>
+                            <option value="jp" {% if LANGUAGE_CODE == 'jp' %}selected{% endif %}>日本語</option>
+                            <option value="sjp" {% if LANGUAGE_CODE == 'sjp' %}selected{% endif %}>やさしいにほんご</option>
                         </select>
                     </form>
                 </li>

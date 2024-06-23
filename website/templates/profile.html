@@ -4,9 +4,9 @@
 {% block title %}{% trans "Home" %}{% endblock %}
 {% block content %}
 <div class="container" style="margin-top: 20px;">
-    <h1>User Profile</h1>
+    <h1>{% trans "User Profile" %}</h1>
     {% if request.session.user_email %}
-        <h1>Successfully Login {{request.session.user_email}}</h1>
+        <h1>{% blocktrans %}Successfully Login {{ request.session.user_email }}{% endblocktrans %}</h1>
     {% endif %}
 </div>
 {% endblock %}

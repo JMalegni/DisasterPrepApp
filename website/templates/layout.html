@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-{% load static %}
+{% load static i18n %}
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>DJango Website</title>
+    <title>{% trans "Django Website" %}</title>
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <script src="{% static 'js/jquery.slim.min.js' %}"></script>
     <script src="{% static 'js/popper.min.js' %}"></script>
@@ -13,59 +13,54 @@
 <body>
     <!--Header Start-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-           <div class="container">
-                <a class="navbar-brand" href="{% url 'home' %}">S.E.E.L.E</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
-                </button>
-              
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                  <ul class="navbar-nav mr-auto">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'home' %}">{% trans "S.E.E.L.E" %}</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{% trans "Toggle navigation" %}">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+          
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                      <a class="nav-link" href="{% url 'home' %}">Home</a>
+                        <a class="nav-link" href="{% url 'home' %}">{% trans "Home" %}</a>
                     </li>
                     {% if request.session.user_email %}
-                      <li class="nav-item">
-                        <a class="nav-link" href="{% url 'profile' %}">Profile</a>
-                        </li> 
-                      <li class="nav-item">
-                        <a class="nav-link" href="{% url 'allusers' %}">Users</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="{% url 'disasterprep' %}">Disaster Prep</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
-                      </li> 
-                    {% else %}
                         <li class="nav-item">
-                          <a class="nav-link" href="{% url 'login' %}">Login</a>
+                            <a class="nav-link" href="{% url 'profile' %}">{% trans "Profile" %}</a>
+                        </li> 
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'allusers' %}">{% trans "Users" %}</a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link" href="{% url 'signup' %}">Signup</a>
+                            <a class="nav-link" href="{% url 'disasterprep' %}">{% trans "Disaster Prep" %}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'logout' %}">{% trans "Logout" %}</a>
                         </li> 
-                    {% endif%}
-                   
-                    
-                  </ul>
-                  
-                </div>
-           </div>
-          </nav>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'login' %}">{% trans "Login" %}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'signup' %}">{% trans "Signup" %}</a>
+                        </li> 
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
     <!--Header End-->
 
     <!--Dynamic Child Page Start-->
     {% block content %}
-
     {% endblock %}
     <!--Dynamic Child Page End-->
 
     <!--Footer Start-->
     <hr>
-
     <footer>
         <div class="container">
-            <p>Powered By DJango</p>
+            <p>{% trans "Powered By Django" %}</p>
         </div>
     </footer>
     <!--Footer End-->

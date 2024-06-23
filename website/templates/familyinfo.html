@@ -7,56 +7,53 @@
     <div class="row">
         <div class="col-md-4">
             {% if msg %}
-                <div class="alert alert-{{tag}}">{{msg}}</div>
+                <div class="alert alert-{{tag}}">{{ msg }}</div>
             {% endif %}
             <div class="card">
                 <div class="card-header">
-                    <h5 class="card-title">Family Information</h5>
+                    <h5 class="card-title">{% trans "Family Information" %}</h5>
                 </div>
                 <div class="card-body">
                     <form action="{% url 'familyinfo' %}" method="POST">
                     {% csrf_token %}
                         <div class="form-group">
-                            <label>Location</label>
-                            <input type="text" placeholder="Location" class="form-control" name="location" required>
+                            <label>{% trans "Location" %}</label>
+                            <input type="text" placeholder="{% trans "Location" %}" class="form-control" name="location" required>
                         </div>
                         <div class="form-group">
-                            <label>Family Size</label>
-                            <input type="text" placeholder="Number of Family Members" class="form-control" name="family_size" required>
+                            <label>{% trans "Family Size" %}</label>
+                            <input type="text" placeholder="{% trans "Number of Family Members" %}" class="form-control" name="family_size" required>
                         </div>
                         {{ form.as_p }}
                         <div class="form-group form-check">
                             <input type="checkbox" class="form-check-input" id="id_women_bool" name="women_bool">
-                            <label class="form-check-label" for="id_women_bool">Women in the Family</label>
+                            <label class="form-check-label" for="id_women_bool">{% trans "There are women in my family." %}</label>
                         </div>
                         <div class="form-group form-check">
                             <input type="checkbox" class="form-check-input" id="id_child_bool" name="child_bool">
-                            <label class="form-check-label" for="id_child_bool">Children in the Family</label>
+                            <label class="form-check-label" for="id_child_bool">{% trans "There are children in my family." %}</label>
                         </div>
                         <div class="form-group form-check">
                             <input type="checkbox" class="form-check-input" id="id_baby_bool" name="baby_bool">
-                            <label class="form-check-label" for="id_baby_bool">Babies in the Family</label>
+                            <label class="form-check-label" for="id_baby_bool">{% trans "There are infants in my family." %}</label>
                         </div>
                         <div class="form-group">
-                            <label>Medical Issues (optional):</label>
-                            <input type="text" placeholder="Enter medical condition" class="form-control" name="medical_issues">
+                            <label>{% trans "Medical Issues (optional):" %}</label>
+                            <input type="text" placeholder="{% trans "Enter medical condition" %}" class="form-control" name="medical_issues">
                         </div>
                         <div class="form-group">
-                            <label>Medication Amount (optional):</label>
-                            <input type="number" class="form-control" name="medication_amount" placeholder="Amount of medication needed per day">
+                            <label>{% trans "Medication Amount (optional):" %}</label>
+                            <input type="number" class="form-control" name="medication_amount" placeholder="{% trans "Amount of medication needed per day" %}">
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-success">Signup</button>
+                            <button type="submit" class="btn btn-success">{% trans "Continue" %}</button>
                         </div>
                     </form>
-                </div>
-                <div class="card-footer">
-                    Existing Users Login <a href="{% url 'login' %}">Here</a>
                 </div>
             </div>
         </div>
         <div class="col-md-8">
-
+            <!-- Additional content can go here -->
         </div>
     </div>
 </div>

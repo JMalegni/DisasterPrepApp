@@ -1,0 +1,56 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+.navbar {
+    background-color: #2C3E50; /* Dark Blue */
+}
+.navbar .nav-link {
+    color: #ECF0F1; /* Light Grey */
+}
+.navbar .nav-link:hover {
+    background-color: #34495E; /* Slightly lighter Dark Blue */
+}
+.jumbotron {
+    background-color: #ECF0F1; /* Light Grey */
+    text-align: center;
+    min-height: 100vh; /* Full viewport height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.jumbotron h1 {
+    font-size: 3em;
+    color: #2C3E50; /* Dark Blue */
+}
+.jumbotron h2 {
+    font-size: 2em;
+    color: #2C3E50; /* Dark Blue */
+}
+.card-custom {
+    height: 250px; /* Standardize the height of the description boxes */
+    background-color: #FFFFFF; /* White background for cards */
+    border: 1px solid #BDC3C7; /* Light Grey Border */
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.card-custom .card-body {
+    text-align: center;
+}
+.card-custom h3 {
+    color: #E74C3C; /* Soft Red */
+}
+.small-image {
+    width: 175px; /* Adjust the size as needed */
+    margin-top: 20px;
+}
+.btn-primary {
+    background-color: #E74C3C; /* Soft Red */
+    border: none;
+}
+.btn-primary:hover {
+    background-color: #C0392B; /* Darker Red */
+}
