@@ -47,7 +47,7 @@
                     <div style="text-align: center;">
                         <a href="{% url 'download_poster' %}" class="btn btn-success">Download</a>
                     </div>
-                    <form action="{% url 'disasterposter' %}" method="POST">
+                    <form action="{% url 'disasterprep' %}" method="GET">
                         {% csrf_token %}
                         <div class="form-group" style="margin-top: 10px; text-align: center;">
                             <button type="submit" class="btn btn-success">Home</button>

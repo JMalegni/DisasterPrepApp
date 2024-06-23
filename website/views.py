@@ -235,9 +235,6 @@ def disasterchecklist(request):
         
         user = get_object_or_404(Users, email=user_email)
         return render(request, 'disasterchecklist.html', {'user_id': user.id})
-    if request.method == 'POST':
-
-        return render(request, 'disasterposter.html', {'geoJSON': value})
     #return redirect('disasterposter', user_id=request.POST.get('user_id'))
 
 
@@ -251,10 +248,14 @@ def disasterposter(request):
     
     elif request.method == 'POST':
         #GeoJSON Information
-        response = requests.get(
-            f"https://api.openrouteservice.org/v2/directions/driving-car?api_key={APIKey}&start=8.681495,49.41461&end=8.687872,49.420318")
-        value = response.json()['features'][0]
-        value = str(value).replace("\'", "\"")
+        apiFailed = False
+        try:
+            response = requests.get(
+                f"https://api.openrouteservice.org/v2/directions/driving-car?api_key={APIKey}&start=8.681495,49.41461&end=8.687872,49.420318")
+            value = response.json()['features'][0]
+            value = str(value).replace("\'", "\"")
+        except:
+            apiFailed = True
 
         # Gets disaster type and checklist based on whats saved in the session
         disaster_type = request.session.get('disaster_type')
@@ -271,10 +272,16 @@ def disasterposter(request):
         # Makes sure static url and image filename are defined, if not returns error
         if image_name and settings.STATIC_URL:
             image_url = f"{settings.STATIC_URL}images/{image_name}"
-            context = {'image_url': image_url, 'geoJSON': value}
+            if apiFailed:
+                context = {'image_url': image_url}
+            else:
+                context = {'image_url': image_url, 'geoJSON': value}
 
         else:
-            context = {'error_message': 'Error creating checklist', 'geoJSON': value}
+            if apiFailed:
+                context = {'error_message': 'Error creating checklist'}
+            else:
+                context = {'error_message': 'Error creating checklist', 'geoJSON': value}
 
         return render(request, 'disasterposter.html', context)
     
