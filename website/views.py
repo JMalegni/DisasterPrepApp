@@ -47,6 +47,27 @@ def signup(request):
             if Users.objects.filter(email=email).exists():
                 return render(request, 'signup.html', {'msg': _('Email address is already associated with an account'), 'tag': 'danger'})
 
+            if len(password) >= 8:
+                return render(request, 'signup.html', {'msg': _('Password must be at least 8 characters'), 'tag': 'danger'})
+
+            contains_upper = False
+            for char in password:
+                if char.isupper():
+                    contains_upper = True
+                    break
+            if not contains_upper:
+                return render(request, 'signup.html',
+                              {'msg': _('Password must contain an uppercase letter'), 'tag': 'danger'})
+
+            special_character = False
+            for char in password:
+                if not char in 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ':
+                    special_character = True
+                    break
+            if not special_character:
+                return render(request, 'signup.html',
+                              {'msg': _('Password must contain a special character'), 'tag': 'danger'})
+
             request.session['signup_data'] = {
                 'name': name,
                 'email': email,
