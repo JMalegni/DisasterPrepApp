@@ -69,7 +69,7 @@
                 navigator.geolocation.getCurrentPosition(function(position) {
                     var lat = position.coords.latitude;
                     var lon = position.coords.longitude;
-                    locationInput.value = "Latitude: " + lat + ", Longitude: " + lon;
+                    locationInput.value = lat + "," + lon;
                     submitBtn.disabled = false;
                 }, function(error) {
                     console.error("Error occurred while retrieving location: ", error);

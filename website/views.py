@@ -68,6 +68,9 @@ def familyinfo(request):
                 return render(request, 'signup.html', {'msg': _('Please try again'), 'tag': 'danger'})
 
             location = request.POST.get('location')
+            comma_index = location.find(',')
+            latitude = location[:comma_index].strip()
+            longitude = location[comma_index+1:].strip()
             family_size_str = request.POST.get('family_size')
             family_size = int(family_size_str)
 
@@ -87,6 +90,8 @@ def familyinfo(request):
                 email=signup_data['email'],
                 password=signup_data['password'],
                 location=location,
+                latitude=latitude,
+                longitude=longitude,
                 family_size=family_size,
                 medical_issues=medical_issues,
                 medication_amount=medication_amount,
