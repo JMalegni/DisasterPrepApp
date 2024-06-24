@@ -7,6 +7,7 @@ from .models import Users
 import requests
 
 APIKey = "5b3ce3597851110001cf6248f1495139fccf4eb9a4494f7bddb5a976"
+email_code = "-1"
 from .utils import checklist_image
 
 def home(request):
@@ -77,10 +78,23 @@ def signup(request):
                 'password': password,
             }
 
-            return redirect('familyinfo')
+            return redirect('emailverification')
 
         except Exception:
             return render(request, 'signup.html', {'msg': _('Error on Signup'), 'tag': 'danger'})
+
+def emailverification(request):
+    if request.method == 'GET':
+        global email_code
+        email_code = "111111"
+        return render(request, 'emailverification.html')
+    if request.method == 'POST':
+        user_code = request.POST.get('code')
+        if user_code == email_code:
+            return redirect('familyinfo')
+        else:
+            return render(request, 'emailverification.html')
+
 
 def familyinfo(request):
     if request.method == 'GET':

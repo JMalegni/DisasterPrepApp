@@ -24,6 +24,7 @@ urlpatterns = [
     # path('i18n/', include('django.conf.urls.i18n')),
     path('login/',login,name="login"),
     path('signup/',signup,name="signup"),
+    path('emailverification',emailverification,name="emailverification"),
     path('familyinfo/',familyinfo,name="familyinfo"),
     path('profile/',profile,name="profile"),
     path('allusers/',allusers,name="allusers"),
