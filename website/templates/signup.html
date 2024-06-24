@@ -4,7 +4,8 @@
 {% block title %}{% trans "Home" %}{% endblock %}
 {% block content %}
 <div class="container" style="margin-top: 20px">
-    <div class="row">
+    <div class="row" id="signup-box">
+        <div class="col-md-4"></div>
         <div class="col-md-4">
             {% if msg %}
                 <div class="alert alert-{{tag}}">{{ msg }}</div>
@@ -42,9 +43,12 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-8">
-            <!-- Additional content can go here -->
-        </div>
+
+        <div class="col-md-4"></div>
+<!--        <div class="col-md-8">-->
+
+<!--        </div>-->
+
     </div>
 </div>
 {% endblock %}
