@@ -47,8 +47,9 @@ def signup(request):
             if Users.objects.filter(email=email).exists():
                 return render(request, 'signup.html', {'msg': _('Email address is already associated with an account'), 'tag': 'danger'})
 
-            if len(password) >= 8:
-                return render(request, 'signup.html', {'msg': _('Password must be at least 8 characters'), 'tag': 'danger'})
+            if len(password) < 8:
+                context = {'msg': _('Password must be at least 8 characters'), 'tag': 'danger', 'username': name, 'email': email, 'password': password, 'confirm': confirm_password}
+                return render(request, 'signup.html', context)
 
             contains_upper = False
             for char in password:
@@ -56,8 +57,9 @@ def signup(request):
                     contains_upper = True
                     break
             if not contains_upper:
-                return render(request, 'signup.html',
-                              {'msg': _('Password must contain an uppercase letter'), 'tag': 'danger'})
+                context = {'msg': _('Password must contain an uppercase letter'), 'tag': 'danger', 'username': name,
+                           'email': email, 'password': password, 'confirm': confirm_password}
+                return render(request, 'signup.html', context)
 
             special_character = False
             for char in password:
@@ -65,8 +67,9 @@ def signup(request):
                     special_character = True
                     break
             if not special_character:
-                return render(request, 'signup.html',
-                              {'msg': _('Password must contain a special character'), 'tag': 'danger'})
+                context = {'msg': _('Password must contain a special character'), 'tag': 'danger', 'username': name,
+                           'email': email, 'password': password, 'confirm': confirm_password}
+                return render(request, 'signup.html', context)
 
             request.session['signup_data'] = {
                 'name': name,

@@ -16,22 +16,50 @@
                 <div class="card-body">
                     <form action="{% url 'signup' %}" method="POST">
                     {% csrf_token %}
+                        {% if username %}
+                        <div class="form-group">
+                            <label>{% trans "Username" %}</label>
+                            <input type="text" placeholder="{% trans "Username" %}" value="{{ username }}" class="form-control" name="name" required>
+                        </div>
+                        {% else %}
                         <div class="form-group">
                             <label>{% trans "Username" %}</label>
                             <input type="text" placeholder="{% trans "Username" %}" class="form-control" name="name" required>
                         </div>
+                        {% endif %}
+                        {% if email %}
+                        <div class="form-group">
+                            <label>{% trans "Email Address" %}</label>
+                            <input type="email" placeholder="{% trans "Email Address" %}" value="{{ email }}" class="form-control" name="email" required>
+                        </div>
+                        {% else %}
                         <div class="form-group">
                             <label>{% trans "Email Address" %}</label>
                             <input type="email" placeholder="{% trans "Email Address" %}" class="form-control" name="email" required>
                         </div>
+                        {% endif %}
+                        {% if password %}
+                        <div class="form-group">
+                            <label>{% trans "Password" %}</label>
+                            <input type="password" placeholder="{% trans "Password" %}" value="{{ password }}" class="form-control" name="password" required>
+                        </div>
+                        {% else %}
                         <div class="form-group">
                             <label>{% trans "Password" %}</label>
                             <input type="password" placeholder="{% trans "Password" %}" class="form-control" name="password" required>
                         </div>
+                        {% endif %}
+                        {% if confirm %}
+                        <div class="form-group">
+                            <label>{% trans "Confirm Password" %}</label>
+                            <input type="password" placeholder="{% trans "Re-enter Password" %}" value="{{ confirm }}" class="form-control" name="confirm_password" required>
+                        </div>
+                        {% else %}
                         <div class="form-group">
                             <label>{% trans "Confirm Password" %}</label>
                             <input type="password" placeholder="{% trans "Re-enter Password" %}" class="form-control" name="confirm_password" required>
                         </div>
+                        {% endif %}
                         <div class="form-group">
                             <button type="submit" class="btn btn-success">{% trans "Sign Up" %}</button>
                         </div>
