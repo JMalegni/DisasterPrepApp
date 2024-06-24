@@ -60,6 +60,12 @@
                             <input type="password" placeholder="{% trans "Re-enter Password" %}" class="form-control" name="confirm_password" required>
                         </div>
                         {% endif %}
+                        <label>Password must:</label>
+                        <ul>
+                            <li>Be at least 8 characters</li>
+                            <li>Contain an uppercase letter</li>
+                            <li>Contain a special character</li>
+                        </ul>
                         <div class="form-group">
                             <button type="submit" class="btn btn-success">{% trans "Sign Up" %}</button>
                         </div>
