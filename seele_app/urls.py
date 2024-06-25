@@ -26,16 +26,12 @@ urlpatterns = [
     path('signup/',signup,name="signup"),
     path('familyinfo/',familyinfo,name="familyinfo"),
     path('profile/',profile,name="profile"),
-    path('allusers/',allusers,name="allusers"),
     path('disasterprep/',disasterprep,name="disasterprep"),
     path('disasterchecklist/',disasterchecklist,name="disasterchecklist"),
     path('disasterposter/', disasterposter, name="disasterposter"),
     path('disasterposter/<int:user_id>/', disasterposter, name="disasterposter"),
     path('download/', download_poster, name='download_poster'),
     path('logout/',logout,name="logout"),
-    path('singleuser/<int:id>/',singleuser,name="singleuser"),
-    path('edituser/<int:id>/',edituser,name="edituser"),
-    path('deleteuser/<int:id>/',deleteuser,name="deleteuser"),
 ]
 
 urlpatterns += i18n_patterns(
