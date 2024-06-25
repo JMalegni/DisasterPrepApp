@@ -25,6 +25,12 @@
                             <button type="submit" class="btn btn-success">{% trans "Next Step" %}</button>
                         </div>
                     </form>
+                    <form action="{% url 'emailverification' %}" method="GET">
+                        <label>{% trans "Didn't receive an email? Press the button to send a new one:" %}</label>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">{% trans "Resend" %}</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
