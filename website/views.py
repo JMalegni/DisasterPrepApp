@@ -6,8 +6,10 @@ from django.utils.translation import gettext as _
 from .models import Users
 import requests
 import smtplib, ssl
+import random
 
 APIKey = "5b3ce3597851110001cf6248f1495139fccf4eb9a4494f7bddb5a976"
+user_email = "null"
 email_code = "-1"
 from .utils import checklist_image
 
@@ -78,6 +80,8 @@ def signup(request):
                 'email': email,
                 'password': password,
             }
+            global user_email
+            user_email = email
 
             return redirect('emailverification')
 
@@ -87,12 +91,26 @@ def signup(request):
 def emailverification(request):
     if request.method == 'GET':
         global email_code
-        email_code = "111111"
+        email_code = ""
+        for _ in range(6):
+            email_code = email_code + str(random.randint(0, 9))
+        print(email_code)
+        sender_email = "seelewebapp@gmail.com"
         port = 465
         context = ssl.create_default_context()
         with smtplib.SMTP_SSL("smtp.gmail.com", port, context=context) as server:
-            #Remove password
-            server.login("seelewebapp@gmail.com", "seelewebapp123")
+
+            #TODO: Remove password
+            server.login(sender_email, "cpsi mknx ptpi bgbe")
+
+            message = """\
+            Subject: SEELE Verification Code
+
+            Your verification code is:
+            """
+            message = message + email_code
+
+            server.sendmail(sender_email, user_email, message)
 
         return render(request, 'emailverification.html')
     if request.method == 'POST':
