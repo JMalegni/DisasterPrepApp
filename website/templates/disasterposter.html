@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load i18n static %}
 
-{% block title %}{% trans "Disaster Poster" %}{% endblock %}
+{% block title %}{% trans "S.E.E.L.E - Poster" %}{% endblock %}
 {% block content %}
 <div class="container" style="margin-top: 20px">
     <div class="row">
@@ -16,11 +16,17 @@
                 <div class="card-body">
                     {% if error_message %}
                         <p>{{ error_message }}</p>
+                        
                     {% elif image_url %}
-                        <img src="{{ image_url }}" alt="{% trans "Disaster Poster" %}">
+                        <div style="position: relative;">
+                            <img src="{{ image_url }}" alt="{% trans "Disaster Poster" %}" style="width: 100%;">
+                            {% if geoJSON %}
+                            <div id="map" style="position: absolute; top: 55%; left: 6.7%; width: 40%; height: 40%;"></div>
+                            {% endif %}
+                        </div>
                     {% endif %}
+                    
                     {% if geoJSON %}
-                    <div id="map" style="height: 360px;"></div>
                     <script>
                         var map = L.map('map').setView([49.41746, 8.684683], 15);
                         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {

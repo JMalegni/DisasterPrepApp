@@ -2,8 +2,19 @@
 {% extends 'base.html' %}
 {% load i18n static %}
 
-{% block title %}{% trans "Home" %}{% endblock %}
+{% block title %}{% trans "S.E.E.L.E - Home" %}{% endblock %}
 {% block content %}
+<head>
+    <style>
+        .card-text {
+            {% if LANGUAGE_CODE == 'jp' %}
+            line-height: 2;
+            {% else %}
+            line-height: 1.5;
+            {% endif %}
+        }
+    </style>
+</head>
 <body>
 <div class="jumbotron">
     <div class="container">
@@ -21,10 +32,10 @@
             </div>
             <div class="col-md-4">
                 <div class="card card-custom">
-                    <div class="card-body">
+                    <div class="card-body" id="who-we-are">
                         <h3>{% trans "Who we are" %}</h3>
                         <p class="card-text">{% trans "We’re a multicultural group of students from the University of Florida and Kyoto University, committed to making disaster preparation easier for all." %}</p>
-
+                        <img src="{% static 'images/uf-x-kyodai.png' %}" alt="UF x Kyodai" id="uf-x-kyodai" class="hover-img">
                     </div>
                 </div>
             </div>
@@ -38,15 +49,30 @@
                 </div>
             </div>
         </div>
-        <div class="mt-4">
-            <img src="{% static 'images/girl_default.png' %}" alt="{% trans "Example Image" %}" class="small-image img-fluid mt-4">
-            <img src="{% static 'images/seal_default.png' %}" alt="{% trans "Example Image" %}" class="small-image img-fluid mt-4">
-            <img src="{% static 'images/boy_default.png' %}" alt="{% trans "Example Image" %}" class="small-image img-fluid mt-4">
+        <br><br>
+        <h3>{% trans "Meet Our Guides!" %}</h3>
+        <div class="row mt-4">
+            <div class="guide col mt-4" id="kyo-guide">
+                <img src="{% static 'images/girl_default.png' %}" alt="Kyodai Girl Image" class="small-image img-fluid mt-4">
+                <p class="guide-desc">{% trans "こんにちは! My name is Kyodai-san and I am here to help you get prepared for any disaster that comes." %}</p>
+            </div>
+
+            <div class="guide col mt-4" id="seele-guide">
+                <img src="{% static 'images/seal_default.png' %}" alt="Seele Image" class="small-image img-fluid mt-4">
+                <p class="guide-desc">{% trans "Yahallo! Please allow me, Seele-san, to be at your service against all disasters!" %}</p>
+            </div>
+
+            <div class="guide col mt-4" id="fl-guide">
+                <img src="{% static 'images/boy_default.png' %}" alt="Florida Boy Image" class="small-image img-fluid mt-4">
+                <p class="guide-desc">{% trans "What's up! The name's Ricky and we got you covered for any disasters!" %}</p>
+            </div>
+
+
         </div>
         {% if request.session.user_email %}
-        <a href="{% url 'profile' %}" class="btn btn-primary mt-4">View Profile</a>
+        <a href="{% url 'profile' %}" title="Create and view checklists!" id="view-profile-btn" class="btn btn-primary mt-4">View Profile</a>
         {% else %}
-        <a href="#" class="btn btn-primary mt-4">Get Started</a>
+        <a href="{% url 'signup' %}" title="Get started now!" id="start-btn" class="btn btn-primary mt-4">Get Started</a>
         {% endif %}
     </div>
 </div>
