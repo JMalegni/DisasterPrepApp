@@ -102,6 +102,7 @@ def emailverification(request):
 
             #TODO: Remove password
             server.login(sender_email, "cpsi mknx ptpi bgbe")
+            print("Login Complete")
 
             message = """\
             Subject: SEELE Verification Code
@@ -111,14 +112,17 @@ def emailverification(request):
             message = message + email_code
 
             server.sendmail(sender_email, user_email, message)
+            print("Send Mail Complete")
 
-        return render(request, 'emailverification.html')
+        context = {'email' : user_email}
+        return render(request, 'emailverification.html', context)
     if request.method == 'POST':
         user_code = request.POST.get('code')
         if user_code == email_code:
             return redirect('familyinfo')
         else:
-            return render(request, 'emailverification.html')
+            context = {'email': user_email, 'tag': "danger" , 'msg' : "Error: Incorrect Code"}
+            return render(request, 'emailverification.html', context)
 
 
 def familyinfo(request):

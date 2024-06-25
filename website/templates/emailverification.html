@@ -14,6 +14,7 @@
                     <h5 class="card-title">{% trans "Email Verification" %}</h5>
                 </div>
                 <div class="card-body">
+                    <label>A 6 digit code has been sent via email to {{ email }}. Please enter the code here.</label>
                     <form action="{% url 'emailverification' %}" method="POST">
                     {% csrf_token %}
                         <div class="form-group">
