@@ -5,6 +5,7 @@ from django.conf import settings
 from django.utils.translation import gettext as _
 from .models import Users
 import requests
+import smtplib, ssl
 
 APIKey = "5b3ce3597851110001cf6248f1495139fccf4eb9a4494f7bddb5a976"
 email_code = "-1"
@@ -87,6 +88,12 @@ def emailverification(request):
     if request.method == 'GET':
         global email_code
         email_code = "111111"
+        port = 465
+        context = ssl.create_default_context()
+        with smtplib.SMTP_SSL("smtp.gmail.com", port, context=context) as server:
+            #Remove password
+            server.login("seelewebapp@gmail.com", "seelewebapp123")
+
         return render(request, 'emailverification.html')
     if request.method == 'POST':
         user_code = request.POST.get('code')
