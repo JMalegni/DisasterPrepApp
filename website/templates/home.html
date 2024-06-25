@@ -2,8 +2,19 @@
 {% extends 'base.html' %}
 {% load i18n static %}
 
-{% block title %}{% trans "Home" %}{% endblock %}
+{% block title %}{% trans "S.E.E.L.E - Home" %}{% endblock %}
 {% block content %}
+<head>
+    <style>
+        .card-text {
+            {% if LANGUAGE_CODE == 'jp' %}
+            line-height: 2;
+            {% else %}
+            line-height: 1.5;
+            {% endif %}
+        }
+    </style>
+</head>
 <body>
 <div class="jumbotron">
     <div class="container">

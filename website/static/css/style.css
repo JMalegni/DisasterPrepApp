@@ -29,7 +29,7 @@ html, body {
     color: #2C3E50; /* Dark Blue */
 }
 .card-custom {
-    height: 300px; /* Standardize the height of the description boxes */
+    height: 350px; /* Standardize the height of the description boxes */
     background-color: #FFFFFF; /* White background for cards */
     border: 1px solid #BDC3C7; /* Light Grey Border */
     margin-bottom: 20px;
@@ -37,6 +37,7 @@ html, body {
     align-items: center;
     justify-content: center;
 }
+
 .card-custom .card-body {
     text-align: center;
 }
