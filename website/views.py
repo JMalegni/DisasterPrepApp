@@ -3,8 +3,20 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.conf import settings
 from django.utils.translation import gettext as _
+from django.utils.safestring import mark_safe
 from .models import Users
 import requests
+import bleach
+
+ALLOWED_TAGS = ['b', 'i', 'u', 'a', 'ul', 'ol', 'li', 'p', 'br', 'strong', 'em', 'ruby', 'rt']
+ALLOWED_ATTRIBUTES = {
+    '*': ['class', 'id'],
+    'a': ['href', 'title'],
+    'ruby': ['lang'],
+    'rt': []
+}
+def sanitize_html(content):
+    return bleach.clean(content, tags=ALLOWED_TAGS, attributes=ALLOWED_ATTRIBUTES, strip=True)
 
 APIKey = "5b3ce3597851110001cf6248f1495139fccf4eb9a4494f7bddb5a976"
 from .utils import checklist_image
@@ -140,9 +152,9 @@ def generate_checklist(user, disaster_type):
 
     if disaster_type == 'Typhoon':
         checklist = [
-            _("{} Liters of water").format(family_size * 3 * 3),
-            _("{} calories of non-perishable food").format(family_size * 3 * 2000),
-            _("{} sets of clothes (one for each family member)").format(family_size),
+            f"{family_size * 3 * 3} " + _("Liters of water"),
+            f"{family_size * 3 * 2000} " + _("calories of non-perishable food"),
+            f"{family_size} " + _("sets of clothes (one for each family member)"),
             _("First aid kit"),
             _("Important documents (Passport, Will, ID cards)"),
             _("Cash"),
@@ -152,12 +164,15 @@ def generate_checklist(user, disaster_type):
         ]
 
         medical_issue = user.medical_issues
+        sanitized_med = sanitize_html(medical_issue)
+        safe_med = mark_safe(sanitized_med)
+
         medication_amount = user.medication_amount if user.medication_amount else 0
 
         if medical_issue and medication_amount == 0:
-            checklist.append(_("Medication for {} for 3 days").format(medical_issue))
+            checklist.append(_("Medication for ") + f"{safe_med} " + _("for 3 days"))
         elif medical_issue and medication_amount != 0:
-            checklist.append(_("Medication for {}: {} units").format(medical_issue, medication_amount * 3))
+            checklist.append(_("Medication for ") + f"{safe_med}: {medication_amount * 3} " + _("units"))
 
         if user.women_bool:
             checklist.append(_("Sanitary napkins/tampons"))
@@ -172,7 +187,7 @@ def generate_checklist(user, disaster_type):
             _("Secure heavy furniture to walls"),
             _("Create a family emergency plan"),
             _("Prepare an emergency bag"),
-            _("Have enough food and water for {} people for at least 3 days").format(family_size),
+            _("Have enough food and water for ") + f"{family_size} " + _("people for at least 3 days"),
             _("Keep a whistle to signal for help"),
             _("Learn basic first aid")
         ]
@@ -180,7 +195,7 @@ def generate_checklist(user, disaster_type):
         checklist = [
             _("Know your evacuation routes"),
             _("Move valuables to higher ground"),
-            _("Stock up on {} days of food and water").format(family_size * 3),
+            _("Stock up on ") + f"{family_size * 3} " + _("days of food and water"),
             _("Prepare an emergency kit with essentials"),
             _("Ensure you have waterproof bags for important documents"),
             _("Plan for pets and livestock")

@@ -11,6 +11,7 @@ setup(
         'sqlparse>=0.3.1',
         'pillow>=10.3.0',
         'requests>=2.32.3',
+        'bleach>=6.1.0',
     ],
     entry_points={
         'console_scripts': [

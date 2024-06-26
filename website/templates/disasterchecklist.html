@@ -20,7 +20,7 @@
                         {% for item in checklist %}
                         <li class="list-group-item">
                             <input type="checkbox" id="item{{ forloop.counter }}" name="item{{ forloop.counter }}" value="item{{ forloop.counter }}">
-                            <label for="item{{ forloop.counter }}">  {{ item }}</label>
+                            <label for="item{{ forloop.counter }}">  {{ item|safe }}</label>
                         </li>
                         {% endfor %}
                     </ul>
