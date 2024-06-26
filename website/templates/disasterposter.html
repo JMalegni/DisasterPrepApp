@@ -28,7 +28,7 @@
                     
                     {% if geoJSON %}
                     <script>
-                        var map = L.map('map').setView([49.41746, 8.684683], 15);
+                        var map = L.map('map').setView([34.987544, 135.717800], 12);
                         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                             maxZoom: 19,
                             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -37,6 +37,10 @@
                         var geojsonFeature = JSON.parse(str);
                         var myLayer = L.geoJSON().addTo(map);
                         myLayer.addData(geojsonFeature);
+                        var marker1 = L.marker([34.995052, 135.754888]).addTo(map);
+                        marker1.bindPopup("Stay Sakura").openPopup();
+                        var marker2 = L.marker([34.980037, 135.680713]).addTo(map);
+                        marker2.bindPopup("Katsura Campus").openPopup();
                     </script>
                     {% endif %}
                     <!--<img src="{% static 'images/girl_default.png' %}" alt="{% trans "Example Image" %}" class="small-image img-fluid mt-4">-->

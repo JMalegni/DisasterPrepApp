@@ -213,7 +213,7 @@ def disasterposter(request):
         apiFailed = False
         try:
             response = requests.get(
-                f"https://api.openrouteservice.org/v2/directions/driving-car?api_key={APIKey}&start=8.681495,49.41461&end=8.687872,49.420318")
+                f"https://api.openrouteservice.org/v2/directions/driving-car?api_key={APIKey}&start=135.754888,34.995052&end=135.680713,34.980037")
             value = response.json()['features'][0]
             value = str(value).replace("\'", "\"")
         except:
