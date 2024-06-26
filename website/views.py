@@ -112,32 +112,9 @@ def familyinfo(request):
 def profile(request):
     return render(request, 'profile.html')
 
-def allusers(request):
-    users_list = Users.objects.all()
-    return render(request, 'allusers.html', {'list': users_list})
-
-def singleuser(request, id):
-    user = Users.objects.get(id=id)
-    return render(request, 'singleuser.html', {'user': user})
-
-def edituser(request, id):
-    if request.method == 'GET':
-        user = Users.objects.get(id=id)
-        return render(request, 'edituser.html', {'user': user})
-    if request.method == 'POST':
-        name = request.POST.get('name')
-        password = request.POST.get('password')
-        user = Users.objects.get(id=id)
-        user.name = name
-        user.password = password
-        user.save()
-        users_list = Users.objects.all()
-        return render(request, 'allusers.html', {'list': users_list})
-
 def deleteuser(request, id):
     Users.objects.filter(id=id).delete()
-    users_list = Users.objects.all()
-    return render(request, 'allusers.html', {'list': users_list})
+    return redirect('home')
 
 def disasterprep(request):
     if request.method == 'GET':
