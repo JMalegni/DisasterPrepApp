@@ -70,9 +70,9 @@
 
         </div>
         {% if request.session.user_email %}
-        <a href="{% url 'profile' %}" title="Create and view checklists!" id="view-profile-btn" class="btn btn-primary mt-4">View Profile</a>
+        <a href="{% url 'profile' %}" title="{% trans 'Create and view checklists!' %}" id="view-profile-btn" class="btn btn-primary mt-4">{% trans 'View Profile' %}</a>
         {% else %}
-        <a href="{% url 'signup' %}" title="Get started now!" id="start-btn" class="btn btn-primary mt-4">Get Started</a>
+        <a href="{% url 'signup' %}" title="{% trans 'Get started now!' %}" id="start-btn" class="btn btn-primary mt-4">{% trans 'Get Started' %}</a>
         {% endif %}
     </div>
 </div>

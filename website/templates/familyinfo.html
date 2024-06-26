@@ -18,7 +18,7 @@
                         {% csrf_token %}
                         <div class="form-group">
                             <label>{% trans "Location" %}</label>
-                            <input type="text" placeholder="{% trans "Location" %}" class="form-control" name="location" id="location" required readonly>
+                            <input type="text" placeholder="{% trans "Location " %}" class="form-control" name="location" id="location" required readonly>
                         </div>
                         <button type="button" class="btn btn-primary" id="fetch-location-btn">{% trans "Fetch Location" %}</button>
                         <div class="form-group" style="margin-top: 20px">
