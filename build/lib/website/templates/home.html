@@ -1,9 +1,81 @@
-{% extends 'layout.html' %}
 
+{% extends 'base.html' %}
+{% load i18n static %}
+
+{% block title %}{% trans "S.E.E.L.E - Home" %}{% endblock %}
 {% block content %}
+<head>
+    <style>
+        .card-text {
+            {% if LANGUAGE_CODE == 'jp' %}
+            line-height: 2;
+            {% else %}
+            line-height: 1.5;
+            {% endif %}
+        }
+    </style>
+</head>
+<body>
 <div class="jumbotron">
-    <h1>Welcome to DJango Project Development</h1>
-    <h2>We're done. Project submitted. We can go back to Florida now.</h2>
-    <h3>Toodles!</h3>
+    <div class="container">
+        <h1>S.E.E.L.E</h1>
+        <h2>Strategic Emergency Education for Localized Events</h2>
+        <div class="row mt-4">
+            <div class="col-md-4">
+                <div class="card card-custom">
+                    <div class="card-body">
+                        <h3>{% trans "What S.E.E.L.E is" %}</h3>
+                        <p class="card-text">{% trans "S.E.E.L.E is a web app that helps you personally prepare for a wide range of disasters. From Typhoons to Earthquakes, we've got you covered." %}</p>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-custom">
+                    <div class="card-body" id="who-we-are">
+                        <h3>{% trans "Who we are" %}</h3>
+                        <p class="card-text">{% trans "We’re a multicultural group of students from the University of Florida and Kyoto University, committed to making disaster preparation easier for all." %}</p>
+                        <img src="{% static 'images/uf-x-kyodai.png' %}" alt="UF x Kyodai" id="uf-x-kyodai" class="hover-img">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-custom">
+                    <div class="card-body">
+                        <h3>{% trans "How it works" %}</h3>
+                        <p class="card-text">{% trans "S.E.E.L.E creates a personalized checklist for emergency supplies that can help during times of crisis, and can provide users information via an infographic with important information regarding the disaster." %}</p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br><br>
+        <h3>{% trans "Meet Our Guides!" %}</h3>
+        <div class="row mt-4">
+            <div class="guide col mt-4" id="kyo-guide">
+                <img src="{% static 'images/girl_default.png' %}" alt="Kyodai Girl Image" class="small-image img-fluid mt-4">
+                <p class="guide-desc">{% trans "Hello! My name is Kyoko, and it is my pleasure to help you stay prepared in the face of natural disasters." %}</p>
+            </div>
+
+            <div class="guide col mt-4" id="seele-guide">
+                <img src="{% static 'images/seal_default.png' %}" alt="Seele Image" class="small-image img-fluid mt-4">
+                <p class="guide-desc">{% trans "Ya-ho! This is Seele, at your service against all disasters!" %}</p>
+            </div>
+
+            <div class="guide col mt-4" id="fl-guide">
+                <img src="{% static 'images/boy_default.png' %}" alt="Florida Boy Image" class="small-image img-fluid mt-4">
+                <p class="guide-desc">{% trans "What's up! The name's Ricky, and I got you covered for any disasters!" %}</p>
+            </div>
+
+
+        </div>
+        {% if request.session.user_email %}
+        <a href="{% url 'profile' %}" title="{% trans 'Create and view checklists!' %}" id="view-profile-btn" class="btn btn-primary mt-4">{% trans 'View Profile' %}</a>
+        {% else %}
+        <a href="{% url 'signup' %}" title="{% trans 'Get started now!' %}" id="start-btn" class="btn btn-primary mt-4">{% trans 'Get Started' %}</a>
+        {% endif %}
+    </div>
 </div>
+</body>
+</html>
 {% endblock %}

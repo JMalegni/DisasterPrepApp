@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <title>{% block title %}{% trans "S.E.E.L.E Home" %}{% endblock %}</title>
 </head>
 <body>
@@ -42,9 +44,8 @@
                     <form action="{% url 'set_language' %}" method="post" class="form-inline my-2 my-lg-0">
                         {% csrf_token %}
                         <select name="language" onchange="this.form.submit()" class="form-control">
-                            <option value="en" {% if LANGUAGE_CODE == 'en' %}selected{% endif %}>{% trans "English" %}</option>
-                            <option value="jp" {% if LANGUAGE_CODE == 'jp' %}selected{% endif %}>{% trans "Japanese" %}</option>
-                            <option value="sjp" {% if LANGUAGE_CODE == 'sjp' %}selected{% endif %}>{% trans "Simple Japanese" %}</option>
+                            <option value="en" {% if LANGUAGE_CODE == 'en' %}selected{% endif %}>English</option>
+                            <option value="jp" {% if LANGUAGE_CODE == 'jp' %}selected{% endif %}>日本語</option>
                         </select>
                     </form>
                 </li>
