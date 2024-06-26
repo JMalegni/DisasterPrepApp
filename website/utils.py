@@ -2,6 +2,12 @@ import os
 from PIL import Image, ImageDraw, ImageFont
 from django.conf import settings
 from django.utils.translation import gettext as trans
+import re
+
+def remove_furigana(text):
+    ruby_pattern = re.compile(r'<ruby>(.*?)<rt>(.*?)</rt></ruby>')
+    return ruby_pattern.sub(r'\1', text)
+
 
 def checklist_image(checklist, disaster_type, facts):
     # Loading the image template from static folder
@@ -31,7 +37,7 @@ def checklist_image(checklist, disaster_type, facts):
     x, y = 115, 210
 
     for item in checklist:
-        draw.text((x, y), f"- {trans(item)}", font=font, fill='black')
+        draw.text((x, y), f"- {remove_furigana(trans(item))}", font=font, fill='black')
         y += 37
 
     # REMINDER TO MAKE TEXT DRAW FUNCTION 
