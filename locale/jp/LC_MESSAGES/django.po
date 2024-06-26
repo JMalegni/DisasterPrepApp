@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-25 06:54-0400\n"
+"POT-Creation-Date: 2024-06-25 08:03-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -78,13 +78,12 @@ msgid "日本語"
 msgstr "日本語"
 
 #: website/templates/disasterchecklist.html:4
-msgid "Disaster Checklist"
-msgstr "<ruby>災害<rt>さいがい</rt></ruby>チェクリスト"
+msgid "Disaster Checklist "
+msgstr "災害チェクリスト"
 
 #: website/templates/disasterchecklist.html:15
 msgid "Emergency Bag Checklist"
-msgstr ""
-"<ruby>防災非常袋<rt>ぼうさいひじょうぶくろ</rt></ruby>のチェクリスト"
+msgstr "<ruby>防災非常袋<rt>ぼうさいひじょうぶくろ</rt></ruby>のチェクリスト"
 
 #: website/templates/disasterchecklist.html:28
 msgid "No checklist available"
@@ -95,13 +94,16 @@ msgid "Generate Poster"
 msgstr "ポスターを<ruby>生成<rt>さくせい</rt></ruby>"
 
 #: website/templates/disasterposter.html:4
-#: website/templates/disasterposter.html:20
-msgid "Disaster Poster"
-msgstr "<ruby>災害<rt>さいがい</rt></ruby>ポスター"
+msgid "Disaster Poster "
+msgstr "災害ポスター"
 
 #: website/templates/disasterposter.html:14
 msgid "Emergency Poster"
 msgstr "<ruby>緊急<rt>きんきゅう</rt></ruby>ポスター"
+
+#: website/templates/disasterposter.html:20
+msgid "Disaster Poster"
+msgstr "<ruby>災害<rt>さいがい</rt></ruby>ポスター"
 
 #: website/templates/disasterposter.html:36
 msgid "Example Image"
@@ -399,23 +401,23 @@ msgstr "ユーザーID"
 #: website/views.py:42
 msgid "Enter correct password"
 msgstr ""
-"<ruby>正<rt>ただ</rt></ruby>しいパスワードを<ruby>入力<rt>にゅうりょく</rt></"
-"ruby>してください"
+"正しいパスワードを入力"
+"してください"
 
 #: website/views.py:44
 msgid "Enter correct email"
 msgstr ""
-"<ruby>正<rt>ただ</rt></ruby>しいメールアドレスを<ruby>入力<rt>にゅうりょく</"
-"rt></ruby>してください"
+"正しいメールアドレスを入力"
+"してください"
 
 #: website/views.py:57
 msgid "Passwords do not match"
-msgstr "パスワードが<ruby>一致<rt>いっち</rt></ruby>しません"
+msgstr "パスワードが一致いっちしません"
 
 #: website/views.py:60
 msgid "Email address is already associated with an account"
 msgstr ""
-"メールアドレスはすでにアカウントに<ruby>関連付<rt>かんれんづ</rt></ruby>けら"
+"メールアドレスはすでにアカウントに関連付けら"
 "れています"
 
 #: website/views.py:71
@@ -425,14 +427,11 @@ msgstr "サインアップのエラー"
 #: website/views.py:80
 msgid "Please try again"
 msgstr ""
-"もう<ruby>一度<rt>いちど</rt></ruby><ruby>試<rt>ため</rt></ruby>してください"
+"もう一度試してください"
 
 #: website/views.py:87
 msgid "Please enter a family size between 1 and 10"
-msgstr ""
-"家族の人数を1から10"
-"の間で入力して"
-"ください"
+msgstr "家族の人数を1から10の間で入力してください"
 
 #: website/views.py:117
 msgid "Error on Signup: "
@@ -512,7 +511,7 @@ msgstr "おむつ"
 
 #: website/views.py:202
 msgid "Books/toys"
-msgstr "<ruby>本<rt>ほん</rt>、おもちゃ"
+msgstr "<ruby>本<rt>ほん</rt></ruby>、おもちゃ"
 
 #: website/views.py:205
 msgid "Secure heavy furniture to walls"
@@ -574,23 +573,34 @@ msgstr ""
 
 #: website/views.py:216
 msgid "days of food and water"
-msgstr "<ruby>日分<rt>にちぶん</rt></ruby>の<ruby>食品<rt>しょくひん</rt></ruby>と<ruby>水<rt>みず</rt></ruby>"
+msgstr ""
+"<ruby>日分<rt>にちぶん</rt></ruby>の<ruby>食品<rt>しょくひん</rt></ruby>と"
+"<ruby>水<rt>みず</rt></ruby>"
 
 #: website/views.py:217
 msgid "Prepare an emergency kit with essentials"
-msgstr "<ruby>必需品<rt>ひつじゅひん</rt></ruby>を<ruby>備<rt>そな</rt></ruby>えた<ruby>防災非常袋<rt>ぼうさいひじょうぶくろ</rt></ruby>を<ruby>作<rt>つく</rt></ruby>る"
+msgstr ""
+"<ruby>必需品<rt>ひつじゅひん</rt></ruby>を<ruby>備<rt>そな</rt></ruby>えた"
+"<ruby>防災非常袋<rt>ぼうさいひじょうぶくろ</rt></ruby>を<ruby>作<rt>つく</"
+"rt></ruby>る"
 
 #: website/views.py:218
 msgid "Ensure you have waterproof bags for important documents"
-msgstr "<ruby>重要書類<rt>じゅうようしょるい</rt></ruby>の<ruby>防水<rt>ぼうす</rt></ruby>バッグを<ruby>用意<rt>ようい</rt></ruby>する"
+msgstr ""
+"<ruby>重要書類<rt>じゅうようしょるい</rt></ruby>の<ruby>防水<rt>ぼうす</rt></"
+"ruby>バッグを<ruby>用意<rt>ようい</rt></ruby>する"
 
 #: website/views.py:219
 msgid "Plan for pets and livestock"
-msgstr "ペットや<ruby>家畜<rt>かちく</rt></ruby>の<ruby>計画<rt>けいかく</rt></ruby>を<ruby>立<rt>た</rt></ruby>てる"
+msgstr ""
+"ペットや<ruby>家畜<rt>かちく</rt></ruby>の<ruby>計画<rt>けいかく</rt></ruby>"
+"を<ruby>立<rt>た</rt></ruby>てる"
 
 #: website/views.py:222
 msgid "Select a valid disaster type"
-msgstr "<ruby>有効<rt>ゆうこう</rt></ruby>な<ruby>災害<rt>さいがい</rt></ruby>タイプを<ruby>選択<rt>せんたく</rt></ruby>してください"
+msgstr ""
+"<ruby>有効<rt>ゆうこう</rt></ruby>な<ruby>災害<rt>さいがい</rt></ruby>タイプ"
+"を<ruby>選択<rt>せんたく</rt></ruby>してください"
 
 #: website/views.py:284
 msgid "Typhoon fact 1"
@@ -654,7 +664,8 @@ msgstr "<ruby>洪水<rt>こうずい</rt></ruby>の<ruby>事実<rt>じじつ</rt
 
 #: website/views.py:317
 msgid "Image not found"
-msgstr "<ruby>画像<rt>がぞう</rt></ruby>が<ruby>見<rt>み</rt></ruby>つかりません"
+msgstr ""
+"<ruby>画像<rt>がぞう</rt></ruby>が<ruby>見<rt>み</rt></ruby>つかりません"
 
 #: website/views.py:323
 msgid "No user logged in"
