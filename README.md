@@ -5,7 +5,6 @@ Project Description:
 Build and Install Server Commands:
 
     pip install seele
-    seele_start
 
 Repository Link:
 
@@ -13,7 +12,7 @@ Repository Link:
 
 Run Executable and Initialization commands:
 
-    python manage.py runserver
+    seele_start
 
 Contributors:
 
