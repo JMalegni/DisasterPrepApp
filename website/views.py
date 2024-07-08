@@ -7,6 +7,7 @@ from django.utils.safestring import mark_safe
 from .models import Users
 import requests
 import bleach
+import math
 
 ALLOWED_TAGS = ['b', 'i', 'u', 'a', 'ul', 'ol', 'li', 'p', 'br', 'strong', 'em', 'ruby', 'rt']
 ALLOWED_ATTRIBUTES = {
@@ -224,11 +225,19 @@ def disasterposter(request):
         return render(request, 'disasterposter.html')
     
     elif request.method == 'POST':
+        #Find the closest shelter first
+        email = request.session.get("user_email")
+        user = Users.objects.get(email=email)
+        user_location = [user.latitude, user.longitude]
+        print(f"User Location: {user_location}")
+        shelter_coord = closest_shelter(user_location)
+        print(f"Closest Shelter: {shelter_coord}")
+
         #GeoJSON Information
         apiFailed = False
         try:
             response = requests.get(
-                f"https://api.openrouteservice.org/v2/directions/driving-car?api_key={APIKey}&start=135.754888,34.995052&end=135.680713,34.980037")
+                f"https://api.openrouteservice.org/v2/directions/driving-car?api_key={APIKey}&start={user_location[1]},{user_location[0]}&end={shelter_coord[1]},{shelter_coord[0]}")
             value = response.json()['features'][0]
             value = str(value).replace("\'", "\"")
         except:
@@ -257,6 +266,27 @@ def disasterposter(request):
                 context = {'error_message': 'Error creating checklist', 'geoJSON': value}
 
         return render(request, 'disasterposter.html', context)
+
+def closest_shelter(user_cord):
+    with open(os.path.join(settings.BASE_DIR, "Coordinates.txt"), encoding="utf-8") as file:
+        addrs = file.readlines()
+
+        cords = []
+        for addr in addrs:
+            temp = addr.split()
+            temp[0] = float(temp[0])
+            temp[1] = float(temp[1])
+            cords.append(temp)
+
+        closest = [-1, -1]
+        closest_dist = float('inf')
+        for cord in cords:
+            curr_dist = math.dist(cord, user_cord)
+            if curr_dist < closest_dist:
+                closest_dist = curr_dist
+                closest = cord
+
+        return closest
 
 def generate_facts(disaster_type):
     facts = []
