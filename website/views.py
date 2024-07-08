@@ -232,6 +232,7 @@ def disasterposter(request):
         print(f"User Location: {user_location}")
         shelter_coord = closest_shelter(user_location)
         print(f"Closest Shelter: {shelter_coord}")
+        middle_coord = [(user_location[0] + shelter_coord[0]) / 2.0, (user_location[1] + shelter_coord[1]) / 2.0]
 
         #GeoJSON Information
         apiFailed = False
@@ -257,13 +258,29 @@ def disasterposter(request):
             if apiFailed:
                 context = {'image_url': image_url}
             else:
-                context = {'image_url': image_url, 'geoJSON': value}
+                context = {'image_url': image_url,
+                           'geoJSON': value,
+                           'center_lat': middle_coord[0],
+                           'center_log': middle_coord[1],
+                           'user_lat': user_location[0],
+                           'user_log': user_location[1],
+                           'shelter_lat': shelter_coord[0],
+                           'shelter_log': shelter_coord[1]
+                           }
 
         else:
             if apiFailed:
                 context = {'error_message': 'Error creating checklist'}
             else:
-                context = {'error_message': 'Error creating checklist', 'geoJSON': value}
+                context = {'error_message': 'Error creating checklist',
+                           'geoJSON': value,
+                           'center_lat': middle_coord[0],
+                           'center_log': middle_coord[1],
+                           'user_lat': user_location[0],
+                           'user_log': user_location[1],
+                           'shelter_lat': shelter_coord[0],
+                           'shelter_log': shelter_coord[1]
+                           }
 
         return render(request, 'disasterposter.html', context)
 
