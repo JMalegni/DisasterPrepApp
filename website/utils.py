@@ -1,7 +1,18 @@
 import os
+import re
 from PIL import Image, ImageDraw, ImageFont
 from django.conf import settings
 from django.utils.translation import gettext as trans
+
+def parse_furigana(text: str) -> tuple[str, list[tuple[str, str]]]:
+    ruby_pattern = re.compile(r'<ruby>(.*?)<rt>(.*?)</rt></ruby>')
+    matches = ruby_pattern.findall(text)
+    parsed_text = []
+    for match in matches:
+        base_text, furigana = match
+        parsed_text.append((base_text, furigana))
+        text = text.replace(f'<ruby>{base_text}<rt>{furigana}</rt></ruby>', base_text)
+    return text, parsed_text
 
 def checklist_image(checklist, disaster_type, facts):
     # Loading the image template from static folder
@@ -15,6 +26,8 @@ def checklist_image(checklist, disaster_type, facts):
     font_path = os.path.join(settings.STATIC_ROOT, 'fonts', 'NotoSansJP-VariableFont_wght.ttf')
     font_size = 82
     font = ImageFont.truetype(font_path, font_size)
+    furigana_font_size = 25
+    furigana_font = ImageFont.truetype(font_path, furigana_font_size)
 
     # Position and creation of disaster name
     x, y = 550, 0
@@ -24,14 +37,14 @@ def checklist_image(checklist, disaster_type, facts):
     font_size = 37
     font = ImageFont.truetype(font_path, font_size)
     x, y = 100, 160
-    draw.text((x, y), "Personalized disaster checklist:", font=font, fill='black')
+    draw.text((x, y), trans("Personalized disaster checklist:"), font=font, fill='black')
 
     font_size = 25
     font = ImageFont.truetype(font_path, font_size)
     x, y = 115, 210
 
     for item in checklist:
-        draw.text((x, y), f"- {trans(item)}", font=font, fill='black')
+        draw.text((x, y), f"- {trans(parse_furigana(item)[0])}", font=font, fill='black')
         y += 37
 
     # REMINDER TO MAKE TEXT DRAW FUNCTION 
