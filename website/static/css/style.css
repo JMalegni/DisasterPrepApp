@@ -102,6 +102,11 @@ html, body {
     opacity: 1;
 }
 
+#scrolly {
+  position: sticky;
+  top: 0;
+}
+
 /*#login-box,*/
 /*#signup-box {*/
 /*    display: block;*/
