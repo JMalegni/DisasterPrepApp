@@ -1,4 +1,5 @@
 import os
+import time
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.conf import settings
@@ -225,7 +226,10 @@ def api_request(user_location, shelter_coord, result):
         while response_code != 200:
             response = requests.get(
                 f"https://api.openrouteservice.org/v2/directions/driving-car?api_key={APIKey}&start={user_location[1]},{user_location[0]}&end={shelter_coord[1]},{shelter_coord[0]}")
-            response_code = response.status_code
+            response_code = int(response.status_code)
+            #  To not overload the system
+            if response_code != 200:
+                time.sleep(1)
         value = response.json()['features'][0]
         value = str(value).replace("\'", "\"")
         result.append(False)
