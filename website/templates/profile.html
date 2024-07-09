@@ -4,9 +4,89 @@
 {% block title %}{% trans "S.E.E.L.E - Profile" %}{% endblock %}
 {% block content %}
 <div class="container" style="margin-top: 20px;">
-    <h1>{% trans "User Profile" %}</h1>
-    {% if request.session.user_email %}
-        <h1>{% blocktrans %}Successfully Login {{ request.session.user_email }}{% endblocktrans %}</h1>
-    {% endif %}
+    <div class="row">
+        <div class="col-md-4">
+            <h1>{% trans "User Profile" %}</h1>
+            {% if email %}
+                <h2>{% blocktrans %}Successful Login: {{ email }}{% endblocktrans %}</h2>
+            {% endif %}
+            <button type="submit" class="btn btn-danger">{% trans "Delete Account" %}</button>
+        </div>
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">{% trans "Account Information" %}</h5>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <label for="Name">Name: {{ name }}</label>
+                            <button type="submit" class="btn btn-info" id="Name" style="float: right;">{% trans "Edit" %}</button>
+                        </li>
+                        <li class="list-group-item">
+                            <label for="Email">Email: {{ email }}</label>
+                            <button type="submit" class="btn btn-info" id="Email" style="float: right;">{% trans "Edit" %}</button>
+                        </li>
+                        <li class="list-group-item">
+                            <label for="Password">Password: {{ password }}</label>
+                            <button type="submit" class="btn btn-info" id="Password" style="float: right;">{% trans "Edit" %}</button>
+                        </li>
+                        <li class="list-group-item">
+                            <label for="Location">Location: {{ latitude }}, {{ longitude }}</label>
+                            <button type="submit" class="btn btn-info" id="Location" style="float: right;">{% trans "Edit" %}</button>
+                        </li>
+                        <li class="list-group-item">
+                            <label for="Size">Family Size: {{ size }}</label>
+                            <button type="submit" class="btn btn-info" id="Size" style="float: right;">{% trans "Edit" %}</button>
+                        </li>
+                        {% if medical_issue %}
+                        <li class="list-group-item">
+                            <label for="Medicine">Medicine: Need {{ amount }} dose(s) for {{ medical_issue }} per day</label>
+                            <button type="submit" class="btn btn-info" id="Medicine" style="float: right;">{% trans "Edit" %}</button>
+                        </li>
+                        {% else %}
+                        <li class="list-group-item">
+                            <label for="NoMedicine">Medicine: No medical issues</label>
+                            <button type="submit" class="btn btn-info" id="NoMedicine" style="float: right;">{% trans "Edit" %}</button>
+                        </li>
+                        {% endif %}
+                        {% if women %}
+                        <li class="list-group-item">
+                            <label for="Women">Women in the family</label>
+                            <button type="submit" class="btn btn-info" id="Women" style="float: right;">{% trans "Edit" %}</button>
+                        </li>
+                        {% else %}
+                        <li class="list-group-item">
+                            <label for="NoWomen">No women in the family</label>
+                            <button type="submit" class="btn btn-info" id="NoWomen" style="float: right;">{% trans "Edit" %}</button>
+                        </li>
+                        {% endif %}
+                        {% if child %}
+                        <li class="list-group-item">
+                            <label for="Child">Children in the family</label>
+                            <button type="submit" class="btn btn-info" id="Child" style="float: right;">{% trans "Edit" %}</button>
+                        </li>
+                        {% else %}
+                        <li class="list-group-item">
+                            <label for="NoChild">No children in the family</label>
+                            <button type="submit" class="btn btn-info" id="NoChild" style="float: right;">{% trans "Edit" %}</button>
+                        </li>
+                        {% endif %}
+                        {% if baby %}
+                        <li class="list-group-item">
+                            <label for="Baby">Babies in the family</label>
+                            <button type="submit" class="btn btn-info" id="Baby" style="float: right;">{% trans "Edit" %}</button>
+                        </li>
+                        {% else %}
+                        <li class="list-group-item">
+                            <label for="NoBaby">No babies in the family</label>
+                            <button type="submit" class="btn btn-info" id="NoBaby" style="float: right;">{% trans "Edit" %}</button>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}

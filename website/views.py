@@ -125,7 +125,24 @@ def familyinfo(request):
             return render(request, 'familyinfo.html', {'msg': _('Error on Signup: ') + str(e), 'tag': 'danger'})
 
 def profile(request):
-    return render(request, 'profile.html')
+    email = request.session.get("user_email")
+    user = Users.objects.get(email=email)
+    context = {'email': user.email,
+               'name': user.name,
+               'password': "●" * len(user.password),
+               'longitude': user.longitude,
+               'latitude': user.latitude,
+               'size': user.family_size,
+    }
+    if user.medical_issues != "":
+        context.update({'medical_issue': user.medical_issues, 'amount': user.medication_amount})
+    if user.women_bool:
+        context.update({'women': True})
+    if user.child_bool:
+        context.update({'child': True})
+    if user.baby_bool:
+        context.update({'baby': True})
+    return render(request, 'profile.html', context)
 
 def deleteuser(request, id):
     Users.objects.filter(id=id).delete()
