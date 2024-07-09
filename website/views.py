@@ -217,6 +217,18 @@ def disasterchecklist(request):
         return render(request, 'disasterchecklist.html', {'user_id': user.id})
     #return redirect('disasterposter', user_id=request.POST.get('user_id'))
 
+def api_request(user_location, shelter_coord, result):
+    #  First result is if the API failed, second is the value if it succeeded
+    try:
+        response = requests.get(
+            f"https://api.openrouteservice.org/v2/directions/driving-car?api_key={APIKey}&start={user_location[1]},{user_location[0]}&end={shelter_coord[1]},{shelter_coord[0]}")
+        value = response.json()['features'][0]
+        value = str(value).replace("\'", "\"")
+        result.append(False)
+        result.append(value)
+    except:
+        result.append(True)
+
 def disasterposter(request):
     """response = requests.get(
         f"https://api.openrouteservice.org/v2/directions/driving-car?api_key={APIKey}&start=8.681495,49.41461&end=8.687872,49.420318")
@@ -230,20 +242,13 @@ def disasterposter(request):
         email = request.session.get("user_email")
         user = Users.objects.get(email=email)
         user_location = [user.latitude, user.longitude]
-        print(f"User Location: {user_location}")
         shelter_coord = closest_shelter(user_location)
-        print(f"Closest Shelter: {shelter_coord}")
         middle_coord = [(user_location[0] + shelter_coord[0]) / 2.0, (user_location[1] + shelter_coord[1]) / 2.0]
 
         #GeoJSON Information
-        apiFailed = False
-        try:
-            response = requests.get(
-                f"https://api.openrouteservice.org/v2/directions/driving-car?api_key={APIKey}&start={user_location[1]},{user_location[0]}&end={shelter_coord[1]},{shelter_coord[0]}")
-            value = response.json()['features'][0]
-            value = str(value).replace("\'", "\"")
-        except:
-            apiFailed = True
+        result = []
+        api_thread = Thread(target=api_request, args=(user_location, shelter_coord, result))
+        api_thread.start()
 
         # Gets disaster type and checklist based on whats saved in the session
         disaster_type = request.session.get('disaster_type')
@@ -256,9 +261,12 @@ def disasterposter(request):
         image_name = checklist_image(checklist, disaster_type, facts)
         if image_name and settings.STATIC_URL:
             image_url = f"{settings.STATIC_URL}images/{image_name}"
+            api_thread.join()
+            apiFailed = result[0]
             if apiFailed:
                 context = {'image_url': image_url}
             else:
+                value = result[1]
                 context = {'image_url': image_url,
                            'geoJSON': value,
                            'center_lat': middle_coord[0],
@@ -270,9 +278,12 @@ def disasterposter(request):
                            }
 
         else:
+            api_thread.join()
+            apiFailed = result[0]
             if apiFailed:
                 context = {'error_message': 'Error creating checklist'}
             else:
+                value = result[1]
                 context = {'error_message': 'Error creating checklist',
                            'geoJSON': value,
                            'center_lat': middle_coord[0],
