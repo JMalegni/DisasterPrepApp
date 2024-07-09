@@ -8,6 +8,7 @@ from .models import Users
 import requests
 import bleach
 import math
+from threading import Thread
 
 ALLOWED_TAGS = ['b', 'i', 'u', 'a', 'ul', 'ol', 'li', 'p', 'br', 'strong', 'em', 'ruby', 'rt']
 ALLOWED_ATTRIBUTES = {
@@ -284,20 +285,47 @@ def disasterposter(request):
 
         return render(request, 'disasterposter.html', context)
 
+def thread_closest(user_cord, shelter_cords, result):
+    closest = [-1, -1]
+    closest_dist = float('inf')
+    for cord in shelter_cords:
+        curr_dist = math.dist(cord, user_cord)
+        if curr_dist < closest_dist:
+            closest_dist = curr_dist
+            closest = cord
+    result.append(closest)
+
 def closest_shelter(user_cord):
-    with open(os.path.join(settings.BASE_DIR, "Coordinates.txt"), encoding="utf-8") as file:
+    n = 5  # Number of threads to create
+    with open("Coordinates.txt", encoding="utf-8") as file:
         addrs = file.readlines()
 
+        # Get the coordinates and split them into n equal lists
         cords = []
         for addr in addrs:
             temp = addr.split()
             temp[0] = float(temp[0])
             temp[1] = float(temp[1])
             cords.append(temp)
+        thread_list_length = math.ceil(float(len(cords))/float(n))
+        thread_cords = []
+        for i in range(n):
+            thread_cords.append(cords[thread_list_length * i:thread_list_length * (i + 1)])
 
+        # Threading is magic
+        results = []
+        threads = []
+        for i in range(n):
+            threads.append(Thread(target=thread_closest, args=(user_cord,thread_cords[i],results)))
+            threads[-1].start()
+
+        # Wait
+        [thread.join() for thread in threads]
+
+        #Find the closest of the threads
         closest = [-1, -1]
         closest_dist = float('inf')
-        for cord in cords:
+        for cord in results:
             curr_dist = math.dist(cord, user_cord)
             if curr_dist < closest_dist:
                 closest_dist = curr_dist
