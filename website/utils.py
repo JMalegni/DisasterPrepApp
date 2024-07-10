@@ -8,125 +8,129 @@ def remove_furigana(text):
     ruby_pattern = re.compile(r'<ruby>(.*?)<rt>(.*?)</rt></ruby>')
     return ruby_pattern.sub(r'\1', text)
 
+# Function that creates spacing for bullet points
+def bullet_spacing(draw, font_path, list, x, y):
+    for item in list:
+        if len(item) > 14:
+            font_size = 55
+            font = ImageFont.truetype(font_path, font_size)
+            draw.text((x, y), f"\u2022", font=font, fill='black')
+
+            font_size = 25
+            font = ImageFont.truetype(font_path, font_size)
+            x += 40
+            y += 28
+            draw.text((x, y), f"{trans(item)}", font=font, fill='black')
+            x -= 40
+            y += 18
+        
+        else:
+            x += 40
+            y += 6
+            draw.text((x, y), f"{trans(item)}", font=font, fill='black')
+            x -= 40
+            y += 16
+
+# Generates typhoon checklist
+def typhoon_checklist(draw, font_path):
+    font_size = 33
+    font = ImageFont.truetype(font_path, font_size)
+    x, y = 230, 220
+    draw.text((x, y), "Typhoons come with", font=font, fill='black')
+    x, y = 230, 260
+    draw.text((x, y), "rains, floods, landslides", font=font, fill='black')
+
+    level1_typhoon = [
+            ("Check a hazard map"),
+            ("Find evacuation centers"),
+            ("Check items on checklist"),
+            ("Beware of falling things in your"),
+            ("house"),
+        ]
+    
+    
+    level2_typhoon = [
+            ("Decide on evacuation center"),
+            ("Recheck emergency bags"),
+            ("Prepare for power outage"),
+        ]
+    
+    level3_typhoon = [
+            ("Elderly & people with disability"),
+            ("must evacuate"),
+        ]
+    
+    level4_typhoon = [
+            ("Go to evacuation center"),
+            ("immediately"),
+        ]
+    
+    level5_typhoon = [
+            ("Watch out for floods and landslides"),
+            ("Stay away from rivers, cliffs, and"),
+            ("slopes"),
+            ("Go to the highest floor of the"),
+            ("building"),
+        ]
+    
+    font_size = 25
+    font = ImageFont.truetype(font_path, font_size)
+    
+    x, y = 145, 328
+    bullet_spacing(draw, font_path, level1_typhoon, x, y)
+
+    y += 220
+    bullet_spacing(draw, font_path, level2_typhoon, x, y)
+
+    y += 175
+    bullet_spacing(draw, font_path, level3_typhoon, x, y)
+
+    y += 100
+    bullet_spacing(draw, font_path, level4_typhoon, x, y)
+
+    y += 85
+    bullet_spacing(draw, font_path, level5_typhoon, x, y)
 
 def checklist_image(checklist, disaster_type, facts):
     # Loading the image template from static folder
-    background_path = os.path.join(settings.STATIC_ROOT, 'images', 'template_test.png')
+    background_path = os.path.join(settings.STATIC_ROOT, 'images', 'template.png')
     background = Image.open(background_path).convert('RGB')
 
-    # Ensure the background image has the Japanese A4 paper size (1414 x 2000).
-    background = background.resize((1414, 2000))
+    # Ensure the background image has the Japanese A4 paper size (1415 x 2000).
+    background = background.resize((1415, 2000))
 
     draw = ImageDraw.Draw(background)
-    font_path = os.path.join(settings.STATIC_ROOT, 'fonts', 'NotoSansJP-VariableFont_wght.ttf')
-    font_size = 82
-    font = ImageFont.truetype(font_path, font_size)
 
     # Position and creation of disaster name
-    x, y = 550, 0
-    draw.text((x, y), trans(disaster_type), font=font, fill='black')
+    font_path = os.path.join(settings.STATIC_ROOT, 'fonts', 'NotoSansJP-VariableFont_wght.ttf')
+    font_size = 65
+    font = ImageFont.truetype(font_path, font_size)
+    x, y = 260, 50
+    draw.text((x, y), trans(f"Your checklist for {disaster_type}s"), font=font, fill='black')
+
+    # date/time/username TEMPORARY
+    font_size = 38
+    font = ImageFont.truetype(font_path, font_size)
+    x, y = 400, 140
+    draw.text((x, y), "created by S.E.E.L.E date/time/username", font=font, fill='black')
 
     # Printing out the checklist line by line
     font_size = 37
     font = ImageFont.truetype(font_path, font_size)
-    x, y = 100, 160
-    draw.text((x, y), "Personalized disaster checklist:", font=font, fill='black')
+    x, y = 900, 220
+    draw.text((x, y), "Items to prepare", font=font, fill='black')
 
-    font_size = 25
+    font_size = 29
     font = ImageFont.truetype(font_path, font_size)
-    x, y = 115, 210
+    x, y = 750, 310
 
     for item in checklist:
         draw.text((x, y), f"- {remove_furigana(trans(item))}", font=font, fill='black')
         y += 37
 
-    # REMINDER TO MAKE TEXT DRAW FUNCTION 
+    # Calling function depending on disaster that creates the text for the poster
     if disaster_type == "Typhoon":
-        before_typhoon = [
-            ("Before a level 1 typhoon:"),
-            ("- Check a hazard map"),
-            ("- Find nearby evacuation centers"),
-            ("- Make sure you have every item on the checklist"),
-            ("- Beware of possible dangers in your house"),
-            ("Before a level 2 typhoon:"),
-            ("- Officially decide on an evacuation center"),
-            ("- Recheck emergency bags"),
-            ("- Prepare for power outage"),
-            ("Before a level 3 typhoon:"),
-            ("- Elderly people must evacuate"),
-            ("- People with disabilities must evacuate"),
-            ("Before a level 4 typhoon:"),
-            ("- Go to an evacuation center immediately"),
-        ]
-
-        typhoon_evac = [
-            ("If evacuating by foot:"),
-            ("- Do not walk inside water above knee level"),
-            ("or with flooding"),
-            ("- Do not step on a manhole cover"),
-            ("If evacuating by car:"),
-            ("- Avoid roads along rivers, areas with"),
-            ("rice fields and underpasses"),
-            ("- Do not drive into water higher than"),
-            ("half of the car wheels"),
-            ("During level 5 typhoon:"),
-            ("- Watch out for potential landslide"),
-            ("- Move away from cliffs and slopes"),
-            ("If you can't evacuate safely:"),
-            ("- Go to the highest floor of a building and"),
-            ("make sure the building is not near a cliff"),
-            ("Signs of a landslide:"),
-            ("- Pebbles falling from the slope"),
-            ("- Cracks appearing on the slope"),
-            ("- Water suddenly gushing out of the slope"),
-            ("- Water in the river suddenly decreasing"),
-            ("""- Hear "mountain rumbling" or "earth rumbling." """),
-        ]
-    
-        x, y = 790, 150
-
-        for item in before_typhoon:
-            if ':' in item:
-                y += 10
-                font_size = 37
-                font = ImageFont.truetype(font_path, font_size)
-                draw.text((x, y), f"{trans(item)}", font=font, fill='black')
-                y += 45
-
-            else:
-                x += 15
-                font_size = 25
-                font = ImageFont.truetype(font_path, font_size)
-                draw.text((x, y), f"{trans(item)}", font=font, fill='black')
-                x -= 15
-                y += 37
-        
-        x, y = 790, 1080
-
-        for item in typhoon_evac:
-            if ':' in item:
-                y += 10
-                font_size = 37
-                font = ImageFont.truetype(font_path, font_size)
-                draw.text((x, y), f"{trans(item)}", font=font, fill='black')
-                y += 45
-
-            elif '-' in item:
-                x += 15
-                font_size = 25
-                font = ImageFont.truetype(font_path, font_size)
-                draw.text((x, y), f"{trans(item)}", font=font, fill='black')
-                x -= 15
-                y += 37
-
-            else:
-                x += 30
-                y -= 10
-                font_size = 25
-                font = ImageFont.truetype(font_path, font_size)
-                draw.text((x, y), f"{trans(item)}", font=font, fill='black')
-                x -= 30
-                y += 37
+        typhoon_checklist(draw, font_path)
 
     # Naming and saving file to static folder
     image_filename = 'disaster_poster.png'
