@@ -221,6 +221,11 @@ def delete_medical(request):
 
         return render(request, 'profile.html', context)
 
+def delete_account(request):
+    if request.method == 'POST':
+        print("Delete")
+        return redirect("home")
+
 def deleteuser(request, id):
     Users.objects.filter(id=id).delete()
     return redirect('home')
