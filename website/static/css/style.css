@@ -111,3 +111,24 @@ html, body {
     width: 150px;
 }
 
+.login-greeting {
+    align-items: flex-start;
+}
+#login-boy {
+    width: 80px;
+    margin-left: 20px;
+}
+
+.login-greeting:hover .login-msg{
+    visibility: visible;
+    opacity: 1;
+}
+.login-msg {
+    position: relative;
+    visibility: hidden;
+    opacity: 0;
+    color: #000000;
+}
+#login-msg-p1 {
+    bottom: -30px;
+}
