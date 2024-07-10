@@ -145,24 +145,32 @@ def profile(request):
             context.update({'baby': True})
         return render(request, 'profile.html', context)
     if request.method == 'POST':
-        print("Start")
         email = request.session.get("user_email")
         user = Users.objects.get(email=email)
 
         name = request.POST.get('name')
-        #user.update(name=name)
-        Users.objects.filter(email=email).update(name=name)
+        password = request.POST.get('password')
+        latitude = request.POST.get('latitude')
+        longitude = request.POST.get('longitude')
+        family_size = request.POST.get('size')
+        dose = request.POST.get('dose')
+        medicine = request.POST.get('medicine')
+        women = request.POST.get('women')
+        print(women)
+        Users.objects.filter(email=email).update(name=name, password=password, latitude=latitude, longitude=longitude, family_size=family_size)
+        if medicine != "no medicine" and int(dose) != 0:
+            Users.objects.filter(email=email).update(medication_amount=int(dose), medical_issues=medicine)
 
         # Build Context
         context = {'email': user.email,
                    'name': name,
-                   'password': user.password,
-                   'longitude': user.longitude,
-                   'latitude': user.latitude,
-                   'size': user.family_size,
+                   'password': password,
+                   'longitude': longitude,
+                   'latitude': latitude,
+                   'size': family_size,
                    }
-        if user.medical_issues != "":
-            context.update({'medical_issue': user.medical_issues, 'amount': user.medication_amount})
+        if medicine != "no medicine":
+            context.update({'medical_issue': medicine, 'amount': dose})
         if user.women_bool:
             context.update({'women': True})
         if user.child_bool:
@@ -172,6 +180,29 @@ def profile(request):
 
         return render(request, 'profile.html', context)
 
+def delete_medical(request):
+    if request.method == 'POST':
+        print("PUT11111111111111111111111111111111111111111111111111111111111111111")
+        email = request.session.get("user_email")
+        user = Users.objects.get(email=email)
+        Users.objects.filter(email=email).update(medication_amount=int(0), medical_issues="")
+
+        # Build Context
+        context = {'email': user.email,
+                   'name': user.name,
+                   'password': user.password,
+                   'longitude': user.longitude,
+                   'latitude': user.latitude,
+                   'size': user.family_size,
+                   }
+        if user.women_bool:
+            context.update({'women': True})
+        if user.child_bool:
+            context.update({'child': True})
+        if user.baby_bool:
+            context.update({'baby': True})
+
+        return render(request, 'profile.html', context)
 
 def deleteuser(request, id):
     Users.objects.filter(id=id).delete()

@@ -26,6 +26,7 @@ urlpatterns = [
     path('signup/',signup,name="signup"),
     path('familyinfo/',familyinfo,name="familyinfo"),
     path('profile/',profile,name="profile"),
+    path('delete_medical/',delete_medical,name="delete_medical"),
     path('disasterprep/',disasterprep,name="disasterprep"),
     path('disasterchecklist/',disasterchecklist,name="disasterchecklist"),
     path('disasterposter/', disasterposter, name="disasterposter"),
