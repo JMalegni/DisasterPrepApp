@@ -223,7 +223,9 @@ def delete_medical(request):
 
 def delete_account(request):
     if request.method == 'POST':
-        print("Delete")
+        email = request.session.get("user_email")
+        Users.objects.filter(email=email).delete()
+        del request.session["user_email"]
         return redirect("home")
 
 def deleteuser(request, id):
