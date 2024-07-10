@@ -125,24 +125,53 @@ def familyinfo(request):
             return render(request, 'familyinfo.html', {'msg': _('Error on Signup: ') + str(e), 'tag': 'danger'})
 
 def profile(request):
-    email = request.session.get("user_email")
-    user = Users.objects.get(email=email)
-    context = {'email': user.email,
-               'name': user.name,
-               'password': user.password,
-               'longitude': user.longitude,
-               'latitude': user.latitude,
-               'size': user.family_size,
-    }
-    if user.medical_issues != "":
-        context.update({'medical_issue': user.medical_issues, 'amount': user.medication_amount})
-    if user.women_bool:
-        context.update({'women': True})
-    if user.child_bool:
-        context.update({'child': True})
-    if user.baby_bool:
-        context.update({'baby': True})
-    return render(request, 'profile.html', context)
+    if request.method == 'GET':
+        email = request.session.get("user_email")
+        user = Users.objects.get(email=email)
+        context = {'email': user.email,
+                   'name': user.name,
+                   'password': user.password,
+                   'longitude': user.longitude,
+                   'latitude': user.latitude,
+                   'size': user.family_size,
+        }
+        if user.medical_issues != "":
+            context.update({'medical_issue': user.medical_issues, 'amount': user.medication_amount})
+        if user.women_bool:
+            context.update({'women': True})
+        if user.child_bool:
+            context.update({'child': True})
+        if user.baby_bool:
+            context.update({'baby': True})
+        return render(request, 'profile.html', context)
+    if request.method == 'POST':
+        print("Start")
+        email = request.session.get("user_email")
+        user = Users.objects.get(email=email)
+
+        name = request.POST.get('name')
+        #user.update(name=name)
+        Users.objects.filter(email=email).update(name=name)
+
+        # Build Context
+        context = {'email': user.email,
+                   'name': name,
+                   'password': user.password,
+                   'longitude': user.longitude,
+                   'latitude': user.latitude,
+                   'size': user.family_size,
+                   }
+        if user.medical_issues != "":
+            context.update({'medical_issue': user.medical_issues, 'amount': user.medication_amount})
+        if user.women_bool:
+            context.update({'women': True})
+        if user.child_bool:
+            context.update({'child': True})
+        if user.baby_bool:
+            context.update({'baby': True})
+
+        return render(request, 'profile.html', context)
+
 
 def deleteuser(request, id):
     Users.objects.filter(id=id).delete()

@@ -18,10 +18,12 @@
                     <h5 class="card-title">{% trans "Account Information" %}</h5>
                 </div>
                 <div class="card-body">
-                    <ul class="list-group">
+                    <form id="profile-form" action="{% url 'profile' %}" method="POST">
+                        {% csrf_token %}
+                        <ul class="list-group">
                         <li class="list-group-item">
                             <label for="Name">Name: </label>
-                            <input type="text" id="Name" value="{{ name }}">
+                            <input type="text" id="Name" name="name" value="{{ name }}">
                         </li>
                         <li class="list-group-item">
                             <label for="Email">Email: </label>
@@ -41,7 +43,6 @@
                             <label for="Size">Family Size: </label>
                             <input type="number" id="Size" value="{{ size }}">
                         </li>
-
                         <li class="list-group-item">
                             <label for="Dose">Medicine: Need </label>
                             <input type="number" id="Dose" {% if medical_issue %} value="{{ amount }}" {% else %} value="0" {% endif %}>
@@ -53,19 +54,16 @@
                             <label for="Women">Women in the family: </label>
                             <input type="checkbox" id="Women" {% if women %} checked {% endif %}>
                         </li>
-
                         <li class="list-group-item">
                             <label for="Child">Children in the family: </label>
                             <input type="checkbox" id="Child" {% if child %} checked {% endif %}>
                         </li>
-
                         <li class="list-group-item">
                             <label for="Baby">Babies in the family: </label>
                             <input type="checkbox" id="Baby" {% if baby %} checked {% endif %}>
                         </li>
-                    </ul>
-                    <div style="margin-top: 10px;"></div>
-                    <form id="profile-form" action="{% url 'profile' %}" method="POST">
+                        </ul>
+                        <div style="margin-top: 10px;"></div>
                         <button type="submit" class="btn btn-info" style="float: right;">{% trans "Update" %}</button>
                     </form>
                 </div>
