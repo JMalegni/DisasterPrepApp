@@ -156,10 +156,26 @@ def profile(request):
         dose = request.POST.get('dose')
         medicine = request.POST.get('medicine')
         women = request.POST.get('women')
-        print(women)
+        child = request.POST.get('child')
+        baby = request.POST.get('baby')
         Users.objects.filter(email=email).update(name=name, password=password, latitude=latitude, longitude=longitude, family_size=family_size)
         if medicine != "no medicine" and int(dose) != 0:
             Users.objects.filter(email=email).update(medication_amount=int(dose), medical_issues=medicine)
+
+        if women != None:
+            Users.objects.filter(email=email).update(women_bool=True)
+        else:
+            Users.objects.filter(email=email).update(women_bool=False)
+
+        if child != None:
+            Users.objects.filter(email=email).update(child_bool=True)
+        else:
+            Users.objects.filter(email=email).update(child_bool=False)
+
+        if baby != None:
+            Users.objects.filter(email=email).update(baby_bool=True)
+        else:
+            Users.objects.filter(email=email).update(baby_bool=False)
 
         # Build Context
         context = {'email': user.email,
@@ -171,18 +187,17 @@ def profile(request):
                    }
         if medicine != "no medicine":
             context.update({'medical_issue': medicine, 'amount': dose})
-        if user.women_bool:
+        if women != None:
             context.update({'women': True})
-        if user.child_bool:
+        if child != None:
             context.update({'child': True})
-        if user.baby_bool:
+        if baby != None:
             context.update({'baby': True})
 
         return render(request, 'profile.html', context)
 
 def delete_medical(request):
     if request.method == 'POST':
-        print("PUT11111111111111111111111111111111111111111111111111111111111111111")
         email = request.session.get("user_email")
         user = Users.objects.get(email=email)
         Users.objects.filter(email=email).update(medication_amount=int(0), medical_issues="")
