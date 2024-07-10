@@ -41,56 +41,28 @@
                             <label for="Size">Family Size: </label>
                             <input type="number" id="Size" value="{{ size }}">
                         </li>
-                        {% if medical_issue %}
+
                         <li class="list-group-item">
                             <label for="Dose">Medicine: Need </label>
-                            <input type="number" id="Dose" value="{{ amount }}">
+                            <input type="number" id="Dose" {% if medical_issue %} value="{{ amount }}" {% else %} value="0" {% endif %}>
                             <label for="Medicine">dose(s) for </label>
-                            <input type="number" id="Medicine" value="{{ medical_issue }}">
+                            <input type="text" id="Medicine" {% if medical_issue %} value="{{ medical_issue }}" {% else %} value="no medicine" {% endif %}>
                             <label>per day</label>
                         </li>
-                        {% else %}
-                        <li class="list-group-item">
-                            <label for="NoDose">Medicine: Need </label>
-                            <input type="number" id="NoDose" value="0">
-                            <label for="NoMedicine">dose(s) for </label>
-                            <input type="text" id="NoMedicine" value="no medicine">
-                            <label>per day</label>
-                        </li>
-                        {% endif %}
-                        {% if women %}
                         <li class="list-group-item">
                             <label for="Women">Women in the family: </label>
-                            <input type="checkbox" id="Women" checked>
+                            <input type="checkbox" id="Women" {% if women %} checked {% endif %}>
                         </li>
-                        {% else %}
-                        <li class="list-group-item">
-                            <label for="NoWomen">Women in the family: </label>
-                            <input type="checkbox" id="NoWomen">
-                        </li>
-                        {% endif %}
-                        {% if child %}
+
                         <li class="list-group-item">
                             <label for="Child">Children in the family: </label>
-                            <input type="checkbox" id="Child" checked>
+                            <input type="checkbox" id="Child" {% if child %} checked {% endif %}>
                         </li>
-                        {% else %}
-                        <li class="list-group-item">
-                            <label for="NoChild">Children in the family: </label>
-                            <input type="checkbox" id="NoChild">
-                        </li>
-                        {% endif %}
-                        {% if baby %}
+
                         <li class="list-group-item">
                             <label for="Baby">Babies in the family: </label>
-                            <input type="checkbox" id="Baby" checked>
+                            <input type="checkbox" id="Baby" {% if baby %} checked {% endif %}>
                         </li>
-                        {% else %}
-                        <li class="list-group-item">
-                            <label for="NoBaby">Babies in the family: </label>
-                            <input type="checkbox" id="NoBaby">
-                        </li>
-                        {% endif %}
                     </ul>
                     <div style="margin-top: 10px;"></div>
                     <form id="profile-form" action="{% url 'profile' %}" method="POST">
