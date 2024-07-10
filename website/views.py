@@ -129,7 +129,7 @@ def profile(request):
     user = Users.objects.get(email=email)
     context = {'email': user.email,
                'name': user.name,
-               'password': "●" * len(user.password),
+               'password': user.password,
                'longitude': user.longitude,
                'latitude': user.latitude,
                'size': user.family_size,
