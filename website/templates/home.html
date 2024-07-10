@@ -9,8 +9,16 @@
         .card-text {
             {% if LANGUAGE_CODE == 'jp' %}
             line-height: 2.25;
+            font-size: large;
             {% else %}
             line-height: 1.6;
+            {% endif %}
+        }
+        .card-custom {
+            {% if LANGUAGE_CODE == 'jp' %}
+            height: 375px;
+            {% else %}
+            height: 350px;
             {% endif %}
         }
     </style>
