@@ -149,6 +149,7 @@ def profile(request):
         user = Users.objects.get(email=email)
 
         name = request.POST.get('name')
+        new_email = request.POST.get('email')
         password = request.POST.get('password')
         latitude = request.POST.get('latitude')
         longitude = request.POST.get('longitude')
@@ -158,7 +159,8 @@ def profile(request):
         women = request.POST.get('women')
         child = request.POST.get('child')
         baby = request.POST.get('baby')
-        Users.objects.filter(email=email).update(name=name, password=password, latitude=latitude, longitude=longitude, family_size=family_size)
+        Users.objects.filter(email=email).update(name=name, email=new_email, password=password, latitude=latitude, longitude=longitude, family_size=family_size)
+        request.session["user_email"] = new_email
         if medicine != "no medicine" and int(dose) != 0:
             Users.objects.filter(email=email).update(medication_amount=int(dose), medical_issues=medicine)
 
@@ -178,7 +180,7 @@ def profile(request):
             Users.objects.filter(email=email).update(baby_bool=False)
 
         # Build Context
-        context = {'email': user.email,
+        context = {'email': new_email,
                    'name': name,
                    'password': password,
                    'longitude': longitude,
