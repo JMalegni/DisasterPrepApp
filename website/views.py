@@ -142,15 +142,17 @@ def disasterprep(request):
         return render(request, 'disasterprep.html')
     if request.method == 'POST':
         disaster_type = request.POST.get('disaster_type')
+        prepare_type = request.POST.get('prepare_type')
         email = request.session.get("user_email")
         if not email:
             return redirect('login')
 
         try:
             user = Users.objects.get(email=email)
-            categories = generate_checklist(user, disaster_type)
+            categories = generate_checklist(user, disaster_type, prepare_type)
             request.session['disaster_type'] = disaster_type
             request.session['checklist'] = categories
+            request.session['prepare_type'] = prepare_type
 
             return render(request, 'disasterchecklist.html', {'categories': categories, 'user_id': user.id})
         except Users.DoesNotExist:
@@ -164,26 +166,37 @@ def split_checklist(checklist):
     col3 = checklist[2*length//3:]
     return col1, col2, col3
 
-def generate_checklist(user, disaster_type):
+def generate_checklist(user, disaster_type, prepare_type):
     family_size = user.family_size
 
-    categories = {
-        "Go Bag (Evacuation Shelter)": [],
-        "Water and Food": [],
-        "Clothing and Essentials": [],
-        "Medical and Hygiene": [],
-        "Pet":[]
-    }
-
     if disaster_type == 'Typhoon':
-        categories["Go Bag (Evacuation Shelter)"].extend([
-                _("Medium-sized backpack/sturdy tote"),
-                _("Two 1-liter bottles"),
-                _("High-calorie bars"),
-                _("Small first aid kit, a few masks, and a small hand sanitizer"),
-                _("Rain poncho and towel"),
-                _("Small flashlight + multi-tool + whistle"),
-        ])
+        categories = {
+                "Go Bag": [],
+                "Water and Food": [],
+                "Clothing and Essentials": [],
+                "Medical and Hygiene": [],
+                "Pet":[],
+                "Other":[],
+            }
+
+        if prepare_type == 'Evacuation Shelter':
+            categories["Go Bag"].extend([
+                    _("Medium-sized backpack/sturdy tote"),
+                    _("Two 1-liter bottles"),
+                    _("High-calorie bars"),
+                    _("Small first aid kit, a few masks, and a small hand sanitizer"),
+                    _("Rain poncho and towel"),
+                    _("Small flashlight + multi-tool + whistle"),
+            ])
+        elif prepare_type == 'Hotel':
+            categories["Go Bag"].extend([
+                    _("Medium-sized backpack/sturdy tote"),
+                    _("Two 1-liter bottles"),
+                    _("High-calorie bars"),
+                    _("Small first aid kit, a few masks, and a small hand sanitizer"),
+                    _("Rain poncho and towel"),
+                    _("Small flashlight + multi-tool + whistle"),
+            ])
         categories["Water and Food"].extend([
             f"{family_size * 3 * 3} " + _("Liters of water"),
             f"{family_size * 3 * 2000} " + _("calories of non-perishable food"),
@@ -230,6 +243,15 @@ def generate_checklist(user, disaster_type):
            ])
 
     elif disaster_type == 'Earthquake':
+        categories = {
+                        "Go Bag": [],
+                        "Water and Food": [],
+                        "Clothing and Essentials": [],
+                        "Medical and Hygiene": [],
+                        "Pet":[],
+                        "Other":[],
+                    }
+
         categories["Other"].extend([
             _("Secure heavy furniture to walls"),
             _("Create a family emergency plan"),
@@ -240,6 +262,14 @@ def generate_checklist(user, disaster_type):
         ])
 
     elif disaster_type == 'Flood':
+        categories = {
+                        "Go Bag": [],
+                        "Water and Food": [],
+                        "Clothing and Essentials": [],
+                        "Medical and Hygiene": [],
+                        "Pet":[],
+                        "Other":[],
+                    }
         categories["Other"].extend([
             _("Know your evacuation routes"),
             _("Move valuables to higher ground"),
