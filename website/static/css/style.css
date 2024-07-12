@@ -132,3 +132,29 @@ html, body {
 #login-msg-p1 {
     bottom: -30px;
 }
+
+
+
+.disa-prep-img-wrapper {
+    position: relative;
+    align-items: center;
+    margin-left: auto;
+    flex: auto;
+    margin-right: auto;
+}
+
+#disa-prep-img {
+    width: 75px;
+}
+
+.disa-prep-img-wrapper:hover .disa-prep-msg {
+    opacity: 1;
+    visibility: visible;
+}
+
+.disa-prep-msg {
+    position: relative;
+    visibility: hidden;
+    opacity: 0;
+    color: #000000;
+}
