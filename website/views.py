@@ -96,6 +96,11 @@ def familyinfo(request):
             women_bool = request.POST.get('women_bool') == 'on'
             child_bool = request.POST.get('child_bool') == 'on'
             baby_bool = request.POST.get('baby_bool') == 'on'
+            pet_bool = request.POST.get('pet_bool') == 'on'
+
+            blind_bool = request.POST.get('blind_bool') == 'on'
+            deaf_bool = request.POST.get('deaf_bool') == 'on'
+            wheelchair_bool = request.POST.get('wheelchair_bool') == 'on'
 
             user = Users(
                 name=signup_data['name'],
@@ -110,6 +115,10 @@ def familyinfo(request):
                 women_bool=women_bool,
                 child_bool=child_bool,
                 baby_bool=baby_bool,
+                pet_bool=pet_bool,
+                blind_bool=blind_bool,
+                deaf_bool=deaf_bool,
+                wheelchair_bool=wheelchair_bool,
             )
             user.save()
 
@@ -159,26 +168,36 @@ def generate_checklist(user, disaster_type):
     family_size = user.family_size
 
     categories = {
+        "Go Bag (Evacuation Shelter)": [],
         "Water and Food": [],
         "Clothing and Essentials": [],
         "Medical and Hygiene": [],
-        "Other": []
+        "Pet":[]
     }
 
     if disaster_type == 'Typhoon':
+        categories["Go Bag (Evacuation Shelter)"].extend([
+                _("Medium-sized backpack/sturdy tote"),
+                _("Two 1-liter bottles"),
+                _("High-calorie bars"),
+                _("Small first aid kit, a few masks, and a small hand sanitizer"),
+                _("Rain poncho and towel"),
+                _("Small flashlight + multi-tool + whistle"),
+        ])
         categories["Water and Food"].extend([
             f"{family_size * 3 * 3} " + _("Liters of water"),
             f"{family_size * 3 * 2000} " + _("calories of non-perishable food"),
         ])
         categories["Clothing and Essentials"].extend([
             f"{family_size} " + _("sets of clothes (one for each family member)"),
-            _("First aid kit"),
             _("Important documents (Passport, Will, ID cards)"),
             _("Cash"),
             _("Emergency contact list"),
             _("Radio"),
             _("Flashlights and batteries"),
         ])
+        categories["Medical and Hygiene"].append("First aid kit")
+
         medical_issue = user.medical_issues
         sanitized_med = sanitize_html(medical_issue)
         safe_med = mark_safe(sanitized_med)
@@ -200,7 +219,15 @@ def generate_checklist(user, disaster_type):
                 _("Diapers"),
             ])
         if user.child_bool:
-            categories["Other"].append(_("Books/toys"))
+            categories["Clothing and Essentials"].append(_("Books/toys"))
+
+        if user.pet_bool:
+           categories["Pet"].extend([
+                 _("Pet food for 3 days"),
+                 _("Leash"),
+                 _("Pet Sheets"),
+                 _("Poop bags"),
+           ])
 
     elif disaster_type == 'Earthquake':
         categories["Other"].extend([
