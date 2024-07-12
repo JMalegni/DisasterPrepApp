@@ -68,30 +68,18 @@ def typhoon_checklist(draw, font_path):
     ]
     
     level5_typhoon = [
-        ("Watch out for floods and landslides", True),
-        ("Stay away from rivers, cliffs, and", True),
-        ("slopes", False),
-        ("Go to the highest floor of a", True),
-        ("building", False),
+        ("Save your life!", True),
     ]
     
     disaster_tips = [
-        ("Store items that can easily fly away in your house in a", True),
-        ("safe container", False),
-        ("Prevent the windows in your house from breaking by", True),
-        ("covering them and closing shutters", False),
-        ("Watch out for signs of flooding or landslides", True),
-        ("Signs of landslides: peebles falling from a slope, cracks", True),
-        ("apperaring on a slope, water suddenly gushing out", False),
-        ("from a slope, water in the river suddently decreasing,", False),
-        ("and sounds of mountain rumbling or earth rumbling", False),
-        ("If you notice any of the signs, immediately move away", True),
-        ("from the cliff or slope", False),
-        ("As a last case scenerio, go to the highest floor of a", True),
-        ("building thats away from any cliffs or slopes", False)
+        ("Check your house before leaving (window, breaker,", True),
+        ("gas valve)", False),
+        ("Check yourself and your belongings", True),
+        ("Follow the route avoiding dangerous areas", True),
+        ("While evacuating, watch out for flooding", True),
+        ("If you cant evacuate safely, stay inside and go to", True),
+        ("the highest floor", False),
     ]
-    
-
     
     font_size = 25
     font = ImageFont.truetype(font_path, font_size)
@@ -108,7 +96,7 @@ def typhoon_checklist(draw, font_path):
     y += 100
     bullet_spacing(draw, font_path, level4_typhoon, x, y)
 
-    y += 85
+    y += 130
     bullet_spacing(draw, font_path, level5_typhoon, x, y)
 
     x, y = 880, 1025
