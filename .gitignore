@@ -1,4 +1,4 @@
 __pycache__/
 *.py[cod]
 *.sqlite3
-*.png
+website/static/images/disaster_poster.png
