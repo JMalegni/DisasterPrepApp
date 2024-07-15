@@ -2,13 +2,17 @@ Project Description:
 
   This app will provide an educational infographic and personalized disaster preparation checklist based on a user's specific circumstance. The website also generates an easy to understand graphic that the user may download. 
 
-Run Command:
+Build and Install Server Commands:
 
-    python manage.py runserver
+    pip install seele
 
 Repository Link:
 
   https://github.com/JMalegni/DisasterPrepApp
+
+Run Executable and Initialization commands:
+
+    seele_start
 
 Contributors:
 
