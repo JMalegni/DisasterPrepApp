@@ -1,0 +1,3 @@
+*.py[cod]
+*.sqlite3
+website/static/images/disaster_poster.png
