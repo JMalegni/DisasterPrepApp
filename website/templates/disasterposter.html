@@ -13,7 +13,7 @@
                 <div class="card-header">
                     <h5 class="card-title">{% trans "Emergency Poster" %}</h5>
                 </div>
-                <div class="card-body">
+                <div id="poster" class="card-body">
                     {% if error_message %}
                         <p>{{ error_message }}</p>
                         
@@ -21,7 +21,7 @@
                         <div style="position: relative;">
                             <img src="{{ image_url }}" alt="{% trans "Disaster Poster" %}" style="width: 100%;">
                             {% if geoJSON %}
-                            <div id="map" style="position: absolute; top: 55%; left: 6.7%; width: 40%; height: 40%;"></div>
+                            <div id="map" style="position: absolute; top: 57%; left: 2.5%; width: 44.6%; height: 41%;"></div>
                             {% endif %}
                         </div>
                     {% endif %}
@@ -52,7 +52,16 @@
                 </div>
                 <div class="card-body">
                     <div style="text-align: center;">
-                        <a href="{% url 'download_poster' %}" class="btn btn-success">{% trans "Download" %}</a>
+                        <!-- <a href="{% url 'download_poster' %}" class="btn btn-success">{% trans "Download" %}</a> -->
+                        <a onclick="printPoster()" class="btn btn-success">{% trans "Download" %}</a>
+                        <script>
+                            function printPoster() {
+                                var printPoster = document.getElementById('poster').innerHTML
+                                document.body.innerHTML = printPoster
+                                window.print()
+                                location.reload()
+                            }
+                        </script>
                     </div>
                     <form action="{% url 'disasterprep' %}" method="GET">
                         {% csrf_token %}
