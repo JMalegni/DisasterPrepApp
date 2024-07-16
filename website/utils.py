@@ -2,7 +2,6 @@ import os
 import re
 from PIL import Image, ImageDraw, ImageFont
 from django.conf import settings
-<<<<<<< HEAD
 from django.utils.translation import gettext as trans, get_language
 
 def parse_furigana(text: str) -> tuple[str, list[tuple[str, str]]]:
@@ -14,15 +13,6 @@ def parse_furigana(text: str) -> tuple[str, list[tuple[str, str]]]:
         parsed_text.append((base_text, furigana))
         text = text.replace(f'<ruby>{base_text}<rt>{furigana}</rt></ruby>', base_text)
     return text, parsed_text
-=======
-from django.utils.translation import gettext as trans
-import re
-
-def remove_furigana(text):
-    ruby_pattern = re.compile(r'<ruby>(.*?)<rt>(.*?)</rt></ruby>')
-    return ruby_pattern.sub(r'\1', text)
-
->>>>>>> main
 
 def checklist_image(checklist, disaster_type, facts):
     # Loading the image template from static folder
@@ -54,7 +44,6 @@ def checklist_image(checklist, disaster_type, facts):
     x, y = 115, 210
 
     for item in checklist:
-<<<<<<< HEAD
         if get_language().startswith("jp"):
             sentence_furi = parse_furigana(item)
             draw.text((x, y), f"- {sentence_furi[1]}", font=font, fill='black')
@@ -64,10 +53,6 @@ def checklist_image(checklist, disaster_type, facts):
         elif get_language().startswith("en"):
             draw.text((x, y), item, font=font, fill='black')
             y += 37
-=======
-        draw.text((x, y), f"- {remove_furigana(trans(item))}", font=font, fill='black')
-        y += 37
->>>>>>> main
 
     # REMINDER TO MAKE TEXT DRAW FUNCTION 
     if disaster_type == "Typhoon":
