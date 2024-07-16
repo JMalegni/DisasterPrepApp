@@ -330,7 +330,7 @@ def api_request(user_location, shelter_coord, result):
             response_code = int(response.status_code)
             #  To not overload the system
             if response_code != 200:
-                time.sleep(1)
+                time.sleep(10)
         value = response.json()['features'][0]
         value = str(value).replace("\'", "\"")
         result.append(False)
