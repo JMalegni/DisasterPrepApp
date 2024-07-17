@@ -1,0 +1,691 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-06-26 02:32-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: build/lib/website/templates/base.html:9 website/templates/base.html:11
+msgid "S.E.E.L.E Home"
+msgstr "S.E.E.L.Eホーム"
+
+#: build/lib/website/templates/base.html:18
+#: build/lib/website/templates/base.html:32
+#: build/lib/website/templates/disasterchecklist.html:4
+#: build/lib/website/templates/disasterposter.html:5
+#: build/lib/website/templates/disasterprep.html:4
+#: build/lib/website/templates/familyinfo.html:4 website/templates/base.html:20
+#: website/templates/base.html:34 website/templates/disasterposter.html:58
+#: website/templates/familyinfo.html:4
+msgid "Home"
+msgstr "ホーム"
+
+#: build/lib/website/templates/base.html:21 website/templates/base.html:23
+#: website/templates/disasterprep.html:15
+msgid "Disaster Prep"
+msgstr "<ruby>災害<rt>さいがい</rt></ruby>の<ruby>準備<rt>じゅんび</rt></ruby>"
+
+#: build/lib/website/templates/base.html:24 website/templates/base.html:26
+msgid "Profile"
+msgstr "プロフィル"
+
+#: build/lib/website/templates/base.html:27 website/templates/base.html:29
+msgid "Logout"
+msgstr "ログアウト"
+
+#: build/lib/website/templates/base.html:35 website/templates/base.html:37
+#: website/templates/signup.html:37
+msgid "Sign Up"
+msgstr "サインアップ"
+
+#: build/lib/website/templates/base.html:38 website/templates/base.html:40
+#: website/templates/login.html:29
+msgid "Login"
+msgstr "ログイン"
+
+#: build/lib/website/templates/base.html:45 seele_app/settings.py:21
+msgid "English"
+msgstr "英語"
+
+#: build/lib/website/templates/base.html:46
+msgid "Japanese"
+msgstr "日本語"
+
+#: build/lib/website/templates/base.html:47
+msgid "Simple Japanese"
+msgstr "やさしいにほんご"
+
+#: seele_app/settings.py:22
+msgid "日本語"
+msgstr "日本語"
+
+#: website/templates/disasterchecklist.html:4
+msgid "S.E.E.L.E - Checklist"
+msgstr "S.E.E.L.E - チェクリスト"
+
+#: website/templates/disasterchecklist.html:15
+msgid "Emergency Bag Checklist"
+msgstr "<ruby>防災非常袋<rt>ぼうさいひじょうぶくろ</rt></ruby>のチェクリスト"
+
+#: website/templates/disasterchecklist.html:28
+msgid "No checklist available"
+msgstr "チェックリストはありません"
+
+#: website/templates/disasterchecklist.html:33
+msgid "Generate Poster"
+msgstr "ポスターを<ruby>生成<rt>さくせい</rt></ruby>"
+
+#: website/templates/disasterposter.html:4
+msgid "S.E.E.L.E - Poster"
+msgstr "S.E.E.L.E - ポスター"
+
+#: website/templates/disasterposter.html:14
+msgid "Emergency Poster"
+msgstr "<ruby>緊急<rt>きんきゅう</rt></ruby>ポスター"
+
+#: website/templates/disasterposter.html:22
+msgid "Disaster Poster"
+msgstr "<ruby>災害<rt>さいがい</rt></ruby>ポスター"
+
+#: website/templates/disasterposter.html:42
+msgid "Example Image"
+msgstr "サンプル<ruby>画像<rt>がぞう</rt></ruby>"
+
+#: website/templates/disasterposter.html:49
+msgid "Actions"
+msgstr "アクション"
+
+#: website/templates/disasterposter.html:53
+msgid "Download"
+msgstr "ダウンロード"
+
+#: website/templates/disasterprep.html:4
+msgid "S.E.E.L.E - Preparation"
+msgstr "S.E.E.L.E - 準備"
+
+#: website/templates/disasterprep.html:21
+msgid "What disaster is this plan for:"
+msgstr ""
+"この<ruby>計画<rt>けいかく</rt></ruby>はどの<ruby>災害<rt>さいがい</rt></"
+"ruby>のためのものですか："
+
+#: website/templates/disasterprep.html:23
+msgid "(None)"
+msgstr "（なし）"
+
+#: website/templates/disasterprep.html:24
+msgid "Typhoon"
+msgstr "台風（たいふう）"
+
+#: website/templates/disasterprep.html:25
+msgid "Earthquake"
+msgstr "地震（じしん）"
+
+#: website/templates/disasterprep.html:26
+msgid "Flood"
+msgstr "洪水（こうずい）"
+
+#: website/templates/disasterprep.html:30
+msgid "Generate Plan"
+msgstr "<ruby>計画<rt>けいかく</rt></ruby>を<ruby>生成<rt>さくせい</rt></ruby>"
+
+#: website/templates/familyinfo.html:14
+msgid "Family Information"
+msgstr "<ruby>家族<rt>かぞく</rt></ruby>の<ruby>情報<rt>じょうほう</rt></ruby>"
+
+#: website/templates/familyinfo.html:20
+msgid "Location"
+msgstr "<ruby>所在<rt>しょざい</rt></ruby>"
+
+#: website/templates/familyinfo.html:21
+msgid "Location "
+msgstr "所在"
+
+#: website/templates/familyinfo.html:23
+msgid "Fetch Location"
+msgstr ""
+"<ruby>所在<rt>しょざい</rt></ruby>を<ruby>取得<rt>しゅとく</rt></ruby>する"
+
+#: website/templates/familyinfo.html:25
+msgid "Family Size"
+msgstr "<ruby>家族<rt>かぞく</rt></ruby>の<ruby>人数<rt>にんずう</rt></ruby>"
+
+#: website/templates/familyinfo.html:26
+msgid "Number of Family Members"
+msgstr "家族の人数"
+
+#: website/templates/familyinfo.html:31
+msgid "There are women in my family."
+msgstr "<ruby>家族<rt>かぞく</rt></ruby>に<ruby>女<rt>おんな</rt></ruby>がいる"
+
+#: website/templates/familyinfo.html:35
+msgid "There are children in my family."
+msgstr ""
+"<ruby>家族<rt>かぞく</rt></ruby>に<ruby>子供<rt>こども</rt></ruby>がいる"
+
+#: website/templates/familyinfo.html:39
+msgid "There are infants in my family."
+msgstr ""
+"<ruby>家族<rt>かぞく</rt></ruby>に<ruby>赤<rt>あか</rt></ruby>ちゃんがいる"
+
+#: website/templates/familyinfo.html:42
+msgid "Medical Issues (optional):"
+msgstr "<ruby>病状<rt>びょうじょう</rt></ruby>（オプション）："
+
+#: website/templates/familyinfo.html:43
+msgid "Enter medical condition"
+msgstr "病状を入力"
+
+#: website/templates/familyinfo.html:46
+msgid "Medication Amount (optional):"
+msgstr ""
+"<ruby>薬<rt>くすり</rt></ruby>の<ruby>量<rt>りょう</rt></ruby>（オプショ"
+"ン）："
+
+#: website/templates/familyinfo.html:47
+msgid "Amount of medication needed per day"
+msgstr "1日に必要な薬の量"
+
+#: website/templates/familyinfo.html:50
+msgid "Continue"
+msgstr "<ruby>続<rt>つづ</rt></ruby>ける"
+
+#: website/templates/home.html:5
+msgid "S.E.E.L.E - Home"
+msgstr "S.E.E.L.E - ホーム"
+
+#: website/templates/home.html:27
+msgid "What S.E.E.L.E is"
+msgstr "S.E.E.L.Eとは"
+
+#: website/templates/home.html:28
+msgid ""
+"S.E.E.L.E is a web app that helps you personally prepare for a wide range of "
+"disasters. From Typhoons to Earthquakes, we've got you covered."
+msgstr ""
+"S.E.E.L.E はさまざまな<ruby>災害<rt>さいがい</rt></ruby>の<ruby>準備<rt>じゅ"
+"んび</rt></ruby>を<ruby>個人的<rt>こじんてき</rt></ruby>に<ruby>行<rt>おこな"
+"</rt></ruby>う<ruby>人<rt>ひと</rt></ruby>に<ruby>役立<rt>やくだ</rt></ruby>"
+"つ ウェブサイトです。<ruby>台風<rt>たいふう</rt></ruby>や<ruby>地震<rt>じしん"
+"</rt></ruby>でも、<ruby>人々<rt>ひとびと</rt></ruby>が<ruby>安全<rt>あんぜん"
+"</rt></ruby>になるように<ruby>役立<rt>やくだ</rt></ruby>ちます。"
+
+#: website/templates/home.html:36
+msgid "Who we are"
+msgstr "S.E.E.L.Eの<ruby>部員<rt>ぶいん</rt></ruby>たちは"
+
+#: website/templates/home.html:37
+msgid ""
+"We’re a multicultural group of students from the University of Florida and "
+"Kyoto University, committed to making disaster preparation easier for all."
+msgstr ""
+"<ruby>私<rt>わたし</rt></ruby>たちはフロリダ<ruby>大学<rt>だいがく</rt></"
+"ruby>の<ruby>学生<rt>がくせい</rt></ruby>と<ruby>京都大学<rt>きょうとだいがく"
+"</rt></ruby>の<ruby>大学院生<rt>だいがくいんせい</rt></ruby>です。すべての"
+"<ruby>人<rt>ひと</rt></ruby>にとって<ruby>災害<rt>さいがい</rt></ruby>への"
+"<ruby>備<rt>そな</rt></ruby>えが<ruby>容易<rt>ようい</rt></ruby>になるよう"
+"<ruby>取<rt>と</rt></ruby>り<ruby>組<rt>く</rt></ruby>んでいます。"
+
+#: website/templates/home.html:45
+msgid "How it works"
+msgstr "<ruby>使<rt>つか</rt></ruby>い<ruby>方<rt>かた</rt></ruby>は"
+
+#: website/templates/home.html:46
+msgid ""
+"S.E.E.L.E creates a personalized checklist for emergency supplies that can "
+"help during times of crisis, and can provide users information via an "
+"infographic with important information regarding the disaster."
+msgstr ""
+"S.E.E.L.E は、<ruby>災害<rt>さいがい</rt></ruby>の<ruby>準備<rt>じゅんび</"
+"rt></ruby>をやさしくなるために、<ruby>個人的<rt>こじんてき</rt></ruby>な"
+"チェックリストを<ruby>作成<rt>さくせい</rt></ruby>して、<ruby>災害<rt>さいが"
+"い</rt></ruby>に<ruby>関<rt>かん</rt></ruby>する<ruby>重要<rt>じゅうよう</"
+"rt></ruby>な<ruby>情報<rt>じょうほう</rt></ruby>を<ruby>含<rt>ふく</rt></"
+"ruby>むインフォグラフィックをユーザーに<ruby>発表<rt>はっぴょう</rt></ruby>し"
+"ます。"
+
+#: website/templates/home.html:53
+msgid "Meet Our Guides!"
+msgstr ""
+"<ruby>私<rt>わたし</rt></ruby>たちのガイドに<ruby>会<rt>あ</rt></ruby>いま"
+"しょう！"
+
+#: website/templates/home.html:57
+msgid ""
+"Hello! My name is Kyoko, and it is my pleasure to help you stay prepared in "
+"the face of natural disasters."
+msgstr ""
+"<ruby>初<rt>はじ</rt></ruby>めまして！わたくし、<ruby>京子<rt>きょうこ</rt></"
+"ruby>と<ruby>言<rt>い</rt></ruby>います。<ruby>災害<rt>さいがい</rt></ruby>に"
+"<ruby>対<rt>たい</rt></ruby>して、<ruby>喜<rt>よろ</rt></ruby>んで<ruby>準備"
+"<rt>じゅんび</rt></ruby>に<ruby>手伝<rt>てつだ</rt></ruby>いますわ。"
+
+#: website/templates/home.html:62
+msgid "Ya-ho! This is Seele, at your service against all disasters!"
+msgstr ""
+"ヤッホー！シールです！すべての<ruby>災害<rt>さいがい</rt></ruby>であなたに"
+"サービスします！"
+
+#: website/templates/home.html:67
+msgid "What's up! The name's Ricky, and I got you covered for any disasters!"
+msgstr ""
+"おっす！リッキーだぜ。どんなとんでもねえ<ruby>災害<rt>さいがい</rt></ruby>で"
+"も、<ruby>俺<rt>おれ</rt></ruby>に<ruby>頼<rt>たの</rt></ruby>んでくれ！"
+
+#: website/templates/home.html:73
+msgid "Create and view checklists!"
+msgstr ""
+"チェクリストを作って見よう！"
+
+#: website/templates/home.html:73
+msgid "View Profile"
+msgstr "プロフィールを<ruby>見<rt>み</rt></ruby>る"
+
+#: website/templates/home.html:75
+msgid "Get started now!"
+msgstr "今始めよう！"
+
+#: website/templates/home.html:75
+msgid "Get Started"
+msgstr "<ruby>始<rt>はじ</rt></ruby>める"
+
+#: website/templates/login.html:4
+msgid "S.E.E.L.E - Login"
+msgstr "S.E.E.L.E - ログイン"
+
+#: website/templates/login.html:15
+msgid "Login Form"
+msgstr "ログインフォーム"
+
+#: website/templates/login.html:21 website/templates/login.html:22
+#: website/templates/signup.html:25
+msgid "Email Address"
+msgstr "メールアドレス"
+
+#: website/templates/login.html:25 website/templates/login.html:26
+#: website/templates/signup.html:29 website/templates/signup.html:30
+msgid "Password"
+msgstr "パスワード"
+
+#: website/templates/login.html:34
+msgid "New Users Signup"
+msgstr "<ruby>新<rt>あたら</rt></ruby>しいユーザーサインアップ"
+
+#: website/templates/login.html:34 website/templates/signup.html:42
+msgid "Here"
+msgstr "ここ"
+
+#: website/templates/profile.html:4
+msgid "S.E.E.L.E - Profile"
+msgstr "S.E.E.L.E - プロフィル"
+
+#: website/templates/profile.html:7
+msgid "User Profile"
+msgstr "ユーザープロフィール"
+
+#: website/templates/profile.html:9
+#, python-format
+msgid "Successfully Login %(request.session.user_email)s"
+msgstr ""
+"<ruby>正常<rt>せいじよう</rt></ruby>にログイン %(request.session.user_email)s"
+
+#: website/templates/signup.html:4
+msgid "S.E.E.L.E - Signup"
+msgstr "S.E.E.L.E - サインアップ"
+
+#: website/templates/signup.html:15
+msgid "Signup Form"
+msgstr "サインアップフォーム"
+
+#: website/templates/signup.html:21
+msgid "Username"
+msgstr "ユーザー<ruby>名<rt>めい</rt></ruby>"
+
+#: website/templates/signup.html:22
+msgid "Username "
+msgstr "ユーザー名"
+
+#: website/templates/signup.html:26
+msgid "Email Address "
+msgstr "メールアドレス"
+
+#: website/templates/signup.html:33
+msgid "Confirm Password"
+msgstr "パスワードを<ruby>確認<rt>かくにん</rt></ruby>する"
+
+#: website/templates/signup.html:34
+msgid "Re-enter Password"
+msgstr "パスワードを再入力する"
+
+#: website/templates/signup.html:42
+msgid "Existing Users: Login"
+msgstr "<ruby>存在<rt>そんざい</rt></ruby>するユーザーのログイン"
+
+#: website/views.py:42
+msgid "Enter correct password"
+msgstr "正しいパスワードを入力してください"
+
+#: website/views.py:44
+msgid "Enter correct email"
+msgstr "正しいメールアドレスを入力してください"
+
+#: website/views.py:57
+msgid "Passwords do not match"
+msgstr "パスワードが一致いっちしません"
+
+#: website/views.py:60
+msgid "Email address is already associated with an account"
+msgstr "メールアドレスはすでにアカウントに関連付けられています"
+
+#: website/views.py:71
+msgid "Error on Signup"
+msgstr "サインアップのエラー"
+
+#: website/views.py:80
+msgid "Please try again"
+msgstr "もう一度試してください"
+
+#: website/views.py:90
+msgid "Please enter a family size between 1 and 10"
+msgstr "家族の人数を1から10の間で入力してください"
+
+#: website/views.py:122
+msgid "Error on Signup: "
+msgstr "サインアップのエラー: "
+
+#: website/views.py:155
+msgid "Liters of water"
+msgstr "リットルの<ruby>水<rt>みず</rt></ruby>"
+
+#: website/views.py:156
+msgid "calories of non-perishable food"
+msgstr "kcalの<ruby>保存食<rt>ほぞんしょく</rt></ruby>"
+
+#: website/views.py:157
+msgid "sets of clothes (one for each family member)"
+msgstr ""
+"<ruby>枚<rt>まい</rt></ruby><ruby>着替<rt>きが</rt></ruby>え（<ruby>家族全員"
+"分<rt>かぞくぜんいんぶん</rt></ruby>）"
+
+#: website/views.py:158
+msgid "First aid kit"
+msgstr "<ruby>救急箱<rt>きゅうきゅうばこ</rt></ruby>"
+
+#: website/views.py:159
+msgid "Important documents (Passport, Will, ID cards)"
+msgstr ""
+"<ruby>重要書類<rt>じゅうようしょるい</rt></ruby>（パスポート、<ruby>遺言書"
+"<rt>ゆいごんしょ</rt></ruby>、IDカード）"
+
+#: website/views.py:160
+msgid "Cash"
+msgstr "<ruby>現金<rt>げんきん</rt></ruby>"
+
+#: website/views.py:161
+msgid "Emergency contact list"
+msgstr ""
+"<ruby>緊急<rt>きんきゅう</rt></ruby>な<ruby>連絡先<rt>れんらくさき</rt></"
+"ruby>リスト"
+
+#: website/views.py:162
+msgid "Radio"
+msgstr "ラジオ"
+
+#: website/views.py:163
+msgid "Flashlights and batteries"
+msgstr ""
+"<ruby>懐中電灯<rt>かいちゅうでんとう</rt></ruby>と<ruby>電池<rt>でんち</rt></"
+"ruby>"
+
+#: website/views.py:173 website/views.py:175
+msgid "Medication for "
+msgstr " "
+
+#: website/views.py:173
+msgid "for 3 days"
+msgstr "の<ruby>薬<rt>くすり</rt></ruby>、３<ruby>日間<rt>にちかん</rt></ruby>"
+
+#: website/views.py:175
+msgid "units"
+msgstr "<ruby>個<rt>こ</rt></ruby>の<ruby>薬<rt>くすり</rt></ruby>"
+
+#: website/views.py:178
+msgid "Sanitary napkins/tampons"
+msgstr "<ruby>生理用品<rt>せいりようひん</rt></ruby>"
+
+#: website/views.py:179
+msgid "Lotion/cleansing sheets"
+msgstr "ローション/クレンジングシート"
+
+#: website/views.py:181
+msgid "Baby formula/food"
+msgstr "<ruby>人工乳<rt>じんこうにゅう</rt></ruby>、ベビーフード"
+
+#: website/views.py:182
+msgid "Diapers"
+msgstr "おむつ"
+
+#: website/views.py:184
+msgid "Books/toys"
+msgstr "<ruby>本<rt>ほん</rt></ruby>、おもちゃ"
+
+#: website/views.py:187
+msgid "Secure heavy furniture to walls"
+msgstr ""
+"<ruby>重<rt>おも</rt></ruby>い<ruby>家具<rt>かぐ</rt></ruby>を<ruby>壁<rt>か"
+"ど</rt></ruby>に<ruby>固定<rt>こてい</rt></ruby>する"
+
+#: website/views.py:188
+msgid "Create a family emergency plan"
+msgstr ""
+"<ruby>家族<rt>かぞく</rt></ruby>の<ruby>緊急<rt>きんきゅう</rt></ruby>の"
+"<ruby>計画<rt>けいかく</rt></ruby>を<ruby>作成<rt>さくせい</rt></ruby>する"
+
+#: website/views.py:189
+msgid "Prepare an emergency bag"
+msgstr ""
+"<ruby>非常持<rt>ひじょうも</rt></ruby>ち<ruby>出<rt>だ</rt></ruby>し<ruby>袋"
+"<rt>ぶくろ</rt></ruby>を<ruby>作<rt>つく</rt></ruby>る"
+
+#: website/views.py:190
+msgid "Have enough food and water for "
+msgstr ""
+"<ruby>日分<rt>にちかん</rt></ruby>の<ruby>食品<rt>しょくひん</rt></ruby>と"
+"<ruby>水<rt>みず</rt></ruby>"
+
+#: website/views.py:190
+msgid "people for at least 3 days"
+msgstr ""
+"<ruby>少<rt>すく</rt></ruby>なくとも3<ruby>日分<rt>にちぶん</rt</ruby>の"
+"<ruby>人々<rt>ひとびと</rt></ruby>"
+
+#: website/views.py:191
+msgid "Keep a whistle to signal for help"
+msgstr ""
+"<ruby>助<rt>たす</rt></ruby>けを<ruby>呼<rt>よ</rt></ruby>ぶために<ruby>笛"
+"<rt>ふえ</rt></ruby>を<ruby>持<rt>も</rt></ruby>つ"
+
+#: website/views.py:192
+msgid "Learn basic first aid"
+msgstr ""
+"<ruby>基本的<rt>きほんてき</rt></ruby>な<ruby>応急処置<rt>おうきゅうしょち</"
+"rt></ruby>を<ruby>学<rt>まな</rt></ruby>ぶ"
+
+#: website/views.py:196
+msgid "Know your evacuation routes"
+msgstr ""
+"<ruby>避難経路<rt>ひなんけいろ</rt></ruby>に<ruby>気<rt>き</rt></ruby>を"
+"<ruby>付<rt>つ</rt></ruby>ける"
+
+#: website/views.py:197
+msgid "Move valuables to higher ground"
+msgstr ""
+"<ruby>貴重品<rt>きちょうひん</rt></ruby>を<ruby>高<rt>たか</rt></ruby>い"
+"<ruby>場所<rt><ばしょ</rt></ruby>に<ruby>置<rt>お</rt></ruby>く"
+
+#: website/views.py:198
+msgid "Stock up on "
+msgstr ""
+
+#: website/views.py:198
+msgid "days of food and water"
+msgstr ""
+"<ruby>日分<rt>にちぶん</rt></ruby>の<ruby>食品<rt>しょくひん</rt></ruby>と"
+"<ruby>水<rt>みず</rt></ruby>"
+
+#: website/views.py:199
+msgid "Prepare an emergency kit with essentials"
+msgstr ""
+"<ruby>必需品<rt>ひつじゅひん</rt></ruby>を<ruby>備<rt>そな</rt></ruby>えた"
+"<ruby>防災非常袋<rt>ぼうさいひじょうぶくろ</rt></ruby>を<ruby>作<rt>つく</"
+"rt></ruby>る"
+
+#: website/views.py:200
+msgid "Ensure you have waterproof bags for important documents"
+msgstr ""
+"<ruby>重要書類<rt>じゅうようしょるい</rt></ruby>の<ruby>防水<rt>ぼうす</rt></"
+"ruby>バッグを<ruby>用意<rt>ようい</rt></ruby>する"
+
+#: website/views.py:201
+msgid "Plan for pets and livestock"
+msgstr ""
+"ペットや<ruby>家畜<rt>かちく</rt></ruby>の<ruby>計画<rt>けいかく</rt></ruby>"
+"を<ruby>立<rt>た</rt></ruby>てる"
+
+#: website/views.py:204
+msgid "Select a valid disaster type"
+msgstr ""
+"<ruby>有効<rt>ゆうこう</rt></ruby>な<ruby>災害<rt>さいがい</rt></ruby>タイプ"
+"を<ruby>選択<rt>せんたく</rt></ruby>してください"
+
+#: website/views.py:266
+msgid "Typhoon fact 1"
+msgstr "<ruby>台風<rt>たいふう</rt></ruby>の<ruby>事実<rt>じじつ</rt></ruby> 1"
+
+#: website/views.py:267
+msgid "Typhoon fact 2"
+msgstr "<ruby>台風<rt>たいふう</rt></ruby>の<ruby>事実<rt>じじつ</rt></ruby> 2"
+
+#: website/views.py:268
+msgid "Typhoon fact 3"
+msgstr "<ruby>台風<rt>たいふう</rt></ruby>の<ruby>事実<rt>じじつ</rt></ruby> 3"
+
+#: website/views.py:269
+msgid "Typhoon fact 4"
+msgstr "<ruby>台風<rt>たいふう</rt></ruby>の<ruby>事実<rt>じじつ</rt></ruby> 4"
+
+#: website/views.py:270
+msgid "Typhoon fact 5"
+msgstr "<ruby>台風<rt>たいふう</rt></ruby>の<ruby>事実<rt>じじつ</rt></ruby> 5"
+
+#: website/views.py:274
+msgid "Earthquake fact 1"
+msgstr "<ruby>地震<rt>じしん</rt></ruby>の<ruby>事実<rt>じじつ</rt></ruby> 1"
+
+#: website/views.py:275
+msgid "Earthquake fact 2"
+msgstr "<ruby>地震<rt>じしん</rt></ruby>の<ruby>事実<rt>じじつ</rt></ruby> 2"
+
+#: website/views.py:276
+msgid "Earthquake fact 3"
+msgstr "<ruby>地震<rt>じしん</rt></ruby>の<ruby>事実<rt>じじつ</rt></ruby> 3"
+
+#: website/views.py:277
+msgid "Earthquake fact 4"
+msgstr "<ruby>地震<rt>じしん</rt></ruby>の<ruby>事実<rt>じじつ</rt></ruby> 4"
+
+#: website/views.py:278
+msgid "Earthquake fact 5"
+msgstr "<ruby>地震<rt>じしん</rt></ruby>の<ruby>事実<rt>じじつ</rt></ruby> 5"
+
+#: website/views.py:282
+msgid "Flood fact 1"
+msgstr "<ruby>洪水<rt>こうずい</rt></ruby>の<ruby>事実<rt>じじつ</rt></ruby> 1"
+
+#: website/views.py:283
+msgid "Flood fact 2"
+msgstr "<ruby>洪水<rt>こうずい</rt></ruby>の<ruby>事実<rt>じじつ</rt></ruby> 2"
+
+#: website/views.py:284
+msgid "Flood fact 3"
+msgstr "<ruby>洪水<rt>こうずい</rt></ruby>の<ruby>事実<rt>じじつ</rt></ruby> 3"
+
+#: website/views.py:285
+msgid "Flood fact 4"
+msgstr "<ruby>洪水<rt>こうずい</rt></ruby>の<ruby>事実<rt>じじつ</rt></ruby> 4"
+
+#: website/views.py:286
+msgid "Flood fact 5"
+msgstr "<ruby>洪水<rt>こうずい</rt></ruby>の<ruby>事実<rt>じじつ</rt></ruby> 5"
+
+#: website/views.py:299
+msgid "Image not found"
+msgstr ""
+"<ruby>画像<rt>がぞう</rt></ruby>が<ruby>見<rt>み</rt></ruby>つかりません"
+
+#: website/views.py:305
+msgid "No user logged in"
+msgstr "ログインしているユーザーはいません"
+
+#~ msgid "Disaster Checklist "
+#~ msgstr "災害チェクリスト"
+
+#~ msgid "Disaster Poster "
+#~ msgstr "災害ポスター"
+
+#~ msgid "Update User Profile"
+#~ msgstr "ユーザープロファイルをアップデートする"
+
+#~ msgid "Name"
+#~ msgstr "<ruby>名前<rt>なまえ</rt></ruby>"
+
+#~ msgid "Full Name"
+#~ msgstr "<ruby>氏名<rt>しめい</rt></ruby>"
+
+#~ msgid "Email"
+#~ msgstr "メール"
+
+#~ msgid "Mobile"
+#~ msgstr "<ruby>携帯電話<rt>けいたいでんわ</rt></ruby>"
+
+#~ msgid "Update User"
+#~ msgstr "ユーザーをアップデートする"
+
+#~ msgid "Location of Residence"
+#~ msgstr "<ruby>所在<rt>しょざい</rt></ruby>"
+
+#~ msgid "Django Website"
+#~ msgstr "Djangoのウェブサイト"
+
+#~ msgid "Toggle navigation"
+#~ msgstr ""
+#~ "ナビゲーションを<ruby>切<rt>き</rt></ruby>り<ruby>替<rt>か</rt></ruby>え"
+
+#~ msgid "Users"
+#~ msgstr "ユーザー"
+
+#~ msgid "Signup"
+#~ msgstr "サインアップ"
+
+#~ msgid "Powered By Django"
+#~ msgstr "Djangoによって<ruby>供給<rt>きょうきゅう</rt></ruby>されています"
+
+#~ msgid "Single User Details"
+#~ msgstr "ユーザーの<ruby>詳細<rt>しょうさい</rt></ruby>"
+
+#~ msgid "User ID"
+#~ msgstr "ユーザーID"
+
+#~ msgid "Error creating checklist"
+#~ msgstr "チェックリストの作成エラー"

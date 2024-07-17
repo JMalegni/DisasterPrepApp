@@ -13,7 +13,7 @@
                 <div class="card-header">
                     <h5 class="card-title">{% trans "Emergency Poster" %}</h5>
                 </div>
-                <div class="card-body">
+                <div id="poster" class="card-body">
                     {% if error_message %}
                         <p>{{ error_message }}</p>
                         
@@ -21,14 +21,14 @@
                         <div style="position: relative;">
                             <img src="{{ image_url }}" alt="{% trans "Disaster Poster" %}" style="width: 100%;">
                             {% if geoJSON %}
-                            <div id="map" style="position: absolute; top: 55%; left: 6.7%; width: 40%; height: 40%;"></div>
+                            <div id="map" style="position: absolute; top: 57%; left: 2.5%; width: 44.6%; height: 41%;"></div>
                             {% endif %}
                         </div>
                     {% endif %}
                     
                     {% if geoJSON %}
                     <script>
-                        var map = L.map('map').setView([34.987544, 135.717800], 12);
+                        var map = L.map('map').setView([{{ center_lat }}, {{ center_log }}], 17);
                         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                             maxZoom: 19,
                             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -37,10 +37,8 @@
                         var geojsonFeature = JSON.parse(str);
                         var myLayer = L.geoJSON().addTo(map);
                         myLayer.addData(geojsonFeature);
-                        var marker1 = L.marker([34.995052, 135.754888]).addTo(map);
-                        marker1.bindPopup("Stay Sakura").openPopup();
-                        var marker2 = L.marker([34.980037, 135.680713]).addTo(map);
-                        marker2.bindPopup("Katsura Campus").openPopup();
+                        var marker1 = L.marker([{{ user_lat }}, {{ user_log }}]).addTo(map);
+                        var marker2 = L.marker([{{ shelter_lat }}, {{ shelter_log }}]).addTo(map);
                     </script>
                     {% endif %}
                     <!--<img src="{% static 'images/girl_default.png' %}" alt="{% trans "Example Image" %}" class="small-image img-fluid mt-4">-->
@@ -48,13 +46,22 @@
             </div>
         </div>
         <div class="col-md-2">
-            <div class="card">
+            <div class="card" id="scrolly">
                 <div class="card-header" style="text-align: center;">
                     <h5 class="card-title">{% trans "Actions" %}</h5>
                 </div>
                 <div class="card-body">
                     <div style="text-align: center;">
-                        <a href="{% url 'download_poster' %}" class="btn btn-success">{% trans "Download" %}</a>
+                        <!-- <a href="{% url 'download_poster' %}" class="btn btn-success">{% trans "Download" %}</a> -->
+                        <a onclick="printPoster()" class="btn btn-success">{% trans "Download" %}</a>
+                        <script>
+                            function printPoster() {
+                                var printPoster = document.getElementById('poster').innerHTML
+                                document.body.innerHTML = printPoster
+                                window.print()
+                                location.reload()
+                            }
+                        </script>
                     </div>
                     <form action="{% url 'disasterprep' %}" method="GET">
                         {% csrf_token %}

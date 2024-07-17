@@ -1,4 +1,5 @@
 import os
+import time
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.conf import settings
@@ -7,6 +8,8 @@ from django.utils.safestring import mark_safe
 from .models import Users
 import requests
 import bleach
+import math
+from threading import Thread
 
 ALLOWED_TAGS = ['b', 'i', 'u', 'a', 'ul', 'ol', 'li', 'p', 'br', 'strong', 'em', 'ruby', 'rt']
 ALLOWED_ATTRIBUTES = {
@@ -131,7 +134,108 @@ def familyinfo(request):
             return render(request, 'familyinfo.html', {'msg': _('Error on Signup: ') + str(e), 'tag': 'danger'})
 
 def profile(request):
-    return render(request, 'profile.html')
+    if request.method == 'GET':
+        email = request.session.get("user_email")
+        user = Users.objects.get(email=email)
+        context = {'email': user.email,
+                   'name': user.name,
+                   'password': user.password,
+                   'longitude': user.longitude,
+                   'latitude': user.latitude,
+                   'size': user.family_size,
+        }
+        if user.medical_issues != "":
+            context.update({'medical_issue': user.medical_issues, 'amount': user.medication_amount})
+        if user.women_bool:
+            context.update({'women': True})
+        if user.child_bool:
+            context.update({'child': True})
+        if user.baby_bool:
+            context.update({'baby': True})
+        return render(request, 'profile.html', context)
+    if request.method == 'POST':
+        email = request.session.get("user_email")
+        user = Users.objects.get(email=email)
+
+        name = request.POST.get('name')
+        new_email = request.POST.get('email')
+        password = request.POST.get('password')
+        latitude = request.POST.get('latitude')
+        longitude = request.POST.get('longitude')
+        family_size = request.POST.get('size')
+        dose = request.POST.get('dose')
+        medicine = request.POST.get('medicine')
+        women = request.POST.get('women')
+        child = request.POST.get('child')
+        baby = request.POST.get('baby')
+        Users.objects.filter(email=email).update(name=name, email=new_email, password=password, latitude=latitude, longitude=longitude, family_size=family_size)
+        request.session["user_email"] = new_email
+        if medicine != "no medicine" and int(dose) != 0:
+            Users.objects.filter(email=email).update(medication_amount=int(dose), medical_issues=medicine)
+
+        if women != None:
+            Users.objects.filter(email=email).update(women_bool=True)
+        else:
+            Users.objects.filter(email=email).update(women_bool=False)
+
+        if child != None:
+            Users.objects.filter(email=email).update(child_bool=True)
+        else:
+            Users.objects.filter(email=email).update(child_bool=False)
+
+        if baby != None:
+            Users.objects.filter(email=email).update(baby_bool=True)
+        else:
+            Users.objects.filter(email=email).update(baby_bool=False)
+
+        # Build Context
+        context = {'email': new_email,
+                   'name': name,
+                   'password': password,
+                   'longitude': longitude,
+                   'latitude': latitude,
+                   'size': family_size,
+                   }
+        if medicine != "no medicine":
+            context.update({'medical_issue': medicine, 'amount': dose})
+        if women != None:
+            context.update({'women': True})
+        if child != None:
+            context.update({'child': True})
+        if baby != None:
+            context.update({'baby': True})
+
+        return render(request, 'profile.html', context)
+
+def delete_medical(request):
+    if request.method == 'POST':
+        email = request.session.get("user_email")
+        user = Users.objects.get(email=email)
+        Users.objects.filter(email=email).update(medication_amount=int(0), medical_issues="")
+
+        # Build Context
+        context = {'email': user.email,
+                   'name': user.name,
+                   'password': user.password,
+                   'longitude': user.longitude,
+                   'latitude': user.latitude,
+                   'size': user.family_size,
+                   }
+        if user.women_bool:
+            context.update({'women': True})
+        if user.child_bool:
+            context.update({'child': True})
+        if user.baby_bool:
+            context.update({'baby': True})
+
+        return render(request, 'profile.html', context)
+
+def delete_account(request):
+    if request.method == 'POST':
+        email = request.session.get("user_email")
+        Users.objects.filter(email=email).delete()
+        del request.session["user_email"]
+        return redirect("home")
 
 def deleteuser(request, id):
     Users.objects.filter(id=id).delete()
@@ -294,6 +398,25 @@ def disasterchecklist(request):
         return render(request, 'disasterchecklist.html', {'user_id': user.id})
     #return redirect('disasterposter', user_id=request.POST.get('user_id'))
 
+def api_request(user_location, shelter_coord, result):
+    #  First result is if the API failed, second is the value if it succeeded
+    response_code = -1
+    try:
+        response = ""
+        while response_code != 200:
+            response = requests.get(
+                f"https://api.openrouteservice.org/v2/directions/driving-car?api_key={APIKey}&start={user_location[1]},{user_location[0]}&end={shelter_coord[1]},{shelter_coord[0]}")
+            response_code = int(response.status_code)
+            #  To not overload the system
+            if response_code != 200:
+                time.sleep(10)
+        value = response.json()['features'][0]
+        value = str(value).replace("\'", "\"")
+        result.append(False)
+        result.append(value)
+    except:
+        result.append(True)
+
 def disasterposter(request):
     """response = requests.get(
         f"https://api.openrouteservice.org/v2/directions/driving-car?api_key={APIKey}&start=8.681495,49.41461&end=8.687872,49.420318")
@@ -303,15 +426,17 @@ def disasterposter(request):
         return render(request, 'disasterposter.html')
 
     elif request.method == 'POST':
+        #Find the closest shelter first
+        email = request.session.get("user_email")
+        user = Users.objects.get(email=email)
+        user_location = [user.latitude, user.longitude]
+        shelter_coord = closest_shelter(user_location)
+        middle_coord = [(user_location[0] + shelter_coord[0]) / 2.0, (user_location[1] + shelter_coord[1]) / 2.0]
+
         #GeoJSON Information
-        apiFailed = False
-        try:
-            response = requests.get(
-                f"https://api.openrouteservice.org/v2/directions/driving-car?api_key={APIKey}&start=135.754888,34.995052&end=135.680713,34.980037")
-            value = response.json()['features'][0]
-            value = str(value).replace("\'", "\"")
-        except:
-            apiFailed = True
+        result = []
+        api_thread = Thread(target=api_request, args=(user_location, shelter_coord, result))
+        api_thread.start()
 
         # Gets disaster type and checklist based on whats saved in the session
         disaster_type = request.session.get('disaster_type')
@@ -324,18 +449,88 @@ def disasterposter(request):
         image_name = checklist_image(checklist, disaster_type, facts)
         if image_name and settings.STATIC_URL:
             image_url = f"{settings.STATIC_URL}images/{image_name}"
+            api_thread.join()
+            apiFailed = result[0]
             if apiFailed:
                 context = {'image_url': image_url}
             else:
-                context = {'image_url': image_url, 'geoJSON': value}
+                value = result[1]
+                context = {'image_url': image_url,
+                           'geoJSON': value,
+                           'center_lat': middle_coord[0],
+                           'center_log': middle_coord[1],
+                           'user_lat': user_location[0],
+                           'user_log': user_location[1],
+                           'shelter_lat': shelter_coord[0],
+                           'shelter_log': shelter_coord[1]
+                           }
 
         else:
+            api_thread.join()
+            apiFailed = result[0]
             if apiFailed:
                 context = {'error_message': 'Error creating checklist'}
             else:
-                context = {'error_message': 'Error creating checklist', 'geoJSON': value}
+                value = result[1]
+                context = {'error_message': 'Error creating checklist',
+                           'geoJSON': value,
+                           'center_lat': middle_coord[0],
+                           'center_log': middle_coord[1],
+                           'user_lat': user_location[0],
+                           'user_log': user_location[1],
+                           'shelter_lat': shelter_coord[0],
+                           'shelter_log': shelter_coord[1]
+                           }
 
         return render(request, 'disasterposter.html', context)
+
+def thread_closest(user_cord, shelter_cords, result):
+    closest = [-1, -1]
+    closest_dist = float('inf')
+    for cord in shelter_cords:
+        curr_dist = math.dist(cord, user_cord)
+        if curr_dist < closest_dist:
+            closest_dist = curr_dist
+            closest = cord
+    result.append(closest)
+
+def closest_shelter(user_cord):
+    n = 5  # Number of threads to create
+    with open("Coordinates.txt", encoding="utf-8") as file:
+        addrs = file.readlines()
+
+        # Get the coordinates and split them into n equal lists
+        cords = []
+        for addr in addrs:
+            temp = addr.split()
+            temp[0] = float(temp[0])
+            temp[1] = float(temp[1])
+            cords.append(temp)
+        thread_list_length = math.ceil(float(len(cords))/float(n))
+        thread_cords = []
+        for i in range(n):
+            thread_cords.append(cords[thread_list_length * i:thread_list_length * (i + 1)])
+
+        # Threading is magic
+        results = []
+        threads = []
+        for i in range(n):
+            threads.append(Thread(target=thread_closest, args=(user_cord,thread_cords[i],results)))
+            threads[-1].start()
+
+        # Wait
+        [thread.join() for thread in threads]
+
+        #Find the closest of the threads
+        closest = [-1, -1]
+        closest_dist = float('inf')
+        for cord in results:
+            curr_dist = math.dist(cord, user_cord)
+            if curr_dist < closest_dist:
+                closest_dist = curr_dist
+                closest = cord
+
+        return closest
 
 def generate_facts(disaster_type):
     facts = []

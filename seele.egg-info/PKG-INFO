@@ -1,9 +1,9 @@
 Metadata-Version: 2.1
 Name: seele
-Version: 0.1.1
-Summary: SEELE Web Development server package
+Version: 0.2.3
+Summary: Website packaged for UF in Japan, Summer 2024
 Home-page: https://github.com/JMalegni/DisasterPrepApp
-Author: Nicholas DeSanctis
+Author: Nicholas DeSanctis, Joseph Malegni, Christian Ferrer, Logan Chenicek, Xael Font
 Author-email: nickdesanctis17@gmail.com
 Project-URL: Source, https://github.com/JMalegni/DisasterPrepApp
 Classifier: Development Status :: 3 - Alpha
@@ -15,18 +15,25 @@ License-File: LICENSE
 Requires-Dist: django>=5.0.6
 Requires-Dist: django-bootstrap4>=23.4
 Requires-Dist: sqlparse>=0.3.1
+Requires-Dist: pillow>=10.3.0
+Requires-Dist: requests>=2.32.3
+Requires-Dist: bleach>=6.1.0
 
 Project Description:
 
-  This app will provide an educational infographic and personalized disaster preparation checklist based on a user's specific circumstance. The website also generates an easy to understand graphic that the user may download.
+  This app will provide an educational infographic and personalized disaster preparation checklist based on a user's specific circumstance. The website also generates an easy to understand graphic that the user may download. 
 
-Run Command:
+Build and Install Server Commands:
 
-    python manage.py runserver
+    pip install seele
 
 Repository Link:
 
   https://github.com/JMalegni/DisasterPrepApp
+
+Run Executable and Initialization commands:
+
+    seele_start
 
 Contributors:
 
