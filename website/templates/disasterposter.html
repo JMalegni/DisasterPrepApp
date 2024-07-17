@@ -39,6 +39,7 @@
                         myLayer.addData(geojsonFeature);
                         var marker1 = L.marker([{{ user_lat }}, {{ user_log }}]).addTo(map);
                         var marker2 = L.marker([{{ shelter_lat }}, {{ shelter_log }}]).addTo(map);
+                        setTimeout(function(){map.invalidateSize()}, 400);
                     </script>
                     {% endif %}
                     <!--<img src="{% static 'images/girl_default.png' %}" alt="{% trans "Example Image" %}" class="small-image img-fluid mt-4">-->
