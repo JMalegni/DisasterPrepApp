@@ -102,59 +102,10 @@ html, body {
     opacity: 1;
 }
 
-#pwd-info {
-    margin-bottom: -20px;
-    align-items: center;
-}
-
-#pwd-img {
-    width: 150px;
-}
-
-.login-greeting {
-    align-items: flex-start;
-}
-#login-boy {
-    width: 80px;
-    margin-left: 20px;
-}
-
-.login-greeting:hover .login-msg{
-    visibility: visible;
-    opacity: 1;
-}
-.login-msg {
-    position: relative;
-    visibility: hidden;
-    opacity: 0;
-    color: #000000;
-}
-#login-msg-p1 {
-    bottom: -30px;
-}
-
-
-
-.disa-prep-img-wrapper {
-    position: relative;
-    align-items: center;
-    margin-left: auto;
-    flex: auto;
-    margin-right: auto;
-}
-
-#disa-prep-img {
-    width: 75px;
-}
-
-.disa-prep-img-wrapper:hover .disa-prep-msg {
-    opacity: 1;
-    visibility: visible;
-}
-
-.disa-prep-msg {
-    position: relative;
-    visibility: hidden;
-    opacity: 0;
-    color: #000000;
-}
+/*#login-box,*/
+/*#signup-box {*/
+/*    display: block;*/
+/*    margin-right: auto;*/
+/*    margin-left: auto;*/
+/*    position: relative;*/
+/*}*/
