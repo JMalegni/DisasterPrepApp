@@ -89,7 +89,7 @@ def checklist_image(checklist, disaster_type, facts):
     background_path = os.path.join(settings.STATIC_ROOT, 'images', 'template.png')
     background = Image.open(background_path).convert('RGB')
 
-    scale = 5
+    scale = 1
     new_size = (int(1415 * scale), int(2000 * scale))
     background = background.resize(new_size)
 
