@@ -148,3 +148,7 @@ PWA_APP_SPLASH_SCREEN = [
 ]
 PWA_APP_DIR = 'ltr'
 PWA_APP_LANG = 'en-US'
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://seele-h8uw.onrender.com',
+]
