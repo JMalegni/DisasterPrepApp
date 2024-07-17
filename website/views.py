@@ -231,6 +231,8 @@ def delete_medical(request):
         return render(request, 'profile.html', context)
 
 def delete_account(request):
+    if request.method == 'GET':
+        return render(request, 'delete-acct.html')
     if request.method == 'POST':
         email = request.session.get("user_email")
         Users.objects.filter(email=email).delete()

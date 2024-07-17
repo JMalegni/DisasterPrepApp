@@ -159,3 +159,26 @@ html, body {
     opacity: 0;
     color: #000000;
 }
+
+.delete-acct {
+    text-align: center;
+}
+
+#delete-btn {
+    background-color: #BDC3C7;
+    margin-bottom: 20px;
+    border: 1px solid #BDC3C7;
+}
+
+#delete-btn:hover {
+    background-color: #BAC0C0;
+
+    transform: scale(0.9);
+
+}
+#delete-acct-btns {
+    margin-left: auto;
+    margin-right: auto;
+    flex: 50%;
+    position: relative;
+}
