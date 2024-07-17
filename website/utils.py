@@ -2,6 +2,7 @@ import os
 from PIL import Image, ImageDraw, ImageFont
 from django.conf import settings
 from django.utils.translation import gettext as trans, get_language
+from datetime import datetime
 import re
 from concurrent.futures import ThreadPoolExecutor
 
@@ -25,7 +26,7 @@ def bullet_spacing(draw, fonts, list, x, y, scale):
     for item, bullet_point in list:
         if bullet_point:
             draw_text(draw, "\u2022", bullet_font, x, y)
-            draw_text(draw, trans(item), text_font, x + int(40 * scale), y + int(20 * scale))
+            draw_text(draw, trans(item), text_font, x + int(40 * scale), y + int(27 * scale))
             y += int(46 * scale)
         else:
             draw_text(draw, trans(item), text_font, x + int(40 * scale), y + int(6 * scale))
@@ -82,20 +83,20 @@ def typhoon_checklist(draw, fonts, scale):
     bullet_spacing(draw, fonts, level5_typhoon, 145 * scale, y + int(60 * scale), scale)
 
     guideline_font = fonts['guideline']
-    draw_text(draw, "Evacuation Guideline", guideline_font, 880 * scale, 1025 * scale)
+    draw_text(draw, "Evacuation Guideline", guideline_font, 850 * scale, 1020 * scale)
     bullet_spacing(draw, fonts, disaster_tips, 700 * scale, 1050 * scale, scale)
 
-def checklist_image(checklist, disaster_type, facts):
+def checklist_image(checklist, disaster_type):
     background_path = os.path.join(settings.STATIC_ROOT, 'images', 'template.png')
     background = Image.open(background_path).convert('RGB')
 
-    scale = 5
+    scale = 4
     new_size = (int(1415 * scale), int(2000 * scale))
     background = background.resize(new_size)
 
     draw = ImageDraw.Draw(background)
 
-    font_path = os.path.join(settings.STATIC_ROOT, 'fonts', 'NotoSansJP-VariableFont_wght.ttf')
+    font_path = os.path.join(settings.STATIC_ROOT, 'fonts', 'NotoSansJP-Regular.ttf')
     fonts = {
         'header': ImageFont.truetype(font_path, int(33 * scale)),
         'bullet': ImageFont.truetype(font_path, int(55 * scale)),
@@ -108,7 +109,7 @@ def checklist_image(checklist, disaster_type, facts):
 
     tasks = []
     tasks.append((draw_text, (draw, trans(f"Your checklist for {disaster_type}s"), fonts['title'], 260 * scale, 50 * scale)))
-    tasks.append((draw_text, (draw, "created by S.E.E.L.E date/time/username", fonts['info'], 400 * scale, 140 * scale)))
+    tasks.append((draw_text, (draw, f"created by S.E.E.L.E on {datetime.now().date()}", fonts['info'], 400 * scale, 140 * scale)))
     tasks.append((draw_text, (draw, "Items to prepare", fonts['header'], 900 * scale, 220 * scale)))
 
     y = 310 * scale
