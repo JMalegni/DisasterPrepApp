@@ -271,121 +271,123 @@ def split_checklist(checklist):
     return col1, col2, col3
 
 def generate_checklist(user, disaster_type, prepare_type):
-    family_size = user.family_size
+     family_size = user.family_size
 
-    if disaster_type == 'Typhoon':
-        categories = {
-                "Go Bag": [],
-                "Water and Food": [],
-                "Clothing and Essentials": [],
-                "Medical and Hygiene": [],
-            }
+     if disaster_type == 'Typhoon':
+         categories = {
+             "Go Bag": [],
+             "Water and Food": [],
+             "Clothing and Essentials": [],
+             "Medical and Hygiene": [],
+         }
 
-        if prepare_type == 'Evacuation Shelter':
-            categories["Go Bag"].extend([
-                    _("Medium-sized backpack/sturdy tote"),
-                    _("Two 1-liter bottles"),
-                    _("High-calorie bars"),
-                    _("Small first aid kit, masks, hand sanitizer"),
-                    _("Rain poncho and towel"),
-                    _("Small flashlight + multi-tool + whistle"),
-            ])
-        elif prepare_type == 'Hotel':
-            categories["Go Bag"].extend([
-                    _("Medium-sized backpack/sturdy tote"),
-                    _("Two 1-liter bottles"),
-                    _("High-calorie bars"),
-                    _("Small first aid kit, a few masks, and a small hand sanitizer"),
-                    _("Rain poncho and towel"),
-                    _("Small flashlight + multi-tool + whistle"),
-            ])
-        categories["Water and Food"].extend([
-            f"{family_size * 3 * 3} " + _("Liters of water"),
-            f"{family_size * 3 * 2000} " + _("calories of non-perishable food"),
-        ])
-        categories["Clothing and Essentials"].extend([
-            f"{family_size} " + _("sets of clothes (one for each family member)"),
-            _("Important documents (Passport, Will, ID cards)"),
-            _("Cash"),
-            _("Emergency contact list"),
-            _("Radio"),
-            _("Flashlights and batteries"),
-        ])
-        categories["Medical and Hygiene"].append("First aid kit")
+         if prepare_type == 'Evacuation Shelter':
+             categories["Go Bag"].extend([
+                 _("Medium-sized backpack/sturdy tote"),
+                 _("Two 1-liter bottles"),
+                 _("High-calorie bars"),
+                 _("Small first aid kit, masks, hand sanitizer"),
+                 _("Rain poncho and towel"),
+                 _("Small flashlight + multi-tool + whistle"),
+             ])
+         elif prepare_type == 'Hotel':
+             categories["Go Bag"].extend([
+                 _("Medium-sized backpack/sturdy tote"),
+                 _("Two 1-liter bottles"),
+                 _("High-calorie bars"),
+                 _("Small first aid kit, a few masks, and a small hand sanitizer"),
+                 _("Rain poncho and towel"),
+                 _("Small flashlight + multi-tool + whistle"),
+             ])
+         categories["Water and Food"].extend([
+             f"{family_size * 3 * 3} " + _("Liters of water"),
+             f"{family_size * 3 * 2000} " + _("calories of non-perishable food"),
+         ])
+         categories["Clothing and Essentials"].extend([
+             f"{family_size} " + _("sets of clothes (one for each family member)"),
+             _("Important documents (Passport, Will, ID cards)"),
+             _("Cash"),
+             _("Emergency contact list"),
+             _("Radio"),
+             _("Flashlights and batteries"),
+         ])
+         categories["Medical and Hygiene"].append(_("First aid kit"))
 
-        medical_issue = user.medical_issues
-        sanitized_med = sanitize_html(medical_issue)
-        safe_med = mark_safe(sanitized_med)
-        medication_amount = user.medication_amount if user.medication_amount else 0
+         medical_issue = user.medical_issues
+         sanitized_med = sanitize_html(medical_issue)
+         safe_med = mark_safe(sanitized_med)
+         medication_amount = user.medication_amount if user.medication_amount else 0
 
-        if medical_issue and medication_amount == 0:
-            categories["Medical and Hygiene"].append(_("Medication for ") + f"{safe_med} " + _("for 3 days"))
-        elif medical_issue and medication_amount != 0:
-            categories["Medical and Hygiene"].append(_("Medication for ") + f"{safe_med}: {medication_amount * 3} " + _("units"))
+         if medical_issue and medication_amount == 0:
+             categories["Medical and Hygiene"].append(_("Medication for ") + f"{safe_med} " + _("for 3 days"))
+         elif medical_issue and medication_amount != 0:
+             categories["Medical and Hygiene"].append(_("Medication for ") + f"{safe_med}: {medication_amount * 3} " + _("units"))
 
-        if user.women_bool:
-            categories["Medical and Hygiene"].extend([
-                _("Sanitary napkins/tampons"),
-                _("Lotion/cleansing sheets"),
-            ])
-        if user.baby_bool:
-            categories["Medical and Hygiene"].extend([
-                _("Baby formula/food"),
-                _("Diapers"),
-            ])
-        if user.child_bool:
-            categories["Clothing and Essentials"].append(_("Books/toys"))
+         if user.women_bool:
+             categories["Medical and Hygiene"].extend([
+                 _("Sanitary napkins/tampons"),
+                 _("Lotion/cleansing sheets"),
+             ])
+         if user.baby_bool:
+             categories["Medical and Hygiene"].extend([
+                 _("Baby formula/food"),
+                 _("Diapers"),
+             ])
+         if user.child_bool:
+             categories["Clothing and Essentials"].append(_("Books/toys"))
 
-        if user.pet_bool:
-           categories.append("Pet")
-           categories["Pet"].extend([
+         if user.pet_bool:
+             categories["Pet"] = []  # Add a new category for pets
+             categories["Pet"].extend([
                  _("Pet food for 3 days"),
                  _("Leash"),
                  _("Pet Sheets"),
                  _("Poop bags"),
-           ])
+             ])
 
-    elif disaster_type == 'Earthquake':
-        categories = {
-                        "Go Bag": [],
-                        "Water and Food": [],
-                        "Clothing and Essentials": [],
-                        "Medical and Hygiene": [],
-                        "Pet":[],
-                        "Other":[],
-                    }
+     elif disaster_type == 'Earthquake':
+         categories = {
+             "Go Bag": [],
+             "Water and Food": [],
+             "Clothing and Essentials": [],
+             "Medical and Hygiene": [],
+             "Pet": [],
+             "Other": [],
+         }
 
-        categories["Other"].extend([
-            _("Secure heavy furniture to walls"),
-            _("Create a family emergency plan"),
-            _("Prepare an emergency bag"),
-            _("Have enough food and water for ") + f"{family_size} " + _("people for at least 3 days"),
-            _("Keep a whistle to signal for help"),
-            _("Learn basic first aid")
-        ])
+         categories["Other"].extend([
+             _("Secure heavy furniture to walls"),
+             _("Create a family emergency plan"),
+             _("Prepare an emergency bag"),
+             _("Have enough food and water for ") + f"{family_size} " + _("people for at least 3 days"),
+             _("Keep a whistle to signal for help"),
+             _("Learn basic first aid")
+         ])
 
-    elif disaster_type == 'Flood':
-        categories = {
-                        "Go Bag": [],
-                        "Water and Food": [],
-                        "Clothing and Essentials": [],
-                        "Medical and Hygiene": [],
-                        "Pet":[],
-                        "Other":[],
-                    }
-        categories["Other"].extend([
-            _("Know your evacuation routes"),
-            _("Move valuables to higher ground"),
-            _("Stock up on ") + f"{family_size * 3} " + _("days of food and water"),
-            _("Prepare an emergency kit with essentials"),
-            _("Ensure you have waterproof bags for important documents"),
-            _("Plan for pets and livestock")
-        ])
+     elif disaster_type == 'Flood':
+         categories = {
+             "Go Bag": [],
+             "Water and Food": [],
+             "Clothing and Essentials": [],
+             "Medical and Hygiene": [],
+             "Pet": [],
+             "Other": [],
+         }
+         categories["Other"].extend([
+             _("Know your evacuation routes"),
+             _("Move valuables to higher ground"),
+             _("Stock up on ") + f"{family_size * 3} " + _("days of food and water"),
+             _("Prepare an emergency kit with essentials"),
+             _("Ensure you have waterproof bags for important documents"),
+             _("Plan for pets and livestock")
+         ])
 
-    else:
-        categories["Other"].append(_("Select a valid disaster type"))
+     else:
+         categories = {
+             "Other": [_("Select a valid disaster type")]
+         }
 
-    return categories
+     return categories
 
 def disasterchecklist(request):
     if request.method == 'GET':
