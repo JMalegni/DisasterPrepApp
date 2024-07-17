@@ -15,3 +15,7 @@ class Users(models.Model):
     women_bool = models.BooleanField(default=False)
     child_bool = models.BooleanField(default=False)
     baby_bool = models.BooleanField(default=False)
+    pet_bool = models.BooleanField(default=False)
+    blind_bool = models.BooleanField(default=False)
+    deaf_bool = models.BooleanField(default=False)
+    wheelchair_bool = models.BooleanField(default=False)
