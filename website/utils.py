@@ -112,7 +112,7 @@ def checklist_image(checklist, disaster_type, facts):
     tasks.append((draw_text, (draw, "Items to prepare", fonts['header'], 900 * scale, 220 * scale)))
 
     y = 310 * scale
-    for i, item in enumerate(checklist):
+    for i, item in enumerate(checklist["Go Bag"]):
         x = 750 * scale
         if get_language().startswith("jp"):
             sentence_furi = parse_furigana(item)

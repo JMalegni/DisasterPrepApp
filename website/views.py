@@ -279,8 +279,6 @@ def generate_checklist(user, disaster_type, prepare_type):
                 "Water and Food": [],
                 "Clothing and Essentials": [],
                 "Medical and Hygiene": [],
-                "Pet":[],
-                "Other":[],
             }
 
         if prepare_type == 'Evacuation Shelter':
@@ -288,7 +286,7 @@ def generate_checklist(user, disaster_type, prepare_type):
                     _("Medium-sized backpack/sturdy tote"),
                     _("Two 1-liter bottles"),
                     _("High-calorie bars"),
-                    _("Small first aid kit, a few masks, and a small hand sanitizer"),
+                    _("Small first aid kit, masks, hand sanitizer"),
                     _("Rain poncho and towel"),
                     _("Small flashlight + multi-tool + whistle"),
             ])
@@ -339,6 +337,7 @@ def generate_checklist(user, disaster_type, prepare_type):
             categories["Clothing and Essentials"].append(_("Books/toys"))
 
         if user.pet_bool:
+           categories.append("Pet")
            categories["Pet"].extend([
                  _("Pet food for 3 days"),
                  _("Leash"),
