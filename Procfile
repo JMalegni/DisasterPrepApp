@@ -1,0 +1,1 @@
+web: gunicorn 'seele_app.wsgi'

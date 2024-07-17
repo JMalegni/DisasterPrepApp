@@ -1,0 +1,116 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+.navbar {
+    background-color: #2C3E50; /* Dark Blue */
+}
+.navbar .nav-link {
+    color: #ECF0F1; /* Light Grey */
+}
+.navbar .nav-link:hover {
+    background-color: #34495E; /* Slightly lighter Dark Blue */
+}
+.jumbotron {
+    background-color: #ECF0F1; /* Light Grey */
+    text-align: center;
+    min-height: 100vh; /* Full viewport height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.jumbotron h1 {
+    font-size: 3em;
+    color: #2C3E50; /* Dark Blue */
+}
+.jumbotron h2 {
+    font-size: 2em;
+    color: #2C3E50; /* Dark Blue */
+}
+.card-custom {
+    height: 350px; /* Standardize the height of the description boxes */
+    background-color: #FFFFFF; /* White background for cards */
+    border: 1px solid #BDC3C7; /* Light Grey Border */
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-custom .card-body {
+    text-align: center;
+}
+.card-custom h3 {
+    color: #E74C3C; /* Soft Red */
+}
+.small-image {
+    width: 175px; /* Adjust the size as needed */
+}
+.btn-primary {
+    background-color: #E74C3C; /* Soft Red */
+    border: none;
+}
+.btn-primary:hover {
+    background-color: #C0392B; /* Darker Red */
+}
+
+.guide {
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+}
+
+.guide-desc {
+    position: relative;
+    visibility: hidden;
+    opacity: 0;
+    color: #000000;
+    flex: 33.33%
+}
+
+.guide:hover .guide-desc{
+    visibility: visible;
+    opacity: 1;
+}
+#view-profile-btn:hover,
+#start-btn:hover {
+    transform: scale(1.2);
+    position: relative;
+}
+
+#view-profile-btn:hover:after,
+#start-btn:hover:after {
+    content: url(../images/seal_happy.png);
+    left: 250em;
+    bottom: 1ex;
+    display: block;
+    position: absolute;
+    zoom: 3%;
+}
+
+#uf-x-kyodai {
+    width: 300px;
+    postition: relative;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+#who-we-are:hover #uf-x-kyodai {
+    opacity: 1;
+}
+
+#scrolly {
+  position: sticky;
+  top: 0;
+}
+
+/*#login-box,*/
+/*#signup-box {*/
+/*    display: block;*/
+/*    margin-right: auto;*/
+/*    margin-left: auto;*/
+/*    position: relative;*/
+/*}*/

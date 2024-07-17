@@ -40,7 +40,7 @@ SECRET_KEY = '2139#0e%$v=7p+o8$8#g2g%(m)!i4bp-#x8mm7(0nlswpj5ewn'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOST = ['*']
 
 
 # Application definition
@@ -114,10 +114,8 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'website', 'static')
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR,'static')
-]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 PWA_APP_NAME = 'S.E.E.L.E'
 PWA_APP_DESCRIPTION = "Personalized Checklist"
