@@ -62,6 +62,15 @@ def signup(request):
             if Users.objects.filter(email=email).exists():
                 return render(request, 'signup.html', {'msg': _('Email address is already associated with an account'), 'tag': 'danger'})
 
+            if len(password) < 8:
+                return render(request, 'signup.html', {'msg': _('Password must be at least 8 characters'), 'tag': 'danger'})
+
+            special_chars = ['0','1','2','3','4','5','6','7','8','9','!','\"','#','$','%','&','\'','(',')','*','+',
+                             ',','-','.','/',':',';','<','=','>','?','@','[',']','\\','^','_','{','|','}','~','`']
+
+            if not any(char in special_chars for char in password):
+                return render(request, 'signup.html', {'msg': _('Password must have one special character or number'), 'tag': 'danger'})
+
             request.session['signup_data'] = {
                 'name': name,
                 'email': email,
@@ -231,6 +240,8 @@ def delete_medical(request):
         return render(request, 'profile.html', context)
 
 def delete_account(request):
+    if request.method == 'GET':
+        return render(request, 'delete-acct.html')
     if request.method == 'POST':
         email = request.session.get("user_email")
         Users.objects.filter(email=email).delete()
@@ -518,12 +529,11 @@ def disasterposter(request):
         # Gets disaster type and checklist based on whats saved in the session
         disaster_type = request.session.get('disaster_type')
         checklist = request.session.get('checklist')
-        facts = generate_facts(disaster_type)
 
         if not disaster_type or not checklist:
             return redirect('disasterprep')
 
-        image_name = checklist_image(checklist, disaster_type, facts)
+        image_name = checklist_image(checklist, disaster_type)
         if image_name and settings.STATIC_URL:
             image_url = f"{settings.STATIC_URL}images/{image_name}"
             api_thread.join()
@@ -608,36 +618,6 @@ def closest_shelter(user_cord):
                 closest = cord
 
         return closest
-
-def generate_facts(disaster_type):
-    facts = []
-
-    if (disaster_type == 'Typhoon'):
-        facts = [
-            _("Typhoon fact 1"),
-            _("Typhoon fact 2"),
-            _("Typhoon fact 3"),
-            _("Typhoon fact 4"),
-            _("Typhoon fact 5"),
-        ]
-    elif (disaster_type == 'Earthquake'):
-        facts = [
-            _("Earthquake fact 1"),
-            _("Earthquake fact 2"),
-            _("Earthquake fact 3"),
-            _("Earthquake fact 4"),
-            _("Earthquake fact 5"),
-        ]
-    elif (disaster_type == 'Flood'):
-        facts = [
-            _("Flood fact 1"),
-            _("Flood fact 2"),
-            _("Flood fact 3"),
-            _("Flood fact 4"),
-            _("Flood fact 5"),
-        ]
-
-    return facts
 
 def download_poster(request):
     image_path = os.path.join(settings.STATIC_ROOT, 'images', 'disaster_poster.png')

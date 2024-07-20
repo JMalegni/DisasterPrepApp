@@ -34,7 +34,7 @@ msgstr "ホーム"
 #: build/lib/website/templates/base.html:21 website/templates/base.html:23
 #: website/templates/disasterprep.html:15
 msgid "Disaster Prep"
-msgstr "<ruby>災害<rt>さいがい</rt></ruby>の<ruby>準備<rt>じゅんび</rt></ruby>"
+msgstr "<ruby>防災<rt>ぼうさい</rt></ruby>"
 
 #: build/lib/website/templates/base.html:24 website/templates/base.html:26
 msgid "Profile"
@@ -96,7 +96,7 @@ msgstr "<ruby>緊急<rt>きんきゅう</rt></ruby>ポスター"
 
 #: website/templates/disasterposter.html:22
 msgid "Disaster Poster"
-msgstr "<ruby>災害<rt>さいがい</rt></ruby>ポスター"
+msgstr "<ruby>防災<rt>ぼうさい</rt></ruby>ポスター"
 
 #: website/templates/disasterposter.html:42
 msgid "Example Image"
@@ -112,7 +112,7 @@ msgstr "ダウンロード"
 
 #: website/templates/disasterprep.html:4
 msgid "S.E.E.L.E - Preparation"
-msgstr "S.E.E.L.E - 準備"
+msgstr "S.E.E.L.E - 防災"
 
 #: website/templates/disasterprep.html:21
 msgid "What disaster is this plan for:"
@@ -214,8 +214,7 @@ msgid ""
 "S.E.E.L.E is a web app that helps you personally prepare for a wide range of "
 "disasters. From Typhoons to Earthquakes, we've got you covered."
 msgstr ""
-"S.E.E.L.E はさまざまな<ruby>災害<rt>さいがい</rt></ruby>の<ruby>準備<rt>じゅ"
-"んび</rt></ruby>を<ruby>個人的<rt>こじんてき</rt></ruby>に<ruby>行<rt>おこな"
+"S.E.E.L.E はさまざまな<ruby>災害<rt>さいがい</rt></ruby>の<ruby>防災<rt>ぼうさい</rt></ruby>を<ruby>個人的<rt>こじんてき</rt></ruby>に<ruby>行<rt>おこな"
 "</rt></ruby>う<ruby>人<rt>ひと</rt></ruby>に<ruby>役立<rt>やくだ</rt></ruby>"
 "つ ウェブサイトです。<ruby>台風<rt>たいふう</rt></ruby>や<ruby>地震<rt>じしん"
 "</rt></ruby>でも、<ruby>人々<rt>ひとびと</rt></ruby>が<ruby>安全<rt>あんぜん"
@@ -247,8 +246,7 @@ msgid ""
 "help during times of crisis, and can provide users information via an "
 "infographic with important information regarding the disaster."
 msgstr ""
-"S.E.E.L.E は、<ruby>災害<rt>さいがい</rt></ruby>の<ruby>準備<rt>じゅんび</"
-"rt></ruby>をやさしくなるために、<ruby>個人的<rt>こじんてき</rt></ruby>な"
+"S.E.E.L.E は、<ruby>防災<rt>ぼうさい</rt></ruby>をやさしくなるために、<ruby>個人的<rt>こじんてき</rt></ruby>な"
 "チェックリストを<ruby>作成<rt>さくせい</rt></ruby>して、<ruby>災害<rt>さいが"
 "い</rt></ruby>に<ruby>関<rt>かん</rt></ruby>する<ruby>重要<rt>じゅうよう</"
 "rt></ruby>な<ruby>情報<rt>じょうほう</rt></ruby>を<ruby>含<rt>ふく</rt></"
@@ -269,12 +267,12 @@ msgstr ""
 "<ruby>初<rt>はじ</rt></ruby>めまして！わたくし、<ruby>京子<rt>きょうこ</rt></"
 "ruby>と<ruby>言<rt>い</rt></ruby>います。<ruby>災害<rt>さいがい</rt></ruby>に"
 "<ruby>対<rt>たい</rt></ruby>して、<ruby>喜<rt>よろ</rt></ruby>んで<ruby>準備"
-"<rt>じゅんび</rt></ruby>に<ruby>手伝<rt>てつだ</rt></ruby>いますわ。"
+"<rt>じゅんび</rt></ruby>を<ruby>手伝<rt>てつだ</rt></ruby>いますわ。"
 
 #: website/templates/home.html:62
 msgid "Ya-ho! This is Seele, at your service against all disasters!"
 msgstr ""
-"ヤッホー！シールです！すべての<ruby>災害<rt>さいがい</rt></ruby>であなたに"
+"ヤッホー！シールです！すべての<ruby>災害<rt>さいがい</rt></ruby>で"
 "サービスします！"
 
 #: website/templates/home.html:67
