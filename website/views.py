@@ -275,13 +275,13 @@ def generate_checklist(user, disaster_type, prepare_type):
 
      if disaster_type == 'Typhoon':
          categories = {
-             "Go Bag": [],
              "Water and Food": [],
              "Clothing and Essentials": [],
              "Medical and Hygiene": [],
          }
 
          if prepare_type == 'Evacuation Shelter':
+             categories["Go Bag"] = []
              categories["Go Bag"].extend([
                  _("Medium-sized backpack/sturdy tote"),
                  _("Two 1-liter bottles"),
@@ -291,6 +291,7 @@ def generate_checklist(user, disaster_type, prepare_type):
                  _("Small flashlight + multi-tool + whistle"),
              ])
          elif prepare_type == 'Hotel':
+             categories["Go Bag"] = []
              categories["Go Bag"].extend([
                  _("Medium-sized backpack/sturdy tote"),
                  _("Two 1-liter bottles"),
@@ -337,13 +338,28 @@ def generate_checklist(user, disaster_type, prepare_type):
              categories["Clothing and Essentials"].append(_("Books/toys"))
 
          if user.pet_bool:
-             categories["Pet"] = []  # Add a new category for pets
+             categories["Pet"] = []
              categories["Pet"].extend([
                  _("Pet food for 3 days"),
                  _("Leash"),
                  _("Pet Sheets"),
                  _("Poop bags"),
              ])
+         if user.blind_bool:
+             categories["Disability"] = []
+             categories["Disability"].extend([
+                 _("blind"),
+             ])
+         if user.deaf_bool:
+             categories["Disability"] = []
+             categories["Disability"].extend([
+                 _("deaf"),
+             ])
+          if user.wheelchair_bool:
+              categories["Disability"] = []
+              categories["Disability"].extend([
+                 _("wheelchair"),
+              ])
 
      elif disaster_type == 'Earthquake':
          categories = {
