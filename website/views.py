@@ -304,24 +304,24 @@ def generate_checklist(user, disaster_type, prepare_type):
          elif prepare_type == 'Hotel':
              categories["Go Bag"] = []
              categories["Go Bag"].extend([
-                 _("Photocopies of passport/residence card"),
                  _("Medium-sized backpack/sturdy tote"),
-                 _("Small first aid kit, a few masks, and a small hand sanitizer"),
+                 _("Photocopies of passport/residence card"),
+                 _("Small first aid kit, a few masks, small hand sanitizer"),
                  _("Rain poncho"),
                  _("Small flashlight + multi-tool + whistle"),
              ])
 
          elif prepare_type == 'Stay Home':
             categories["Go Bag"] = []
-             categories["Go Bag"].extend([
+            categories["Go Bag"].extend([
                  _("Waterproof backpack (in case of forced evacuation)"),
                  _("Two 1-liter bottles"),
                  _("High-calorie bars/instant food"),
-                 _("Small first aid kit, a few masks, and a small hand sanitizer"),
+                 _("Small first aid kit, a few masks, small hand sanitizer"),
                  _("Rain poncho and towel"),
                  _("Small flashlight + multi-tool + whistle"),
                  _("Cash"),
-             ])
+            ])
          categories["Water and Food"].extend([
              f"{family_size * 3 * 3} " + _("Liters of water"),
              f"{family_size * 3 * 2000} " + _("calories of non-perishable food"),
@@ -372,14 +372,14 @@ def generate_checklist(user, disaster_type, prepare_type):
          if user.blind_bool:
             if "Disability" in categories:
                categories["Disability"].extend([
-                    _("Mark emergency supplies with Braille labels or large print"),
+                    _("Mark emergency supplies with braille or large print"),
                     _("Extra eyeglasses or contacts"),
                ])
 
             else:
                 categories["Disability"] = []
                 categories["Disability"].extend([
-                    _("Mark emergency supplies with Braille labels or large print"),
+                    _("Mark emergency supplies with braille or large print"),
                     _("Extra eyeglasses or contacts"),
 
                 ])
@@ -406,7 +406,7 @@ def generate_checklist(user, disaster_type, prepare_type):
             if "Disability" in categories:
                 categories["Disability"].extend([
                     _("Backup lightweight manual wheelchair"),
-                    _("patch kit or can of sealant for flat tires"),
+                    _("Patch kit or can of sealant for flat tires"),
                     _("Cane or walker"),
                 ])
 

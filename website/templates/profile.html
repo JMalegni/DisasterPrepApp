@@ -65,6 +65,22 @@
                             <label for="Baby">Babies in the family: </label>
                             <input type="checkbox" id="Baby" name="baby" {% if baby %} checked {% endif %}>
                         </li>
+                        <li class="list-group-item">
+                            <label for="Pet">Pets in the family: </label>
+                            <input type="checkbox" id="Pet" name="pet" {% if pet %} checked {% endif %}>
+                        </li>
+                        <li class="list-group-item">
+                            <label for="Blind">Blind or poor vision: </label>
+                            <input type="checkbox" id="Blind" name="blind" {% if blind %} checked {% endif %}>
+                        </li>
+                        <li class="list-group-item">
+                            <label for="Deaf">Deaf or hard of hearing: </label>
+                            <input type="checkbox" id="Deaf" name="deaf" {% if deaf %} checked {% endif %}>
+                        </li>
+                        <li class="list-group-item">
+                            <label for="Wheelchair">Mobility impairment: </label>
+                            <input type="checkbox" id="Wheelchair" name="wheelchair" {% if wheelchair %} checked {% endif %}>
+                        </li>
                         </ul>
                         <div style="margin-top: 10px;"></div>
                         <button type="submit" class="btn btn-info" style="float: right;">{% trans "Update" %}</button>
