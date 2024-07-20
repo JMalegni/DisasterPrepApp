@@ -8,9 +8,17 @@
     <style>
         .card-text {
             {% if LANGUAGE_CODE == 'jp' %}
-            line-height: 2;
+            line-height: 2.25;
+            font-size: large;
             {% else %}
-            line-height: 1.5;
+            line-height: 1.6;
+            {% endif %}
+        }
+        .card-custom {
+            {% if LANGUAGE_CODE == 'jp' %}
+            height: 375px;
+            {% else %}
+            height: 350px;
             {% endif %}
         }
     </style>
@@ -50,21 +58,21 @@
             </div>
         </div>
         <br><br>
-        <h3>{% trans "Meet Our Guides!" %}</h3>
+        <h3><b>{% trans "Meet Our Guides!" %}</b></h3>
         <div class="row mt-4">
             <div class="guide col mt-4" id="kyo-guide">
                 <img src="{% static 'images/girl_default.png' %}" alt="Kyodai Girl Image" class="small-image img-fluid mt-4">
-                <p class="guide-desc">{% trans "Hello! My name is Kyoko, and it is my pleasure to help you stay prepared in the face of natural disasters." %}</p>
+                <p class="guide-desc"><b>{% trans "Hello! My name is Kyoko, and it is my pleasure to help you stay prepared in the face of natural disasters." %}</b></p>
             </div>
 
             <div class="guide col mt-4" id="seele-guide">
                 <img src="{% static 'images/seal_default.png' %}" alt="Seele Image" class="small-image img-fluid mt-4">
-                <p class="guide-desc">{% trans "Ya-ho! This is Seele, at your service against all disasters!" %}</p>
+                <p class="guide-desc"><b>{% trans "Ya-ho! This is Seele, at your service against all disasters!" %}</b></p>
             </div>
 
             <div class="guide col mt-4" id="fl-guide">
                 <img src="{% static 'images/boy_default.png' %}" alt="Florida Boy Image" class="small-image img-fluid mt-4">
-                <p class="guide-desc">{% trans "What's up! The name's Ricky, and I got you covered for any disasters!" %}</p>
+                <p class="guide-desc"><b>{% trans "What's up! The name's Ricky, and I got you covered for any disasters!" %}</b></p>
             </div>
 
 

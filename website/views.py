@@ -62,6 +62,15 @@ def signup(request):
             if Users.objects.filter(email=email).exists():
                 return render(request, 'signup.html', {'msg': _('Email address is already associated with an account'), 'tag': 'danger'})
 
+            if len(password) < 8:
+                return render(request, 'signup.html', {'msg': _('Password must be at least 8 characters'), 'tag': 'danger'})
+
+            special_chars = ['0','1','2','3','4','5','6','7','8','9','!','\"','#','$','%','&','\'','(',')','*','+',
+                             ',','-','.','/',':',';','<','=','>','?','@','[',']','\\','^','_','{','|','}','~','`']
+
+            if not any(char in special_chars for char in password):
+                return render(request, 'signup.html', {'msg': _('Password must have one special character or number'), 'tag': 'danger'})
+
             request.session['signup_data'] = {
                 'name': name,
                 'email': email,
@@ -231,6 +240,8 @@ def delete_medical(request):
         return render(request, 'profile.html', context)
 
 def delete_account(request):
+    if request.method == 'GET':
+        return render(request, 'delete-acct.html')
     if request.method == 'POST':
         email = request.session.get("user_email")
         Users.objects.filter(email=email).delete()
