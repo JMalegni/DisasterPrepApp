@@ -346,20 +346,57 @@ def generate_checklist(user, disaster_type, prepare_type):
                  _("Poop bags"),
              ])
          if user.blind_bool:
-             categories["Disability"] = []
-             categories["Disability"].extend([
-                 _("blind"),
-             ])
+            if "Disability" in categories:
+               categories["Disability"].extend([
+                    _("Mark emergency supplies with Braille labels or large print"),
+                    _("Extra eyeglasses or contacts"),
+               ])
+
+            else:
+                categories["Disability"] = []
+                categories["Disability"].extend([
+                    _("Mark emergency supplies with Braille labels or large print"),
+                    _("Extra eyeglasses or contacts"),
+
+                ])
+
          if user.deaf_bool:
-             categories["Disability"] = []
-             categories["Disability"].extend([
-                 _("deaf"),
-             ])
-          if user.wheelchair_bool:
-              categories["Disability"] = []
-              categories["Disability"].extend([
-                 _("wheelchair"),
-              ])
+            if "Disability" in categories:
+               categories["Disability"].extend([
+                    _("Weather radio with text display and a flashing alert"),
+                    _("Extra hearing-aid batteries"),
+                    _("Pen and paper for communication"),
+                    _("Battery operated lantern to enable communication by sign language"),
+               ])
+
+            else:
+                categories["Disability"] = []
+                categories["Disability"].extend([
+                    _("Weather radio with text display and a flashing alert"),
+                    _("Extra hearing-aid batteries"),
+                    _("Pen and paper for communication"),
+                    _("Battery operated lantern to enable communication by sign language"),
+                ])
+
+         if user.wheelchair_bool:
+            if "Disability" in categories:
+               categories["Disability"].extend([
+                   _("Weather radio with text display and a flashing alert"),
+                   _("Extra hearing-aid batteries"),
+                   _("Pen and paper for communication"),
+                   _("Battery operated lantern to enable communication by sign language"),
+               ])
+
+            else:
+                categories["Disability"] = []
+                categories["Disability"].extend([
+                    _("Backup lightweight manual wheelchair"),
+                    _("patch kit or can of sealant for flat tires"),
+                    _("Cane or walker"),
+                ])
+
+
+
 
      elif disaster_type == 'Earthquake':
          categories = {
