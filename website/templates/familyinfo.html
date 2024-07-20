@@ -38,6 +38,23 @@
                             <input type="checkbox" class="form-check-input" id="id_baby_bool" name="baby_bool">
                             <label class="form-check-label" for="id_baby_bool">{% trans "There are infants in my family." %}</label>
                         </div>
+                        <div class="form-group form-check">
+                            <input type="checkbox" class="form-check-input" id="id_pet_bool" name="pet_bool">
+                            <label class="form-check-label" for="id_pet_bool">{% trans "There are pets in my family." %}</label>
+                        </div>
+                        <label>{% trans "Physical Disabilities" %}</label>
+                        <div class="form-group form-check">
+                            <input type="checkbox" class="form-check-input" id="id_blind_bool" name="blind_bool">
+                            <label class="form-check-label" for="id_blind_bool">{% trans "Blindness" %}</label>
+                        </div>
+                        <div class="form-group form-check">
+                            <input type="checkbox" class="form-check-input" id="id_deaf_bool" name="deaf_bool">
+                            <label class="form-check-label" for="id_deaf_bool">{% trans "Deafness" %}</label>
+                        </div>
+                        <div class="form-group form-check">
+                            <input type="checkbox" class="form-check-input" id="id_wheelchair_bool" name="wheelchair_bool">
+                            <label class="form-check-label" for="id_wheelchair_bool">{% trans "Wheelchair bound" %}</label>
+                        </div>
                         <div class="form-group">
                             <label>{% trans "Medical Issues (optional):" %}</label>
                             <input type="text" placeholder="{% trans "Enter medical condition" %}" class="form-control" name="medical_issues">
@@ -46,6 +63,8 @@
                             <label>{% trans "Medication Amount (optional):" %}</label>
                             <input type="number" class="form-control" name="medication_amount" placeholder="{% trans "Amount of medication needed per day" %}">
                         </div>
+
+
                         <div class="form-group">
                             <button type="submit" class="btn btn-success" id="submit-btn" disabled>{% trans "Continue" %}</button>
                         </div>

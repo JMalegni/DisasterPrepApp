@@ -108,6 +108,11 @@ def familyinfo(request):
             women_bool = request.POST.get('women_bool') == 'on'
             child_bool = request.POST.get('child_bool') == 'on'
             baby_bool = request.POST.get('baby_bool') == 'on'
+            pet_bool = request.POST.get('pet_bool') == 'on'
+
+            blind_bool = request.POST.get('blind_bool') == 'on'
+            deaf_bool = request.POST.get('deaf_bool') == 'on'
+            wheelchair_bool = request.POST.get('wheelchair_bool') == 'on'
 
             user = Users(
                 name=signup_data['name'],
@@ -122,6 +127,10 @@ def familyinfo(request):
                 women_bool=women_bool,
                 child_bool=child_bool,
                 baby_bool=baby_bool,
+                pet_bool=pet_bool,
+                blind_bool=blind_bool,
+                deaf_bool=deaf_bool,
+                wheelchair_bool=wheelchair_bool,
             )
             user.save()
 
@@ -248,77 +257,147 @@ def disasterprep(request):
         return render(request, 'disasterprep.html')
     if request.method == 'POST':
         disaster_type = request.POST.get('disaster_type')
+        prepare_type = request.POST.get('prepare_type')
         email = request.session.get("user_email")
         if not email:
             return redirect('login')
 
         try:
             user = Users.objects.get(email=email)
-            checklist = generate_checklist(user, disaster_type)
+            categories = generate_checklist(user, disaster_type, prepare_type)
             request.session['disaster_type'] = disaster_type
-            request.session['checklist'] = checklist
-            return render(request, 'disasterchecklist.html', {'checklist': checklist, 'user_id': user.id})
+            request.session['checklist'] = categories
+            request.session['prepare_type'] = prepare_type
+
+            return render(request, 'disasterchecklist.html', {'categories': categories, 'user_id': user.id})
         except Users.DoesNotExist:
             return redirect('login')
 
-def generate_checklist(user, disaster_type):
+def split_checklist(checklist):
+    # Function to split the checklist into three approximately equal parts
+    length = len(checklist)
+    col1 = checklist[:length//3]
+    col2 = checklist[length//3:2*length//3]
+    col3 = checklist[2*length//3:]
+    return col1, col2, col3
+
+def generate_checklist(user, disaster_type, prepare_type):
     family_size = user.family_size
-    checklist = []
 
     if disaster_type == 'Typhoon':
-        checklist = [
+        categories = {
+                "Go Bag": [],
+                "Water and Food": [],
+                "Clothing and Essentials": [],
+                "Medical and Hygiene": [],
+                "Pet":[],
+                "Other":[],
+            }
+
+        if prepare_type == 'Evacuation Shelter':
+            categories["Go Bag"].extend([
+                    _("Medium-sized backpack/sturdy tote"),
+                    _("Two 1-liter bottles"),
+                    _("High-calorie bars"),
+                    _("Small first aid kit, a few masks, and a small hand sanitizer"),
+                    _("Rain poncho and towel"),
+                    _("Small flashlight + multi-tool + whistle"),
+            ])
+        elif prepare_type == 'Hotel':
+            categories["Go Bag"].extend([
+                    _("Medium-sized backpack/sturdy tote"),
+                    _("Two 1-liter bottles"),
+                    _("High-calorie bars"),
+                    _("Small first aid kit, a few masks, and a small hand sanitizer"),
+                    _("Rain poncho and towel"),
+                    _("Small flashlight + multi-tool + whistle"),
+            ])
+        categories["Water and Food"].extend([
             f"{family_size * 3 * 3} " + _("Liters of water"),
             f"{family_size * 3 * 2000} " + _("calories of non-perishable food"),
+        ])
+        categories["Clothing and Essentials"].extend([
             f"{family_size} " + _("sets of clothes (one for each family member)"),
-            _("First aid kit"),
             _("Important documents (Passport, Will, ID cards)"),
             _("Cash"),
             _("Emergency contact list"),
             _("Radio"),
             _("Flashlights and batteries"),
-        ]
+        ])
+        categories["Medical and Hygiene"].append("First aid kit")
 
         medical_issue = user.medical_issues
         sanitized_med = sanitize_html(medical_issue)
         safe_med = mark_safe(sanitized_med)
-
         medication_amount = user.medication_amount if user.medication_amount else 0
 
         if medical_issue and medication_amount == 0:
-            checklist.append(_("Medication for ") + f"{safe_med} " + _("for 3 days"))
+            categories["Medical and Hygiene"].append(_("Medication for ") + f"{safe_med} " + _("for 3 days"))
         elif medical_issue and medication_amount != 0:
-            checklist.append(_("Medication for ") + f"{safe_med}: {medication_amount * 3} " + _("units"))
+            categories["Medical and Hygiene"].append(_("Medication for ") + f"{safe_med}: {medication_amount * 3} " + _("units"))
 
         if user.women_bool:
-            checklist.append(_("Sanitary napkins/tampons"))
-            checklist.append(_("Lotion/cleansing sheets"))
+            categories["Medical and Hygiene"].extend([
+                _("Sanitary napkins/tampons"),
+                _("Lotion/cleansing sheets"),
+            ])
         if user.baby_bool:
-            checklist.append(_("Baby formula/food"))
-            checklist.append(_("Diapers"))
+            categories["Medical and Hygiene"].extend([
+                _("Baby formula/food"),
+                _("Diapers"),
+            ])
         if user.child_bool:
-            checklist.append(_("Books/toys"))
+            categories["Clothing and Essentials"].append(_("Books/toys"))
+
+        if user.pet_bool:
+           categories["Pet"].extend([
+                 _("Pet food for 3 days"),
+                 _("Leash"),
+                 _("Pet Sheets"),
+                 _("Poop bags"),
+           ])
+
     elif disaster_type == 'Earthquake':
-        checklist = [
+        categories = {
+                        "Go Bag": [],
+                        "Water and Food": [],
+                        "Clothing and Essentials": [],
+                        "Medical and Hygiene": [],
+                        "Pet":[],
+                        "Other":[],
+                    }
+
+        categories["Other"].extend([
             _("Secure heavy furniture to walls"),
             _("Create a family emergency plan"),
             _("Prepare an emergency bag"),
             _("Have enough food and water for ") + f"{family_size} " + _("people for at least 3 days"),
             _("Keep a whistle to signal for help"),
             _("Learn basic first aid")
-        ]
+        ])
+
     elif disaster_type == 'Flood':
-        checklist = [
+        categories = {
+                        "Go Bag": [],
+                        "Water and Food": [],
+                        "Clothing and Essentials": [],
+                        "Medical and Hygiene": [],
+                        "Pet":[],
+                        "Other":[],
+                    }
+        categories["Other"].extend([
             _("Know your evacuation routes"),
             _("Move valuables to higher ground"),
             _("Stock up on ") + f"{family_size * 3} " + _("days of food and water"),
             _("Prepare an emergency kit with essentials"),
             _("Ensure you have waterproof bags for important documents"),
             _("Plan for pets and livestock")
-        ]
-    else:
-        checklist = [_("Select a valid disaster type")]
+        ])
 
-    return checklist
+    else:
+        categories["Other"].append(_("Select a valid disaster type"))
+
+    return categories
 
 def disasterchecklist(request):
     if request.method == 'GET':
@@ -356,7 +435,7 @@ def disasterposter(request):
     print(response.json())"""
     if request.method == 'GET':
         return render(request, 'disasterposter.html')
-    
+
     elif request.method == 'POST':
         #Find the closest shelter first
         email = request.session.get("user_email")
@@ -373,12 +452,11 @@ def disasterposter(request):
         # Gets disaster type and checklist based on whats saved in the session
         disaster_type = request.session.get('disaster_type')
         checklist = request.session.get('checklist')
-        facts = generate_facts(disaster_type)
 
         if not disaster_type or not checklist:
             return redirect('disasterprep')
 
-        image_name = checklist_image(checklist, disaster_type, facts)
+        image_name = checklist_image(checklist, disaster_type)
         if image_name and settings.STATIC_URL:
             image_url = f"{settings.STATIC_URL}images/{image_name}"
             api_thread.join()
@@ -463,36 +541,6 @@ def closest_shelter(user_cord):
                 closest = cord
 
         return closest
-
-def generate_facts(disaster_type):
-    facts = []
-
-    if (disaster_type == 'Typhoon'):
-        facts = [
-            _("Typhoon fact 1"),
-            _("Typhoon fact 2"),
-            _("Typhoon fact 3"),
-            _("Typhoon fact 4"),
-            _("Typhoon fact 5"),
-        ]
-    elif (disaster_type == 'Earthquake'):
-        facts = [
-            _("Earthquake fact 1"),
-            _("Earthquake fact 2"),
-            _("Earthquake fact 3"),
-            _("Earthquake fact 4"),
-            _("Earthquake fact 5"),
-        ]
-    elif (disaster_type == 'Flood'):
-        facts = [
-            _("Flood fact 1"),
-            _("Flood fact 2"),
-            _("Flood fact 3"),
-            _("Flood fact 4"),
-            _("Flood fact 5"),
-        ]
-
-    return facts
 
 def download_poster(request):
     image_path = os.path.join(settings.STATIC_ROOT, 'images', 'disaster_poster.png')

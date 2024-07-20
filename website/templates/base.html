@@ -1,6 +1,8 @@
 {% load static i18n %}
 <!DOCTYPE html>
 <html lang="{% get_current_language as LANGUAGE_CODE %}">
+{% load pwa %}
+{% progressive_web_app_meta %}
 <head>
     <style>
         .navbar {
