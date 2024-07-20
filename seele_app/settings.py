@@ -40,7 +40,7 @@ SECRET_KEY = '2139#0e%$v=7p+o8$8#g2g%(m)!i4bp-#x8mm7(0nlswpj5ewn'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['seele-h8uw.onrender.com', '127.0.0.1']
 
 
 # Application definition
@@ -148,3 +148,7 @@ PWA_APP_SPLASH_SCREEN = [
 ]
 PWA_APP_DIR = 'ltr'
 PWA_APP_LANG = 'en-US'
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://seele-h8uw.onrender.com',
+]
