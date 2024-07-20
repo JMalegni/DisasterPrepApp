@@ -161,6 +161,14 @@ def profile(request):
             context.update({'child': True})
         if user.baby_bool:
             context.update({'baby': True})
+        if user.pet_bool:
+            context.update({'pet': True})
+        if user.blind_bool:
+            context.update({'blind': True})
+        if user.deaf_bool:
+            context.update({'deaf': True})
+        if user.wheelchair_bool:
+            context.update({'wheelchair': True})
         return render(request, 'profile.html', context)
     if request.method == 'POST':
         email = request.session.get("user_email")
@@ -177,6 +185,11 @@ def profile(request):
         women = request.POST.get('women')
         child = request.POST.get('child')
         baby = request.POST.get('baby')
+        pet = request.POST.get('pet')
+        blind = request.POST.get('blind')
+        deaf = request.POST.get('deaf')
+        wheelchair = request.POST.get('wheelchair')
+
         Users.objects.filter(email=email).update(name=name, email=new_email, password=password, latitude=latitude, longitude=longitude, family_size=family_size)
         request.session["user_email"] = new_email
         if medicine != "no medicine" and int(dose) != 0:
@@ -197,6 +210,25 @@ def profile(request):
         else:
             Users.objects.filter(email=email).update(baby_bool=False)
 
+        if pet != None:
+            Users.objects.filter(email=email).update(pet_bool=True)
+        else:
+            Users.objects.filter(email=email).update(pet_bool=False)
+
+        if blind != None:
+            Users.objects.filter(email=email).update(blind_bool=True)
+        else:
+            Users.objects.filter(email=email).update(blind_bool=False)
+
+        if deaf != None:
+            Users.objects.filter(email=email).update(deaf_bool=True)
+        else:
+            Users.objects.filter(email=email).update(deaf_bool=False)
+
+        if wheelchair != None:
+            Users.objects.filter(email=email).update(wheelchair_bool=True)
+        else:
+            Users.objects.filter(email=email).update(wheelchair_bool=False)
         # Build Context
         context = {'email': new_email,
                    'name': name,
@@ -213,7 +245,14 @@ def profile(request):
             context.update({'child': True})
         if baby != None:
             context.update({'baby': True})
-
+        if pet != None:
+            context.update({'pet': True})
+        if blind != None:
+            context.update({'blind': True})
+        if deaf != None:
+            context.update({'deaf': True})
+        if wheelchair != None:
+            context.update({'wheelchair': True})
         return render(request, 'profile.html', context)
 
 def delete_medical(request):
