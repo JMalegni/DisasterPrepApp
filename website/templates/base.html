@@ -4,6 +4,12 @@
 {% load pwa %}
 {% progressive_web_app_meta %}
 <head>
+    <style>
+        .navbar {
+            align-content: center;
+
+        }
+    </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -13,9 +19,9 @@
     <title>{% block title %}{% trans "S.E.E.L.E Home" %}{% endblock %}</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fluid">
         <div class="container-fluid">
-            <ul class="navbar-nav ml-auto">
+            <ul class="nav ml-auto">
                 {% if request.session.user_email %}
                 <!-- Display these links if user is logged in -->
                 <li class="nav-item">
@@ -33,13 +39,13 @@
                 {% else %}
                 <!-- Display these links if user is not logged in -->
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'home' %}">{% trans "Home" %}</a>
+                    <a class="nav-link my-2 my-lg-0" href="{% url 'home' %}">{% trans "Home" %}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'signup' %}">{% trans "Sign Up" %}</a>
+                    <a class="nav-link my-2 my-lg-0" href="{% url 'signup' %}">{% trans "Sign Up" %}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'login' %}">{% trans "Login" %}</a>
+                    <a class="nav-link my-2 my-lg-0" href="{% url 'login' %}">{% trans "Login" %}</a>
                 </li>
                 {% endif %}
                 <li class="nav-item">

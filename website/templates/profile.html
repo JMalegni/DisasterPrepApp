@@ -10,8 +10,7 @@
             {% if email %}
                 <h2>{% blocktrans %}Successful Login: {{ email }}{% endblocktrans %}</h2>
             {% endif %}
-            <form id="delete" action="{% url 'delete_account' %}" method="POST">
-                {% csrf_token %}
+            <form id="delete" action="{% url 'delete_account' %}" method="GET">
                 <button type="submit" class="btn btn-danger">{% trans "Delete Account" %}</button>
             </form>
         </div>
