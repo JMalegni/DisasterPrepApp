@@ -19,22 +19,34 @@
                     {% csrf_token %}
                         <div class="form-group">
                             <label>{% trans "Username" %}</label>
-                            <input type="text" placeholder="{% trans "Username " %}" class="form-control" name="name" required>
+                            <input type="text" placeholder="{% trans 'Username ' %}" class="form-control" name="name" required>
                         </div>
                         <div class="form-group">
                             <label>{% trans "Email Address" %}</label>
-                            <input type="email" placeholder="{% trans "Email Address " %}" class="form-control" name="email" required>
+                            <input type="email" placeholder="{% trans 'Email Address' %}" class="form-control" name="email" required>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" id="pwd-box">
                             <label>{% trans "Password" %}</label>
-                            <input type="password" placeholder="{% trans "Password" %}" class="form-control" name="password" required>
+                            <input type="password" placeholder="{% trans 'Password' %}" class="form-control" name="password" required>
+                            <div class="row" id="pwd-info">
+                                <div class="col-9">
+                                    <label>Passwords must contain the following:</label>
+                                    <ul>
+                                        <li>At least <b>8 characters </b>in length.</li>
+                                        <li>At least <b>1 special character or number</b> - !"$%^@ 1234</li>
+                                    </ul>
+                                </div>
+                                <div class="col">
+                                    <img src="{% static 'images/girl_alert.png' %}" alt="Kyodai Alert Image" class="small-image img-fluid mt-4" id="pwd-img">
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" id="pwd-conf-box">
                             <label>{% trans "Confirm Password" %}</label>
-                            <input type="password" placeholder="{% trans "Re-enter Password" %}" class="form-control" name="confirm_password" required>
+                            <input type="password" placeholder="{% trans 'Re-enter Password' %}" class="form-control" name="confirm_password" required>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-success">{% trans "Sign Up" %}</button>
+                            <button type="submit" class="btn btn-success">{% trans 'Sign Up' %}</button>
                         </div>
                     </form>
                 </div>
