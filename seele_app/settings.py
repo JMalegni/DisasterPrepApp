@@ -23,7 +23,7 @@ LANGUAGES = [
     ('jp', _('日本語')),
 ]
 LOCALE_PATHS = [
-    os.path.join(BASE_DIR, 'seele_app', 'locale'),
+    os.path.join(BASE_DIR, 'website', 'locale'),
 ]
 
 TIME_ZONE = 'UTC'

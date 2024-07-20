@@ -195,7 +195,7 @@ msgstr "所在"
 #: templates/familyinfo.html:23
 msgid "Fetch Location"
 msgstr ""
-"<ruby>所在<rt>しょざい</rt></ruby>を<ruby>取得<rt>しゅとく</rt></ruby>する"
+"<ruby>所在<rt>しょざい</rt></ruby>を<ruby>取得<rt>しゅとく</rt></ruby>"
 
 #: templates/familyinfo.html:25
 msgid "Family Size"
