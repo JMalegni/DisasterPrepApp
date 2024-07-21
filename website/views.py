@@ -237,6 +237,7 @@ def profile(request):
         # Update session email
         request.session["user_email"] = new_email
 
+        messages.success(request, 'Profile updated successfully.')
         # Rebuild context for rendering
         context = {
             'email': new_email,
@@ -258,7 +259,6 @@ def profile(request):
             'wheelchair': bool(wheelchair),
         })
 
-        messages.success(request, 'Profile updated successfully')
         return render(request, 'profile.html', context)
 
 def delete_medical(request):

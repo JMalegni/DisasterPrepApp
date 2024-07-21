@@ -5,10 +5,21 @@
 {% block content %}
 <div class="container" style="margin-top: 20px;">
     <div class="row">
+        <div class="col-md-12">
+            {% if messages %}
+            <div class="alert alert-success" role="alert">
+                {% for message in messages %}
+                {{ message }}
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    <div class="row">
         <div class="col-md-4">
             <h1>{% trans "User Profile" %}</h1>
             {% if email %}
-                <h2>{% blocktrans %}Successful Login: {{ email }}{% endblocktrans %}</h2>
+            <h2>{% blocktrans %}Successful Login: {{ email }}{% endblocktrans %}</h2>
             {% endif %}
             <form id="delete" action="{% url 'delete_account' %}" method="GET">
                 <button type="submit" class="btn btn-danger">{% trans "Delete Account" %}</button>
