@@ -161,6 +161,14 @@ def profile(request):
             context.update({'child': True})
         if user.baby_bool:
             context.update({'baby': True})
+        if user.pet_bool:
+            context.update({'pet': True})
+        if user.blind_bool:
+            context.update({'blind': True})
+        if user.deaf_bool:
+            context.update({'deaf': True})
+        if user.wheelchair_bool:
+            context.update({'wheelchair': True})
         return render(request, 'profile.html', context)
     if request.method == 'POST':
         email = request.session.get("user_email")
@@ -177,6 +185,11 @@ def profile(request):
         women = request.POST.get('women')
         child = request.POST.get('child')
         baby = request.POST.get('baby')
+        pet = request.POST.get('pet')
+        blind = request.POST.get('blind')
+        deaf = request.POST.get('deaf')
+        wheelchair = request.POST.get('wheelchair')
+
         Users.objects.filter(email=email).update(name=name, email=new_email, password=password, latitude=latitude, longitude=longitude, family_size=family_size)
         request.session["user_email"] = new_email
         if medicine != "no medicine" and int(dose) != 0:
@@ -197,6 +210,25 @@ def profile(request):
         else:
             Users.objects.filter(email=email).update(baby_bool=False)
 
+        if pet != None:
+            Users.objects.filter(email=email).update(pet_bool=True)
+        else:
+            Users.objects.filter(email=email).update(pet_bool=False)
+
+        if blind != None:
+            Users.objects.filter(email=email).update(blind_bool=True)
+        else:
+            Users.objects.filter(email=email).update(blind_bool=False)
+
+        if deaf != None:
+            Users.objects.filter(email=email).update(deaf_bool=True)
+        else:
+            Users.objects.filter(email=email).update(deaf_bool=False)
+
+        if wheelchair != None:
+            Users.objects.filter(email=email).update(wheelchair_bool=True)
+        else:
+            Users.objects.filter(email=email).update(wheelchair_bool=False)
         # Build Context
         context = {'email': new_email,
                    'name': name,
@@ -213,7 +245,14 @@ def profile(request):
             context.update({'child': True})
         if baby != None:
             context.update({'baby': True})
-
+        if pet != None:
+            context.update({'pet': True})
+        if blind != None:
+            context.update({'blind': True})
+        if deaf != None:
+            context.update({'deaf': True})
+        if wheelchair != None:
+            context.update({'wheelchair': True})
         return render(request, 'profile.html', context)
 
 def delete_medical(request):
@@ -315,24 +354,24 @@ def generate_checklist(user, disaster_type, prepare_type):
          elif prepare_type == 'Hotel':
              categories["Go Bag"] = []
              categories["Go Bag"].extend([
-                 _("Photocopies of passport/residence card"),
                  _("Medium-sized backpack/sturdy tote"),
-                 _("Small first aid kit, a few masks, and a small hand sanitizer"),
+                 _("Photocopies of passport/residence card"),
+                 _("Small first aid kit, a few masks, small hand sanitizer"),
                  _("Rain poncho"),
                  _("Small flashlight + multi-tool + whistle"),
              ])
 
          elif prepare_type == 'Stay Home':
             categories["Go Bag"] = []
-             categories["Go Bag"].extend([
+            categories["Go Bag"].extend([
                  _("Waterproof backpack (in case of forced evacuation)"),
                  _("Two 1-liter bottles"),
                  _("High-calorie bars/instant food"),
-                 _("Small first aid kit, a few masks, and a small hand sanitizer"),
+                 _("Small first aid kit, a few masks, small hand sanitizer"),
                  _("Rain poncho and towel"),
                  _("Small flashlight + multi-tool + whistle"),
                  _("Cash"),
-             ])
+            ])
          categories["Water and Food"].extend([
              f"{family_size * 3 * 3} " + _("Liters of water"),
              f"{family_size * 3 * 2000} " + _("calories of non-perishable food"),
@@ -383,14 +422,14 @@ def generate_checklist(user, disaster_type, prepare_type):
          if user.blind_bool:
             if "Disability" in categories:
                categories["Disability"].extend([
-                    _("Mark emergency supplies with Braille labels or large print"),
+                    _("Mark emergency supplies with braille or large print"),
                     _("Extra eyeglasses or contacts"),
                ])
 
             else:
                 categories["Disability"] = []
                 categories["Disability"].extend([
-                    _("Mark emergency supplies with Braille labels or large print"),
+                    _("Mark emergency supplies with braille or large print"),
                     _("Extra eyeglasses or contacts"),
 
                 ])
@@ -417,7 +456,7 @@ def generate_checklist(user, disaster_type, prepare_type):
             if "Disability" in categories:
                 categories["Disability"].extend([
                     _("Backup lightweight manual wheelchair"),
-                    _("patch kit or can of sealant for flat tires"),
+                    _("Patch kit or can of sealant for flat tires"),
                     _("Cane or walker"),
                 ])
 
