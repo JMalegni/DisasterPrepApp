@@ -1,4 +1,5 @@
 import os
+import re
 from PIL import Image, ImageDraw, ImageFont
 from django.conf import settings
 from django.utils.translation import gettext as trans, get_language
