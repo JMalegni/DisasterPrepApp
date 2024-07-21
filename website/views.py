@@ -7,6 +7,7 @@ from django.utils.translation import gettext as _
 from django.utils.safestring import mark_safe
 from django.contrib.auth.hashers import check_password, make_password
 from django.contrib import messages
+from django import forms
 from .models import Users
 import requests
 import bleach
@@ -42,6 +43,7 @@ def login(request):
             user = Users.objects.get(email=email)
             #decrypt the password hashing
             if check_password(password, user.password):
+                request.session.flush()  # Clear old session data to prevent fixation attacks
                 request.session["user_email"] = email
                 return redirect('profile')
             else:
@@ -280,7 +282,7 @@ def delete_medical(request):
         context = {
             'email': user.email,
             'name': user.name,
-            'password': '',  # Do not send password to template
+            'password': '',  # Do not send password to template for safety reasons
             'longitude': user.longitude,
             'latitude': user.latitude,
             'size': user.family_size,
