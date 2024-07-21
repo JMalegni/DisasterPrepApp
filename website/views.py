@@ -5,6 +5,8 @@ from django.http import HttpResponse
 from django.conf import settings
 from django.utils.translation import gettext as _
 from django.utils.safestring import mark_safe
+from django.contrib.auth.hashers import check_password, make_password
+from django.contrib import messages
 from .models import Users
 import requests
 import bleach
@@ -38,7 +40,8 @@ def login(request):
             email = request.POST.get('email')
             password = request.POST.get('password')
             user = Users.objects.get(email=email)
-            if user.password == password:
+            #decrypt the password hashing
+            if check_password(password, user.password):
                 request.session["user_email"] = email
                 return redirect('profile')
             else:
@@ -117,7 +120,8 @@ def familyinfo(request):
             user = Users(
                 name=signup_data['name'],
                 email=signup_data['email'],
-                password=signup_data['password'],
+                #hashing the user's password so it isn't being stored in plaintext in the DB
+                password=make_password(signup_data['password']),
                 location=location,
                 latitude=latitude,
                 longitude=longitude,
@@ -145,35 +149,49 @@ def familyinfo(request):
 def profile(request):
     if request.method == 'GET':
         email = request.session.get("user_email")
-        user = Users.objects.get(email=email)
-        context = {'email': user.email,
-                   'name': user.name,
-                   'password': user.password,
-                   'longitude': user.longitude,
-                   'latitude': user.latitude,
-                   'size': user.family_size,
+        if not email:
+            return redirect('login')  # Redirect to login if no email in session
+
+        try:
+            user = Users.objects.get(email=email)
+        except Users.DoesNotExist:
+            return redirect('login')  # Redirect to login if user does not exist
+
+        context = {
+            'email': user.email,
+            'name': user.name,
+            'password': '',  # Do not send password to template
+            'longitude': user.longitude,
+            'latitude': user.latitude,
+            'size': user.family_size,
         }
-        if user.medical_issues != "":
+
+        # Add medical and boolean fields to context
+        if user.medical_issues:
             context.update({'medical_issue': user.medical_issues, 'amount': user.medication_amount})
-        if user.women_bool:
-            context.update({'women': True})
-        if user.child_bool:
-            context.update({'child': True})
-        if user.baby_bool:
-            context.update({'baby': True})
-        if user.pet_bool:
-            context.update({'pet': True})
-        if user.blind_bool:
-            context.update({'blind': True})
-        if user.deaf_bool:
-            context.update({'deaf': True})
-        if user.wheelchair_bool:
-            context.update({'wheelchair': True})
+        context.update({
+            'women': user.women_bool,
+            'child': user.child_bool,
+            'baby': user.baby_bool,
+            'pet': user.pet_bool,
+            'blind': user.blind_bool,
+            'deaf': user.deaf_bool,
+            'wheelchair': user.wheelchair_bool,
+        })
+
         return render(request, 'profile.html', context)
+
     if request.method == 'POST':
         email = request.session.get("user_email")
-        user = Users.objects.get(email=email)
+        if not email:
+            return redirect('login')  # Redirect to login if no email in session
 
+        try:
+            user = Users.objects.get(email=email)
+        except Users.DoesNotExist:
+            return redirect('login')  # Redirect to login if user does not exist
+
+        # Get updated data
         name = request.POST.get('name')
         new_email = request.POST.get('email')
         password = request.POST.get('password')
@@ -190,93 +208,96 @@ def profile(request):
         deaf = request.POST.get('deaf')
         wheelchair = request.POST.get('wheelchair')
 
-        Users.objects.filter(email=email).update(name=name, email=new_email, password=password, latitude=latitude, longitude=longitude, family_size=family_size)
-        request.session["user_email"] = new_email
+        # Update user data
+        user.name = name
+        user.email = new_email
+        if password:
+            user.password = make_password(password)
+        user.latitude = latitude
+        user.longitude = longitude
+        user.family_size = family_size
+
         if medicine != "no medicine" and int(dose) != 0:
-            Users.objects.filter(email=email).update(medication_amount=int(dose), medical_issues=medicine)
-
-        if women != None:
-            Users.objects.filter(email=email).update(women_bool=True)
+            user.medication_amount = int(dose)
+            user.medical_issues = medicine
         else:
-            Users.objects.filter(email=email).update(women_bool=False)
+            user.medication_amount = 0
+            user.medical_issues = ""
 
-        if child != None:
-            Users.objects.filter(email=email).update(child_bool=True)
-        else:
-            Users.objects.filter(email=email).update(child_bool=False)
+        user.women_bool = bool(women)
+        user.child_bool = bool(child)
+        user.baby_bool = bool(baby)
+        user.pet_bool = bool(pet)
+        user.blind_bool = bool(blind)
+        user.deaf_bool = bool(deaf)
+        user.wheelchair_bool = bool(wheelchair)
 
-        if baby != None:
-            Users.objects.filter(email=email).update(baby_bool=True)
-        else:
-            Users.objects.filter(email=email).update(baby_bool=False)
+        user.save()
 
-        if pet != None:
-            Users.objects.filter(email=email).update(pet_bool=True)
-        else:
-            Users.objects.filter(email=email).update(pet_bool=False)
+        # Update session email
+        request.session["user_email"] = new_email
 
-        if blind != None:
-            Users.objects.filter(email=email).update(blind_bool=True)
-        else:
-            Users.objects.filter(email=email).update(blind_bool=False)
-
-        if deaf != None:
-            Users.objects.filter(email=email).update(deaf_bool=True)
-        else:
-            Users.objects.filter(email=email).update(deaf_bool=False)
-
-        if wheelchair != None:
-            Users.objects.filter(email=email).update(wheelchair_bool=True)
-        else:
-            Users.objects.filter(email=email).update(wheelchair_bool=False)
-        # Build Context
-        context = {'email': new_email,
-                   'name': name,
-                   'password': password,
-                   'longitude': longitude,
-                   'latitude': latitude,
-                   'size': family_size,
-                   }
+        # Rebuild context for rendering
+        context = {
+            'email': new_email,
+            'name': name,
+            'password': '',  # Do not send password to template
+            'longitude': longitude,
+            'latitude': latitude,
+            'size': family_size,
+        }
         if medicine != "no medicine":
             context.update({'medical_issue': medicine, 'amount': dose})
-        if women != None:
-            context.update({'women': True})
-        if child != None:
-            context.update({'child': True})
-        if baby != None:
-            context.update({'baby': True})
-        if pet != None:
-            context.update({'pet': True})
-        if blind != None:
-            context.update({'blind': True})
-        if deaf != None:
-            context.update({'deaf': True})
-        if wheelchair != None:
-            context.update({'wheelchair': True})
+        context.update({
+            'women': bool(women),
+            'child': bool(child),
+            'baby': bool(baby),
+            'pet': bool(pet),
+            'blind': bool(blind),
+            'deaf': bool(deaf),
+            'wheelchair': bool(wheelchair),
+        })
+
+        messages.success(request, 'Profile updated successfully')
         return render(request, 'profile.html', context)
 
 def delete_medical(request):
     if request.method == 'POST':
         email = request.session.get("user_email")
-        user = Users.objects.get(email=email)
-        Users.objects.filter(email=email).update(medication_amount=int(0), medical_issues="")
+        if not email:
+            return redirect('login')  # Redirect to login if no email in session
 
-        # Build Context
-        context = {'email': user.email,
-                   'name': user.name,
-                   'password': user.password,
-                   'longitude': user.longitude,
-                   'latitude': user.latitude,
-                   'size': user.family_size,
-                   }
-        if user.women_bool:
-            context.update({'women': True})
-        if user.child_bool:
-            context.update({'child': True})
-        if user.baby_bool:
-            context.update({'baby': True})
+        try:
+            user = Users.objects.get(email=email)
+        except Users.DoesNotExist:
+            return redirect('login')  # Redirect to login if user does not exist
 
+        user.medication_amount = 0
+        user.medical_issues = ""
+        user.save()
+
+        # Rebuild context for rendering
+        context = {
+            'email': user.email,
+            'name': user.name,
+            'password': '',  # Do not send password to template
+            'longitude': user.longitude,
+            'latitude': user.latitude,
+            'size': user.family_size,
+        }
+        context.update({
+            'women': user.women_bool,
+            'child': user.child_bool,
+            'baby': user.baby_bool,
+            'pet': user.pet_bool,
+            'blind': user.blind_bool,
+            'deaf': user.deaf_bool,
+            'wheelchair': user.wheelchair_bool,
+        })
+
+        messages.success(request, 'Medical information deleted successfully')
         return render(request, 'profile.html', context)
+
 
 def delete_account(request):
     if request.method == 'GET':
