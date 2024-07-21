@@ -53,16 +53,32 @@
                                 <label>{% trans "per day" %}</label>
                             </li>
                             <li class="list-group-item">
-                                <label for="Women">{% trans "There are women in my family:" %}</label>
+                                <label for="Women">{% trans "Women in the family:" %}</label>
                                 <input type="checkbox" id="Women" name="women" {% if women %} checked {% endif %}>
                             </li>
                             <li class="list-group-item">
-                                <label for="Child">{% trans "There are children in my family:" %}</label>
+                                <label for="Child">{% trans "Children in the family:" %}</label>
                                 <input type="checkbox" id="Child" name="child" {% if child %} checked {% endif %}>
                             </li>
                             <li class="list-group-item">
-                                <label for="Baby">{% trans "There are babies in my family:" %}</label>
+                                <label for="Baby">{% trans "Babies in the family:" %}</label>
                                 <input type="checkbox" id="Baby" name="baby" {% if baby %} checked {% endif %}>
+                            </li>
+                            <li class="list-group-item">
+                                <label for="Pet">{% trans "Pets in the family:" %}</label>
+                                <input type="checkbox" id="Pet" name="pet" {% if pet %} checked {% endif %}>
+                            </li>
+                            <li class="list-group-item">
+                                <label for="Blind">{% trans "Blind or poor vision:" %}</label>
+                                <input type="checkbox" id="Blind" name="blind" {% if blind %} checked {% endif %}>
+                            </li>
+                            <li class="list-group-item">
+                                <label for="Deaf">{% trans "Deaf or hard of hearing:" %}</label>
+                                <input type="checkbox" id="Deaf" name="deaf" {% if deaf %} checked {% endif %}>
+                            </li>
+                            <li class="list-group-item">
+                                <label for="Wheelchair">{% trans "Mobility impairment:" %}</label>
+                                <input type="checkbox" id="Wheelchair" name="wheelchair" {% if wheelchair %} checked {% endif %}>
                             </li>
                         </ul>
                         <div style="margin-top: 10px;"></div>
