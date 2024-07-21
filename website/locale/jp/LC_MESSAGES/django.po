@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-20 05:58-0400\n"
+"POT-Creation-Date: 2024-07-21 01:35-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -134,6 +134,7 @@ msgstr ""
 "ruby>のためのものですか："
 
 #: templates/disasterprep.html:23 templates/disasterprep.html:32
+#: templates/profile.html:52
 msgid "(None)"
 msgstr "（なし）"
 
@@ -174,7 +175,11 @@ msgstr "<ruby>計画<rt>けいかく</rt></ruby>を<ruby>生成<rt>さくせい<
 msgid ""
 "Select the disaster you want to prepare for! Changes and updates to user "
 "information can be made on the <a href=\"%(profile_url)s\">Profile page</a>!"
-msgstr "<ruby>準備<rt>じゅんび</rt></ruby>したい<ruby>災害<rt>さいがい</rt></ruby>を<ruby>選<rt>えら</rt></ruby>んでください！アップデートする<ruby>場合<rt>ばあい</rt></ruby>は、<a href=\"%(profile_url)s\">プロフィルページ</a>に行けます！"
+msgstr ""
+"<ruby>準備<rt>じゅんび</rt></ruby>したい<ruby>災害<rt>さいがい</rt></ruby>を"
+"<ruby>選<rt>えら</rt></ruby>んでください！アップデートする<ruby>場合<rt>ばあ"
+"い</rt></ruby>は、<a href=\"%(profile_url)s\">プロフィルページ</a>に行けま"
+"す！"
 
 #: templates/familyinfo.html:4
 msgid "S.E.E.L.E - Information Form"
@@ -182,7 +187,7 @@ msgstr "S.E.E.L.E - 情報フォーム"
 
 #: templates/familyinfo.html:14
 msgid "Family Information"
-msgstr "<ruby>家族<rt>かぞく</rt></ruby><ruby>情報<rt>じょうほう</rt></ruby>"
+msgstr "<ruby>家族<rt>かぞく</rt></ruby>の<ruby>情報<rt>じょうほう</rt></ruby>"
 
 #: templates/familyinfo.html:20
 msgid "Location"
@@ -194,8 +199,7 @@ msgstr "所在"
 
 #: templates/familyinfo.html:23
 msgid "Fetch Location"
-msgstr ""
-"<ruby>所在<rt>しょざい</rt></ruby>を<ruby>取得<rt>しゅとく</rt></ruby>"
+msgstr "<ruby>所在<rt>しょざい</rt></ruby>を<ruby>取得<rt>しゅとく</rt></ruby>"
 
 #: templates/familyinfo.html:25
 msgid "Family Size"
@@ -394,11 +398,9 @@ msgid "User Profile"
 msgstr "ユーザープロフィール"
 
 #: templates/profile.html:11
-#, fuzzy, python-format
-#| msgid "Successfully Login %(request.session.user_email)s"
+#, python-format
 msgid "Successful Login: %(email)s"
-msgstr ""
-"<ruby>正常<rt>せいじよう</rt></ruby>にログイン %(request.session.user_email)s"
+msgstr "<ruby>正常<rt>せいじよう</rt></ruby>にログイン：%(email)s"
 
 #: templates/profile.html:14
 msgid "Delete Account"
@@ -406,7 +408,59 @@ msgstr "アカウントを<ruby>削除<rt>さくじょ</rt></ruby>"
 
 #: templates/profile.html:20
 msgid "Account Information"
-msgstr "アカウントの<ruby>情報<rt>じょうほう</rt></ruby>"
+msgstr "アカウント<ruby>情報<rt>じょうほう</rt></ruby>"
+
+#: templates/profile.html:27
+msgid "Username:"
+msgstr "ユーザー<ruby>名<rt>めい</rt></ruby>："
+
+#: templates/profile.html:31
+msgid "Email Address:"
+msgstr "メールアドレス："
+
+#: templates/profile.html:35
+msgid "Password:"
+msgstr "パスワード："
+
+#: templates/profile.html:39
+msgid "Location:"
+msgstr "<ruby>所在<rt>しょざい</rt></ruby>："
+
+#: templates/profile.html:41
+msgid ","
+msgstr "、"
+
+#: templates/profile.html:45
+msgid "Family Size:"
+msgstr "<ruby>家族<rt>かぞく</rt></ruby>の<ruby>人数<rt>にんずう</rt></ruby>："
+
+#: templates/profile.html:49
+msgid "Medicine: Need"
+msgstr "薬：１日"
+
+#: templates/profile.html:51
+msgid "dose(s) for"
+msgstr "回の"
+
+#: templates/profile.html:53
+msgid "per day"
+msgstr "の薬投与が必要です"
+
+#: templates/profile.html:56
+msgid "There are women in my family:"
+msgstr ""
+"<ruby>家族<rt>かぞく</rt></ruby>には<ruby>女<rt>おんな</rt></ruby>がいるこ"
+"と："
+
+#: templates/profile.html:60
+msgid "There are children in my family:"
+msgstr ""
+"<ruby>家族<rt>かぞく</rt></ruby>には<ruby>子供<rt>こども</rt></ruby>がいるこ"
+"と："
+
+#: templates/profile.html:64
+msgid "There are babies in my family:"
+msgstr "<ruby>家族<rt>かぞく</rt></ruby>には<ruby>赤ちゃんがいること："
 
 #: templates/profile.html:69
 msgid "Update"
