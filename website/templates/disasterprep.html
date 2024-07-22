@@ -27,14 +27,27 @@
                             </select>
                         </div>
                         <div class="form-group">
+                            <label>{% trans "How will you prepare for this disaster:" %}</label>
+                            <select class="form-control" name="prepare_type" id="prepare_type">
+                                <option>{% trans "(None)" %}</option>
+                                <option value="Evacuation Shelter">{% trans "Evacuation Shelter" %}</option>
+                                <option value="Hotel">{% trans "Hotel" %}</option>
+                                <option value="Stay Home">{% trans "Stay Home" %}</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <button type="submit" class="btn btn-success">{% trans "Generate Plan" %}</button>
                         </div>
                     </form>
 
                     <div class="disa-prep-img-wrapper justify-content-center">
                         <img src="{% static 'images/seal_default.png' %}" class="small-image img-fluid mt-4" id="disa-prep-img">
-                        <p class="disa-prep-msg">{% trans "Select the disaster you want to prepare for! Changes and updates to user information can be made on the Profile page!" %}</p>
-                    </div>
+                        {% url 'profile' as profile_url %}
+                        <p class="disa-prep-msg">
+                            {% blocktrans %}Select the disaster you want to prepare for! Changes and updates to user information can be made on the <a href="{{ profile_url }}">Profile page</a>!{% endblocktrans %}
+                        </p>
+
+                   </div>
                 </div>
             </div>
         </div>

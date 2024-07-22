@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load i18n static %}
+
+{% block title %}{% trans "S.E.E.L.E - Settings" %}{% endblock %}
+{% block content %}
+<head>
+
+</head>
+<body>
+<div class="delete-acct container">
+    <br><br>
+    <h2>{% trans "Are you sure you want to delete your account?" %}</h2>
+    <div class="col mt-4">
+        <img src="{% static 'images/girl_sad.png' %}" alt="Kyodai Girl Image" class="small-image img-fluid mt-4">
+        <img src="{% static 'images/seal_sad.png' %}" alt="Seele Image" class="small-image img-fluid mt-4">
+        <img src="{% static 'images/boy_sad.png' %}" alt="Florida Boy Image" class="small-image img-fluid mt-4">
+    </div>
+    <h2>{% trans "We will miss you!" %}</h2>
+
+    <div class="col mt-4" id="delete-acct-btns">
+        <form id="delete" action="{% url 'delete_account' %}" method="POST">
+        {% csrf_token %}
+        <button type="submit" title="{% trans 'You will be missed!' %}" id="delete-btn" class="btn btn-danger">{% trans "Yes, delete my account" %}</button>
+        </form>
+        <a href="{% url 'profile' %}" title="{% trans 'Stay prepared!' %}" id="start-btn" class="btn btn-success">{% trans 'No, go back' %}</a>
+    </div>
+
+</div>
+</body>
+
+
+{% endblock %}
+
+

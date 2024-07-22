@@ -1,46 +1,43 @@
 import os
+import re
 from PIL import Image, ImageDraw, ImageFont
 from django.conf import settings
-from django.utils.translation import gettext as trans
+from django.utils.translation import gettext as trans, get_language
+from datetime import datetime
 import re
+from concurrent.futures import ThreadPoolExecutor
 
-def remove_furigana(text):
+def parse_furigana(text: str) -> tuple[str, list[tuple[str, str]]]:
     ruby_pattern = re.compile(r'<ruby>(.*?)<rt>(.*?)</rt></ruby>')
-    return ruby_pattern.sub(r'\1', text)
+    matches = ruby_pattern.findall(text)
+    parsed_text = []
+    for match in matches:
+        base_text, furigana = match
+        parsed_text.append((base_text, furigana))
+        text = text.replace(f'<ruby>{base_text}<rt>{furigana}</rt></ruby>', base_text)
+    return text, parsed_text
 
-# Function that creates spacing for bullet points
-def bullet_spacing(draw, font_path, list, x, y):
+def draw_text(draw, text, font, x, y, fill='black'):
+    draw.text((x, y), text, font=font, fill=fill)
+
+def bullet_spacing(draw, fonts, list, x, y, scale):
+    bullet_font = fonts['bullet']
+    text_font = fonts['text']
+    
     for item, bullet_point in list:
         if bullet_point:
-            # Adds the bullet point which needs to have a bigger font size than the text
-            font_size = 55
-            font = ImageFont.truetype(font_path, font_size)
-            draw.text((x, y), f"\u2022", font=font, fill='black')
-
-            # Adds the text
-            font_size = 25
-            font = ImageFont.truetype(font_path, font_size)
-            x += 40
-            y += 28
-            draw.text((x, y), f"{trans(item)}", font=font, fill='black')
-            x -= 40
-            y += 18
-        
+            draw_text(draw, "\u2022", bullet_font, x, y)
+            draw_text(draw, trans(item), text_font, x + int(40 * scale), y + int(27 * scale))
+            y += int(46 * scale)
         else:
-            x += 40
-            y += 6
-            draw.text((x, y), f"{trans(item)}", font=font, fill='black')
-            x -= 40
-            y += 16
+            draw_text(draw, trans(item), text_font, x + int(40 * scale), y + int(6 * scale))
+            y += int(22 * scale)
+    return y
 
-# Generates typhoon checklist
-def typhoon_checklist(draw, font_path):
-    font_size = 33
-    font = ImageFont.truetype(font_path, font_size)
-    x, y = 230, 220
-    draw.text((x, y), "Typhoons come with", font=font, fill='black')
-    x, y = 230, 260
-    draw.text((x, y), "rains, floods, landslides", font=font, fill='black')
+def typhoon_checklist(draw, fonts, scale):
+    header_font = fonts['header']
+    draw_text(draw, "Typhoons come with", header_font, 230 * scale, 220 * scale)
+    draw_text(draw, "rains, floods, landslides", header_font, 230 * scale, 260 * scale)
 
     level1_typhoon = [
         ("Check a hazard map", True),
@@ -49,7 +46,6 @@ def typhoon_checklist(draw, font_path):
         ("Beware of falling things in your", True),
         ("house", False),
     ]
-    
     
     level2_typhoon = [
         ("Decide on evacuation center", True),
@@ -81,75 +77,63 @@ def typhoon_checklist(draw, font_path):
         ("the highest floor", False),
     ]
     
-    font_size = 25
-    font = ImageFont.truetype(font_path, font_size)
-    
-    x, y = 145, 328
-    bullet_spacing(draw, font_path, level1_typhoon, x, y)
+    y = bullet_spacing(draw, fonts, level1_typhoon, 145 * scale, 328 * scale, scale)
+    y = bullet_spacing(draw, fonts, level2_typhoon, 145 * scale, y + int(10 * scale), scale)
+    y = bullet_spacing(draw, fonts, level3_typhoon, 145 * scale, y + int(40 * scale), scale)
+    y = bullet_spacing(draw, fonts, level4_typhoon, 145 * scale, y + int(40 * scale), scale)
+    bullet_spacing(draw, fonts, level5_typhoon, 145 * scale, y + int(60 * scale), scale)
 
-    y += 220
-    bullet_spacing(draw, font_path, level2_typhoon, x, y)
+    guideline_font = fonts['guideline']
+    draw_text(draw, "Evacuation Guideline", guideline_font, 850 * scale, 1020 * scale)
+    bullet_spacing(draw, fonts, disaster_tips, 700 * scale, 1050 * scale, scale)
 
-    y += 175
-    bullet_spacing(draw, font_path, level3_typhoon, x, y)
-
-    y += 100
-    bullet_spacing(draw, font_path, level4_typhoon, x, y)
-
-    y += 130
-    bullet_spacing(draw, font_path, level5_typhoon, x, y)
-
-    x, y = 880, 1025
-    font_size = 37
-    font = ImageFont.truetype(font_path, font_size)
-    draw.text((x, y), "Evacuation Guideline", font=font, fill='black')
-
-    x,y = 700, 1050
-    bullet_spacing(draw, font_path, disaster_tips, x, y)
-
-
-def checklist_image(checklist, disaster_type, facts):
-    # Loading the image template from static folder
+def checklist_image(checklist, disaster_type):
     background_path = os.path.join(settings.STATIC_ROOT, 'images', 'template.png')
     background = Image.open(background_path).convert('RGB')
 
-    # Ensure the background image has the Japanese A4 paper size (1415 x 2000).
-    background = background.resize((1415, 2000))
+
+    scale = 1
+    new_size = (int(1415 * scale), int(2000 * scale))
+    background = background.resize(new_size)
 
     draw = ImageDraw.Draw(background)
 
-    # Position and creation of disaster name
-    font_path = os.path.join(settings.STATIC_ROOT, 'fonts', 'NotoSansJP-VariableFont_wght.ttf')
-    font_size = 65
-    font = ImageFont.truetype(font_path, font_size)
-    x, y = 260, 50
-    draw.text((x, y), trans(f"Your checklist for {disaster_type}s"), font=font, fill='black')
+    font_path = os.path.join(settings.STATIC_ROOT, 'fonts', 'NotoSansJP-Regular.ttf')
+    fonts = {
+        'header': ImageFont.truetype(font_path, int(33 * scale)),
+        'bullet': ImageFont.truetype(font_path, int(55 * scale)),
+        'text': ImageFont.truetype(font_path, int(25 * scale)),
+        'guideline': ImageFont.truetype(font_path, int(37 * scale)),
+        'title': ImageFont.truetype(font_path, int(65 * scale)),
+        'info': ImageFont.truetype(font_path, int(38 * scale)),
+        'items': ImageFont.truetype(font_path, int(29 * scale)),
+    }
 
-    # date/time/username TEMPORARY
-    font_size = 38
-    font = ImageFont.truetype(font_path, font_size)
-    x, y = 400, 140
-    draw.text((x, y), "created by S.E.E.L.E date/time/username", font=font, fill='black')
+    tasks = []
+    tasks.append((draw_text, (draw, trans(f"Your checklist for {disaster_type}s"), fonts['title'], 260 * scale, 50 * scale)))
+    tasks.append((draw_text, (draw, f"created by S.E.E.L.E on {datetime.now().date()}", fonts['info'], 400 * scale, 140 * scale)))
+    tasks.append((draw_text, (draw, "Items to prepare", fonts['header'], 900 * scale, 220 * scale)))
 
-    # Printing out the checklist line by line
-    font_size = 37
-    font = ImageFont.truetype(font_path, font_size)
-    x, y = 900, 220
-    draw.text((x, y), "Items to prepare", font=font, fill='black')
+    y = 310 * scale
+    for i, item in enumerate(checklist["Go Bag"]):
+        x = 750 * scale
+        if get_language().startswith("jp"):
+            sentence_furi = parse_furigana(item)
+            tasks.append((draw_text, (draw, f"- {sentence_furi[1]}", fonts['items'], x, y)))
+            y += 37 * scale
+            tasks.append((draw_text, (draw, f"- {sentence_furi[0]}", fonts['items'], x, y)))
+        elif get_language().startswith("en"):
+            tasks.append((draw_text, (draw, f"- {item}", fonts['items'], x, y)))
+        y += 37 * scale
 
-    font_size = 29
-    font = ImageFont.truetype(font_path, font_size)
-    x, y = 750, 310
-
-    for item in checklist:
-        draw.text((x, y), f"- {remove_furigana(trans(item))}", font=font, fill='black')
-        y += 37
-
-    # Calling function depending on disaster that creates the text for the poster
     if disaster_type == "Typhoon":
-        typhoon_checklist(draw, font_path)
+        typhoon_checklist(draw, fonts, scale)
 
-    # Naming and saving file to static folder
+    with ThreadPoolExecutor() as executor:
+        futures = [executor.submit(func, *args) for func, args in tasks]
+        for future in futures:
+            future.result()
+
     image_filename = 'disaster_poster.png'
     image_path = os.path.join(settings.STATIC_ROOT, 'images', image_filename)
     background.save(image_path)
