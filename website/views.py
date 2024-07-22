@@ -378,7 +378,7 @@ def generate_checklist(user, disaster_type, prepare_type):
             categories["Go Bag"].extend([
                 _("Medium-sized backpack/sturdy tote"),
                 _("Photocopies of passport/residence card"),
-                _("Small first aid kit, a few masks, small hand sanitizer"),
+                _("Small first aid kit, masks, hand sanitizer"),
                 _("Rain poncho"),
                 _("Small flashlight + multi-tool + whistle"),
             ])
@@ -387,7 +387,7 @@ def generate_checklist(user, disaster_type, prepare_type):
                 _("Waterproof backpack (in case of forced evacuation)"),
                 _("Two 1-liter bottles"),
                 _("High-calorie bars/instant food"),
-                _("Small first aid kit, a few masks, small hand sanitizer"),
+                _("Small first aid kit, masks, hand sanitizer"),
                 _("Rain poncho and towel"),
                 _("Small flashlight + multi-tool + whistle"),
                 _("Cash"),
