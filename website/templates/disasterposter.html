@@ -3,17 +3,34 @@
 
 {% block title %}{% trans "S.E.E.L.E - Poster" %}{% endblock %}
 {% block content %}
+<style>
+    @media print {
+        @page {
+            size: auto;
+            margin-top: 0mm;
+        }
+
+        html, body {
+            overflow: hidden;
+        }
+    
+        #notPoster {
+            display: none !important;
+            visibility: visible !important;
+        }
+    }
+</style>
 <div class="container" style="margin-top: 20px">
     <div class="row">
         <div class="col-md-10">
             {% if msg %}
-            <div class="alert alert-{{tag}}">{{msg}}</div>
+            <div id="notPoster" class="alert alert-{{tag}}">{{msg}}</div>
             {% endif %}
             <div class="card">
-                <div class="card-header">
+                <div id="notPoster" class="card-header">
                     <h5 class="card-title">{% trans "Emergency Poster" %}</h5>
                 </div>
-                <div id="poster" class="card-body">
+                <div class="card-body">
                     {% if error_message %}
                         <p>{{ error_message }}</p>
                         
@@ -27,7 +44,7 @@
                     {% endif %}
                     
                     {% if geoJSON %}
-                    <script>
+                    <script id="notPoster">
                         var map = L.map('map').setView([{{ center_lat }}, {{ center_log }}], 17);
                         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                             maxZoom: 19,
@@ -46,7 +63,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-2">
+        <div id="notPoster" class="col-md-2">
             <div class="card" id="scrolly">
                 <div class="card-header" style="text-align: center;">
                     <h5 class="card-title">{% trans "Actions" %}</h5>
@@ -54,15 +71,7 @@
                 <div class="card-body">
                     <div style="text-align: center;">
                         <!-- <a href="{% url 'download_poster' %}" class="btn btn-success">{% trans "Download" %}</a> -->
-                        <a onclick="printPoster()" class="btn btn-success">{% trans "Download" %}</a>
-                        <script>
-                            function printPoster() {
-                                var printPoster = document.getElementById('poster').innerHTML
-                                document.body.innerHTML = printPoster
-                                window.print()
-                                location.reload()
-                            }
-                        </script>
+                        <a onclick="window.print()" class="btn btn-success">{% trans "Download" %}</a>
                     </div>
                     <form action="{% url 'disasterprep' %}" method="GET">
                         {% csrf_token %}
@@ -70,6 +79,11 @@
                             <button type="submit" class="btn btn-success">{% trans "Home" %}</button>
                         </div>
                     </form>
+                    {% if disaster_type == "Typhoon" %}
+                        <div style="text-align: center;">
+                            <a href="https://forms.gle/uJ2boGgJboQP2jRZ9" class="btn btn-success">{% trans "Feedback" %}</a>
+                        </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
