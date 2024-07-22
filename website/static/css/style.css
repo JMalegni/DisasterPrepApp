@@ -29,7 +29,7 @@ html, body {
     color: #2C3E50; /* Dark Blue */
 }
 .card-custom {
-    height: 350px; /* Standardize the height of the description boxes */
+    height: 350px;
     background-color: #FFFFFF; /* White background for cards */
     border: 1px solid #BDC3C7; /* Light Grey Border */
     margin-bottom: 20px;
@@ -91,7 +91,7 @@ html, body {
 
 #uf-x-kyodai {
     width: 300px;
-    postition: relative;
+    position: relative;
     margin-left: auto;
     margin-right: auto;
     opacity: 0;
@@ -102,15 +102,83 @@ html, body {
     opacity: 1;
 }
 
-#scrolly {
-  position: sticky;
-  top: 0;
+#pwd-info {
+    margin-bottom: -20px;
+    align-items: center;
 }
 
-/*#login-box,*/
-/*#signup-box {*/
-/*    display: block;*/
-/*    margin-right: auto;*/
-/*    margin-left: auto;*/
-/*    position: relative;*/
-/*}*/
+#pwd-img {
+    width: 150px;
+}
+
+.login-greeting {
+    align-items: flex-start;
+}
+#login-boy {
+    width: 80px;
+    margin-left: 20px;
+}
+
+.login-greeting:hover .login-msg{
+    visibility: visible;
+    opacity: 1;
+}
+.login-msg {
+    position: relative;
+    visibility: hidden;
+    opacity: 0;
+    color: #000000;
+}
+#login-msg-p1 {
+    bottom: -30px;
+}
+
+.disa-prep-img-wrapper {
+    position: relative;
+    align-items: center;
+    margin-left: auto;
+    flex: auto;
+    margin-right: auto;
+}
+
+#disa-prep-img {
+    width: 75px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.disa-prep-img-wrapper:hover .disa-prep-msg {
+    opacity: 1;
+    visibility: visible;
+}
+
+.disa-prep-msg {
+    position: relative;
+    visibility: hidden;
+    opacity: 0;
+    color: #000000;
+}
+
+.delete-acct {
+    text-align: center;
+}
+
+#delete-btn {
+    background-color: #BDC3C7;
+    margin-bottom: 20px;
+    border: 1px solid #BDC3C7;
+}
+
+#delete-btn:hover {
+    background-color: #BAC0C0;
+
+    transform: scale(0.9);
+
+}
+#delete-acct-btns {
+    margin-left: auto;
+    margin-right: auto;
+    flex: 50%;
+    position: relative;
+}

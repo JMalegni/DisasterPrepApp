@@ -39,6 +39,15 @@
                             <button type="submit" class="btn btn-success">{% trans "Generate Plan" %}</button>
                         </div>
                     </form>
+
+                    <div class="disa-prep-img-wrapper justify-content-center">
+                        <img src="{% static 'images/seal_default.png' %}" class="small-image img-fluid mt-4" id="disa-prep-img">
+                        {% url 'profile' as profile_url %}
+                        <p class="disa-prep-msg">
+                            {% blocktrans %}Select the disaster you want to prepare for! Changes and updates to user information can be made on the <a href="{{ profile_url }}">Profile page</a>!{% endblocktrans %}
+                        </p>
+
+                   </div>
                 </div>
             </div>
         </div>

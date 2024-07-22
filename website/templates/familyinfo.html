@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load i18n static %}
 
-{% block title %}{% trans "Home" %}{% endblock %}
+{% block title %}{% trans "S.E.E.L.E - Information Form" %}{% endblock %}
 {% block content %}
 <div class="container" style="margin-top: 20px">
     <div class="row">
@@ -45,15 +45,15 @@
                         <label>{% trans "Physical Disabilities" %}</label>
                         <div class="form-group form-check">
                             <input type="checkbox" class="form-check-input" id="id_blind_bool" name="blind_bool">
-                            <label class="form-check-label" for="id_blind_bool">{% trans "Blindness" %}</label>
+                            <label class="form-check-label" for="id_blind_bool">{% trans "Blind or poor vision" %}</label>
                         </div>
                         <div class="form-group form-check">
                             <input type="checkbox" class="form-check-input" id="id_deaf_bool" name="deaf_bool">
-                            <label class="form-check-label" for="id_deaf_bool">{% trans "Deafness" %}</label>
+                            <label class="form-check-label" for="id_deaf_bool">{% trans "Deaf or hard of hearing" %}</label>
                         </div>
                         <div class="form-group form-check">
                             <input type="checkbox" class="form-check-input" id="id_wheelchair_bool" name="wheelchair_bool">
-                            <label class="form-check-label" for="id_wheelchair_bool">{% trans "Wheelchair bound" %}</label>
+                            <label class="form-check-label" for="id_wheelchair_bool">{% trans "Mobility impairment" %}</label>
                         </div>
                         <div class="form-group">
                             <label>{% trans "Medical Issues (optional):" %}</label>
