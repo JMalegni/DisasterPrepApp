@@ -152,26 +152,22 @@ def profile(request):
     if request.method == 'GET':
         email = request.session.get("user_email")
         if not email:
-            return redirect('login')  # Redirect to login if no email in session
+            return redirect('login')
 
         try:
             user = Users.objects.get(email=email)
         except Users.DoesNotExist:
-            return redirect('login')  # Redirect to login if user does not exist
+            return redirect('login')
 
         context = {
             'email': user.email,
             'name': user.name,
-            'password': '',  # Do not send password to template
+            'password': '',
             'longitude': user.longitude,
             'latitude': user.latitude,
             'size': user.family_size,
-        }
-
-        # Add medical and boolean fields to context
-        if user.medical_issues:
-            context.update({'medical_issue': user.medical_issues, 'amount': user.medication_amount})
-        context.update({
+            'medical_issue': user.medical_issues,
+            'amount': user.medication_amount,
             'women': user.women_bool,
             'child': user.child_bool,
             'baby': user.baby_bool,
@@ -179,96 +175,108 @@ def profile(request):
             'blind': user.blind_bool,
             'deaf': user.deaf_bool,
             'wheelchair': user.wheelchair_bool,
-        })
+        }
 
         return render(request, 'profile.html', context)
 
     if request.method == 'POST':
-        email = request.session.get("user_email")
-        if not email:
-            return redirect('login')  # Redirect to login if no email in session
+         email = request.session.get("user_email")
+         if not email:
+             return redirect('login')
 
-        try:
-            user = Users.objects.get(email=email)
-        except Users.DoesNotExist:
-            return redirect('login')  # Redirect to login if user does not exist
+         try:
+             user = Users.objects.get(email=email)
+         except Users.DoesNotExist:
+             return redirect('login')
 
-        # Get updated data
-        name = request.POST.get('name')
-        new_email = request.POST.get('email')
-        password = request.POST.get('password')
-        latitude = request.POST.get('latitude')
-        longitude = request.POST.get('longitude')
-        family_size = request.POST.get('size')
-        dose = request.POST.get('dose')
-        medicine = request.POST.get('medicine')
-        women = request.POST.get('women')
-        child = request.POST.get('child')
-        baby = request.POST.get('baby')
-        pet = request.POST.get('pet')
-        blind = request.POST.get('blind')
-        deaf = request.POST.get('deaf')
-        wheelchair = request.POST.get('wheelchair')
+         # Get updated data
+         name = request.POST.get('name')
+         new_email = request.POST.get('email')
+         password = request.POST.get('password')
+         latitude = request.POST.get('latitude')
+         longitude = request.POST.get('longitude')
+         family_size = request.POST.get('size')
+         dose = request.POST.get('dose')
+         medicine = request.POST.get('medicine')
+         women = request.POST.get('women')
+         child = request.POST.get('child')
+         baby = request.POST.get('baby')
+         pet = request.POST.get('pet')
+         blind = request.POST.get('blind')
+         deaf = request.POST.get('deaf')
+         wheelchair = request.POST.get('wheelchair')
 
-        # Update user data
-        user.name = name
-        user.email = new_email
-        if password:
-            user.password = make_password(password)
-        user.latitude = latitude
-        user.longitude = longitude
-        user.family_size = family_size
+         # Initialize context with the form data
+         context = {
+             'email': new_email,
+             'name': name,
+             'password': '',
+             'longitude': longitude,
+             'latitude': latitude,
+             'size': family_size,
+             'medical_issue': medicine if medicine != "no medicine" else '',
+             'amount': dose if medicine != "no medicine" else 0,
+             'women': bool(women),
+             'child': bool(child),
+             'baby': bool(baby),
+             'pet': bool(pet),
+             'blind': bool(blind),
+             'deaf': bool(deaf),
+             'wheelchair': bool(wheelchair),
+         }
 
-        if medicine != "no medicine" and int(dose) != 0:
-            user.medication_amount = int(dose)
-            user.medical_issues = medicine
-        else:
-            user.medication_amount = 0
-            user.medical_issues = ""
+         # Password validation
+         if password:
+             if len(password) < 8:
+                 messages.error(request, _('Password must be at least 8 characters'), extra_tags='danger')
+                 return render(request, 'profile.html', context)
 
-        user.women_bool = bool(women)
-        user.child_bool = bool(child)
-        user.baby_bool = bool(baby)
-        user.pet_bool = bool(pet)
-        user.blind_bool = bool(blind)
-        user.deaf_bool = bool(deaf)
-        user.wheelchair_bool = bool(wheelchair)
+             special_chars = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '!', '\"', '#', '$', '%', '&', '\'', '(', ')', '*', '+',
+                              ',', '-', '.', '/', ':', ';', '<', '=', '>', '?', '@', '[', ']', '\\', '^', '_', '{', '|', '}', '~', '`']
 
-        user.save()
+             if not any(char in special_chars for char in password):
+                 messages.error(request, _('Password must have at least one special character or number'), extra_tags='danger')
+                 return render(request, 'profile.html', context)
 
-        # Update session email
-        request.session["user_email"] = new_email
+             # If password is valid, update it
+             user.password = make_password(password)
 
-        messages.success(request, 'Profile updated successfully.')
-        # Rebuild context for rendering
-        context = {
-            'email': new_email,
-            'name': name,
-            'password': '',  # Do not send password to template
-            'longitude': longitude,
-            'latitude': latitude,
-            'size': family_size,
-        }
-        if medicine != "no medicine":
-            context.update({'medical_issue': medicine, 'amount': dose})
-        context.update({
-            'women': bool(women),
-            'child': bool(child),
-            'baby': bool(baby),
-            'pet': bool(pet),
-            'blind': bool(blind),
-            'deaf': bool(deaf),
-            'wheelchair': bool(wheelchair),
-        })
+         # Update other user data
+         user.name = name
+         user.email = new_email
+         user.latitude = latitude
+         user.longitude = longitude
+         user.family_size = family_size
 
-        return render(request, 'profile.html', context)
+         if medicine != "no medicine" and int(dose) != 0:
+             user.medication_amount = int(dose)
+             user.medical_issues = medicine
+         else:
+             user.medication_amount = 0
+             user.medical_issues = ""
+
+         user.women_bool = bool(women)
+         user.child_bool = bool(child)
+         user.baby_bool = bool(baby)
+         user.pet_bool = bool(pet)
+         user.blind_bool = bool(blind)
+         user.deaf_bool = bool(deaf)
+         user.wheelchair_bool = bool(wheelchair)
+
+         user.save()
+
+         # Update session email
+         request.session["user_email"] = new_email
+
+         messages.success(request, _('Profile updated successfully!'))
+
+         return redirect('profile')
 
 def delete_medical(request):
     if request.method == 'POST':
         email = request.session.get("user_email")
         if not email:
             return redirect('login')  # Redirect to login if no email in session
-
         try:
             user = Users.objects.get(email=email)
         except Users.DoesNotExist:
@@ -282,7 +290,7 @@ def delete_medical(request):
         context = {
             'email': user.email,
             'name': user.name,
-            'password': '',  # Do not send password to template for safety reasons
+            'password': '',
             'longitude': user.longitude,
             'latitude': user.latitude,
             'size': user.family_size,
@@ -350,122 +358,127 @@ def split_checklist(checklist):
     return col1, col2, col3
 
 def generate_checklist(user, disaster_type, prepare_type):
-     family_size = user.family_size
+    family_size = user.family_size
 
-     if disaster_type == 'Typhoon':
-         categories = {
-             "Go Bag": [],
-             "Water and Food": [],
-             "Clothing and Essentials": [],
-             "Medical and Hygiene": [],
-         }
+    if disaster_type == 'Typhoon':
+        categories = {
+            "Go Bag": [],
+            "Water and Food": [],
+            "Clothing and Essentials": [],
+            "Medical and Hygiene": [],
+            "Home Safety": [],
+        }
 
-         if prepare_type == 'Evacuation Shelter':
-             categories["Go Bag"].extend([
-                 _("Medium-sized backpack/sturdy tote"),
-                 _("Two 1-liter bottles"),
-                 _("High-calorie bars/instant food"),
-                 _("Small first aid kit, masks, hand sanitizer"),
-                 _("Rain poncho and towel"),
-                 _("A change of clothes"),
-                 _("Cash"),
-                 _("Plastic bags"),
-                 _("Photocopies of passport/residence card"),
-                 _("Portable charger"),
-
-             ])
-         elif prepare_type == 'Hotel':
-             categories["Go Bag"] = []
-             categories["Go Bag"].extend([
-                 _("Medium-sized backpack/sturdy tote"),
-                 _("Photocopies of passport/residence card"),
-                 _("Small first aid kit, a few masks, small hand sanitizer"),
-                 _("Rain poncho"),
-                 _("Small flashlight + multi-tool + whistle"),
-             ])
-
-         elif prepare_type == 'Stay Home':
-            categories["Go Bag"] = []
+        if prepare_type == 'Evacuation Shelter':
             categories["Go Bag"].extend([
-                 _("Waterproof backpack (in case of forced evacuation)"),
-                 _("Two 1-liter bottles"),
-                 _("High-calorie bars/instant food"),
-                 _("Small first aid kit, a few masks, small hand sanitizer"),
-                 _("Rain poncho and towel"),
-                 _("Small flashlight + multi-tool + whistle"),
-                 _("Cash"),
+                _("Medium-sized backpack/sturdy tote"),
+                _("Two 1-liter bottles"),
+                _("High-calorie bars/instant food"),
+                _("Small first aid kit, masks, hand sanitizer"),
+                _("Rain poncho and towel"),
+                _("A change of clothes"),
+                _("Cash"),
+                _("Plastic bags"),
+                _("Photocopies of passport/residence card"),
+                _("Portable charger"),
             ])
-         categories["Water and Food"].extend([
-             f"{family_size * 3 * 3} " + _("Liters of water"),
-             f"{family_size * 3 * 2000} " + _("calories of non-perishable food"),
-             _("Fill bathtub with water in case of electrical outage"),
+        elif prepare_type == 'Hotel':
+            categories["Go Bag"].extend([
+                _("Medium-sized backpack/sturdy tote"),
+                _("Photocopies of passport/residence card"),
+                _("Small first aid kit, a few masks, small hand sanitizer"),
+                _("Rain poncho"),
+                _("Small flashlight + multi-tool + whistle"),
+            ])
+        elif prepare_type == 'Stay Home':
+            categories["Go Bag"].extend([
+                _("Waterproof backpack (in case of forced evacuation)"),
+                _("Two 1-liter bottles"),
+                _("High-calorie bars/instant food"),
+                _("Small first aid kit, a few masks, small hand sanitizer"),
+                _("Rain poncho and towel"),
+                _("Small flashlight + multi-tool + whistle"),
+                _("Cash"),
+            ])
+        categories["Water and Food"].extend([
+            f"{family_size * 3 * 3} " + _("Liters of water"),
+            f"{family_size * 3 * 2000} " + _("calories of non-perishable food"),
+            _("Fill bathtub with water in case of electrical outage"),
+        ])
+        categories["Clothing and Essentials"].extend([
+            f"{family_size} " + _("sets of clothes (one for each family member)"),
+            _("Important documents (Passport, Will, ID cards)"),
+            _("A few thousand yen"),
+            _("Emergency contact list"),
+            _("Radio"),
+            _("Flashlights and batteries"),
+        ])
+        categories["Medical and Hygiene"].append(_("First aid kit"))
 
-         ])
-         categories["Clothing and Essentials"].extend([
-             f"{family_size} " + _("sets of clothes (one for each family member)"),
-             _("Important documents (Passport, Will, ID cards)"),
-             _("A few thousand yen"),
-             _("Emergency contact list"),
-             _("Radio"),
-             _("Flashlights and batteries"),
-         ])
-         categories["Medical and Hygiene"].append(_("First aid kit"))
+        medical_issue = user.medical_issues
+        sanitized_med = sanitize_html(medical_issue)
+        safe_med = mark_safe(sanitized_med)
+        medication_amount = user.medication_amount if user.medication_amount else 0
 
-         medical_issue = user.medical_issues
-         sanitized_med = sanitize_html(medical_issue)
-         safe_med = mark_safe(sanitized_med)
-         medication_amount = user.medication_amount if user.medication_amount else 0
+        if medical_issue and medication_amount == 0:
+            categories["Medical and Hygiene"].append(_("Medication for ") + f"{safe_med} " + _("for 3 days"))
+        elif medical_issue and medication_amount != 0:
+            categories["Medical and Hygiene"].append(_("Medication for ") + f"{safe_med}: {medication_amount * 3} " + _("units"))
 
-         if medical_issue and medication_amount == 0:
-             categories["Medical and Hygiene"].append(_("Medication for ") + f"{safe_med} " + _("for 3 days"))
-         elif medical_issue and medication_amount != 0:
-             categories["Medical and Hygiene"].append(_("Medication for ") + f"{safe_med}: {medication_amount * 3} " + _("units"))
+        categories["Home Safety"].extend([
+            _("Reinforce windows and doors with storm shutters or plywood"),
+            _("Secure outdoor items like garden furniture"),
+            _("Check and clear gutters and downspouts"),
+            _("Inspect and reinforce the roof"),
+            _("Use sandbags or barriers to prevent flooding"),
+            _("Check the condition of your garage door"),
+            _("Ensure your sump pump is working"),
+            _("Elevate electrical appliances and utilities"),
+            _("Seal gaps around doors and windows"),
+        ])
 
-         if user.women_bool:
-             categories["Medical and Hygiene"].extend([
-                 _("Sanitary napkins/tampons"),
-                 _("Lotion/cleansing sheets"),
-             ])
-         if user.baby_bool:
-             categories["Medical and Hygiene"].extend([
-                 _("Baby formula/food"),
-                 _("Diapers"),
-             ])
-         if user.child_bool:
-             categories["Clothing and Essentials"].append(_("Books/toys"))
+        if user.women_bool:
+            categories["Medical and Hygiene"].extend([
+                _("Sanitary napkins/tampons"),
+                _("Lotion/cleansing sheets"),
+            ])
+        if user.baby_bool:
+            categories["Medical and Hygiene"].extend([
+                _("Baby formula/food"),
+                _("Diapers"),
+            ])
+        if user.child_bool:
+            categories["Clothing and Essentials"].append(_("Books/toys"))
 
-         if user.pet_bool:
-             categories["Pet"] = []
-             categories["Pet"].extend([
-                 _("Pet food for 3 days"),
-                 _("Leash"),
-                 _("Pet Sheets"),
-                 _("Poop bags"),
-             ])
-         if user.blind_bool:
+        if user.pet_bool:
+            categories["Pet"] = []
+            categories["Pet"].extend([
+                _("Pet food for 3 days"),
+                _("Leash"),
+                _("Pet Sheets"),
+                _("Poop bags"),
+            ])
+        if user.blind_bool:
             if "Disability" in categories:
-               categories["Disability"].extend([
+                categories["Disability"].extend([
                     _("Mark emergency supplies with braille or large print"),
                     _("Extra eyeglasses or contacts"),
-               ])
-
+                ])
             else:
                 categories["Disability"] = []
                 categories["Disability"].extend([
                     _("Mark emergency supplies with braille or large print"),
                     _("Extra eyeglasses or contacts"),
-
                 ])
 
-         if user.deaf_bool:
+        if user.deaf_bool:
             if "Disability" in categories:
-               categories["Disability"].extend([
+                categories["Disability"].extend([
                     _("Weather radio with text display and a flashing alert"),
                     _("Extra hearing-aid batteries"),
                     _("Pen and paper for communication"),
                     _("Battery lantern for communication by sign language"),
-               ])
-
+                ])
             else:
                 categories["Disability"] = []
                 categories["Disability"].extend([
@@ -475,14 +488,13 @@ def generate_checklist(user, disaster_type, prepare_type):
                     _("Battery lantern for communication by sign language"),
                 ])
 
-         if user.wheelchair_bool:
+        if user.wheelchair_bool:
             if "Disability" in categories:
                 categories["Disability"].extend([
                     _("Backup lightweight manual wheelchair"),
                     _("Patch kit or can of sealant for flat tires"),
                     _("Cane or walker"),
                 ])
-
             else:
                 categories["Disability"] = []
                 categories["Disability"].extend([
@@ -491,52 +503,176 @@ def generate_checklist(user, disaster_type, prepare_type):
                     _("Cane or walker"),
                 ])
 
+    elif disaster_type == 'Earthquake':
+        categories = {
+            "Go Bag": [],
+            "Water and Food": [],
+            "Medical and Hygiene": [],
+            "Communication and Documents": [],
+            "Home Safety": [],
+        }
 
+        categories["Go Bag"].extend([
+            _("Medium-sized backpack or sturdy tote"),
+            _("Flashlight with extra batteries"),
+            _("Two liters of water"),
+            _("Work gloves"),
+            _("Change of clothes"),
+            _("Heavy coat and pants"),
+            _("Photocopies of passport/residence card"),
+            _("Portable charger"),
+            _("Battery-operated radio"),
+            _("Basic first aid kit"),
+            _("Multi-tool or Swiss army knife"),
+        ])
+        categories["Water and Food"].extend([
+            f"{family_size * 3 * 3} " + _("Liters of water"),
+            f"{family_size * 3 * 2000} " + _("calories of non-perishable food"),
+        ])
 
+        medical_issue = user.medical_issues
+        sanitized_med = sanitize_html(medical_issue)
+        safe_med = mark_safe(sanitized_med)
+        medication_amount = user.medication_amount if user.medication_amount else 0
 
-     elif disaster_type == 'Earthquake':
-         categories = {
-             "Go Bag": [],
-             "Water and Food": [],
-             "Clothing and Essentials": [],
-             "Medical and Hygiene": [],
-             "Pet": [],
-             "Other": [],
-         }
+        if medical_issue and medication_amount == 0:
+            categories["Medical and Hygiene"].append(_("Medication for ") + f"{safe_med} " + _("for 3 days"))
+        elif medical_issue and medication_amount != 0:
+            categories["Medical and Hygiene"].append(_("Medication for ") + f"{safe_med}: {medication_amount * 3} " + _("units"))
 
-         categories["Other"].extend([
-             _("Secure heavy furniture to walls"),
-             _("Create a family emergency plan"),
-             _("Prepare an emergency bag"),
-             _("Have enough food and water for ") + f"{family_size} " + _("people for at least 3 days"),
-             _("Keep a whistle to signal for help"),
-             _("Learn basic first aid")
-         ])
+        categories["Medical and Hygiene"].append(_("First aid kit"))
 
-     elif disaster_type == 'Flood':
-         categories = {
-             "Go Bag": [],
-             "Water and Food": [],
-             "Clothing and Essentials": [],
-             "Medical and Hygiene": [],
-             "Pet": [],
-             "Other": [],
-         }
-         categories["Other"].extend([
-             _("Know your evacuation routes"),
-             _("Move valuables to higher ground"),
-             _("Stock up on ") + f"{family_size * 3} " + _("days of food and water"),
-             _("Prepare an emergency kit with essentials"),
-             _("Ensure you have waterproof bags for important documents"),
-             _("Plan for pets and livestock")
-         ])
+        categories["Home Safety"].extend([
+            _("Secure heavy furniture to walls"),
+            _("Apply shatter-proof film to glass items"),
+            _("Check and reinforce gas lines and water pipes"),
+            _("Know how to turn off utilities (gas, water, electricity)"),
+            _("Identify the safest place in your house (e.g., under a sturdy table or against an interior wall)"),
+            _("Prepare for potential aftershocks"),
+        ])
+        categories["Communication and Documents"].extend([
+            _("Emergency contact list"),
+            _("Important documents (ID, insurance papers)"),
+            _("Radio"),
+            _("Flashlights and batteries"),
+            _("A few thousand yen"),
+        ])
 
-     else:
-         categories = {
-             "Other": [_("Select a valid disaster type")]
-         }
+        if user.women_bool:
+            categories["Medical and Hygiene"].extend([
+                _("Sanitary napkins/tampons"),
+                _("Lotion/cleansing sheets"),
+            ])
+        if user.baby_bool:
+            categories["Medical and Hygiene"].extend([
+                _("Baby formula/food"),
+                _("Diapers"),
+            ])
+        if user.child_bool:
+            categories["Communication and Documents"].append(_("Books/toys"))
 
-     return categories
+        if user.pet_bool:
+            categories["Pet"] = []
+            categories["Pet"].extend([
+                _("Pet food for 3 days"),
+                _("Leash"),
+                _("Pet Sheets"),
+                _("Poop bags"),
+            ])
+        if user.blind_bool:
+            if "Disability" in categories:
+                categories["Disability"].extend([
+                    _("Mark emergency supplies with braille or large print"),
+                    _("Extra eyeglasses or contacts"),
+                ])
+            else:
+                categories["Disability"] = []
+                categories["Disability"].extend([
+                    _("Mark emergency supplies with braille or large print"),
+                    _("Extra eyeglasses or contacts"),
+                ])
+
+        if user.deaf_bool:
+            if "Disability" in categories:
+                categories["Disability"].extend([
+                    _("Weather radio with text display and a flashing alert"),
+                    _("Extra hearing-aid batteries"),
+                    _("Pen and paper for communication"),
+                    _("Battery lantern for communication by sign language"),
+                ])
+            else:
+                categories["Disability"] = []
+                categories["Disability"].extend([
+                    _("Weather radio with text display and a flashing alert"),
+                    _("Extra hearing-aid batteries"),
+                    _("Pen and paper for communication"),
+                    _("Battery lantern for communication by sign language"),
+                ])
+
+        if user.wheelchair_bool:
+            if "Disability" in categories:
+                categories["Disability"].extend([
+                    _("Backup lightweight manual wheelchair"),
+                    _("Patch kit or can of sealant for flat tires"),
+                    _("Cane or walker"),
+                ])
+            else:
+                categories["Disability"] = []
+                categories["Disability"].extend([
+                    _("Backup lightweight manual wheelchair"),
+                    _("Patch kit or can of sealant for flat tires"),
+                    _("Cane or walker"),
+                ])
+
+    elif disaster_type == 'Flood':
+        categories = {
+            "Go Bag": [],
+            "Water and Food": [],
+            "Home Safety": [],
+            "Pets": [],
+            "Communication and Documents": [],
+        }
+
+        categories["Go Bag"].extend([
+            _("Waterproof backpack or sturdy tote"),
+            _("Flashlight with extra batteries"),
+            _("Battery-operated or hand-crank radio"),
+            _("Two liters of water per person per day"),
+            _("High-calorie, non-perishable food for at least 3 days"),
+            _("Waterproof clothing and boots"),
+            _("Personal hygiene items"),
+            _("Important documents in waterproof bags"),
+            _("Portable phone charger"),
+        ])
+        categories["Water and Food"].extend([
+            f"{family_size * 3 * 3} " + _("Liters of water"),
+            f"{family_size * 3 * 2000} " + _("calories of non-perishable food"),
+            _("Basic first aid kit"),
+            _("Water purification tablets or filters"),
+            _("Blankets or sleeping bags"),
+        ])
+        categories["Home Safety"].extend([
+            _("Move valuables to higher ground"),
+            _("Elevate electrical appliances and utilities"),
+            _("Install flood alarms or water sensors if possible"),
+            _("Check and maintain sump pumps and drainage systems"),
+        ])
+        categories["Pets"].extend([
+            _("Pet food and water for at least 3 days"),
+            _("Leash, carrier, and identification for pets"),
+        ])
+        categories["Communication and Documents"].extend([
+            _("Family communication plan and meeting points"),
+            _("Emergency contact information"),
+            _("Important documents in waterproof bags"),
+        ])
+
+    else:
+        categories = {
+            "Other": [_("Select a valid disaster type")]
+        }
+
+    return categories
 
 def disasterchecklist(request):
     if request.method == 'GET':
@@ -593,11 +729,12 @@ def disasterposter(request):
         # Gets disaster type and checklist based on whats saved in the session
         disaster_type = request.session.get('disaster_type')
         checklist = request.session.get('checklist')
+        user = Users.objects.get(email=email)
 
         if not disaster_type or not checklist:
             return redirect('disasterprep')
 
-        image_name = checklist_image(checklist, disaster_type)
+        image_name = checklist_image(checklist, disaster_type, user)
         if image_name and settings.STATIC_URL:
             image_url = f"{settings.STATIC_URL}images/{image_name}"
             api_thread.join()
@@ -632,7 +769,8 @@ def disasterposter(request):
                            'shelter_lat': shelter_coord[0],
                            'shelter_log': shelter_coord[1]
                            }
-
+                
+        context['disaster_type'] = disaster_type
         return render(request, 'disasterposter.html', context)
 
 def thread_closest(user_cord, shelter_cords, result):
