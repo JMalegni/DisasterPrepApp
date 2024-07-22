@@ -79,6 +79,11 @@
                             <button type="submit" class="btn btn-success">{% trans "Home" %}</button>
                         </div>
                     </form>
+                    {% if disaster_type == "Typhoon" %}
+                        <div style="text-align: center;">
+                            <a href="https://forms.gle/uJ2boGgJboQP2jRZ9" class="btn btn-success">{% trans "Feedback" %}</a>
+                        </div>
+                    {% endif %}
                 </div>
             </div>
         </div>

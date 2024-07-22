@@ -761,7 +761,8 @@ def disasterposter(request):
                            'shelter_lat': shelter_coord[0],
                            'shelter_log': shelter_coord[1]
                            }
-
+                
+        context['disaster_type'] = disaster_type
         return render(request, 'disasterposter.html', context)
 
 def thread_closest(user_cord, shelter_cords, result):
