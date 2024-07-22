@@ -8,11 +8,12 @@
         <div class="col-md-4">
             <h1>{% trans "User Profile" %}</h1>
             {% if email %}
-                <h2>{% blocktrans %}Successful Login: {{ email }}{% endblocktrans %}</h2>
+                <h2>{% blocktrans %}Successful Login. Welcome {{ name }}!{% endblocktrans %}</h2>
             {% endif %}
             <form id="delete" action="{% url 'delete_account' %}" method="GET">
                 <button type="submit" class="btn btn-danger">{% trans "Delete Account" %}</button>
             </form>
+            <div style="margin-top: 10px;"></div>
         </div>
         <div class="col-md-8">
             <div class="card">
@@ -23,6 +24,7 @@
                     <form id="profile-form" action="{% url 'profile' %}" method="POST">
                         {% csrf_token %}
                         <ul class="list-group">
+                            <label class="profile-info-label">Personal Information: </label>
                             <li class="list-group-item">
                                 <label for="Name">{% trans "Username:" %}</label>
                                 <input type="text" id="Name" name="name" value="{{ name }}">
@@ -52,6 +54,7 @@
                                 <input type="text" id="Medicine" name="medicine" {% if medical_issue %} value="{{ medical_issue }}" {% else %} value="{% trans '(None)' %}" {% endif %}>
                                 <label>{% trans "per day" %}</label>
                             </li>
+                            <label class="profile-info-label">Family household: </label>
                             <li class="list-group-item">
                                 <label for="Women">{% trans "Women in the family:" %}</label>
                                 <input type="checkbox" id="Women" name="women" {% if women %} checked {% endif %}>
@@ -68,6 +71,7 @@
                                 <label for="Pet">{% trans "Pets in the family:" %}</label>
                                 <input type="checkbox" id="Pet" name="pet" {% if pet %} checked {% endif %}>
                             </li>
+                            <label class="profile-info-label">Applicable disabilities/conditions: </label>
                             <li class="list-group-item">
                                 <label for="Blind">{% trans "Blind or poor vision:" %}</label>
                                 <input type="checkbox" id="Blind" name="blind" {% if blind %} checked {% endif %}>
