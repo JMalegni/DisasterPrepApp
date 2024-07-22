@@ -1,4 +1,5 @@
 import os
+import re
 from PIL import Image, ImageDraw, ImageFont
 from django.conf import settings
 from django.utils.translation import gettext as trans, get_language
@@ -90,7 +91,8 @@ def checklist_image(checklist, disaster_type):
     background_path = os.path.join(settings.STATIC_ROOT, 'images', 'template.png')
     background = Image.open(background_path).convert('RGB')
 
-    scale = 4
+
+    scale = 1
     new_size = (int(1415 * scale), int(2000 * scale))
     background = background.resize(new_size)
 
@@ -113,7 +115,7 @@ def checklist_image(checklist, disaster_type):
     tasks.append((draw_text, (draw, "Items to prepare", fonts['header'], 900 * scale, 220 * scale)))
 
     y = 310 * scale
-    for i, item in enumerate(checklist):
+    for i, item in enumerate(checklist["Go Bag"]):
         x = 750 * scale
         if get_language().startswith("jp"):
             sentence_furi = parse_furigana(item)
