@@ -182,3 +182,8 @@ html, body {
     flex: 50%;
     position: relative;
 }
+
+.profile-info-label {
+    margin-top: 10px;
+    font-weight: bold;
+}
