@@ -105,7 +105,8 @@ def typhoon_flood_checklist(draw, fonts, scale, user, disaster_type):
             ("Close all windows in your house and make sure", True),
             ("anything outside is moved indoors", False),
             ("Be aware of strong winds as they will make things fly", True),
-            ("Avoid places with high water levels", True),
+            ("Avoid places with high water levels (50 cm or higher)", True),
+            ("Watch out for manholes, gutters, and irrigation canals", True),
             ("If you cant evacuate safely, stay inside and go to", True),
             ("the highest floor", False),
         ]
