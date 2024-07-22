@@ -721,11 +721,12 @@ def disasterposter(request):
         # Gets disaster type and checklist based on whats saved in the session
         disaster_type = request.session.get('disaster_type')
         checklist = request.session.get('checklist')
+        user = Users.objects.get(email=email)
 
         if not disaster_type or not checklist:
             return redirect('disasterprep')
 
-        image_name = checklist_image(checklist, disaster_type)
+        image_name = checklist_image(checklist, disaster_type, user)
         if image_name and settings.STATIC_URL:
             image_url = f"{settings.STATIC_URL}images/{image_name}"
             api_thread.join()
