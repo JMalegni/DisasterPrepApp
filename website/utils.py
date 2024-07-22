@@ -132,70 +132,86 @@ def earthquake_checklist(draw, fonts, scale):
 
 #information from https://www.jma.go.jp/jma/en/Activities/inttable.html
     level0_earthquake = [
-        ("Imperceptible to people, but recorded by seismometers.", False),
+        ("Imperceptible to people, but recorded", True),
+        ("by seismometers", False),
     ]
 
     level1_earthquake = [
-        ("Felt slightly by some people keeping quiet in buildings.", False),
+        ("Felt slightly by some people keeping quiet", True),
+        ("in buildings", False),
     ]
 
     level2_earthquake = [
-        ("Felt by many people keeping quiet in buildings.", True),
-        ("Hanging objects swing slightly.", True),
+        ("Felt by many people keeping quiet in", True),
+        ("buildings", False),
+        ("Hanging objects swing slightly", True),
     ]
 
     level3_earthquake = [
-        ("Felt by most people in buildings and some walking.", True),
+        ("Felt by most people in buildings and some", True),
+        ("walking", False),
         ("Dishes rattle and electric wires swing.", True),
     ]
 
     level4_earthquake = [
-        ("Most people startled; hanging objects swing significantly.", True),
-        ("Unstable ornaments may fall and electric wires swing significantly.", True),
+        ("Hanging objects swing significantly", True),
+        ("Unstable ornaments may fall and electric", True),
+        ("wires swing significantly", False),
     ]
 
     level5_earthquake = [
-        ("Many frightened; unsecured furniture may move.", True),
-        ("Windows may break and roads may sustain damage.", True),
-        ("Walking difficult; TVs and unsecured furniture may fall.", True),
-        ("Windows may break and some walls may collapse.", True),
+        ("Unsecured furniture may move and fall", True),
+        ("Windows may break and roads may sustain", True),
+        ("damage, and some walls may collapsse", False),
     ]
 
     level6_earthquake = [
-        ("Difficult to stand; unsecured furniture moves and may topple.", True),
-        ("Impossible to stand or move without crawling; walls may collapse.", True),
+        ("Unsecured furniture moves and may topple", True),
+        ("Impossible to stand or move without crawling", True),
+        ("crawling; walls may collapse", False),
     ]
 
     level7_earthquake = [
-        ("Most furniture topples; reinforced walls may collapse.", True),
+        ("Most furniture topples; reinforced walls may", True),
+        ("collapse", False),
     ]
 
 #information from https://www.kcif.or.jp/web/en/livingguide/emergency/
     disaster_tips = [
-        ("Ensure Safety: Stay calm and prioritize your safety.", True),
-        ("Turn Off Utilities: Alert others and turn off gas and electricity immediately.", True),
-        ("Secure an Exit: Open doors and windows if jammed to create an escape route.", True),
-        ("Handle Fires: Shout for help and extinguish small fires immediately.", True),
-        ("Avoid Rush: Exit carefully, watch for falling debris.", True),
-        ("Stay Clear of Hazards: Avoid narrow alleys, cliffs, and rivers; watch for falling objects.", True),
-        ("Watch for Aftershocks: Prepare for landslides or tsunamis if near mountains or the sea.", True),
-        ("Evacuate on Foot: Go to the nearest shelter with minimal belongings.", True),
-        ("Help Others: Assist the elderly, disabled, and injured.", True),
-        ("Get Accurate Info: Follow reliable sources for updates and watch out for aftershocks.", True),
+        ("Ensure Safety: Stay calm and prioritize your", True),
+        ("safety", False),
+        ("Turn Off Utilities: Alert others and turn off gas", True),
+        ("and electricity immediately", False),
+        ("Secure an Exit: Open doors and windows if", True),
+        ("jammed to create an escape route", False),
+        ("Handle Fires: Shout for help and extinguish", True),
+        ("small fires immediately", False),
+        ("Avoid Rush: Exit carefully, watch for", True),
+        ("falling debris", False),
+        ("Stay Clear of Hazards: Avoid narrow alleys,", True),
+        ("cliffs, and rivers; watch for falling objects", False),
+        ("Watch for Aftershocks: Prepare for landslides", True),
+        ("or tsunamis if near mountains or the sea", False),
+        ("Evacuate on Foot: Go to the nearest shelter with", True),
+        ("minimal belongings", False),
+        ("Help Others: Assist the elderly, disabled,", True),
+        ("and injured", False),
+        ("Get Accurate Info: Follow reliable sources for", True),
+        ("updates and watch out for aftershocks", False),
     ]
 
     y = bullet_spacing(draw, fonts, level0_earthquake, 810 * scale, 1050 * scale, scale)
-    y = bullet_spacing(draw, fonts, level1_earthquake, 810 * scale, y + int(60 * scale), scale)
-    y = bullet_spacing(draw, fonts, level2_earthquake, 810 * scale, y + int(60 * scale), scale)
-    y = bullet_spacing(draw, fonts, level3_earthquake, 810 * scale, y + int(60 * scale), scale)
-    y = bullet_spacing(draw, fonts, level4_earthquake, 810 * scale, y + int(60 * scale), scale)
-    y = bullet_spacing(draw, fonts, level5_earthquake, 810 * scale, y + int(60 * scale), scale)
-    y = bullet_spacing(draw, fonts, level6_earthquake, 810 * scale, y + int(60 * scale), scale)
-    bullet_spacing(draw, fonts, level7_earthquake, 810 * scale, y + int(60 * scale), scale)
+    y = bullet_spacing(draw, fonts, level1_earthquake, 810 * scale, y + int(35 * scale), scale)
+    y = bullet_spacing(draw, fonts, level2_earthquake, 810 * scale, y + int(15 * scale), scale)
+    y = bullet_spacing(draw, fonts, level3_earthquake, 810 * scale, y - int(2 * scale), scale)
+    y = bullet_spacing(draw, fonts, level4_earthquake, 810 * scale, y - int(2 * scale), scale)
+    y = bullet_spacing(draw, fonts, level5_earthquake, 810 * scale, y - int(10 * scale), scale)
+    y = bullet_spacing(draw, fonts, level6_earthquake, 810 * scale, y - int(10 * scale), scale)
+    bullet_spacing(draw, fonts, level7_earthquake, 810 * scale, y + int(8 * scale), scale)
 
     guideline_font = fonts['guideline']
-    draw_text(draw, "Safety Guidelines", guideline_font, 170 * scale, 328 * scale)
-    bullet_spacing(draw, fonts, disaster_tips, 90 * scale, 368 * scale, scale)
+    draw_text(draw, "Safety Guidelines", guideline_font, 210 * scale, 328 * scale)
+    bullet_spacing(draw, fonts, disaster_tips, 55 * scale, 368 * scale, scale)
 
 def checklist_image(checklist, disaster_type, user):
     if disaster_type == "Typhoon":
