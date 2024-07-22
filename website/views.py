@@ -5,6 +5,7 @@ from django.http import HttpResponse
 from django.conf import settings
 from django.utils.translation import gettext as _
 from django.utils.safestring import mark_safe
+from django.contrib import messages
 from .models import Users
 import requests
 import bleach
@@ -190,7 +191,7 @@ def profile(request):
         deaf = request.POST.get('deaf')
         wheelchair = request.POST.get('wheelchair')
 
-        Users.objects.filter(email=email).update(name=name, email=new_email, password=password, latitude=latitude, longitude=longitude, family_size=family_size)
+        Users.objects.filter(email=email).update(name=name, email=new_email, latitude=latitude, longitude=longitude, family_size=family_size)
         request.session["user_email"] = new_email
         if medicine != "no medicine" and int(dose) != 0:
             Users.objects.filter(email=email).update(medication_amount=int(dose), medical_issues=medicine)
@@ -237,6 +238,7 @@ def profile(request):
                    'latitude': latitude,
                    'size': family_size,
                    }
+
         if medicine != "no medicine":
             context.update({'medical_issue': medicine, 'amount': dose})
         if women != None:
@@ -253,6 +255,26 @@ def profile(request):
             context.update({'deaf': True})
         if wheelchair != None:
             context.update({'wheelchair': True})
+
+        # pwd check for requirements
+        if len(password) < 8:
+            messages.warning(request, 'Password must be at least 8 characters')
+            context['password'] = ''
+            return render(request, 'profile.html',context)
+
+        special_chars = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '!', '\"', '#', '$', '%', '&', '\'', '(',')', '*', '+',
+                         ',', '-', '.', '/', ':', ';', '<', '=', '>', '?', '@', '[', ']', '\\', '^', '_', '{', '|', '}','~', '`']
+
+        if not any(char in special_chars for char in password):
+            messages.warning(request, 'Password must have one special character or number')
+            context['password'] = ''
+            return render(request, 'profile.html',context)
+
+        # Update pwd upon passing checks
+        Users.objects.filter(email=email).update(password=password)
+
+        # success msg when alright
+        messages.success(request, 'Information updated successfully!')
         return render(request, 'profile.html', context)
 
 def delete_medical(request):
@@ -276,6 +298,7 @@ def delete_medical(request):
         if user.baby_bool:
             context.update({'baby': True})
 
+        messages.success(request, 'Medication cleared successfully!')
         return render(request, 'profile.html', context)
 
 def delete_account(request):
