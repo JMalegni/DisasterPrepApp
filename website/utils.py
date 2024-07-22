@@ -49,7 +49,7 @@ def bullet_spacing(draw, fonts, list, x, y, scale, bigList=False):
                 y += int(9 * scale)
     return y
 
-def typhoon_checklist(draw, fonts, scale, user):
+def typhoon_flood_checklist(draw, fonts, scale, user, disaster_type):
     header_font = fonts['header']
     draw_text(draw, "Typhoons come with", header_font, 230 * scale, 220 * scale)
     draw_text(draw, "rains, floods, landslides", header_font, 230 * scale, 260 * scale)
@@ -89,15 +89,26 @@ def typhoon_checklist(draw, fonts, scale, user):
         ("Save your life!", True),
     ]
     
-    disaster_tips = [
-        ("Check your house before leaving (window, breaker,", True),
-        ("gas valve)", False),
-        ("Check yourself and your belongings", True),
-        ("Follow the route avoiding dangerous areas", True),
-        ("While evacuating, watch out for flooding", True),
-        ("If you cant evacuate safely, stay inside and go to", True),
-        ("the highest floor", False),
-    ]
+    if disaster_type == "Typhoon":
+        disaster_tips = [
+            ("Check your house before leaving (window, breaker,", True),
+            ("gas valve)", False),
+            ("Check yourself and your belongings", True),
+            ("Follow the route avoiding dangerous areas", True),
+            ("While evacuating, watch out for flooding", True),
+            ("If you cant evacuate safely, stay inside and go to", True),
+            ("the highest floor", False),
+        ]
+        
+    else:
+        disaster_tips = [
+            ("Close all windows in your house and make sure", True),
+            ("anything outside is moved indoors", False),
+            ("Be aware of strong winds as they will make things fly", True),
+            ("Avoid places with high water levels", True),
+            ("If you cant evacuate safely, stay inside and go to", True),
+            ("the highest floor", False),
+        ]
 
     if user.blind_bool or user.deaf_bool or user.wheelchair_bool:
         disaster_tips.append(("Register people who need evacuation support", True))
@@ -214,7 +225,7 @@ def earthquake_checklist(draw, fonts, scale):
     bullet_spacing(draw, fonts, disaster_tips, 55 * scale, 368 * scale, scale)
 
 def checklist_image(checklist, disaster_type, user):
-    if disaster_type == "Typhoon":
+    if disaster_type == "Typhoon" or disaster_type == "Flood":
         background_path = os.path.join(settings.STATIC_ROOT, 'images', 'typhoon_template.png')
         background = Image.open(background_path).convert('RGB')
 
@@ -262,8 +273,8 @@ def checklist_image(checklist, disaster_type, user):
             tasks.append((draw_text, (draw, f"- {item}", fonts['items'], x, y)))
         y += 37 * scale
 
-    if disaster_type == "Typhoon":
-        typhoon_checklist(draw, fonts, scale, user)
+    if disaster_type == "Typhoon" or disaster_type == "Flood":
+        typhoon_flood_checklist(draw, fonts, scale, user, disaster_type)
 
     elif disaster_type == "Earthquake":
         earthquake_checklist(draw, fonts, scale)
