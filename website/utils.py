@@ -87,6 +87,87 @@ def typhoon_checklist(draw, fonts, scale):
     draw_text(draw, "Evacuation Guideline", guideline_font, 850 * scale, 1020 * scale)
     bullet_spacing(draw, fonts, disaster_tips, 700 * scale, 1050 * scale, scale)
 
+def earthquake_actions(draw, fonts, scale):
+    header_font = fonts['header']
+    draw_text(draw, "During an earthquake,", header_font, 230 * scale, 220 * scale)
+    draw_text(draw, "follow these safety steps:", header_font, 230 * scale, 260 * scale)
+
+#information from https://www.jma.go.jp/jma/en/Activities/inttable.html
+    level0_earthquake = [
+        ("Imperceptible to people, but recorded by seismometers.", False),
+    ]
+
+    level1_earthquake = [
+        ("Felt slightly by some people keeping quiet in buildings.", False),
+    ]
+
+    level2_earthquake = [
+        ("Felt by many people keeping quiet in buildings.", True),
+        ("Hanging objects swing slightly.", True),
+    ]
+
+    level3_earthquake = [
+        ("Felt by most people in buildings and some walking.", True),
+        ("Dishes rattle and electric wires swing.", True),
+    ]
+
+    level4_earthquake = [
+        ("Most people startled; hanging objects swing significantly.", True),
+        ("Unstable ornaments may fall and electric wires swing significantly.", True),
+    ]
+
+    level5_lower_earthquake = [
+        ("Many frightened; unsecured furniture may move.", True),
+        ("Windows may break and roads may sustain damage.", True),
+    ]
+
+    level5_upper_earthquake = [
+        ("Walking difficult; TVs and unsecured furniture may fall.", True),
+        ("Windows may break and some walls may collapse.", True),
+    ]
+
+    level6_lower_earthquake = [
+        ("Difficult to stand; unsecured furniture moves and may topple.", True),
+    ]
+
+    level6_upper_earthquake = [
+        ("Impossible to stand or move without crawling; walls may collapse.", True),
+    ]
+
+    level7_earthquake = [
+        ("Most furniture topples; reinforced walls may collapse.", True),
+    ]
+
+#information from https://www.kcif.or.jp/web/en/livingguide/emergency/
+    disaster_tips = [
+        ("1. Ensure Safety: Stay calm and prioritize your safety.", True),
+        ("2. Turn Off Utilities: Alert others and turn off gas and electricity immediately.", True),
+        ("3. Secure an Exit: Open doors and windows if jammed to create an escape route.", True),
+        ("4. Handle Fires: Shout for help and extinguish small fires immediately.", True),
+        ("5. Avoid Rush: Exit carefully, watch for falling debris.", True),
+        ("6. Stay Clear of Hazards: Avoid narrow alleys, cliffs, and rivers; watch for falling objects.", True),
+        ("7. Watch for Aftershocks: Prepare for landslides or tsunamis if near mountains or the sea.", True),
+        ("8. Evacuate on Foot: Go to the nearest shelter with minimal belongings.", True),
+        ("9. Help Others: Assist the elderly, disabled, and injured.", True),
+        ("10. Get Accurate Info: Follow reliable sources for updates and watch out for aftershocks.", True),
+    ]
+
+    y = bullet_spacing(draw, fonts, level0_earthquake, 145 * scale, 328 * scale, scale)
+    y = bullet_spacing(draw, fonts, level1_earthquake, 145 * scale, y + int(10 * scale), scale)
+    y = bullet_spacing(draw, fonts, level2_earthquake, 145 * scale, y + int(40 * scale), scale)
+    y = bullet_spacing(draw, fonts, level3_earthquake, 145 * scale, y + int(40 * scale), scale)
+    y = bullet_spacing(draw, fonts, level4_earthquake, 145 * scale, y + int(60 * scale), scale)
+    y = bullet_spacing(draw, fonts, level5_lower_earthquake, 145 * scale, y + int(60 * scale), scale)
+    y = bullet_spacing(draw, fonts, level5_upper_earthquake, 145 * scale, y + int(60 * scale), scale)
+    y = bullet_spacing(draw, fonts, level6_lower_earthquake, 145 * scale, y + int(60 * scale), scale)
+    y = bullet_spacing(draw, fonts, level6_upper_earthquake, 145 * scale, y + int(60 * scale), scale)
+    bullet_spacing(draw, fonts, level7_earthquake, 145 * scale, y + int(60 * scale), scale)
+
+    guideline_font = fonts['guideline']
+    draw_text(draw, "Safety Guidelines", guideline_font, 850 * scale, 1020 * scale)
+    bullet_spacing(draw, fonts, disaster_tips, 700 * scale, 1050 * scale, scale)
+
+
 def checklist_image(checklist, disaster_type):
     background_path = os.path.join(settings.STATIC_ROOT, 'images', 'template.png')
     background = Image.open(background_path).convert('RGB')
@@ -128,6 +209,8 @@ def checklist_image(checklist, disaster_type):
 
     if disaster_type == "Typhoon":
         typhoon_checklist(draw, fonts, scale)
+    elif disaster_type == "Earthquake":
+        earthquake_actions(draw, fonts, scale)
 
     with ThreadPoolExecutor() as executor:
         futures = [executor.submit(func, *args) for func, args in tasks]
