@@ -226,7 +226,7 @@ def earthquake_checklist(draw, fonts, scale):
     bullet_spacing(draw, fonts, disaster_tips, 55 * scale, 368 * scale, scale)
 
 def checklist_image(checklist, disaster_type, user):
-    if disaster_type == "Typhoon" or disaster_type == "Flood":
+    if disaster_type == "Typhoon":
         background_path = os.path.join(settings.STATIC_ROOT, 'images', 'typhoon_template.png')
         background = Image.open(background_path).convert('RGB')
 
@@ -274,7 +274,7 @@ def checklist_image(checklist, disaster_type, user):
             tasks.append((draw_text, (draw, f"□ {item}", fonts['items'], x, y)))
         y += 37 * scale
 
-    if disaster_type == "Typhoon" or disaster_type == "Flood":
+    if disaster_type == "Typhoon":
         typhoon_flood_checklist(draw, fonts, scale, user, disaster_type)
 
     elif disaster_type == "Earthquake":
