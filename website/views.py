@@ -152,26 +152,22 @@ def profile(request):
     if request.method == 'GET':
         email = request.session.get("user_email")
         if not email:
-            return redirect('login')  # Redirect to login if no email in session
+            return redirect('login')
 
         try:
             user = Users.objects.get(email=email)
         except Users.DoesNotExist:
-            return redirect('login')  # Redirect to login if user does not exist
+            return redirect('login')
 
         context = {
             'email': user.email,
             'name': user.name,
-            'password': '',  # Do not send password to template
+            'password': '',
             'longitude': user.longitude,
             'latitude': user.latitude,
             'size': user.family_size,
-        }
-
-        # Add medical and boolean fields to context
-        if user.medical_issues:
-            context.update({'medical_issue': user.medical_issues, 'amount': user.medication_amount})
-        context.update({
+            'medical_issue': user.medical_issues,
+            'amount': user.medication_amount,
             'women': user.women_bool,
             'child': user.child_bool,
             'baby': user.baby_bool,
@@ -179,96 +175,108 @@ def profile(request):
             'blind': user.blind_bool,
             'deaf': user.deaf_bool,
             'wheelchair': user.wheelchair_bool,
-        })
+        }
 
         return render(request, 'profile.html', context)
 
     if request.method == 'POST':
-        email = request.session.get("user_email")
-        if not email:
-            return redirect('login')  # Redirect to login if no email in session
+         email = request.session.get("user_email")
+         if not email:
+             return redirect('login')
 
-        try:
-            user = Users.objects.get(email=email)
-        except Users.DoesNotExist:
-            return redirect('login')  # Redirect to login if user does not exist
+         try:
+             user = Users.objects.get(email=email)
+         except Users.DoesNotExist:
+             return redirect('login')
 
-        # Get updated data
-        name = request.POST.get('name')
-        new_email = request.POST.get('email')
-        password = request.POST.get('password')
-        latitude = request.POST.get('latitude')
-        longitude = request.POST.get('longitude')
-        family_size = request.POST.get('size')
-        dose = request.POST.get('dose')
-        medicine = request.POST.get('medicine')
-        women = request.POST.get('women')
-        child = request.POST.get('child')
-        baby = request.POST.get('baby')
-        pet = request.POST.get('pet')
-        blind = request.POST.get('blind')
-        deaf = request.POST.get('deaf')
-        wheelchair = request.POST.get('wheelchair')
+         # Get updated data
+         name = request.POST.get('name')
+         new_email = request.POST.get('email')
+         password = request.POST.get('password')
+         latitude = request.POST.get('latitude')
+         longitude = request.POST.get('longitude')
+         family_size = request.POST.get('size')
+         dose = request.POST.get('dose')
+         medicine = request.POST.get('medicine')
+         women = request.POST.get('women')
+         child = request.POST.get('child')
+         baby = request.POST.get('baby')
+         pet = request.POST.get('pet')
+         blind = request.POST.get('blind')
+         deaf = request.POST.get('deaf')
+         wheelchair = request.POST.get('wheelchair')
 
-        # Update user data
-        user.name = name
-        user.email = new_email
-        if password:
-            user.password = make_password(password)
-        user.latitude = latitude
-        user.longitude = longitude
-        user.family_size = family_size
+         # Initialize context with the form data
+         context = {
+             'email': new_email,
+             'name': name,
+             'password': '',
+             'longitude': longitude,
+             'latitude': latitude,
+             'size': family_size,
+             'medical_issue': medicine if medicine != "no medicine" else '',
+             'amount': dose if medicine != "no medicine" else 0,
+             'women': bool(women),
+             'child': bool(child),
+             'baby': bool(baby),
+             'pet': bool(pet),
+             'blind': bool(blind),
+             'deaf': bool(deaf),
+             'wheelchair': bool(wheelchair),
+         }
 
-        if medicine != "no medicine" and int(dose) != 0:
-            user.medication_amount = int(dose)
-            user.medical_issues = medicine
-        else:
-            user.medication_amount = 0
-            user.medical_issues = ""
+         # Password validation
+         if password:
+             if len(password) < 8:
+                 messages.error(request, _('Password must be at least 8 characters'), extra_tags='danger')
+                 return render(request, 'profile.html', context)
 
-        user.women_bool = bool(women)
-        user.child_bool = bool(child)
-        user.baby_bool = bool(baby)
-        user.pet_bool = bool(pet)
-        user.blind_bool = bool(blind)
-        user.deaf_bool = bool(deaf)
-        user.wheelchair_bool = bool(wheelchair)
+             special_chars = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '!', '\"', '#', '$', '%', '&', '\'', '(', ')', '*', '+',
+                              ',', '-', '.', '/', ':', ';', '<', '=', '>', '?', '@', '[', ']', '\\', '^', '_', '{', '|', '}', '~', '`']
 
-        user.save()
+             if not any(char in special_chars for char in password):
+                 messages.error(request, _('Password must have at least one special character or number'), extra_tags='danger')
+                 return render(request, 'profile.html', context)
 
-        # Update session email
-        request.session["user_email"] = new_email
+             # If password is valid, update it
+             user.password = make_password(password)
 
-        messages.success(request, 'Profile updated successfully.')
-        # Rebuild context for rendering
-        context = {
-            'email': new_email,
-            'name': name,
-            'password': '',  # Do not send password to template
-            'longitude': longitude,
-            'latitude': latitude,
-            'size': family_size,
-        }
-        if medicine != "no medicine":
-            context.update({'medical_issue': medicine, 'amount': dose})
-        context.update({
-            'women': bool(women),
-            'child': bool(child),
-            'baby': bool(baby),
-            'pet': bool(pet),
-            'blind': bool(blind),
-            'deaf': bool(deaf),
-            'wheelchair': bool(wheelchair),
-        })
+         # Update other user data
+         user.name = name
+         user.email = new_email
+         user.latitude = latitude
+         user.longitude = longitude
+         user.family_size = family_size
 
-        return render(request, 'profile.html', context)
+         if medicine != "no medicine" and int(dose) != 0:
+             user.medication_amount = int(dose)
+             user.medical_issues = medicine
+         else:
+             user.medication_amount = 0
+             user.medical_issues = ""
+
+         user.women_bool = bool(women)
+         user.child_bool = bool(child)
+         user.baby_bool = bool(baby)
+         user.pet_bool = bool(pet)
+         user.blind_bool = bool(blind)
+         user.deaf_bool = bool(deaf)
+         user.wheelchair_bool = bool(wheelchair)
+
+         user.save()
+
+         # Update session email
+         request.session["user_email"] = new_email
+
+         messages.success(request, _('Profile updated successfully!'))
+
+         return redirect('profile')
 
 def delete_medical(request):
     if request.method == 'POST':
         email = request.session.get("user_email")
         if not email:
             return redirect('login')  # Redirect to login if no email in session
-
         try:
             user = Users.objects.get(email=email)
         except Users.DoesNotExist:
@@ -282,7 +290,7 @@ def delete_medical(request):
         context = {
             'email': user.email,
             'name': user.name,
-            'password': '',  # Do not send password to template for safety reasons
+            'password': '',
             'longitude': user.longitude,
             'latitude': user.latitude,
             'size': user.family_size,
@@ -917,3 +925,11 @@ def logout(request):
     except KeyError as err:
         return HttpResponse(_("No user logged in"), status=404)
     return redirect("login")
+
+def csrf_failure(request, reason=""):
+    try:
+        del request.session["user_email"]
+    except KeyError:
+        return HttpResponse(_("No user logged in"), status=404)
+    ctx = {'message': 'Timed out. Please login again'}
+    return render(request, 'csrffail.html', ctx)
