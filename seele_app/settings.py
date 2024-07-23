@@ -152,3 +152,5 @@ PWA_APP_LANG = 'en-US'
 CSRF_TRUSTED_ORIGINS = [
     'https://seele-h8uw.onrender.com',
 ]
+
+CSRF_FAILURE_VIEW = 'website.views.csrf_failure'
