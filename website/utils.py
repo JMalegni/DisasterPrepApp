@@ -50,6 +50,10 @@ def bullet_spacing(draw, fonts, list, x, y, scale, bigList=False):
     return y
 
 def typhoon_flood_checklist(draw, fonts, scale, user, disaster_type):
+    # Clear the text file for tts
+    with open("typhoon_tts.txt", "a") as file:
+        file.write("Typhoon and Safety Checklist:\n")
+
     header_font = fonts['header']
     draw_text(draw, "Typhoons come with", header_font, 230 * scale, 220 * scale)
     draw_text(draw, "rains, floods, landslides", header_font, 230 * scale, 260 * scale)
@@ -96,7 +100,7 @@ def typhoon_flood_checklist(draw, fonts, scale, user, disaster_type):
             ("Check yourself and your belongings", True),
             ("Follow the route avoiding dangerous areas", True),
             ("While evacuating, watch out for flooding", True),
-            ("If you cant evacuate safely, stay inside and go to", True),
+            ("If you can't evacuate safely, stay inside and go to", True),
             ("the highest floor", False),
         ]
         
@@ -107,7 +111,7 @@ def typhoon_flood_checklist(draw, fonts, scale, user, disaster_type):
             ("Be aware of strong winds as they will make things fly", True),
             ("Avoid places with high water levels (50 cm or higher)", True),
             ("Watch out for manholes, gutters, and irrigation canals", True),
-            ("If you cant evacuate safely, stay inside and go to", True),
+            ("If you can't evacuate safely, stay inside and go to", True),
             ("the highest floor", False),
         ]
 
@@ -131,6 +135,33 @@ def typhoon_flood_checklist(draw, fonts, scale, user, disaster_type):
     guideline_font = fonts['guideline']
     draw_text(draw, "Evacuation Guideline", guideline_font, 850 * scale, 1020 * scale)
 
+    # Writing checklist items to a text file for tts to read
+    with open("typhoon_tts.txt", "a") as file:
+
+        file.write("In a level 1 typhoon: " + "\n")
+        for item, _ in level1_typhoon:
+            file.write(item + "\n")
+
+        file.write("In a level 2 typhoon: " + "\n")
+        for item, _ in level2_typhoon:
+            file.write(item + "\n")
+
+        file.write("In a level 3 typhoon: " + "\n")
+        for item, _ in level3_typhoon:
+            file.write(item + "\n")
+
+        file.write("In a level 4 typhoon: "+ "\n")
+        for item, _ in level4_typhoon:
+            file.write(item + "\n")
+
+        file.write("In a level 5 typhoon: " + "\n")
+        for item, _ in level5_typhoon:
+            file.write(item + "\n")
+
+        file.write("Some general typhoon tips are: " + "\n")
+        for item, _ in disaster_tips:
+            file.write(item + "\n")
+
     if len(disaster_tips) > 11:
         bullet_spacing(draw, fonts, disaster_tips, 700 * scale, 1050 * scale, scale, True)
     
@@ -138,6 +169,10 @@ def typhoon_flood_checklist(draw, fonts, scale, user, disaster_type):
         bullet_spacing(draw, fonts, disaster_tips, 700 * scale, 1050 * scale, scale)
 
 def earthquake_checklist(draw, fonts, scale):
+    # Clear the text file for tts
+    with open("earthquake_tts.txt", "a") as file:
+        file.write("Earthquake Safety Checklist:\n")
+
     header_font = fonts['header']
     draw_text(draw, "During an earthquake,", header_font, 230 * scale, 220 * scale)
     draw_text(draw, "follow these safety steps:", header_font, 230 * scale, 260 * scale)
@@ -174,7 +209,7 @@ def earthquake_checklist(draw, fonts, scale):
     level5_earthquake = [
         ("Unsecured furniture may move and fall", True),
         ("Windows may break and roads may sustain", True),
-        ("damage, and some walls may collapsse", False),
+        ("damage, and some walls may collapse", False),
     ]
 
     level6_earthquake = [
@@ -212,6 +247,49 @@ def earthquake_checklist(draw, fonts, scale):
         ("updates and watch out for aftershocks", False),
     ]
 
+    # Writing checklist items to a text file for tts to read
+    with open("earthquake_tts.txt", "a") as file:
+
+        file.write("In a level 0 earthquake: " + "\n")
+        for item, _ in level0_earthquake:
+            file.write(item + "\n")
+
+        file.write("In a level 1 earthquake: " + "\n")
+        for item, _ in level1_earthquake:
+            file.write(item + "\n")
+
+        file.write("In a level 2 earthquake: " + "\n")
+        for item, _ in level2_earthquake:
+            file.write(item + "\n")
+
+        file.write("In a level 3 earthquake: " + "\n")
+        for item, _ in level3_earthquake:
+            file.write(item + "\n")
+
+        file.write("In a level 4 earthquake: " + "\n")
+        for item, _ in level4_earthquake:
+            file.write(item + "\n")
+
+        file.write("In a level 5 earthquake: " + "\n")
+        for item, _ in level5_earthquake:
+            file.write(item + "\n")
+
+        file.write("In a level 6 earthquake: " + "\n")
+        for item, _ in level0_earthquake:
+            file.write(item + "\n")
+
+        file.write("In a level 6 earthquake: " + "\n")
+        for item, _ in level0_earthquake:
+            file.write(item + "\n")
+
+        file.write("In a level 7 earthquake: " + "\n")
+        for item, _ in level7_earthquake:
+            file.write(item + "\n")
+
+        file.write("Some general earthquake tips are: " + "\n")
+        for item, _ in disaster_tips:
+            file.write(item + "\n")
+
     y = bullet_spacing(draw, fonts, level0_earthquake, 810 * scale, 1050 * scale, scale)
     y = bullet_spacing(draw, fonts, level1_earthquake, 810 * scale, y + int(35 * scale), scale)
     y = bullet_spacing(draw, fonts, level2_earthquake, 810 * scale, y + int(15 * scale), scale)
@@ -229,7 +307,6 @@ def checklist_image(checklist, disaster_type, user):
     if disaster_type == "Typhoon":
         background_path = os.path.join(settings.STATIC_ROOT, 'images', 'typhoon_template.png')
         background = Image.open(background_path).convert('RGB')
-
     elif disaster_type == "Earthquake":
         background_path = os.path.join(settings.STATIC_ROOT, 'images', 'earthquake_template.png')
         background = Image.open(background_path).convert('RGB')
@@ -253,6 +330,13 @@ def checklist_image(checklist, disaster_type, user):
     }
 
     tasks = []
+    # Append the title to the appropriate text file
+    with open(f"{disaster_type.lower()}_tts.txt", "w") as file:
+        file.write(f"Your checklist for {disaster_type}s\n")
+        file.write("Items to prepare:\n")
+        for item in checklist["Go Bag"]:
+            file.write(f"{item}\n")
+
     if disaster_type == "Earthquake":
         tasks.append((draw_text, (draw, _(f"Your checklist for {disaster_type}s"), fonts['title'], 190 * scale, 35 * scale)))
     
