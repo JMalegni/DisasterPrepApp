@@ -4,9 +4,25 @@
 {% block title %}{% trans "S.E.E.L.E - Poster" %}{% endblock %}
 {% block content %}
 <style>
-    @media print {
+    @media print and (min-width:1000px) {
         @page {
             size: auto;
+            margin-top: 0mm;
+        }
+
+        html, body {
+            overflow: hidden;
+        }
+        
+        #notPoster {
+            display: none !important;
+            visibility: visible !important;
+        }
+    }
+
+    @media print and (max-width:999px) {
+        @page {
+            size: A4;
             margin-top: 0mm;
         }
 
@@ -71,7 +87,7 @@
                 <div class="card-body">
                     <div style="text-align: center;">
                         <!-- <a href="{% url 'download_poster' %}" class="btn btn-success">{% trans "Download" %}</a> -->
-                        <a onclick="window.print()" class="btn btn-success">{% trans "Download" %}</a>
+                        <a onclick="window.print();" class="btn btn-success">{% trans "Download" %}</a>
                     </div>
                     <form action="{% url 'disasterprep' %}" method="GET">
                         <div class="form-group" style="margin-top: 10px; text-align: center;">
