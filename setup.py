@@ -13,6 +13,7 @@ setup(
         'requests>=2.32.3',
         'bleach>=6.1.0',
         'django-pwa>=1.1.0',
+        'gTTS>=2.5.2',
     ],
     entry_points={
         'console_scripts': [
