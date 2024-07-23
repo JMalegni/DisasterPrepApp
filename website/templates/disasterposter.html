@@ -65,7 +65,6 @@
                         </script>
                     </div>
                     <form action="{% url 'disasterprep' %}" method="GET">
-                        {% csrf_token %}
                         <div class="form-group" style="margin-top: 10px; text-align: center;">
                             <button type="submit" class="btn btn-success">{% trans "Home" %}</button>
                         </div>

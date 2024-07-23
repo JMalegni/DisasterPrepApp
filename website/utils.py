@@ -200,11 +200,11 @@ def checklist_image(checklist, disaster_type):
         x = 750 * scale
         if get_language().startswith("jp"):
             sentence_furi = parse_furigana(item)
-            tasks.append((draw_text, (draw, f"- {sentence_furi[1]}", fonts['items'], x, y)))
+            tasks.append((draw_text, (draw, f"□ {sentence_furi[1]}", fonts['items'], x, y)))
             y += 37 * scale
-            tasks.append((draw_text, (draw, f"- {sentence_furi[0]}", fonts['items'], x, y)))
+            tasks.append((draw_text, (draw, f"□ {sentence_furi[0]}", fonts['items'], x, y)))
         elif get_language().startswith("en"):
-            tasks.append((draw_text, (draw, f"- {item}", fonts['items'], x, y)))
+            tasks.append((draw_text, (draw, f"□ {item}", fonts['items'], x, y)))
         y += 37 * scale
 
     if disaster_type == "Typhoon":
