@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSRF Failure</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+</head>
+<body>
+<div class="container">
+    <div class="alert alert-danger" role="alert">
+        {{ message }}
+    </div>
+    <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+</div>
+</body>
+</html>
