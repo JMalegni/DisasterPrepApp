@@ -827,3 +827,7 @@ def logout(request):
     except KeyError as err:
         return HttpResponse(_("No user logged in"), status=404)
     return redirect("login")
+
+def csrf_failure(request, reason=""):
+    ctx = {'message': 'Timed out. Please login again'}
+    return render_to_response('csrffail.html', ctx)
