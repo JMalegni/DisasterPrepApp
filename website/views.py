@@ -428,6 +428,7 @@ def generate_checklist(user, disaster_type, prepare_type):
         categories["Home Safety"].extend([
             _("Reinforce windows and doors with storm shutters or plywood"),
             _("Secure outdoor items like garden furniture"),
+            _("Store non-secured items inside the house"),
             _("Check and clear gutters and downspouts"),
             _("Inspect and reinforce the roof"),
             _("Use sandbags or barriers to prevent flooding"),
@@ -435,6 +436,8 @@ def generate_checklist(user, disaster_type, prepare_type):
             _("Ensure your sump pump is working"),
             _("Elevate electrical appliances and utilities"),
             _("Seal gaps around doors and windows"),
+            _("Cut tree branches"),
+            _("Cover any cars"),
         ])
 
         if user.women_bool:
