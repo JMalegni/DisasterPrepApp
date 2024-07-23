@@ -428,6 +428,7 @@ def generate_checklist(user, disaster_type, prepare_type):
         categories["Home Safety"].extend([
             _("Reinforce windows and doors with storm shutters or plywood"),
             _("Secure outdoor items like garden furniture"),
+            _("Store non-secured items inside the house"),
             _("Check and clear gutters and downspouts"),
             _("Inspect and reinforce the roof"),
             _("Use sandbags or barriers to prevent flooding"),
@@ -435,6 +436,8 @@ def generate_checklist(user, disaster_type, prepare_type):
             _("Ensure your sump pump is working"),
             _("Elevate electrical appliances and utilities"),
             _("Seal gaps around doors and windows"),
+            _("Cut tree branches"),
+            _("Cover any cars"),
         ])
 
         if user.women_bool:
@@ -623,138 +626,6 @@ def generate_checklist(user, disaster_type, prepare_type):
                     _("Patch kit or can of sealant for flat tires"),
                     _("Cane or walker"),
                 ])
-
-    elif disaster_type == 'Flood':
-        categories = {
-            "Go Bag": [],
-            "Water and Food": [],
-            "Medical and Hygiene": [],
-            "Home Safety": [],
-            "Pets": [],
-            "Communication and Documents": [],
-        }
-
-        categories["Go Bag"].extend([
-            _("Waterproof backpack or sturdy tote"),
-            _("Helmet"),
-            _("Map"),
-            _("Umbrella or cane"),
-            _("Flashlight with extra batteries"),
-            _("Battery-operated or hand-crank radio"),
-            _("Two liters of water"),
-            _("High-calorie bars/instant food"),
-            _("Rain jacket and long sleeve shirt"),
-            _("Pants and sneakers"),
-            _("Personal hygiene items"),
-            _("Important documents in waterproof bags"),
-            _("Portable phone charger"),
-        ])
-        categories["Water and Food"].extend([
-            f"{family_size * 3 * 3} " + _("Liters of water"),
-            f"{family_size * 3 * 2000} " + _("calories of non-perishable food"),
-            _("Water purification tablets or filters"),
-            _("Blankets or sleeping bags"),
-        ])
-
-        medical_issue = user.medical_issues
-        sanitized_med = sanitize_html(medical_issue)
-        safe_med = mark_safe(sanitized_med)
-        medication_amount = user.medication_amount if user.medication_amount else 0
-
-        if medical_issue and medication_amount == 0:
-            categories["Medical and Hygiene"].append(_("Medication for ") + f"{safe_med} " + _("for 3 days"))
-        elif medical_issue and medication_amount != 0:
-            categories["Medical and Hygiene"].append(_("Medication for ") + f"{safe_med}: {medication_amount * 3} " + _("units"))
-        
-        categories["Medical and Hygiene"].append(_("First aid kit"))
-
-        categories["Home Safety"].extend([
-            _("Move valuables to higher ground"),
-            _("Elevate electrical appliances and utilities"),
-            _("Install flood alarms or water sensors if possible"),
-            _("Check and maintain sump pumps and drainage systems"),
-        ])
-        categories["Pets"].extend([
-            _("Pet food and water for at least 3 days"),
-            _("Leash, carrier, and identification for pets"),
-        ])
-        categories["Communication and Documents"].extend([
-            _("Family communication plan and meeting points"),
-            _("Family photos"),
-            _("Emergency contact information"),
-            _("Important documents in waterproof bags"),
-        ])
-
-        if user.women_bool:
-            categories["Medical and Hygiene"].extend([
-                _("Sanitary napkins/tampons"),
-                _("Lotion/cleansing sheets"),
-            ])
-
-        if user.baby_bool:
-            categories["Medical and Hygiene"].extend([
-                _("Baby formula/food"),
-                _("Diapers"),
-            ])
-
-        if user.child_bool:
-            categories["Communication and Documents"].append(_("Books/toys"))
-
-        if user.pet_bool:
-            categories["Pet"] = []
-            categories["Pet"].extend([
-                _("Pet food for 3 days"),
-                _("Leash"),
-                _("Pet Sheets"),
-                _("Poop bags"),
-            ])
-
-        if user.blind_bool:
-            if "Disability" in categories:
-                categories["Disability"].extend([
-                    _("Mark emergency supplies with braille or large print"),
-                    _("Extra eyeglasses or contacts"),
-                ])
-            else:
-                categories["Disability"] = []
-                categories["Disability"].extend([
-                    _("Mark emergency supplies with braille or large print"),
-                    _("Extra eyeglasses or contacts"),
-                ])
-
-        if user.deaf_bool:
-            if "Disability" in categories:
-                categories["Disability"].extend([
-                    _("Weather radio with text display and a flashing alert"),
-                    _("Extra hearing-aid batteries"),
-                    _("Pen and paper for communication"),
-                    _("Battery lantern for communication by sign language"),
-                ])
-            else:
-                categories["Disability"] = []
-                categories["Disability"].extend([
-                    _("Weather radio with text display and a flashing alert"),
-                    _("Extra hearing-aid batteries"),
-                    _("Pen and paper for communication"),
-                    _("Battery lantern for communication by sign language"),
-                ])
-
-        if user.wheelchair_bool:
-            if "Disability" in categories:
-                categories["Disability"].extend([
-                    _("Backup lightweight manual wheelchair"),
-                    _("Patch kit or can of sealant for flat tires"),
-                    _("Cane or walker"),
-                ])
-
-            else:
-                categories["Disability"] = []
-                categories["Disability"].extend([
-                    _("Backup lightweight manual wheelchair"),
-                    _("Patch kit or can of sealant for flat tires"),
-                    _("Cane or walker"),
-                ])
-
     else:
         categories = {
             "Other": [_("Select a valid disaster type")]
