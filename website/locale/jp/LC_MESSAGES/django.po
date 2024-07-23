@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-22 12:13-0400\n"
+"POT-Creation-Date: 2024-07-23 12:19-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,7 +21,7 @@ msgid "S.E.E.L.E Home"
 msgstr "S.E.E.L.Eホーム"
 
 #: templates/base.html:28 templates/base.html:42
-#: templates/disasterposter.html:70
+#: templates/disasterposter.html:94
 msgid "Home"
 msgstr "ホーム"
 
@@ -37,7 +37,7 @@ msgstr "プロフィル"
 msgid "Logout"
 msgstr "ログアウト"
 
-#: templates/base.html:45 templates/signup.html:49
+#: templates/base.html:45 templates/signup.html:50
 msgid "Sign Up"
 msgstr "サインアップ"
 
@@ -55,25 +55,25 @@ msgstr ""
 "<ruby>本当<rt>ほんとう</rt></ruby>にアカウントを<ruby>削除<rt>さくじょ</rt></"
 "ruby>してもよろしいですか？"
 
-#: templates/delete-acct.html:18
+#: templates/delete-acct.html:29
 msgid "We will miss you!"
 msgstr "シールが<ruby>寂<rt>さび</rt></ruby>しくなりますよ！"
 
-#: templates/delete-acct.html:23
+#: templates/delete-acct.html:34
 msgid "You will be missed!"
 msgstr "さようなら！"
 
-#: templates/delete-acct.html:23
+#: templates/delete-acct.html:34
 msgid "Yes, delete my account"
 msgstr "アカウントを<ruby>削除<rt>さくじょ</rt></ruby>"
 
-#: templates/delete-acct.html:25
+#: templates/delete-acct.html:36
 msgid "Stay prepared!"
 msgstr ""
 "<ruby>準備<rt>じゅんび</rt></ruby>を<ruby>覚<rt>おぼ</rt></ruby>えてくださ"
 "い！"
 
-#: templates/delete-acct.html:25
+#: templates/delete-acct.html:36
 msgid "No, go back"
 msgstr "<ruby>戻<rt>もど</rt></ruby>る"
 
@@ -97,25 +97,29 @@ msgstr "ポスターを<ruby>生成<rt>さくせい</rt></ruby>"
 msgid "S.E.E.L.E - Poster"
 msgstr "S.E.E.L.E - ポスター"
 
-#: templates/disasterposter.html:14
+#: templates/disasterposter.html:47
 msgid "Emergency Poster"
 msgstr "<ruby>緊急<rt>きんきゅう</rt></ruby>ポスター"
 
-#: templates/disasterposter.html:22
+#: templates/disasterposter.html:55
 msgid "Disaster Poster"
 msgstr "<ruby>防災<rt>ぼうさい</rt></ruby>ポスター"
 
-#: templates/disasterposter.html:45
+#: templates/disasterposter.html:78
 msgid "Example Image"
 msgstr "サンプル<ruby>画像<rt>がぞう</rt></ruby>"
 
-#: templates/disasterposter.html:52
+#: templates/disasterposter.html:85
 msgid "Actions"
 msgstr "アクション"
 
-#: templates/disasterposter.html:56 templates/disasterposter.html:57
+#: templates/disasterposter.html:89 templates/disasterposter.html:90
 msgid "Download"
 msgstr "ダウンロード"
+
+#: templates/disasterposter.html:99
+msgid "Feedback"
+msgstr ""
 
 #: templates/disasterprep.html:4
 msgid "S.E.E.L.E - Preparation"
@@ -128,7 +132,7 @@ msgstr ""
 "ruby>のためのものですか："
 
 #: templates/disasterprep.html:23 templates/disasterprep.html:32
-#: templates/profile.html:63
+#: templates/profile.html:61
 msgid "(None)"
 msgstr "（なし）"
 
@@ -179,84 +183,85 @@ msgstr ""
 msgid "S.E.E.L.E - Information Form"
 msgstr "S.E.E.L.E - 情報フォーム"
 
-#: templates/familyinfo.html:14
+#: templates/familyinfo.html:16
 msgid "Family Information"
 msgstr "<ruby>家族<rt>かぞく</rt></ruby>の<ruby>情報<rt>じょうほう</rt></ruby>"
 
-#: templates/familyinfo.html:20
+#: templates/familyinfo.html:22
 msgid "Location"
 msgstr "<ruby>所在<rt>しょざい</rt></ruby>"
 
-#: templates/familyinfo.html:21
+#: templates/familyinfo.html:23
 msgid "Location "
 msgstr "所在"
 
-#: templates/familyinfo.html:23
+#: templates/familyinfo.html:25
 msgid "Fetch Location"
 msgstr "<ruby>所在<rt>しょざい</rt></ruby>を<ruby>取得<rt>しゅとく</rt></ruby>"
 
-#: templates/familyinfo.html:25
-msgid "Family Size"
-msgstr "<ruby>家族<rt>かぞく</rt></ruby>の<ruby>人数<rt>にんずう</rt></ruby>"
+#: templates/familyinfo.html:27
+msgid "Family Household"
+msgstr "<ruby>家庭<rt>かてい</rt></ruby>"
 
-#: templates/familyinfo.html:26
+#: templates/familyinfo.html:28
 msgid "Number of Family Members"
 msgstr "家族の人数"
 
-#: templates/familyinfo.html:31
+#: templates/familyinfo.html:33
 msgid "There are women in my family."
 msgstr ""
 "<ruby>家族<rt>かぞく</rt></ruby>には<ruby>女性<rt>じょせい</rt></ruby>がいる"
 
-#: templates/familyinfo.html:35
+#: templates/familyinfo.html:37
 msgid "There are children in my family."
 msgstr ""
 "<ruby>家族<rt>かぞく</rt></ruby>には<ruby>子供<rt>こども</rt></ruby>がいる"
 
-#: templates/familyinfo.html:39
+#: templates/familyinfo.html:41
 msgid "There are infants in my family."
 msgstr ""
 "<ruby>家族<rt>かぞく</rt></ruby>には<ruby>赤<rt>あか</rt></ruby>ちゃんがいる"
 
-#: templates/familyinfo.html:43
+#: templates/familyinfo.html:45
 msgid "There are pets in my family."
 msgstr "<ruby>家族<rt>かぞく</rt></ruby>には<ruby>ペットがいる"
 
-#: templates/familyinfo.html:45
-msgid "Physical Disabilities"
+#: templates/familyinfo.html:47
+msgid "Applicable disabilities/conditions"
+msgstr "<ruby>障害<rt>しょうがい</rt></ruby>・<ruby>状態<rt>じょうたい</rt></ruby>"
+
+#: templates/familyinfo.html:50
+msgid "Blind or poor vision"
+msgstr "<ruby>視覚障害<rt>しかくしょうがい</rt></ruby>"
+
+#: templates/familyinfo.html:54
+msgid "Deaf or hard of hearing"
+msgstr "<ruby>聴覚障害<rt>ちょうかくしょうがい</rt></ruby>または<ruby>難聴<rt>なん"
+"ちょう</rt></ruby>"
+
+#: templates/familyinfo.html:58
+msgid "Mobility impairment"
 msgstr "<ruby>身体障害<rt>しんたいしょうがい</rt></ruby>"
 
-#: templates/familyinfo.html:48
-msgid "Blind or poor vision"
-msgstr ""
-
-#: templates/familyinfo.html:52
-msgid "Deaf or hard of hearing"
-msgstr ""
-
-#: templates/familyinfo.html:56
-msgid "Mobility impairment"
-msgstr ""
-
-#: templates/familyinfo.html:59
+#: templates/familyinfo.html:61
 msgid "Medical Issues (optional):"
 msgstr "<ruby>病状<rt>びょうじょう</rt></ruby>（オプション）："
 
-#: templates/familyinfo.html:60
+#: templates/familyinfo.html:62
 msgid "Enter medical condition"
 msgstr "病状を入力"
 
-#: templates/familyinfo.html:63
+#: templates/familyinfo.html:65
 msgid "Medication Amount (optional):"
 msgstr ""
 "<ruby>薬<rt>くすり</rt></ruby>の<ruby>量<rt>りょう</rt></ruby>（オプショ"
 "ン）："
 
-#: templates/familyinfo.html:64
+#: templates/familyinfo.html:66
 msgid "Amount of medication needed per day"
 msgstr "1日に必要な薬の量"
 
-#: templates/familyinfo.html:69
+#: templates/familyinfo.html:71
 msgid "Continue"
 msgstr "<ruby>続<rt>つづ</rt></ruby>ける"
 
@@ -375,11 +380,19 @@ msgstr "メールアドレス"
 msgid "Password"
 msgstr "パスワード"
 
+#: templates/login.html:34
+msgid "NO DISASTER ZONE"
+msgstr "ノーディザスターゾーン"
+
+#: templates/login.html:36
+msgid "LET'S GET IT!!"
+msgstr "やってやるぜ！！"
+
 #: templates/login.html:42
 msgid "New Users Signup"
 msgstr "<ruby>新<rt>あたら</rt></ruby>しいユーザーサインアップ"
 
-#: templates/login.html:42 templates/signup.html:54
+#: templates/login.html:42 templates/signup.html:55
 msgid "Here"
 msgstr "ここ"
 
@@ -387,80 +400,94 @@ msgstr "ここ"
 msgid "S.E.E.L.E - Profile"
 msgstr "S.E.E.L.E - プロフィル"
 
-#: templates/profile.html:20
-msgid "User Profile"
-msgstr "ユーザープロフィール"
-
-#: templates/profile.html:22
+#: templates/profile.html:10
 #, python-format
-msgid "Successful Login: %(email)s"
-msgstr "<ruby>正常<rt>せいじよう</rt></ruby>にログイン：%(email)s"
+msgid "Welcome %(name)s!"
+msgstr ""
 
-#: templates/profile.html:25
+#: templates/profile.html:11
 msgid "Delete Account"
 msgstr "アカウントを<ruby>削除<rt>さくじょ</rt></ruby>"
 
-#: templates/profile.html:31
+#: templates/profile.html:17
 msgid "Edit Account Information"
-msgstr "アカウント<ruby>情報<rt>じょうほう</rt></ruby><ruby>編集<rt>へんしゅう</rt></ruby>"
+msgstr ""
+"アカウント<ruby>情報<rt>じょうほう</rt></ruby><ruby>編集<rt>へんしゅう</rt></"
+"ruby>"
 
-#: templates/profile.html:38
+#: templates/profile.html:34
+#, fuzzy
+#| msgid "Family Information"
+msgid "Personal Information:"
+msgstr "<ruby>家族<rt>かぞく</rt></ruby>の<ruby>情報<rt>じょうほう</rt></ruby>"
+
+#: templates/profile.html:36
 msgid "Username:"
 msgstr "ユーザー<ruby>名<rt>めい</rt></ruby>："
 
-#: templates/profile.html:42
+#: templates/profile.html:40
 msgid "Email Address:"
 msgstr "メールアドレス："
 
-#: templates/profile.html:46
+#: templates/profile.html:44
 msgid "Password:"
 msgstr "パスワード："
 
-#: templates/profile.html:50
+#: templates/profile.html:48
 msgid "Location:"
 msgstr "<ruby>所在<rt>しょざい</rt></ruby>："
 
-#: templates/profile.html:52
+#: templates/profile.html:50
 msgid ","
 msgstr "、"
 
-#: templates/profile.html:56
+#: templates/profile.html:54
 msgid "Family Size:"
 msgstr "<ruby>家族<rt>かぞく</rt></ruby>の<ruby>人数<rt>にんずう</rt></ruby>："
 
-#: templates/profile.html:60
+#: templates/profile.html:58
 msgid "Medicine: Need"
 msgstr "<ruby>薬<rt>くすり</rt></ruby>：１<ruby>日<rt>にち</rt></ruby>"
 
-#: templates/profile.html:62
+#: templates/profile.html:60
 msgid "dose(s) for"
 msgstr "<ruby>回<rt>かい</rt></ruby>の"
 
-#: templates/profile.html:64
+#: templates/profile.html:62
 msgid "per day"
 msgstr ""
 "の<ruby>薬<rt>くすり</rt></ruby><ruby>投与<rt>とうよ</rt></ruby>が<ruby>必要"
 "<rt>ひつよう</rt></ruby>です"
 
-#: templates/profile.html:67
+#: templates/profile.html:64
+#, fuzzy
+#| msgid "Family Size:"
+msgid "Family household:"
+msgstr "<ruby>家族<rt>かぞく</rt></ruby>の<ruby>人数<rt>にんずう</rt></ruby>："
+
+#: templates/profile.html:66
 msgid "Women in the family:"
 msgstr ""
 "<ruby>家族<rt>かぞく</rt></ruby>には<ruby>女性<rt>じょせい</rt></ruby>がいる"
 "こと："
 
-#: templates/profile.html:71
+#: templates/profile.html:70
 msgid "Children in the family:"
 msgstr ""
 "<ruby>家族<rt>かぞく</rt></ruby>には<ruby>子供<rt>こども</rt></ruby>がいるこ"
 "と："
 
-#: templates/profile.html:75
+#: templates/profile.html:74
 msgid "Babies in the family:"
 msgstr "<ruby>家族<rt>かぞく</rt></ruby>には<ruby>赤ちゃんがいること："
 
-#: templates/profile.html:79
+#: templates/profile.html:78
 msgid "Pets in the family:"
 msgstr "<ruby>家族<rt>かぞく</rt></ruby>には<ruby>ペットがいること："
+
+#: templates/profile.html:81
+msgid "Applicable disabilities/conditions:"
+msgstr ""
 
 #: templates/profile.html:83
 msgid "Blind or poor vision:"
@@ -502,15 +529,31 @@ msgstr "ユーザー<ruby>名<rt>めい</rt></ruby>"
 msgid "Username "
 msgstr "ユーザー名"
 
-#: templates/signup.html:45
-msgid "Confirm Password"
-msgstr "パスワードを<ruby>確認<rt>かくにん</rt></ruby>する"
+#: templates/signup.html:33
+msgid "Passwords must contain the following:"
+msgstr ""
+"パスワードは<ruby>以下<rt>いか</rt></ruby>の<ruby>条件<rt>じょうけん</rt></"
+"ruby>でなければなりません："
+
+#: templates/signup.html:35
+msgid "At least 8 characters in length."
+msgstr "<ruby>少<rt>すく</rt></ruby>なくとも８つ<ruby>文字<rt>もじ</rt></ruby>"
+
+#: templates/signup.html:36
+msgid "At least 1 special character or number."
+msgstr ""
+"<ruby>少<rt>すく</rt></ruby>なくとも１つ<ruby>特殊文字<rt>とくしゅもじ</rt></"
+"ruby>または<ruby>数字<rt>すうじ</rt></ruby>"
 
 #: templates/signup.html:46
-msgid "Re-enter Password"
-msgstr "パスワードを再入力する"
+msgid "Confirm Password"
+msgstr "<ruby>確認<rt>かくにん</rt></ruby>"
 
-#: templates/signup.html:54
+#: templates/signup.html:47
+msgid "Re-enter Password"
+msgstr "再入力"
+
+#: templates/signup.html:55
 msgid "Existing Users: Login"
 msgstr "<ruby>存在<rt>そんざい</rt></ruby>するユーザーのログイン"
 
@@ -530,7 +573,7 @@ msgstr "パスワードが一致いっちしません"
 msgid "Email address is already associated with an account"
 msgstr "メールアドレスはすでにアカウントに関連付けられています"
 
-#: views.py:71
+#: views.py:71 views.py:231
 msgid "Password must be at least 8 characters"
 msgstr ""
 "パスワードは８<ruby>文字<rt>もじ</rt></ruby><ruby>以上<rt>いじょう</rt></"
@@ -558,403 +601,495 @@ msgstr "家族の人数を1から10の間で入力してください"
 msgid "Error on Signup: "
 msgstr "サインアップのエラー: "
 
-#: views.py:329
+#: views.py:238
+#, fuzzy
+#| msgid "Password must have one special character or number"
+msgid "Password must have at least one special character or number"
+msgstr ""
+"パスワードは１つ<ruby>特殊文字<rt>とくしゅもじ</rt></ruby>または<ruby>数字"
+"<rt>すうじ</rt></ruby>でなければなりません"
+
+#: views.py:271
+msgid "Profile updated successfully!"
+msgstr ""
+
+#: views.py:337
 msgid "Both fields are required."
 msgstr ""
 
-#: views.py:366 views.py:379
+#: views.py:374 views.py:387
 msgid "Medium-sized backpack/sturdy tote"
 msgstr "<ruby>中型<rt>ちゅうがた</rt></ruby>のリュックサックまたはトートバッグ"
 
-#: views.py:367 views.py:388
+#: views.py:375 views.py:396
 msgid "Two 1-liter bottles"
 msgstr "２<ruby>本<rt>ほん</rt></ruby>１リットルボトル"
 
-#: views.py:368 views.py:389
+#: views.py:376 views.py:397 views.py:645
 msgid "High-calorie bars/instant food"
-msgstr "<ruby>高<rt>こう</rt></ruby>カロリースナックまたはインスタント<ruby>食品<rt>しょくひん</rt></ruby>"
+msgstr ""
+"<ruby>高<rt>こう</rt></ruby>カロリースナックまたはインスタント<ruby>食品<rt>"
+"しょくひん</rt></ruby>"
 
-#: views.py:369
+#: views.py:377 views.py:389 views.py:398
 msgid "Small first aid kit, masks, hand sanitizer"
 msgstr ""
 "小さい<ruby>救急箱<rt>きゅうきゅうばこ</rt></ruby>やマスクやアルコール<ruby>"
 "消毒液<rt>しょうどくえき</rt></ruby>"
 
-#: views.py:370 views.py:391
+#: views.py:378 views.py:399
 msgid "Rain poncho and towel"
 msgstr "ポンチョやタオル"
 
-#: views.py:371
+#: views.py:379
 msgid "A change of clothes"
 msgstr "<ruby>着替<rt>きが</rt></ruby>え"
 
-#: views.py:372 views.py:393
+#: views.py:380 views.py:401
 msgid "Cash"
 msgstr "<ruby>現金<rt>げんきん</rt></ruby>"
 
-#: views.py:373
+#: views.py:381
 msgid "Plastic bags"
 msgstr "レジ<ruby>袋<rt>ぶくろ</rt></ruby>"
 
-#: views.py:374 views.py:380 views.py:514
+#: views.py:382 views.py:388 views.py:522
 msgid "Photocopies of passport/residence card"
 msgstr "パスポートや<ruby>在留<rt>ざいりゅう</rt></ruby>カードのコピー"
 
-#: views.py:375 views.py:515
+#: views.py:383 views.py:523
 msgid "Portable charger"
 msgstr "モバイルバッテリー"
 
-#: views.py:381 views.py:390
-msgid "Small first aid kit, a few masks, small hand sanitizer"
-msgstr ""
-"小さい<ruby>救急箱<rt>きゅうきゅうばこ</rt></ruby>やマスクやアルコール<ruby>"
-"消毒液<rt>しょうどくえき</rt></ruby>"
-
-#: views.py:382
+#: views.py:390
 msgid "Rain poncho"
 msgstr "ポンチョ"
 
-#: views.py:383 views.py:392
+#: views.py:391 views.py:400
 msgid "Small flashlight + multi-tool + whistle"
 msgstr ""
 "小さい<rt>懐中電灯<かいちゅうでんとう</rt></ruby>やマルチツールナイフやホイッ"
 "スル"
 
-#: views.py:387
+#: views.py:395
 msgid "Waterproof backpack (in case of forced evacuation)"
 msgstr ""
 
-#: views.py:396 views.py:521 views.py:640
+#: views.py:404 views.py:529 views.py:653
 msgid "Liters of water"
 msgstr "リットルの<ruby>水<rt>みず</rt></ruby>"
 
-#: views.py:397 views.py:522 views.py:641
+#: views.py:405 views.py:530 views.py:654
 msgid "calories of non-perishable food"
 msgstr "kcalの<ruby>保存食<rt>ほぞんしょく</rt></ruby>"
 
-#: views.py:398
+#: views.py:406
 msgid "Fill bathtub with water in case of electrical outage"
-msgstr "<ruby>停電<rt>ていでん</rt></ruby>に<ruby>備<rt>そな</rt></ruby>えて<ruby>風呂<rt>ふろ</rt></ruby>に<ruby>水<rt>みず</rt></ruby>を<ruby>注<rt>そそ</rt></ruby>ぐ"
+msgstr ""
+"<ruby>停電<rt>ていでん</rt></ruby>に<ruby>備<rt>そな</rt></ruby>えて<ruby>風"
+"呂<rt>ふろ</rt></ruby>に<ruby>水<rt>みず</rt></ruby>を<ruby>注<rt>そそ</rt></"
+"ruby>ぐ"
 
-#: views.py:401
+#: views.py:409
 msgid "sets of clothes (one for each family member)"
 msgstr ""
 "<ruby>枚<rt>まい</rt></ruby><ruby>着替<rt>きが</rt></ruby>え（<ruby>家族全員"
 "分<rt>かぞくぜんいんぶん</rt></ruby>）"
 
-#: views.py:402
+#: views.py:410
 msgid "Important documents (Passport, Will, ID cards)"
 msgstr ""
 "<ruby>重要書類<rt>じゅうようしょるい</rt></ruby>（パスポート、<ruby>遺言書"
 "<rt>ゆいごんしょ</rt></ruby>、IDカード）"
 
-#: views.py:403 views.py:550
+#: views.py:411 views.py:558
 msgid "A few thousand yen"
 msgstr "<ruby>数千円<rt>すうせんえん</rt></ruby>"
 
-#: views.py:404 views.py:546
+#: views.py:412 views.py:554
 msgid "Emergency contact list"
 msgstr ""
 "<ruby>緊急<rt>きんきゅう</rt></ruby>な<ruby>連絡先<rt>れんらくさき</rt></"
 "ruby>リスト"
 
-#: views.py:405 views.py:548
+#: views.py:413 views.py:556
 msgid "Radio"
 msgstr "ラジオ"
 
-#: views.py:406 views.py:549
+#: views.py:414 views.py:557
 msgid "Flashlights and batteries"
 msgstr ""
 "<ruby>懐中電灯<rt>かいちゅうでんとう</rt></ruby>と<ruby>電池<rt>でんち</rt></"
 "ruby>"
 
-#: views.py:408 views.py:535
+#: views.py:416 views.py:543 views.py:669
 msgid "First aid kit"
 msgstr "<ruby>救急箱<rt>きゅうきゅうばこ</rt></ruby>"
 
-#: views.py:416 views.py:418 views.py:531 views.py:533
+#: views.py:424 views.py:426 views.py:539 views.py:541 views.py:665
+#: views.py:667
 msgid "Medication for "
 msgstr " "
 
-#: views.py:416 views.py:531
+#: views.py:424 views.py:539 views.py:665
 msgid "for 3 days"
 msgstr "の<ruby>薬<rt>くすり</rt></ruby>、３<ruby>日間<rt>にちかん</rt></ruby>"
 
-#: views.py:418 views.py:533
+#: views.py:426 views.py:541 views.py:667
 msgid "units"
 msgstr "<ruby>個<rt>こ</rt></ruby>の<ruby>薬<rt>くすり</rt></ruby>"
 
-#: views.py:421
-msgid "Reinforce windows and doors with storm shutters or plywood"
-msgstr "<ruby>窓<rt>まど</rt></ruby>やドアを<ruby>雨戸<rt>あまど</rt></ruby>や<ruby>合板<rt>ごうはん</rt></ruby>で<ruby>補強<rt>ほきょう</rt></ruby>する"
-
-#: views.py:422
-msgid "Secure outdoor items like garden furniture"
-msgstr "<ruby>家具<rt>かぐ</ruby></rt>などの<ruby>屋外<rt>おくがい</rt></ruby>アイテムを<ruby>安全<rt>あんぜん</rt></ruby>に<ruby>保護<rt>ほご</rt></ruby>する"
-
-#: views.py:423
-msgid "Check and clear gutters and downspouts"
-msgstr "<ruby>側溝<rt>そっこう</rt></ruby>と<ruby>縦樋<rt>たてとい</rt></ruby>を<ruby>点検<rt></rt></ruby>して<ruby>掃除<rt>てんけん</rt></ruby>して<ruby>掃除<rt>そうじ</rt></ruby>する"
-
-#: views.py:424
-msgid "Inspect and reinforce the roof"
-msgstr "<ruby>屋根<rt>やね</rt></ruby>の<ruby>点検<rt>てんけん</rt></ruby>と<ruby>補強<rt>ほきょう</rt></ruby>を<ruby>行<rt>おこな</rt></ruby>う"
-
-#: views.py:425
-msgid "Use sandbags or barriers to prevent flooding"
-msgstr "<ruby>浸水<rt>しんせい</rt></ruby>を<ruby>防<rt>ふせ</rt></ruby>ぐために<ruby>土嚢<rt>どのう</rt></ruby>や<ruby>柵<rt>さく</rt></ruby>を<ruby>使<rt>つか</rt></ruby>う"
-
-#: views.py:426
-msgid "Check the condition of your garage door"
-msgstr "ガレージドアの<ruby>状態<rt>じょうたい</rt></ruby>を<ruby>確認<rt>かくにん</rt></ruby>する"
-
-#: views.py:427
-msgid "Ensure your sump pump is working"
-msgstr "<ruby>排水<rt>はいすい</rt></ruby>ポンプが<ruby>作動<rt>さどう</rt></ruby>していることを<ruby>確認<rt>かくにん</ruby></rt>する"
-
-#: views.py:428 views.py:648
-msgid "Elevate electrical appliances and utilities"
-msgstr "<ruby>電化製品<rt>でんかせいひん</rt></ruby>や<ruby>公共施設<rt>こうきょう</rt></ruby>のレベルを<ruby>上<rt>あ</rt></ruby>げる"
-
 #: views.py:429
-msgid "Seal gaps around doors and windows"
-msgstr "ドアや<ruby>窓<rt>まど</rt></ruby>の<ruby>周<rt>まわ</rt></ruby>りの<ruby>隙間<rt>すきま</rt></ruby>を<ruby>塞<rt>ふさ</rt></ruby>ぐ"
+msgid "Reinforce windows and doors with storm shutters or plywood"
+msgstr ""
+"<ruby>窓<rt>まど</rt></ruby>やドアを<ruby>雨戸<rt>あまど</rt></ruby>や<ruby>"
+"合板<rt>ごうはん</rt></ruby>で<ruby>補強<rt>ほきょう</rt></ruby>する"
 
-#: views.py:434 views.py:555
+#: views.py:430
+msgid "Secure outdoor items like garden furniture"
+msgstr ""
+"<ruby>家具<rt>かぐ</ruby></rt>などの<ruby>屋外<rt>おくがい</rt></ruby>アイテ"
+"ムを<ruby>安全<rt>あんぜん</rt></ruby>に<ruby>保護<rt>ほご</rt></ruby>する"
+
+#: views.py:431
+msgid "Check and clear gutters and downspouts"
+msgstr ""
+"<ruby>側溝<rt>そっこう</rt></ruby>と<ruby>縦樋<rt>たてとい</rt></ruby>を"
+"<ruby>点検<rt></rt></ruby>して<ruby>掃除<rt>てんけん</rt></ruby>して<ruby>掃"
+"除<rt>そうじ</rt></ruby>する"
+
+#: views.py:432
+msgid "Inspect and reinforce the roof"
+msgstr ""
+"<ruby>屋根<rt>やね</rt></ruby>の<ruby>点検<rt>てんけん</rt></ruby>と<ruby>補"
+"強<rt>ほきょう</rt></ruby>を<ruby>行<rt>おこな</rt></ruby>う"
+
+#: views.py:433
+msgid "Use sandbags or barriers to prevent flooding"
+msgstr ""
+"<ruby>浸水<rt>しんせい</rt></ruby>を<ruby>防<rt>ふせ</rt></ruby>ぐために"
+"<ruby>土嚢<rt>どのう</rt></ruby>や<ruby>柵<rt>さく</rt></ruby>を<ruby>使<rt>"
+"つか</rt></ruby>う"
+
+#: views.py:434
+msgid "Check the condition of your garage door"
+msgstr ""
+"ガレージドアの<ruby>状態<rt>じょうたい</rt></ruby>を<ruby>確認<rt>かくにん</"
+"rt></ruby>する"
+
+#: views.py:435
+msgid "Ensure your sump pump is working"
+msgstr ""
+"<ruby>排水<rt>はいすい</rt></ruby>ポンプが<ruby>作動<rt>さどう</rt></ruby>し"
+"ていることを<ruby>確認<rt>かくにん</ruby></rt>する"
+
+#: views.py:436 views.py:673
+msgid "Elevate electrical appliances and utilities"
+msgstr ""
+"<ruby>電化製品<rt>でんかせいひん</rt></ruby>や<ruby>公共施設<rt>こうきょう</"
+"rt></ruby>のレベルを<ruby>上<rt>あ</rt></ruby>げる"
+
+#: views.py:437
+msgid "Seal gaps around doors and windows"
+msgstr ""
+"ドアや<ruby>窓<rt>まど</rt></ruby>の<ruby>周<rt>まわ</rt></ruby>りの<ruby>隙"
+"間<rt>すきま</rt></ruby>を<ruby>塞<rt>ふさ</rt></ruby>ぐ"
+
+#: views.py:442 views.py:563 views.py:690
 msgid "Sanitary napkins/tampons"
 msgstr "<ruby>生理用品<rt>せいりようひん</rt></ruby>"
 
-#: views.py:435 views.py:556
+#: views.py:443 views.py:564 views.py:691
 msgid "Lotion/cleansing sheets"
 msgstr "ローション/クレンジングシート"
 
-#: views.py:439 views.py:560
+#: views.py:447 views.py:568 views.py:696
 msgid "Baby formula/food"
 msgstr "<ruby>人工乳<rt>じんこうにゅう</rt></ruby>、ベビーフード"
 
-#: views.py:440 views.py:561
+#: views.py:448 views.py:569 views.py:697
 msgid "Diapers"
 msgstr "おむつ"
 
-#: views.py:443 views.py:564
+#: views.py:451 views.py:572 views.py:701
 msgid "Books/toys"
 msgstr "<ruby>本<rt>ほん</rt></ruby>やおもちゃ"
 
-#: views.py:448 views.py:569
+#: views.py:456 views.py:577 views.py:706
 msgid "Pet food for 3 days"
 msgstr "ペットフード３<ruby>日分<rt>にちぶん</rt></ruby>"
 
-#: views.py:449 views.py:570
+#: views.py:457 views.py:578 views.py:707
 msgid "Leash"
 msgstr "ペットの<ruby>笛<rt>ふえ</rt></ruby>"
 
-#: views.py:450 views.py:571
+#: views.py:458 views.py:579 views.py:708
 msgid "Pet Sheets"
 msgstr "ペットシーツ"
 
-#: views.py:451 views.py:572
+#: views.py:459 views.py:580 views.py:709
 msgid "Poop bags"
 msgstr "ウンチ<ruby>袋<rt>ふくろ</rt></ruby>"
 
-#: views.py:456 views.py:462 views.py:577 views.py:583
+#: views.py:464 views.py:470 views.py:585 views.py:591 views.py:715
+#: views.py:721
 msgid "Mark emergency supplies with braille or large print"
-msgstr "<ruby>点字<rt>てんじ</rt></ruby>または<ruby>大<rt>おお</rt></ruby>きな<ruby>文字<rt>もじ</rt></ruby>で<ruby>緊急物資<rt>きんきゅうぶっし</rt></ruby>をマークする"
+msgstr ""
+"<ruby>点字<rt>てんじ</rt></ruby>または<ruby>大<rt>おお</rt></ruby>きな<ruby>"
+"文字<rt>もじ</rt></ruby>で<ruby>緊急物資<rt>きんきゅうぶっし</rt></ruby>を"
+"マークする"
 
-#: views.py:457 views.py:463 views.py:578 views.py:584
+#: views.py:465 views.py:471 views.py:586 views.py:592 views.py:716
+#: views.py:722
 msgid "Extra eyeglasses or contacts"
 msgstr "<ruby>予備<rt>よび</rt></ruby>のメガネまたはコンタクト"
 
-#: views.py:469 views.py:477 views.py:590 views.py:598
+#: views.py:477 views.py:485 views.py:598 views.py:606 views.py:728
+#: views.py:736
 msgid "Weather radio with text display and a flashing alert"
-msgstr "テキスト<ruby>表示<rt>ひょうじ</rt></ruby>と<ruby>点滅<rt>てんめつ</rt></ruby>アラート<ruby>付<rt>つ</rt></ruby>きの<ruby>天気<rt>てんき</rt></ruby>ラジオ"
+msgstr ""
+"テキスト<ruby>表示<rt>ひょうじ</rt></ruby>と<ruby>点滅<rt>てんめつ</rt></"
+"ruby>アラート<ruby>付<rt>つ</rt></ruby>きの<ruby>天気<rt>てんき</rt></ruby>ラ"
+"ジオ"
 
-#: views.py:470 views.py:478 views.py:591 views.py:599
+#: views.py:478 views.py:486 views.py:599 views.py:607 views.py:729
+#: views.py:737
 msgid "Extra hearing-aid batteries"
-msgstr "<ruby>補聴器用<rt>ほちょうきよう</rt></ruby>の<ruby>予備電池<rt>よびでんち</rt></ruby>"
+msgstr ""
+"<ruby>補聴器用<rt>ほちょうきよう</rt></ruby>の<ruby>予備電池<rt>よびでんち</"
+"rt></ruby>"
 
-#: views.py:471 views.py:479 views.py:592 views.py:600
+#: views.py:479 views.py:487 views.py:600 views.py:608 views.py:730
+#: views.py:738
 msgid "Pen and paper for communication"
-msgstr "<ruby>伝<rt>つた</rt></ruby>えるためのペンと<ruby>紙<rt>かみ</rt></ruby>"
+msgstr ""
+"<ruby>伝<rt>つた</rt></ruby>えるためのペンと<ruby>紙<rt>かみ</rt></ruby>"
 
-#: views.py:472 views.py:480 views.py:593 views.py:601
+#: views.py:480 views.py:488 views.py:601 views.py:609 views.py:731
+#: views.py:739
 msgid "Battery lantern for communication by sign language"
 msgstr "<ruby>手話用電池<rt>しゅわようでんち</rt></ruby>ランタン"
 
-#: views.py:486 views.py:493 views.py:607 views.py:614
+#: views.py:494 views.py:501 views.py:615 views.py:622 views.py:745
+#: views.py:753
 msgid "Backup lightweight manual wheelchair"
-msgstr "<ruby>予備<rt>よび</rt></ruby>の<ruby>軽量手動車椅子<rt>けいりょうしゅどうくるまいす</rt></ruby>"
+msgstr ""
+"<ruby>予備<rt>よび</rt></ruby>の<ruby>軽量手動車椅子<rt>けいりょうしゅどうく"
+"るまいす</rt></ruby>"
 
-#: views.py:487 views.py:494 views.py:608 views.py:615
+#: views.py:495 views.py:502 views.py:616 views.py:623 views.py:746
+#: views.py:754
 msgid "Patch kit or can of sealant for flat tires"
 msgstr "パンク<ruby>用<rt>よう</rt></ruby>のパッチキットまたはシーラント"
 
-#: views.py:488 views.py:495 views.py:609 views.py:616
+#: views.py:496 views.py:503 views.py:617 views.py:624 views.py:747
+#: views.py:755
 msgid "Cane or walker"
 msgstr "<ruby>杖<rt>つえ</rt></ruby>または<ruby>歩行器<rt>ほこうき</rt></ruby>"
 
-#: views.py:508
+#: views.py:516
 msgid "Medium-sized backpack or sturdy tote"
 msgstr "<ruby>中型<rt>ちゅうがた</rt></ruby>のリュックサックまたはトートバッグ"
 
-#: views.py:509 views.py:630
+#: views.py:517 views.py:642
 msgid "Flashlight with extra batteries"
 msgstr ""
-"<ruby>懐中電灯<rt>かいちゅうでんとう</rt></ruby>と<ruby>予備電池<rt>よびでんち</rt></"
-"ruby>"
+"<ruby>懐中電灯<rt>かいちゅうでんとう</rt></ruby>と<ruby>予備電池<rt>よびでん"
+"ち</rt></ruby>"
 
-#: views.py:510
+#: views.py:518 views.py:644
 msgid "Two liters of water"
 msgstr "２リットルの<ruby>水<rt>みず</rt></ruby>"
 
-#: views.py:511
+#: views.py:519
 msgid "Work gloves"
 msgstr ""
 
-#: views.py:512
+#: views.py:520
 msgid "Change of clothes"
 msgstr ""
 
-#: views.py:513
+#: views.py:521
 msgid "Heavy coat and pants"
 msgstr ""
 
-#: views.py:516
+#: views.py:524
 msgid "Battery-operated radio"
 msgstr ""
 
-#: views.py:517 views.py:642
+#: views.py:525
 msgid "Basic first aid kit"
 msgstr ""
 "<ruby>基本的<rt>きほんてき</rt></ruby>な<ruby>救急箱<rt>きゅうきゅうばこ</"
 "rt></ruby>"
 
-#: views.py:518
+#: views.py:526
 msgid "Multi-tool or Swiss army knife"
 msgstr ""
 
-#: views.py:538
+#: views.py:546
 msgid "Secure heavy furniture to walls"
 msgstr ""
 "<ruby>重<rt>おも</rt></ruby>い<ruby>家具<rt>かぐ</rt></ruby>を<ruby>壁<rt>か"
 "ど</rt></ruby>に<ruby>固定<rt>こてい</rt></ruby>する"
 
-#: views.py:539
+#: views.py:547
 msgid "Apply shatter-proof film to glass items"
 msgstr ""
 
-#: views.py:540
+#: views.py:548
 msgid "Check and reinforce gas lines and water pipes"
 msgstr ""
 
-#: views.py:541
+#: views.py:549
 msgid "Know how to turn off utilities (gas, water, electricity)"
 msgstr ""
 
-#: views.py:542
+#: views.py:550
 msgid ""
 "Identify the safest place in your house (e.g., under a sturdy table or "
 "against an interior wall)"
 msgstr ""
 
-#: views.py:543
+#: views.py:551
 msgid "Prepare for potential aftershocks"
 msgstr ""
 
-#: views.py:547
+#: views.py:555
 msgid "Important documents (ID, insurance papers)"
 msgstr ""
-"<ruby>重要書類<rt>じゅうようしょるい</rt></ruby>（<ruby>身分証明書<rt>みぶんしょうめいしょ</rt></ruby>、<ruby>保険証"
-"<rt>ほけんしょう</rt></ruby>）"
+"<ruby>重要書類<rt>じゅうようしょるい</rt></ruby>（<ruby>身分証明書<rt>みぶん"
+"しょうめいしょ</rt></ruby>、<ruby>保険証<rt>ほけんしょう</rt></ruby>）"
 
-#: views.py:629
+#: views.py:638
 msgid "Waterproof backpack or sturdy tote"
 msgstr "<ruby>防水<rt>ぼうすい</rt></ruby>リュックサックまたはトートバッグ"
 
-#: views.py:631
-msgid "Battery-operated or hand-crank radio"
+#: views.py:639
+msgid "Helmet"
 msgstr ""
 
-#: views.py:632
-msgid "Two liters of water per person per day"
+#: views.py:640
+msgid "Map"
 msgstr ""
 
-#: views.py:633
-msgid "High-calorie, non-perishable food for at least 3 days"
-msgstr "<ruby>少<rt>すく</rt></ruby>なくとも<ruby>３<ruby>日分<rt>にちぶん</rt></ruby>の高<rt>こう</rt></ruby>カロリー<ruby>保存食<rt>ほぞんしょく</rt></ruby>"
-
-#: views.py:634
-msgid "Waterproof clothing and boots"
-msgstr ""
-
-#: views.py:635
-msgid "Personal hygiene items"
-msgstr ""
-
-#: views.py:636 views.py:659
-msgid "Important documents in waterproof bags"
-msgstr ""
-"<ruby>防水<rt>ぼうすい</rt></ruby><ruby>重要書類用<rt>じゅうようしょるい</rt></ruby>バッグ"
-
-#: views.py:637
-msgid "Portable phone charger"
+#: views.py:641
+msgid "Umbrella or cane"
 msgstr ""
 
 #: views.py:643
-msgid "Water purification tablets or filters"
+msgid "Battery-operated or hand-crank radio"
 msgstr ""
 
-#: views.py:644
-msgid "Blankets or sleeping bags"
+#: views.py:646
+msgid "Rain jacket and long sleeve shirt"
 msgstr ""
 
 #: views.py:647
+msgid "Pants and sneakers"
+msgstr ""
+
+#: views.py:648
+msgid "Personal hygiene items"
+msgstr ""
+
+#: views.py:649 views.py:685
+msgid "Important documents in waterproof bags"
+msgstr ""
+"<ruby>防水<rt>ぼうすい</rt></ruby><ruby>重要書類用<rt>じゅうようしょるい</"
+"rt></ruby>バッグ"
+
+#: views.py:650
+msgid "Portable phone charger"
+msgstr ""
+
+#: views.py:655
+msgid "Water purification tablets or filters"
+msgstr ""
+
+#: views.py:656
+msgid "Blankets or sleeping bags"
+msgstr ""
+
+#: views.py:672
 msgid "Move valuables to higher ground"
 msgstr ""
 "<ruby>貴重品<rt>きちょうひん</rt></ruby>を<ruby>高<rt>たか</rt></ruby>い"
 "<ruby>場所<rt><ばしょ</rt></ruby>に<ruby>置<rt>お</rt></ruby>く"
 
-#: views.py:649
+#: views.py:674
 msgid "Install flood alarms or water sensors if possible"
 msgstr ""
 
-#: views.py:650
+#: views.py:675
 msgid "Check and maintain sump pumps and drainage systems"
 msgstr ""
 
-#: views.py:653
+#: views.py:678
 msgid "Pet food and water for at least 3 days"
 msgstr ""
-"<ruby>少<rt>すく</rt></ruby>なくとも3<ruby>日分<rt>にちぶん</rt</ruby>の"
-"ぺっとフード"
+"<ruby>少<rt>すく</rt></ruby>なくとも3<ruby>日分<rt>にちぶん</rt</ruby>のぺっ"
+"とフード"
 
-#: views.py:654
+#: views.py:679
 msgid "Leash, carrier, and identification for pets"
 msgstr ""
 
-#: views.py:657
+#: views.py:682
 msgid "Family communication plan and meeting points"
 msgstr ""
 
-#: views.py:658
+#: views.py:683
+#, fuzzy
+#| msgid "Family Information"
+msgid "Family photos"
+msgstr "<ruby>家族<rt>かぞく</rt></ruby>の<ruby>情報<rt>じょうほう</rt></ruby>"
+
+#: views.py:684
 msgid "Emergency contact information"
 msgstr ""
 "<ruby>緊急<rt>きんきゅう</rt></ruby>な<ruby>連絡先<rt>れんらくさき</rt></"
 "ruby>の<ruby>情報<rt>じょうほう</rt></ruby>"
 
-#: views.py:664
+#: views.py:760
 msgid "Select a valid disaster type"
 msgstr ""
 "<ruby>有効<rt>ゆうこう</rt></ruby>な<ruby>災害<rt>さいがい</rt></ruby>タイプ"
 "を<ruby>選択<rt>せんたく</rt></ruby>してください"
 
-#: views.py:822
+#: views.py:920
 msgid "Image not found"
 msgstr ""
 "<ruby>画像<rt>がぞう</rt></ruby>が<ruby>見<rt>み</rt></ruby>つかりません"
 
-#: views.py:828
+#: views.py:926 views.py:933
 msgid "No user logged in"
 msgstr "ログインしているユーザーはいません"
+
+#~ msgid "Family Size"
+#~ msgstr ""
+#~ "<ruby>家族<rt>かぞく</rt></ruby>の<ruby>人数<rt>にんずう</rt></ruby>"
+
+#~ msgid "Physical Disabilities"
+#~ msgstr "<ruby>身体障害<rt>しんたいしょうがい</rt></ruby>"
+
+#~ msgid "User Profile"
+#~ msgstr "ユーザープロフィール"
+
+#, python-format
+#~ msgid "Successful Login: %(email)s"
+#~ msgstr "<ruby>正常<rt>せいじよう</rt></ruby>にログイン：%(email)s"
+
+#~ msgid "Small first aid kit, a few masks, small hand sanitizer"
+#~ msgstr ""
+#~ "小さい<ruby>救急箱<rt>きゅうきゅうばこ</rt></ruby>やマスクやアルコール"
+#~ "<ruby>消毒液<rt>しょうどくえき</rt></ruby>"
+
+#~ msgid "High-calorie, non-perishable food for at least 3 days"
+#~ msgstr ""
+#~ "<ruby>少<rt>すく</rt></ruby>なくとも<ruby>３<ruby>日分<rt>にちぶん</rt></"
+#~ "ruby>の高<rt>こう</rt></ruby>カロリー<ruby>保存食<rt>ほぞんしょく</rt></"
+#~ "ruby>"
 
 #~ msgid "Create a family emergency plan"
 #~ msgstr ""
