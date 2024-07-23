@@ -305,7 +305,7 @@ def delete_medical(request):
             'wheelchair': user.wheelchair_bool,
         })
 
-        messages.success(request, 'Medical information deleted successfully')
+        messages.success(request, _('Medical information deleted successfully'))
         return render(request, 'profile.html', context)
 
 

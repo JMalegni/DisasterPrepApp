@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-23 14:12-0400\n"
+"POT-Creation-Date: 2024-07-23 14:26-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -616,8 +616,11 @@ msgstr ""
 
 #: views.py:271
 msgid "Profile updated successfully!"
-msgstr ""
-"プロフィールが正常に更新されました。"
+msgstr "プロフィールが正常に更新されました。"
+
+#: views.py:308
+msgid "Medical information deleted successfully"
+msgstr "医療情報は正常に削除されました"
 
 #: views.py:337
 msgid "Both fields are required."
@@ -1029,8 +1032,8 @@ msgstr "<ruby>他<rt>ほか</rt></ruby>"
 #: views.py:631
 msgid "Select a valid disaster type"
 msgstr ""
-"<ruby>有効<rt>ゆうこう</rt></ruby>な<ruby>災害<rt>さいがい</rt></ruby>カテゴリー"
-"を<ruby>選<rt>えら</rt></ruby>んでください"
+"<ruby>有効<rt>ゆうこう</rt></ruby>な<ruby>災害<rt>さいがい</rt></ruby>カテゴ"
+"リーを<ruby>選<rt>えら</rt></ruby>んでください"
 
 #: views.py:791
 msgid "Image not found"
