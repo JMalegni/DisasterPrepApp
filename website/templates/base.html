@@ -61,6 +61,12 @@
         </div>
     </nav>
     <div class="container-fluid">
+        {% if messages %}
+        <div class="messages">
+            </div>
+        </div>
+        {% endif %}
+
         {% block content %}{% endblock %}
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

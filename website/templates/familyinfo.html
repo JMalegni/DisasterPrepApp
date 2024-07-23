@@ -4,7 +4,9 @@
 {% block title %}{% trans "S.E.E.L.E - Information Form" %}{% endblock %}
 {% block content %}
 <div class="container" style="margin-top: 20px">
+    <div class="col-md-4"></div>
     <div class="row">
+        <div class="col-md-4"></div>
         <div class="col-md-4">
             {% if msg %}
             <div class="alert alert-{{tag}}">{{ msg }}</div>
@@ -17,12 +19,12 @@
                     <form id="family-info-form" action="{% url 'familyinfo' %}" method="POST">
                         {% csrf_token %}
                         <div class="form-group">
-                            <label>{% trans "Location" %}</label>
+                            <label><b>{% trans "Location" %}</b></label>
                             <input type="text" placeholder="{% trans "Location " %}" class="form-control" name="location" id="location" required readonly>
                         </div>
                         <button type="button" class="btn btn-primary" id="fetch-location-btn">{% trans "Fetch Location" %}</button>
                         <div class="form-group" style="margin-top: 20px">
-                            <label>{% trans "Family Size" %}</label>
+                            <label class="profile-info-label">{% trans "Family Household" %}</label>
                             <input type="text" placeholder="{% trans "Number of Family Members" %}" class="form-control" name="family_size" required>
                         </div>
                         {{ form.as_p }}
@@ -42,7 +44,7 @@
                             <input type="checkbox" class="form-check-input" id="id_pet_bool" name="pet_bool">
                             <label class="form-check-label" for="id_pet_bool">{% trans "There are pets in my family." %}</label>
                         </div>
-                        <label>{% trans "Physical Disabilities" %}</label>
+                        <label class="profile-info-label">{% trans "Applicable disabilities/conditions" %}</label>
                         <div class="form-group form-check">
                             <input type="checkbox" class="form-check-input" id="id_blind_bool" name="blind_bool">
                             <label class="form-check-label" for="id_blind_bool">{% trans "Blind or poor vision" %}</label>
@@ -56,11 +58,11 @@
                             <label class="form-check-label" for="id_wheelchair_bool">{% trans "Mobility impairment" %}</label>
                         </div>
                         <div class="form-group">
-                            <label>{% trans "Medical Issues (optional):" %}</label>
+                            <label><b>{% trans "Medical Issues (optional):" %}</b></label>
                             <input type="text" placeholder="{% trans "Enter medical condition" %}" class="form-control" name="medical_issues">
                         </div>
                         <div class="form-group">
-                            <label>{% trans "Medication Amount (optional):" %}</label>
+                            <label><b>{% trans "Medication Amount (optional):" %}</b></label>
                             <input type="number" class="form-control" name="medication_amount" placeholder="{% trans "Amount of medication needed per day" %}">
                         </div>
 
@@ -72,8 +74,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-8">
-        </div>
+        <div class="col-md-4"></div>
     </div>
 </div>
 
