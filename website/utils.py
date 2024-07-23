@@ -2,7 +2,7 @@ import os
 import re
 from PIL import Image, ImageDraw, ImageFont
 from django.conf import settings
-from django.utils.translation import gettext as trans, get_language
+from django.utils.translation import gettext as _, get_language
 from datetime import datetime
 import re
 from concurrent.futures import ThreadPoolExecutor
@@ -32,7 +32,7 @@ def bullet_spacing(draw, fonts, list, x, y, scale, bigList=False):
     for item, bullet_point in list:
         if bullet_point:
             draw_text(draw, "\u2022", bullet_font, x, y)
-            draw_text(draw, trans(item), text_font, x + int(40 * scale), y + int(27 * scale))
+            draw_text(draw, _(item), text_font, x + int(40 * scale), y + int(27 * scale))
 
             if not bigList:
                 y += int(46 * scale)
@@ -40,7 +40,7 @@ def bullet_spacing(draw, fonts, list, x, y, scale, bigList=False):
             else:
                 y += int(42 * scale)
         else:
-            draw_text(draw, trans(item), text_font, x + int(40 * scale), y + int(6 * scale))
+            draw_text(draw, _(item), text_font, x + int(40 * scale), y + int(6 * scale))
 
             if not bigList:
                 y += int(22 * scale)
@@ -338,15 +338,16 @@ def checklist_image(checklist, disaster_type, user):
             file.write(f"{item}\n")
 
     if disaster_type == "Earthquake":
-        tasks.append((draw_text, (draw, trans(f"Your checklist for {disaster_type}s"), fonts['title'], 190 * scale, 35 * scale)))
+        tasks.append((draw_text, (draw, _(f"Your checklist for {disaster_type}s"), fonts['title'], 190 * scale, 35 * scale)))
+    
     else:
-        tasks.append((draw_text, (draw, trans(f"Your checklist for {disaster_type}s"), fonts['title'], 260 * scale, 50 * scale)))
+        tasks.append((draw_text, (draw, _(f"Your checklist for {disaster_type}s"), fonts['title'], 260 * scale, 50 * scale)))
 
     tasks.append((draw_text, (draw, f"created by S.E.E.L.E on {datetime.now().date()}", fonts['info'], 400 * scale, 140 * scale)))
     tasks.append((draw_text, (draw, "Items to prepare", fonts['header'], 900 * scale, 220 * scale)))
 
     y = 310 * scale
-    for i, item in enumerate(checklist["Go Bag"]):
+    for i, item in enumerate(checklist[_("Go Bag")]):
         x = 750 * scale
         if get_language().startswith("jp"):
             sentence_furi = parse_furigana(item)
