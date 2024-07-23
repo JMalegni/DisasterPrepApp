@@ -4,8 +4,8 @@ from PIL import Image, ImageDraw, ImageFont
 from django.conf import settings
 from django.utils.translation import gettext as _, get_language
 from datetime import datetime
-import re
 from concurrent.futures import ThreadPoolExecutor
+from gtts import gTTS
 
 def parse_furigana(text: str) -> tuple[str, list[tuple[str, str]]]:
     ruby_pattern = re.compile(r'<ruby>(.*?)<rt>(.*?)</rt></ruby>')
@@ -374,3 +374,11 @@ def checklist_image(checklist, disaster_type, user):
     background.save(image_path)
 
     return image_filename
+
+def tts_execute(disaster_type):
+    FLIST = open(f"{disaster_type.lower()}_tts.txt", "r").read().replace("\n", " ")
+    #print("please wait...processing")
+    TTS = gTTS(text=str(FLIST), lang='en-us')
+
+    file_path = os.path.join(settings.STATIC_ROOT, 'voice.mp3')
+    TTS.save(file_path)
