@@ -309,10 +309,10 @@ def earthquake_checklist(draw, fonts, scale):
 
 def checklist_image(checklist, disaster_type, user):
     if disaster_type == "Typhoon":
-        background_path = os.path.join(settings.STATIC_ROOT, 'images', 'typhoon_template.png')
+        background_path = os.path.join(settings.STATIC_ROOT, 'images', 'template-typhoon.png')
         background = Image.open(background_path).convert('RGB')
     elif disaster_type == "Earthquake":
-        background_path = os.path.join(settings.STATIC_ROOT, 'images', 'earthquake_template.png')
+        background_path = os.path.join(settings.STATIC_ROOT, 'images', 'template-earthquake.png')
         background = Image.open(background_path).convert('RGB')
 
     scale = 1
@@ -355,10 +355,16 @@ def checklist_image(checklist, disaster_type, user):
         big_header = f"{user.name}様への地震ポスター" if get_language().startswith("jp") else "Your Poster for Earthquakes"
         title_offset = 190 if not get_language().startswith("jp") else 230
         tasks.append((draw_text, (draw, big_header, fonts['title'], title_offset * scale, 35 * scale)))
+        coords = [955, 785, 985, 825] if not get_language().startswith("jp") else [910, 805, 0, 0]
+        tasks.append((draw_text, (draw, gettext("Let's stay prepared"), fonts['text2'], coords[0] * scale, coords[1] * scale)))
+        tasks.append((draw_text, (draw, gettext("together ^_^ !"), fonts['text2'], coords[2] * scale, coords[3] * scale)))
     
     else:
         big_header = f"{user.name}様への台風ポスター" if get_language().startswith("jp") else "Your Poster for Typhoons"
         tasks.append((draw_text, (draw, big_header, fonts['title'], 320 * scale, 50 * scale)))
+        coords = [935, 750, 965, 790] if not get_language().startswith("jp") else [890, 770, 0, 0]
+        tasks.append((draw_text, (draw, gettext("Let's stay prepared"), fonts['text2'], coords[0] * scale, coords[1] * scale)))
+        tasks.append((draw_text, (draw, gettext("together ^_^ !"), fonts['text2'], coords[2] * scale, coords[3] * scale)))
 
     date_offset = 400 if not get_language().startswith("jp") else 290
     if disaster_type == "Earthquake":

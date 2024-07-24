@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-24 05:49-0400\n"
+"POT-Creation-Date: 2024-07-24 07:50-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -89,7 +89,11 @@ msgstr "<ruby>防災非常袋<rt>ぼうさいひじょうぶくろ</rt></ruby>�
 msgid ""
 "Prepare a go bag for each family member in case you must evacuate in the "
 "event of a disaster."
-msgstr "<ruby>災害<rt>さいがい</rt></ruby>の<ruby>時<rt>とき</ruby></rt>の<ruby>避難<rt>ひなん</rt></ruby>に<ruby>備<rt>そな</rt></ruby>えて、<ruby>家族<rt>かぞく</rt></ruby>それぞれゴーバッグを<ruby>作<rt>つく</rt></ruby>ったらいいですわ。"
+msgstr ""
+"<ruby>災害<rt>さいがい</rt></ruby>の<ruby>時<rt>とき</ruby></rt>の<ruby>避難"
+"<rt>ひなん</rt></ruby>に<ruby>備<rt>そな</rt></ruby>えて、<ruby>家族<rt>かぞ"
+"く</rt></ruby>それぞれゴーバッグを<ruby>作<rt>つく</rt></ruby>ったらいいです"
+"わ。"
 
 #: templates/disasterchecklist.html:44
 msgid "No items available"
@@ -98,7 +102,10 @@ msgstr "アイテムはありません"
 #: templates/disasterchecklist.html:53
 #, python-format
 msgid "Check out all the checklist items bro! 100%% preparedness only!!"
-msgstr "すべてチェックリストのアイテムを<ruby>絶対<rt>ぜったい</rt></ruby>にチェックしてよ！<ruby>準備<rt>じゅんび</ruby></rt>が１００パーセント<ruby>以下<rt>いか</rt></ruby>はいやだからなあ！！"
+msgstr ""
+"すべてチェックリストのアイテムを<ruby>絶対<rt>ぜったい</rt></ruby>にチェック"
+"してよ！<ruby>準備<rt>じゅんび</ruby></rt>が１００パーセント<ruby>以下<rt>い"
+"か</rt></ruby>はいやだからなあ！！"
 
 #: templates/disasterchecklist.html:66
 msgid "Generate Poster"
@@ -919,17 +926,25 @@ msgstr "安全ガイドライン"
 msgid "Items to prepare:,\n"
 msgstr "備えるためのこと：,\n"
 
-#: utils.py:348 utils.py:351 utils.py:373 utils.py:378 views.py:429
+#: utils.py:348 utils.py:351 utils.py:377 utils.py:382 views.py:429
 #: views.py:437 views.py:450 views.py:458 views.py:575 views.py:582
 msgid "Go Bag"
 msgstr "ゴーバッグ"
 
-#: utils.py:367
+#: utils.py:358 utils.py:364
+msgid "Let's stay prepared"
+msgstr "一緒に準備しましょうね ^_^ !"
+
+#: utils.py:359 utils.py:365
+msgid "together ^_^ !"
+msgstr " "
+
+#: utils.py:371
 #, python-format
 msgid "Created by S.E.E.L.E on %(date)s"
 msgstr "%(date)sにS.E.E.L.Eによって作成されました"
 
-#: utils.py:368
+#: utils.py:372
 msgid "Items to prepare"
 msgstr "備えるためのこと"
 
