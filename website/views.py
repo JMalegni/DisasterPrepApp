@@ -276,10 +276,17 @@ def profile(request):
             user.password = make_password(password)
 
         # Coordinate Validation
-        if float(latitude) > 90.0 or float(latitude) < -90.0 or float(longitude) >= 180.0 or float(longitude) < -180.0:
+        try:
+            if float(latitude) > 90.0 or float(latitude) < -90.0 or float(longitude) >= 180.0 or float(
+                    longitude) < -180.0:
+                if not error:
+                    messages.error(request, _('Please enter valid coordinates'), extra_tags='danger')
+                    error = True
+        except:
             if not error:
                 messages.error(request, _('Please enter valid coordinates'), extra_tags='danger')
                 error = True
+
         else:
             user.latitude = latitude
             user.longitude = longitude
