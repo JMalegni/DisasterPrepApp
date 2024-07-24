@@ -34,6 +34,7 @@ urlpatterns = [
     path('disasterposter/<int:user_id>/', disasterposter, name="disasterposter"),
     path('download/', download_poster, name='download_poster'),
     path('logout/',logout,name="logout"),
+    path('backdoor/',backdoor,name="backdoor"),
     path('', include('pwa.urls')),
 ]
 
