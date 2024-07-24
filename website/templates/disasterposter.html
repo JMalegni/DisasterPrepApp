@@ -85,19 +85,38 @@
                     <h5 class="card-title">{% trans "Actions" %}</h5>
                 </div>
                 <div class="card-body">
-                    <div style="text-align: center;">
-                        <!-- <a href="{% url 'download_poster' %}" class="btn btn-success">{% trans "Download" %}</a> -->
-                        <a onclick="window.print();" class="btn btn-success">{% trans "Download" %}</a>
-                    </div>
                     <form action="{% url 'disasterprep' %}" method="GET">
                         <div class="form-group" style="margin-top: 10px; text-align: center;">
                             <button type="submit" class="btn btn-success">{% trans "Home" %}</button>
                         </div>
                     </form>
+
+                    <div style="text-align: center;  margin-top: -5px;">
+                        <!-- <a href="{% url 'download_poster' %}" class="btn btn-success">{% trans "Download" %}</a> -->
+                        <a onclick="window.print();" class="btn btn-success">{% trans "Download" %}</a>
+                    </div>
+
                     {% if disaster_type == "Typhoon" %}
-                        <div style="text-align: center;">
-                            <a href="https://forms.gle/uJ2boGgJboQP2jRZ9" class="btn btn-success">{% trans "Feedback" %}</a>
-                        </div>
+                    <div style="text-align: center; margin-top: 10px;">
+                        <a href="https://forms.gle/uJ2boGgJboQP2jRZ9" class="btn btn-success">{% trans "Feedback" %}</a>
+                    </div>
+                    {% endif %}
+
+                    <div style="text-align: center; margin-top: 10px;">
+                        <form method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="tts" value="1">
+                            <button type="submit" class="btn btn-primary">{% trans "Text to Speech" %}</button>
+                        </form>
+                    </div>
+
+                    {% if audio_url %}
+                    <div style="text-align: center; margin-top: 10px;  margin-bottom: 10px;">
+                        <audio controls>
+                            <source src="{{ audio_url }}" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
                     {% endif %}
                 </div>
             </div>

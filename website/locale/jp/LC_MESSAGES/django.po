@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-24 03:08-0400\n"
+"POT-Creation-Date: 2024-07-24 03:57-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,7 +21,7 @@ msgid "S.E.E.L.E Home"
 msgstr "S.E.E.L.Eホーム"
 
 #: templates/base.html:28 templates/base.html:42
-#: templates/disasterposter.html:94
+#: templates/disasterposter.html:90
 msgid "Home"
 msgstr "ホーム"
 
@@ -113,13 +113,17 @@ msgstr "サンプル<ruby>画像<rt>がぞう</rt></ruby>"
 msgid "Actions"
 msgstr "アクション"
 
-#: templates/disasterposter.html:89 templates/disasterposter.html:90
+#: templates/disasterposter.html:95 templates/disasterposter.html:96
 msgid "Download"
 msgstr "ダウンロード"
 
-#: templates/disasterposter.html:99
+#: templates/disasterposter.html:101
 msgid "Feedback"
 msgstr "フィードバック"
+
+#: templates/disasterposter.html:109
+msgid "Text to Speech"
+msgstr "<ruby>音声合成<rt>おんせいごうせい</rt></ruby>"
 
 #: templates/disasterprep.html:4
 msgid "S.E.E.L.E - Preparation"
@@ -132,7 +136,7 @@ msgstr ""
 "ruby>のためのものですか："
 
 #: templates/disasterprep.html:23 templates/disasterprep.html:31
-#: templates/profile.html:61 views.py:336
+#: templates/profile.html:61 views.py:337
 msgid "(None)"
 msgstr "（なし）"
 
@@ -401,7 +405,7 @@ msgstr "S.E.E.L.E - プロフィル"
 #: templates/profile.html:10
 #, python-format
 msgid "Welcome %(name)s!"
-msgstr "ようこそ、 %(name)s！"
+msgstr "ようこそ、 %(name)s様！"
 
 #: templates/profile.html:11
 msgid "Delete Account"
@@ -552,219 +556,222 @@ msgstr "再入力"
 msgid "Existing Users: Login"
 msgstr "<ruby>存在<rt>そんざい</rt></ruby>するユーザーのログイン"
 
-#: utils.py:59
-#, fuzzy
-#| msgid "Typhoon and Safety Checklist:"
-msgid "Typhoon and Safety Checklist:\n"
-msgstr "台風と安全チェックリスト："
-
-#: utils.py:62
+#: utils.py:60
 msgid "Typhoons come with"
 msgstr "台風には雨と洪水と"
 
-#: utils.py:63
+#: utils.py:61
 msgid "rains, floods, landslides"
 msgstr "土砂崩れが伴いますわ！"
 
-#: utils.py:66
+#: utils.py:64
 msgid "Check a hazard map"
 msgstr "ハザードマップを見る"
 
-#: utils.py:67
+#: utils.py:65
 msgid "Find evacuation centers"
 msgstr "避難所を見つける"
 
-#: utils.py:68
+#: utils.py:66
 msgid "Check items on checklist"
 msgstr "チェックリストを見て確認する"
 
-#: utils.py:69
+#: utils.py:67
 msgid "Beware of falling things in your"
 msgstr "家の中の落ちる物に注意する"
 
-#: utils.py:70
+#: utils.py:68
 msgid "house"
 msgstr " "
 
-#: utils.py:74
+#: utils.py:72
 msgid "Decide on evacuation center"
 msgstr "避難所を決める"
 
-#: utils.py:75
+#: utils.py:73
 msgid "Recheck emergency bags"
 msgstr "非常持出袋を調べ直す"
 
-#: utils.py:76
+#: utils.py:74
 msgid "Prepare for power outage"
 msgstr "停電に備える"
 
-#: utils.py:81
+#: utils.py:79
 msgid "Elderly, people with disabilities, and"
 msgstr "お年寄りと障碍者と子供連れの家族"
 
-#: utils.py:82
+#: utils.py:80
 msgid "families with children must evacuate"
 msgstr "が避難しなければなりません"
 
-#: utils.py:87
+#: utils.py:85
 msgid "Elderly & people with disabilities"
 msgstr "お年寄りと障碍者が避難"
 
-#: utils.py:88
+#: utils.py:86
 msgid "must evacuate"
 msgstr "しなければなりません"
 
-#: utils.py:92
+#: utils.py:90
 msgid "Go to an evacuation center"
 msgstr "すぐ避難所に行く"
 
-#: utils.py:93
+#: utils.py:91
 msgid "immediately"
 msgstr " "
 
-#: utils.py:97
+#: utils.py:95
 msgid "Save your life!"
 msgstr ""
 "上記のことをして、\n"
 "自分を助けましょう！"
 
-#: utils.py:102
+#: utils.py:100
 msgid "Check your house before leaving (window, breaker,"
 msgstr "出かける前に家の安全を点検する（窓、ブレーカ、ガス栓）"
 
-#: utils.py:103
+#: utils.py:101
 msgid "gas valve)"
 msgstr " "
 
-#: utils.py:104
+#: utils.py:102
 msgid "Check yourself and your belongings"
 msgstr "持ち物を確認する"
 
-#: utils.py:105
+#: utils.py:103
 msgid "Follow the route avoiding dangerous areas"
 msgstr "危険な場所を避けて道順をたどってください"
 
-#: utils.py:106
+#: utils.py:104
 msgid "While evacuating, watch out for flooding"
 msgstr "避難しながら洪水に注意する"
 
-#: utils.py:107 utils.py:118
+#: utils.py:105 utils.py:116
 msgid "If you can't evacuate safely, stay inside and go to"
 msgstr "安全に避難できない場合は、屋内に"
 
-#: utils.py:108 utils.py:119
+#: utils.py:106 utils.py:117
 msgid "the highest floor"
 msgstr "留まり最上階へ避難する"
 
-#: utils.py:113
+#: utils.py:111
 msgid "Close all windows in your house and make sure"
 msgstr "家の窓をすべて閉めて、外にあるものを"
 
-#: utils.py:114
+#: utils.py:112
 msgid "anything outside is moved indoors"
 msgstr "すべて屋内に移動する"
 
-#: utils.py:115
+#: utils.py:113
 msgid "Be aware of strong winds as they will make things fly"
 msgstr "強風で物が飛んだら注意する"
 
-#: utils.py:116
+#: utils.py:114
 msgid "Avoid places with high water levels (50 cm or higher)"
 msgstr "水位の高い場所（50cm以上）を避ける"
 
-#: utils.py:117
+#: utils.py:115
 msgid "Watch out for manholes, gutters, and irrigation canals"
 msgstr "マンホール、側溝、用水路に注意する"
 
-#: utils.py:123
+#: utils.py:121
 msgid "Register people who need evacuation support"
 msgstr "避難行動要支援者を登録する"
 
-#: utils.py:126
+#: utils.py:124
 msgid "Don't use a baby stroller"
 msgstr "べービーカーを利用しない"
 
-#: utils.py:127
+#: utils.py:125
 msgid "Use a backpack and always hold your children's hand"
 msgstr "リュックサックを使用して常にお子様の手を握る"
 
-#: utils.py:130
+#: utils.py:128
 msgid "Use a lead, cage, and carry bag during evacuation"
 msgstr "避難時はリードとケージとキャリーバッグを使用する"
 
-#: utils.py:131
+#: utils.py:129
 msgid "Keep pets calm so they don't panic"
 msgstr "ペットがパニックにならないように落ち着かせる"
 
-#: utils.py:140
+#: utils.py:138
 msgid "Evacuation Guideline"
 msgstr "避難するのためのこと"
 
-#: utils.py:178
-msgid "Earthquake Safety Checklist:\n"
-msgstr ""
+#: utils.py:142
+msgid "Levels of typhoon preparedness:\n"
+msgstr "台風の備えのレベル：\n"
 
-#: utils.py:181
+#: utils.py:146
+#, python-format
+msgid "In a level %(level_num)s typhoon:\n"
+msgstr "レベル%(level_num)s台風には：\n"
+
+#: utils.py:164
+msgid "Some general typhoon tips are:\n"
+msgstr "全体的な台風コツについて：\n"
+
+#: utils.py:185
 msgid "During an earthquake,"
 msgstr ""
 
-#: utils.py:182
+#: utils.py:186
 msgid "follow these safety steps:"
 msgstr ""
 
-#: utils.py:186
+#: utils.py:190
 msgid "Imperceptible to people, but recorded"
 msgstr ""
 
-#: utils.py:187
+#: utils.py:191
 msgid "by seismometers"
 msgstr ""
 
-#: utils.py:191
+#: utils.py:195
 msgid "Felt slightly by some people keeping quiet"
 msgstr ""
 
-#: utils.py:192
+#: utils.py:196
 msgid "in buildings"
 msgstr ""
 
-#: utils.py:196
+#: utils.py:200
 msgid "Felt by many people keeping quiet in"
 msgstr ""
 
-#: utils.py:197
+#: utils.py:201
 msgid "buildings"
 msgstr ""
 
-#: utils.py:198
+#: utils.py:202
 msgid "Hanging objects swing slightly"
 msgstr ""
 
-#: utils.py:202
+#: utils.py:206
 msgid "Felt by most people in buildings and some"
 msgstr ""
 
-#: utils.py:203
+#: utils.py:207
 msgid "walking"
 msgstr ""
 
-#: utils.py:204
+#: utils.py:208
 msgid "Dishes rattle and electric wires swing."
 msgstr ""
 
-#: utils.py:208
+#: utils.py:212
 msgid "Hanging objects swing significantly"
 msgstr ""
 
-#: utils.py:209
+#: utils.py:213
 msgid "Unstable ornaments may fall and electric"
 msgstr ""
 
-#: utils.py:210
+#: utils.py:214
 msgid "wires swing significantly"
 msgstr ""
 
-#: utils.py:214
+#: utils.py:218
 #, fuzzy
 #| msgid "Secure heavy furniture to walls"
 msgid "Unsecured furniture may move and fall"
@@ -772,51 +779,51 @@ msgstr ""
 "<ruby>重<rt>おも</rt></ruby>い<ruby>家具<rt>かぐ</rt></ruby>を<ruby>壁<rt>か"
 "ど</rt></ruby>に<ruby>固定<rt>こてい</rt></ruby>する"
 
-#: utils.py:215
+#: utils.py:219
 msgid "Windows may break and roads may sustain"
 msgstr ""
 
-#: utils.py:216
+#: utils.py:220
 msgid "damage, and some walls may collapse"
 msgstr ""
 
-#: utils.py:220
+#: utils.py:224
 msgid "Unsecured furniture moves and may topple"
 msgstr ""
 
-#: utils.py:221
+#: utils.py:225
 msgid "Impossible to stand or move without crawling"
 msgstr ""
 
-#: utils.py:222
-msgid "crawling; walls may collapse"
+#: utils.py:226
+msgid "Walls may collapse"
 msgstr ""
 
-#: utils.py:226
+#: utils.py:230
 msgid "Most furniture topples; reinforced walls may"
 msgstr ""
 
-#: utils.py:227
+#: utils.py:231
 msgid "collapse"
 msgstr ""
 
-#: utils.py:232
+#: utils.py:236
 msgid "Ensure Safety: Stay calm and prioritize your"
 msgstr ""
 
-#: utils.py:233
+#: utils.py:237
 msgid "safety"
 msgstr ""
 
-#: utils.py:234
+#: utils.py:238
 msgid "Turn Off Utilities: Alert others and turn off gas"
 msgstr ""
 
-#: utils.py:235
+#: utils.py:239
 msgid "and electricity immediately"
 msgstr ""
 
-#: utils.py:236
+#: utils.py:240
 #, fuzzy
 #| msgid "Seal gaps around doors and windows"
 msgid "Secure an Exit: Open doors and windows if"
@@ -824,76 +831,85 @@ msgstr ""
 "ドアや<ruby>窓<rt>まど</rt></ruby>の<ruby>周<rt>まわ</rt></ruby>りの<ruby>隙"
 "間<rt>すきま</rt></ruby>を<ruby>塞<rt>ふさ</rt></ruby>ぐ"
 
-#: utils.py:237
+#: utils.py:241
 msgid "jammed to create an escape route"
 msgstr ""
 
-#: utils.py:238
+#: utils.py:242
 msgid "Handle Fires: Shout for help and extinguish"
 msgstr ""
 
-#: utils.py:239
+#: utils.py:243
 msgid "small fires immediately"
 msgstr ""
 
-#: utils.py:240
+#: utils.py:244
 msgid "Avoid Rush: Exit carefully, watch for"
 msgstr ""
 
-#: utils.py:241
+#: utils.py:245
 msgid "falling debris"
 msgstr ""
 
-#: utils.py:242
+#: utils.py:246
 msgid "Stay Clear of Hazards: Avoid narrow alleys,"
 msgstr ""
 
-#: utils.py:243
+#: utils.py:247
 msgid "cliffs, and rivers; watch for falling objects"
 msgstr ""
 
-#: utils.py:244
+#: utils.py:248
 msgid "Watch for Aftershocks: Prepare for landslides"
 msgstr ""
 
-#: utils.py:245
+#: utils.py:249
 msgid "or tsunamis if near mountains or the sea"
 msgstr ""
 
-#: utils.py:246
+#: utils.py:250
 msgid "Evacuate on Foot: Go to the nearest shelter with"
 msgstr ""
 
-#: utils.py:247
+#: utils.py:251
 msgid "minimal belongings"
 msgstr ""
 
-#: utils.py:248
+#: utils.py:252
 msgid "Help Others: Assist the elderly, disabled,"
 msgstr ""
 
-#: utils.py:249
+#: utils.py:253
 msgid "and injured"
 msgstr ""
 
-#: utils.py:250
+#: utils.py:254
 msgid "Get Accurate Info: Follow reliable sources for"
 msgstr ""
 
-#: utils.py:251
+#: utils.py:255
 msgid "updates and watch out for aftershocks"
 msgstr ""
 
+#: utils.py:260
+msgid "Levels of earthquakes:\n"
+msgstr "地震のレベル：\n"
+
+#: utils.py:264
+#, python-format
+msgid "In a level %(level_num)s earthquake:\n"
+msgstr "レベル%(level_num)s地震には：\n"
+
 #: utils.py:307
 msgid "Safety Guidelines"
-msgstr ""
+msgstr "安全ガイドライン"
 
 #: utils.py:345
-msgid "Items to prepare:\n"
-msgstr "備えるためのこと：\n"
+msgid "Items to prepare:,\n"
+msgstr "備えるためのこと：,\n"
 
-#: utils.py:348 utils.py:351 utils.py:372 utils.py:377 views.py:365
-#: views.py:373 views.py:386 views.py:394 views.py:511 views.py:518
+#: utils.py:348 utils.py:351 utils.py:372 utils.py:377 views.py:366
+#: views.py:374 views.py:387 views.py:395 views.py:512 views.py:519
 msgid "Go Bag"
 msgstr "ゴーバッグ"
 
@@ -912,47 +928,47 @@ msgstr "%(date)sにS.E.E.L.Eによって作成されました"
 msgid "Items to prepare"
 msgstr "備えるためのこと"
 
-#: views.py:50
+#: views.py:51
 msgid "Enter correct password"
 msgstr "正しいパスワードを入力してください"
 
-#: views.py:52
+#: views.py:53
 msgid "Enter correct email"
 msgstr "正しいメールアドレスを入力してください"
 
-#: views.py:65
+#: views.py:66
 msgid "Passwords do not match"
 msgstr "パスワードが一致いっちしません"
 
-#: views.py:68
+#: views.py:69
 msgid "Email address is already associated with an account"
 msgstr "メールアドレスはすでにアカウントに関連付けられています"
 
-#: views.py:71 views.py:231
+#: views.py:72 views.py:232
 msgid "Password must be at least 8 characters"
 msgstr "パスワードは８文字以上でなければなりません"
 
-#: views.py:77
+#: views.py:78
 msgid "Password must have one special character or number"
 msgstr "パスワードは１つ特殊文字または数字でなければなりません"
 
-#: views.py:88
+#: views.py:89
 msgid "Error on Signup"
 msgstr "サインアップのエラー"
 
-#: views.py:97
+#: views.py:98
 msgid "Please try again"
 msgstr "もう一度試してください"
 
-#: views.py:107
+#: views.py:108
 msgid "Please enter a family size between 1 and 10"
 msgstr "家族の人数を１から１０の間で入力してください"
 
-#: views.py:149
+#: views.py:150
 msgid "Error on Signup: "
 msgstr "サインアップのエラー: "
 
-#: views.py:238
+#: views.py:239
 #, fuzzy
 #| msgid "Password must have one special character or number"
 msgid "Password must have at least one special character or number"
@@ -960,394 +976,394 @@ msgstr ""
 "パスワードは１つ<ruby>特殊文字<rt>とくしゅもじ</rt></ruby>または<ruby>数字"
 "<rt>すうじ</rt></ruby>でなければなりません"
 
-#: views.py:271
+#: views.py:272
 msgid "Profile updated successfully!"
 msgstr "プロフィールが正常に更新されました。"
 
-#: views.py:308
+#: views.py:309
 msgid "Medical information deleted successfully"
 msgstr "医療情報は正常に削除されました"
 
-#: views.py:337
+#: views.py:338
 msgid "Both fields are required."
 msgstr "両方のフィールドは必須です。"
 
-#: views.py:366 views.py:403 views.py:512 views.py:531
+#: views.py:367 views.py:404 views.py:513 views.py:532
 msgid "Water and Food"
 msgstr "<ruby>水<rt>みず</rt></ruby>・<ruby>食品<rt>しょくひん</rt></ruby>"
 
-#: views.py:367 views.py:408 views.py:454
+#: views.py:368 views.py:409 views.py:455
 msgid "Clothing and Essentials"
 msgstr "<ruby>服<rt>ふく</rt></ruby>・<ruby>必需品<rt>ひつじゅひん</rt></ruby>"
 
-#: views.py:368 views.py:416 views.py:424 views.py:426 views.py:444
-#: views.py:449 views.py:513 views.py:542 views.py:544 views.py:546
-#: views.py:565 views.py:570
+#: views.py:369 views.py:417 views.py:425 views.py:427 views.py:445
+#: views.py:450 views.py:514 views.py:543 views.py:545 views.py:547
+#: views.py:566 views.py:571
 msgid "Medical and Hygiene"
 msgstr "<ruby>医療<rt>いりょう</rt></ruby>・<ruby>衛生<rt>えいせい</rt></ruby>"
 
-#: views.py:369 views.py:428 views.py:515 views.py:548
+#: views.py:370 views.py:429 views.py:516 views.py:549
 msgid "Home Safety"
 msgstr "<ruby>家<rt>いえ</rt></ruby>の<ruby>安全<rt>あんぜん</rt></ruby>"
 
-#: views.py:374 views.py:387
+#: views.py:375 views.py:388
 msgid "Medium-sized backpack/sturdy tote"
 msgstr "<ruby>中型<rt>ちゅうがた</rt></ruby>のリュックサックまたはトートバッグ"
 
-#: views.py:375 views.py:396
+#: views.py:376 views.py:397
 msgid "Two 1-liter bottles"
 msgstr "２<ruby>本<rt>ほん</rt></ruby>１リットルボトル"
 
-#: views.py:376 views.py:397
+#: views.py:377 views.py:398
 msgid "High-calorie bars/instant food"
 msgstr ""
 "<ruby>高<rt>こう</rt></ruby>カロリースナックまたはインスタント<ruby>食品<rt>"
 "しょくひん</rt></ruby>"
 
-#: views.py:377 views.py:389 views.py:398
+#: views.py:378 views.py:390 views.py:399
 msgid "Small first aid kit, masks, hand sanitizer"
 msgstr ""
 "小さい<ruby>救急箱<rt>きゅうきゅうばこ</rt></ruby>やマスクやアルコール<ruby>"
 "消毒液<rt>しょうどくえき</rt></ruby>"
 
-#: views.py:378 views.py:399
+#: views.py:379 views.py:400
 msgid "Rain poncho and towel"
 msgstr "ポンチョやタオル"
 
-#: views.py:379
+#: views.py:380
 msgid "A change of clothes"
 msgstr "<ruby>着替<rt>きが</rt></ruby>え"
 
-#: views.py:380 views.py:401
+#: views.py:381 views.py:402
 msgid "Cash"
 msgstr "<ruby>現金<rt>げんきん</rt></ruby>"
 
-#: views.py:381
+#: views.py:382
 msgid "Plastic bags"
 msgstr "レジ<ruby>袋<rt>ぶくろ</rt></ruby>"
 
-#: views.py:382 views.py:388 views.py:525
+#: views.py:383 views.py:389 views.py:526
 msgid "Photocopies of passport/residence card"
 msgstr "パスポートや<ruby>在留<rt>ざいりゅう</rt></ruby>カードのコピー"
 
-#: views.py:383 views.py:526
+#: views.py:384 views.py:527
 msgid "Portable charger"
 msgstr "モバイルバッテリー"
 
-#: views.py:390
+#: views.py:391
 msgid "Rain poncho"
 msgstr "ポンチョ"
 
-#: views.py:391 views.py:400
+#: views.py:392 views.py:401
 msgid "Small flashlight + multi-tool + whistle"
 msgstr ""
 "<ruby>懐中電灯<rt>かいちゅうでんとう</rt></ruby>やマルチツールナイフやホイッ"
 "スル"
 
-#: views.py:395
+#: views.py:396
 msgid "Waterproof backpack (in case of forced evacuation)"
 msgstr "<ruby>強制避難用<rt>きょうせいひなんよう</rt></ruby>のリュックサック"
 
-#: views.py:404 views.py:532
+#: views.py:405 views.py:533
 msgid "Liters of water"
 msgstr "リットルの<ruby>水<rt>みず</rt></ruby>"
 
-#: views.py:405 views.py:533
+#: views.py:406 views.py:534
 msgid "calories of non-perishable food"
 msgstr "kcalの<ruby>保存食<rt>ほぞんしょく</rt></ruby>"
 
-#: views.py:406
+#: views.py:407
 msgid "Fill bathtub with water in case of electrical outage"
 msgstr ""
 "<ruby>停電<rt>ていでん</rt></ruby>に<ruby>備<rt>そな</rt></ruby>えて<ruby>風"
 "呂<rt>ふろ</rt></ruby>に<ruby>水<rt>みず</rt></ruby>を<ruby>注<rt>そそ</rt></"
 "ruby>ぐ"
 
-#: views.py:409
+#: views.py:410
 msgid "sets of clothes (one for each family member)"
 msgstr ""
 "<ruby>枚<rt>まい</rt></ruby><ruby>着替<rt>きが</rt></ruby>え（<ruby>家族全員"
 "分<rt>かぞくぜんいんぶん</rt></ruby>）"
 
-#: views.py:410
+#: views.py:411
 msgid "Important documents (Passport, Will, ID cards)"
 msgstr ""
 "<ruby>重要書類<rt>じゅうようしょるい</rt></ruby>（パスポート、<ruby>遺言書"
 "<rt>ゆいごんしょ</rt></ruby>、IDカード）"
 
-#: views.py:411 views.py:561
+#: views.py:412 views.py:562
 msgid "A few thousand yen"
 msgstr "<ruby>数千円<rt>すうせんえん</rt></ruby>"
 
-#: views.py:412 views.py:557
+#: views.py:413 views.py:558
 msgid "Emergency contact list"
 msgstr ""
 "<ruby>緊急<rt>きんきゅう</rt></ruby>な<ruby>連絡先<rt>れんらくさき</rt></"
 "ruby>リスト"
 
-#: views.py:413 views.py:559
+#: views.py:414 views.py:560
 msgid "Radio"
 msgstr "ラジオ"
 
-#: views.py:414 views.py:560
+#: views.py:415 views.py:561
 msgid "Flashlights and batteries"
 msgstr ""
 "<ruby>懐中電灯<rt>かいちゅうでんとう</rt></ruby>と<ruby>電池<rt>でんち</rt></"
 "ruby>"
 
-#: views.py:416 views.py:546
+#: views.py:417 views.py:547
 msgid "First aid kit"
 msgstr "<ruby>救急箱<rt>きゅうきゅうばこ</rt></ruby>"
 
-#: views.py:424 views.py:426 views.py:542 views.py:544
+#: views.py:425 views.py:427 views.py:543 views.py:545
 msgid "Medication for "
 msgstr " "
 
-#: views.py:424 views.py:542
+#: views.py:425 views.py:543
 msgid "for 3 days"
 msgstr "の<ruby>薬<rt>くすり</rt></ruby>、３<ruby>日間<rt>にちかん</rt></ruby>"
 
-#: views.py:426 views.py:544
+#: views.py:427 views.py:545
 msgid "units"
 msgstr "<ruby>個<rt>こ</rt></ruby>の<ruby>薬<rt>くすり</rt></ruby>"
 
-#: views.py:429
+#: views.py:430
 msgid "Reinforce windows and doors with storm shutters or plywood"
 msgstr ""
 "<ruby>窓<rt>まど</rt></ruby>やドアを<ruby>雨戸<rt>あまど</rt></ruby>や<ruby>"
 "合板<rt>ごうはん</rt></ruby>で<ruby>補強<rt>ほきょう</rt></ruby>する"
 
-#: views.py:430
+#: views.py:431
 msgid "Secure outdoor items like garden furniture"
 msgstr ""
 "<ruby>家具<rt>かぐ</ruby></rt>などの<ruby>屋外<rt>おくがい</rt></ruby>アイテ"
 "ムを<ruby>安全<rt>あんぜん</rt></ruby>に<ruby>保護<rt>ほご</rt></ruby>する"
 
-#: views.py:431
+#: views.py:432
 msgid "Store non-secured items inside the house"
 msgstr ""
 "<ruby>危険<rt>きけん</rt></ruby>な<ruby>物<rt>もの</rt></ruby>を<ruby>家<rt>"
 "いえ</rt></ruby>の<ruby>中<rt>なか</rt></ruby>に<ruby>保管<rt>ほかん</rt></"
 "ruby>する"
 
-#: views.py:432
+#: views.py:433
 msgid "Check and clear gutters and downspouts"
 msgstr ""
 "<ruby>側溝<rt>そっこう</rt></ruby>と<ruby>縦樋<rt>たてとい</rt></ruby>を"
 "<ruby>点検<rt></rt></ruby>して<ruby>掃除<rt>てんけん</rt></ruby>して<ruby>掃"
 "除<rt>そうじ</rt></ruby>する"
 
-#: views.py:433
+#: views.py:434
 msgid "Inspect and reinforce the roof"
 msgstr ""
 "<ruby>屋根<rt>やね</rt></ruby>の<ruby>点検<rt>てんけん</rt></ruby>と<ruby>補"
 "強<rt>ほきょう</rt></ruby>を<ruby>行<rt>おこな</rt></ruby>う"
 
-#: views.py:434
+#: views.py:435
 msgid "Use sandbags or barriers to prevent flooding"
 msgstr ""
 "<ruby>浸水<rt>しんせい</rt></ruby>を<ruby>防<rt>ふせ</rt></ruby>ぐために"
 "<ruby>土嚢<rt>どのう</rt></ruby>や<ruby>柵<rt>さく</rt></ruby>を<ruby>使<rt>"
 "つか</rt></ruby>う"
 
-#: views.py:435
+#: views.py:436
 msgid "Check the condition of your garage door"
 msgstr ""
 "ガレージドアの<ruby>状態<rt>じょうたい</rt></ruby>を<ruby>確認<rt>かくにん</"
 "rt></ruby>する"
 
-#: views.py:436
+#: views.py:437
 msgid "Ensure your sump pump is working"
 msgstr ""
 "<ruby>排水<rt>はいすい</rt></ruby>ポンプが<ruby>作動<rt>さどう</rt></ruby>し"
 "ていることを<ruby>確認<rt>かくにん</ruby></rt>する"
 
-#: views.py:437
+#: views.py:438
 msgid "Elevate electrical appliances and utilities"
 msgstr ""
 "<ruby>電化製品<rt>でんかせいひん</rt></ruby>や<ruby>公共施設<rt>こうきょう</"
 "rt></ruby>のレベルを<ruby>上<rt>あ</rt></ruby>げる"
 
-#: views.py:438
+#: views.py:439
 msgid "Seal gaps around doors and windows"
 msgstr ""
 "ドアや<ruby>窓<rt>まど</rt></ruby>の<ruby>周<rt>まわ</rt></ruby>りの<ruby>隙"
 "間<rt>すきま</rt></ruby>を<ruby>塞<rt>ふさ</rt></ruby>ぐ"
 
-#: views.py:439
+#: views.py:440
 msgid "Cut tree branches"
 msgstr "<ruby>枝<rt>えだ</rt></ruby>を<ruby>切<rt>き</rt></ruby>る"
 
-#: views.py:440
+#: views.py:441
 msgid "Cover any cars"
 msgstr "<ruby>車<rt>くるま</rt></ruby>をカバーする"
 
-#: views.py:445 views.py:566
+#: views.py:446 views.py:567
 msgid "Sanitary napkins/tampons"
 msgstr "<ruby>生理用品<rt>せいりようひん</rt></ruby>"
 
-#: views.py:446 views.py:567
+#: views.py:447 views.py:568
 msgid "Lotion/cleansing sheets"
 msgstr "ローション/クレンジングシート"
 
-#: views.py:450 views.py:571
+#: views.py:451 views.py:572
 msgid "Baby formula/food"
 msgstr "<ruby>人工乳<rt>じんこうにゅう</rt></ruby>、ベビーフード"
 
-#: views.py:451 views.py:572
+#: views.py:452 views.py:573
 msgid "Diapers"
 msgstr "おむつ"
 
-#: views.py:454 views.py:575
+#: views.py:455 views.py:576
 msgid "Books/toys"
 msgstr "<ruby>本<rt>ほん</rt></ruby>やおもちゃ"
 
-#: views.py:457 views.py:458 views.py:578 views.py:579
+#: views.py:458 views.py:459 views.py:579 views.py:580
 msgid "Pet"
 msgstr "ペット"
 
-#: views.py:459 views.py:580
+#: views.py:460 views.py:581
 msgid "Pet food for 3 days"
 msgstr "ペットフード３<ruby>日分<rt>にちぶん</rt></ruby>"
 
-#: views.py:460 views.py:581
+#: views.py:461 views.py:582
 msgid "Leash"
 msgstr "ペットの<ruby>笛<rt>ふえ</rt></ruby>"
 
-#: views.py:461 views.py:582
+#: views.py:462 views.py:583
 msgid "Pet Sheets"
 msgstr "ペットシーツ"
 
-#: views.py:462 views.py:583
+#: views.py:463 views.py:584
 msgid "Poop bags"
 msgstr "ウンチ<ruby>袋<rt>ふくろ</rt></ruby>"
 
-#: views.py:465 views.py:466 views.py:471 views.py:472 views.py:479
-#: views.py:486 views.py:487 views.py:495 views.py:496 views.py:502
-#: views.py:503 views.py:586 views.py:587 views.py:592 views.py:593
-#: views.py:599 views.py:600 views.py:607 views.py:608 views.py:616
-#: views.py:617 views.py:623 views.py:624
+#: views.py:466 views.py:467 views.py:472 views.py:473 views.py:480
+#: views.py:487 views.py:488 views.py:496 views.py:497 views.py:503
+#: views.py:504 views.py:587 views.py:588 views.py:593 views.py:594
+#: views.py:600 views.py:601 views.py:608 views.py:609 views.py:617
+#: views.py:618 views.py:624 views.py:625
 msgid "Disability"
 msgstr "<ruby>障害<rt>しょうがい</rt></ruby>"
 
-#: views.py:467 views.py:473 views.py:588 views.py:594
+#: views.py:468 views.py:474 views.py:589 views.py:595
 msgid "Mark emergency supplies with braille or large print"
 msgstr ""
 "<ruby>点字<rt>てんじ</rt></ruby>または<ruby>大<rt>おお</rt></ruby>きな<ruby>"
 "文字<rt>もじ</rt></ruby>で<ruby>緊急物資<rt>きんきゅうぶっし</rt></ruby>を"
 "マークする"
 
-#: views.py:468 views.py:474 views.py:589 views.py:595
+#: views.py:469 views.py:475 views.py:590 views.py:596
 msgid "Extra eyeglasses or contacts"
 msgstr "<ruby>予備<rt>よび</rt></ruby>のメガネまたはコンタクト"
 
-#: views.py:480 views.py:488 views.py:601 views.py:609
+#: views.py:481 views.py:489 views.py:602 views.py:610
 msgid "Weather radio with text display and a flashing alert"
 msgstr ""
 "テキスト<ruby>表示<rt>ひょうじ</rt></ruby>と<ruby>点滅<rt>てんめつ</rt></"
 "ruby>アラート<ruby>付<rt>つ</rt></ruby>きの<ruby>天気<rt>てんき</rt></ruby>ラ"
 "ジオ"
 
-#: views.py:481 views.py:489 views.py:602 views.py:610
+#: views.py:482 views.py:490 views.py:603 views.py:611
 msgid "Extra hearing-aid batteries"
 msgstr ""
 "<ruby>補聴器用<rt>ほちょうきよう</rt></ruby>の<ruby>予備電池<rt>よびでんち</"
 "rt></ruby>"
 
-#: views.py:482 views.py:490 views.py:603 views.py:611
+#: views.py:483 views.py:491 views.py:604 views.py:612
 msgid "Pen and paper for communication"
 msgstr ""
 "<ruby>伝<rt>つた</rt></ruby>えるためのペンと<ruby>紙<rt>かみ</rt></ruby>"
 
-#: views.py:483 views.py:491 views.py:604 views.py:612
+#: views.py:484 views.py:492 views.py:605 views.py:613
 msgid "Battery lantern for communication by sign language"
 msgstr "<ruby>手話用電池<rt>しゅわようでんち</rt></ruby>ランタン"
 
-#: views.py:497 views.py:504 views.py:618 views.py:625
+#: views.py:498 views.py:505 views.py:619 views.py:626
 msgid "Backup lightweight manual wheelchair"
 msgstr ""
 "<ruby>予備<rt>よび</rt></ruby>の<ruby>軽量手動車椅子<rt>けいりょうしゅどうく"
 "るまいす</rt></ruby>"
 
-#: views.py:498 views.py:505 views.py:619 views.py:626
+#: views.py:499 views.py:506 views.py:620 views.py:627
 msgid "Patch kit or can of sealant for flat tires"
 msgstr "パンク<ruby>用<rt>よう</rt></ruby>のパッチキットまたはシーラント"
 
-#: views.py:499 views.py:506 views.py:620 views.py:627
+#: views.py:500 views.py:507 views.py:621 views.py:628
 msgid "Cane or walker"
 msgstr "<ruby>杖<rt>つえ</rt></ruby>または<ruby>歩行器<rt>ほこうき</rt></ruby>"
 
-#: views.py:514 views.py:556 views.py:575
+#: views.py:515 views.py:557 views.py:576
 msgid "Communication and Documents"
 msgstr "コミュニケーション・<ruby>書類<rt>しょるい</rt></ruby>"
 
-#: views.py:519
+#: views.py:520
 msgid "Medium-sized backpack or sturdy tote"
 msgstr "<ruby>中型<rt>ちゅうがた</rt></ruby>のリュックサックまたはトートバッグ"
 
-#: views.py:520
+#: views.py:521
 msgid "Flashlight with extra batteries"
 msgstr ""
 "<ruby>懐中電灯<rt>かいちゅうでんとう</rt></ruby>と<ruby>予備電池<rt>よびでん"
 "ち</rt></ruby>"
 
-#: views.py:521
+#: views.py:522
 msgid "Two liters of water"
 msgstr "２リットルの<ruby>水<rt>みず</rt></ruby>"
 
-#: views.py:522
+#: views.py:523
 msgid "Work gloves"
 msgstr "<ruby>軍手<rt>ぐんて</rt></ruby>"
 
-#: views.py:523
+#: views.py:524
 msgid "Change of clothes"
 msgstr "<ruby>着替<rt>きが</rt></ruby>え"
 
-#: views.py:524
+#: views.py:525
 msgid "Heavy coat and pants"
 msgstr ""
 "<ruby>厚手<rt>あつで</rt></ruby>の<ruby>上着<rt>うわぎ</rt></ruby>とズボン"
 
-#: views.py:527
+#: views.py:528
 msgid "Battery-operated radio"
 msgstr "<ruby>電池式<rt>でんちしき</rt></ruby>ラジオ"
 
-#: views.py:528
+#: views.py:529
 msgid "Basic first aid kit"
 msgstr ""
 "<ruby>基本的<rt>きほんてき</rt></ruby>な<ruby>救急箱<rt>きゅうきゅうばこ</"
 "rt></ruby>"
 
-#: views.py:529
+#: views.py:530
 msgid "Multi-tool or Swiss army knife"
 msgstr "マルチツールナイフまたはアーミーナイフ"
 
-#: views.py:549
+#: views.py:550
 msgid "Secure heavy furniture to walls"
 msgstr ""
 "<ruby>重<rt>おも</rt></ruby>い<ruby>家具<rt>かぐ</rt></ruby>を<ruby>壁<rt>か"
 "ど</rt></ruby>に<ruby>固定<rt>こてい</rt></ruby>する"
 
-#: views.py:550
+#: views.py:551
 msgid "Apply shatter-proof film to glass items"
 msgstr ""
 "ガラス<ruby>製品<rt>せいひん</rt></ruby>に<ruby>飛散防止<rt>ひさんぼうし</"
 "rt></ruby>フィルムを<ruby>貼<rt>は</rt></ruby>る"
 
-#: views.py:551
+#: views.py:552
 msgid "Check and reinforce gas lines and water pipes"
 msgstr ""
 "ガス<ruby>管<rt>かん</rt></ruby>や<ruby>水道管<rt>すいどうかん</rt></ruby>を"
 "<ruby>点検<rt>てんけん</rt></ruby>して<ruby>補強<rt>ほきょう</rt></ruby>する"
 
-#: views.py:552
+#: views.py:553
 msgid "Know how to turn off utilities (gas, water, electricity)"
 msgstr ""
 "<ruby>公共事業<rt>こうきょうじぎょう</rt></ruby>を<ruby>止<rt>と</rt></ruby>"
 "める<ruby>方法<rt>ほうほう</rt></ruby>を<ruby>知<rt>し</rt></ruby>る（ガス、"
 "<ruby>水道<rt>すいどう</rt></ruby>、<ruby>電気<rt>でんき</rt></ruby>）"
 
-#: views.py:553
+#: views.py:554
 msgid ""
 "Identify the safest place in your house (e.g., under a sturdy table or "
 "against an interior wall)"
@@ -1359,36 +1375,41 @@ msgstr ""
 "rt></ruby>や<ruby>内壁<rt>ないへき</rt></ruby>に<ruby>近<rt>ちか</rt></ruby>"
 "い<ruby>場所<rt>ばしょ</rt></ruby>）"
 
-#: views.py:554
+#: views.py:555
 msgid "Prepare for potential aftershocks"
 msgstr ""
 "<ruby>潜在的<rt>せんざいてき</rt></ruby>な<ruby>余震<rt>よしん</rt></ruby>に"
 "<ruby>備<rt>そな</rt></ruby>える"
 
-#: views.py:558
+#: views.py:559
 msgid "Important documents (ID, insurance papers)"
 msgstr ""
 "<ruby>重要書類<rt>じゅうようしょるい</rt></ruby>（<ruby>身分証明書<rt>みぶん"
 "しょうめいしょ</rt></ruby>、<ruby>保険証<rt>ほけんしょう</rt></ruby>）"
 
-#: views.py:631
+#: views.py:632
 msgid "Other"
 msgstr "<ruby>他<rt>ほか</rt></ruby>"
 
-#: views.py:631
+#: views.py:632
 msgid "Select a valid disaster type"
 msgstr ""
 "<ruby>有効<rt>ゆうこう</rt></ruby>な<ruby>災害<rt>さいがい</rt></ruby>カテゴ"
 "リーを<ruby>選<rt>えら</rt></ruby>んでください"
 
-#: views.py:791
+#: views.py:802
 msgid "Image not found"
 msgstr ""
 "<ruby>画像<rt>がぞう</rt></ruby>が<ruby>見<rt>み</rt></ruby>つかりません"
 
-#: views.py:797 views.py:804
+#: views.py:808 views.py:815
 msgid "No user logged in"
 msgstr "ログインしているユーザーはいません"
+
+#, fuzzy
+#~| msgid "Typhoon and Safety Checklist:"
+#~ msgid "Typhoon and Safety Checklist:\n"
+#~ msgstr "台風と安全チェックリスト："
 
 #, fuzzy
 #~| msgid "Your checklist for typhoons\n"

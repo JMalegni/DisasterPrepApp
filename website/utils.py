@@ -5,6 +5,7 @@ from django.conf import settings
 from django.utils.translation import gettext, get_language
 from datetime import datetime
 from concurrent.futures import ThreadPoolExecutor
+from gtts import gTTS
 
 def parse_furigana(text: str) -> tuple[str, list[tuple[str, str]]]:
     ruby_pattern = re.compile(r'<ruby>(.*?)<rt>(.*?)</rt></ruby>')
@@ -54,9 +55,6 @@ def bullet_spacing(draw, fonts, list, x, y, scale, bigList=False):
     return y
 
 def typhoon_flood_checklist(draw, fonts, scale, user, disaster_type):
-    # Clear the text file for tts
-    with open("typhoon_tts.txt", "a", encoding="utf-8") as file:
-        file.write(gettext("Typhoon and Safety Checklist:\n"))
 
     header_font = fonts['header']
     draw_text(draw, gettext("Typhoons come with"), header_font, 230 * scale, 220 * scale)
@@ -140,31 +138,40 @@ def typhoon_flood_checklist(draw, fonts, scale, user, disaster_type):
     draw_text(draw, gettext("Evacuation Guideline"), guideline_font, 850 * scale, 1020 * scale)
 
     # Writing checklist items to a text file for tts to read
-    with open("typhoon_tts.txt", "a", encoding="utf-8") as file:
+    with open("website/static/typhoon_tts.txt", "a", encoding="utf-8") as file:
+        file.write(gettext("Levels of typhoon preparedness:\n"))
 
-        file.write("In a level 1 typhoon: " + "\n")
-        for item, _ in level1_typhoon:
-            file.write(item + "\n")
 
-        file.write("In a level 2 typhoon: " + "\n")
-        for item, _ in level2_typhoon:
-            file.write(item + "\n")
+        def write_level(file, level_num, items):
+            file.write(gettext("In a level %(level_num)s typhoon:\n") % {'level_num': level_num})
+            full_items = []
+            for item, is_new in items:
+                if is_new:
+                    if full_items:
+                        full_items.append(full_items.pop() + ",")
+                    full_items.append(item)
+                else:
+                    full_items[-1] += " " + item
+            if full_items:
+                file.write(", ".join(full_items) + ",\n")
 
-        file.write("In a level 3 typhoon: " + "\n")
-        for item, _ in level3_typhoon:
-            file.write(item + "\n")
+        write_level(file, "1", level1_typhoon)
+        write_level(file, "2", level2_typhoon)
+        write_level(file, "3", level3_typhoon)
+        write_level(file, "4", level4_typhoon)
+        write_level(file, "5", level5_typhoon)
 
-        file.write("In a level 4 typhoon: "+ "\n")
-        for item, _ in level4_typhoon:
-            file.write(item + "\n")
-
-        file.write("In a level 5 typhoon: " + "\n")
-        for item, _ in level5_typhoon:
-            file.write(item + "\n")
-
-        file.write("Some general typhoon tips are: " + "\n")
-        for item, _ in disaster_tips:
-            file.write(item + "\n")
+        file.write(gettext("Some general typhoon tips are:\n"))
+        full_tips = []
+        for item, is_new in disaster_tips:
+            if is_new:
+                if full_tips:
+                    full_tips.append(full_tips.pop() + ",")
+                full_tips.append(item)
+            else:
+                full_tips[-1] += " " + item
+        if full_tips:
+            file.write(",\n".join(full_tips) + ",\n")
 
     if len(disaster_tips) > 11:
         bullet_spacing(draw, fonts, disaster_tips, 700 * scale, 1050 * scale, scale, True)
@@ -173,9 +180,6 @@ def typhoon_flood_checklist(draw, fonts, scale, user, disaster_type):
         bullet_spacing(draw, fonts, disaster_tips, 700 * scale, 1050 * scale, scale)
 
 def earthquake_checklist(draw, fonts, scale):
-    # Clear the text file for tts
-    with open("earthquake_tts.txt", "a", encoding="utf-8") as file:
-        file.write(gettext("Earthquake Safety Checklist:\n"))
 
     header_font = fonts['header']
     draw_text(draw, gettext("During an earthquake,"), header_font, 230 * scale, 220 * scale)
@@ -219,7 +223,7 @@ def earthquake_checklist(draw, fonts, scale):
     level6_earthquake = [
         (gettext("Unsecured furniture moves and may topple"), True),
         (gettext("Impossible to stand or move without crawling"), True),
-        (gettext("crawling; walls may collapse"), False),
+        (gettext("Walls may collapse"), True),
     ]
 
     level7_earthquake = [
@@ -252,47 +256,43 @@ def earthquake_checklist(draw, fonts, scale):
     ]
 
     # Writing checklist items to a text file for tts to read
-    with open("earthquake_tts.txt", "a", encoding="utf-8") as file:
+    with open("website/static/earthquake_tts.txt", "a", encoding="utf-8") as file:
+        file.write(gettext("Levels of earthquakes:\n"))
 
-        file.write("In a level 0 earthquake: " + "\n")
-        for item, _ in level0_earthquake:
-            file.write(item + "\n")
 
-        file.write("In a level 1 earthquake: " + "\n")
-        for item, _ in level1_earthquake:
-            file.write(item + "\n")
+        def write_level(file, level_num, items):
+            file.write(gettext("In a level %(level_num)s earthquake:\n") % {'level_num': level_num})
+            full_items = []
+            for item, is_new in items:
+                if is_new:
+                    if full_items:
+                        full_items.append(full_items.pop() + ",")
+                    full_items.append(item)
+                else:
+                    full_items[-1] += " " + item
+            if full_items:
+                file.write(", ".join(full_items) + ",\n")
 
-        file.write("In a level 2 earthquake: " + "\n")
-        for item, _ in level2_earthquake:
-            file.write(item + "\n")
+        write_level(file, "level 0", level0_earthquake)
+        write_level(file, "level 1", level1_earthquake)
+        write_level(file, "level 2", level2_earthquake)
+        write_level(file, "level 3", level3_earthquake)
+        write_level(file, "level 4", level4_earthquake)
+        write_level(file, "level 5", level5_earthquake)
+        write_level(file, "level 6", level6_earthquake)
+        write_level(file, "level 7", level7_earthquake)
 
-        file.write("In a level 3 earthquake: " + "\n")
-        for item, _ in level3_earthquake:
-            file.write(item + "\n")
-
-        file.write("In a level 4 earthquake: " + "\n")
-        for item, _ in level4_earthquake:
-            file.write(item + "\n")
-
-        file.write("In a level 5 earthquake: " + "\n")
-        for item, _ in level5_earthquake:
-            file.write(item + "\n")
-
-        file.write("In a level 6 earthquake: " + "\n")
-        for item, _ in level0_earthquake:
-            file.write(item + "\n")
-
-        file.write("In a level 6 earthquake: " + "\n")
-        for item, _ in level0_earthquake:
-            file.write(item + "\n")
-
-        file.write("In a level 7 earthquake: " + "\n")
-        for item, _ in level7_earthquake:
-            file.write(item + "\n")
-
-        file.write("Some general earthquake tips are: " + "\n")
-        for item, _ in disaster_tips:
-            file.write(item + "\n")
+        file.write("Some general earthquake tips are:\n")
+        full_tips = []
+        for item, is_new in disaster_tips:
+            if is_new:
+                if full_tips:
+                    full_tips.append(full_tips.pop() + ",")
+                full_tips.append(item)
+            else:
+                full_tips[-1] += " " + item
+        if full_tips:
+            file.write(",\n".join(full_tips) + ",\n")
 
     y = bullet_spacing(draw, fonts, level0_earthquake, 810 * scale, 1050 * scale, scale)
     y = bullet_spacing(draw, fonts, level1_earthquake, 810 * scale, y + int(35 * scale), scale)
@@ -342,14 +342,14 @@ def checklist_image(checklist, disaster_type, user):
         else:
             big_header = f"{user.name}様への台風ポスター\n" if get_language().startswith("jp") else "Your Poster for Typhoons\n"
         file.write(big_header)
-        file.write(gettext("Items to prepare:\n"))
+        file.write(gettext("Items to prepare:,\n"))
 
         if get_language().startswith("jp"):
             for item in checklist[gettext("Go Bag")]:
-                file.write(f"{remove_furigana(item)}\n")
+                file.write(f"{remove_furigana(item)},\n")
         else:
             for item in checklist[gettext("Go Bag")]:
-                file.write(f"{item}\n")
+                file.write(f"{item},\n")
 
     if disaster_type == "Earthquake":
         big_header = f"{user.name}様への地震ポスター" if get_language().startswith("jp") else "Your Poster for Earthquakes"
@@ -395,3 +395,11 @@ def checklist_image(checklist, disaster_type, user):
     background.save(image_path)
 
     return image_filename
+
+def tts_execute(disaster_type):
+    FLIST = open(f"website/static/{disaster_type.lower()}_tts.txt", "r").read().replace("\n", " ")
+    #print("please wait...processing")
+    TTS = gTTS(text=str(FLIST), lang='en-us')
+
+    file_path = os.path.join(settings.STATIC_ROOT, 'voice.mp3')
+    TTS.save(file_path)

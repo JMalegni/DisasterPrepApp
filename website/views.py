@@ -13,6 +13,7 @@ import requests
 import bleach
 import math
 from threading import Thread
+from django.templatetags.static import static
 
 ALLOWED_TAGS = ['b', 'i', 'u', 'a', 'ul', 'ol', 'li', 'p', 'br', 'strong', 'em', 'ruby', 'rt']
 ALLOWED_ATTRIBUTES = {
@@ -25,7 +26,7 @@ def sanitize_html(content):
     return bleach.clean(content, tags=ALLOWED_TAGS, attributes=ALLOWED_ATTRIBUTES, strip=True)
 
 APIKey = "5b3ce3597851110001cf6248f1495139fccf4eb9a4494f7bddb5a976"
-from .utils import checklist_image
+from .utils import checklist_image, tts_execute
 
 def home(request):
     context = {
@@ -728,8 +729,18 @@ def disasterposter(request):
                            'shelter_lat': shelter_coord[0],
                            'shelter_log': shelter_coord[1]
                            }
-                
+
         context['disaster_type'] = disaster_type
+
+        # Handle Text-to-Speech
+        if request.POST.get('tts'):
+            try:
+                tts_execute(disaster_type)
+                audio_url = f"{settings.STATIC_URL}voice.mp3"
+                context['audio_url'] = audio_url
+            except Exception as e:
+                context['error_message'] = f"Error generating audio: {str(e)}"
+
         return render(request, 'disasterposter.html', context)
 
 def thread_closest(user_cord, shelter_cords, result):
