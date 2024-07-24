@@ -55,7 +55,7 @@ def bullet_spacing(draw, fonts, list, x, y, scale, bigList=False):
 
 def typhoon_flood_checklist(draw, fonts, scale, user, disaster_type):
     # Clear the text file for tts
-    with open("typhoon_tts.txt", "a") as file:
+    with open("typhoon_tts.txt", "a", encoding="utf-8") as file:
         file.write(gettext("Typhoon and Safety Checklist:\n"))
 
     header_font = fonts['header']
@@ -140,7 +140,7 @@ def typhoon_flood_checklist(draw, fonts, scale, user, disaster_type):
     draw_text(draw, gettext("Evacuation Guideline"), guideline_font, 850 * scale, 1020 * scale)
 
     # Writing checklist items to a text file for tts to read
-    with open("typhoon_tts.txt", "a") as file:
+    with open("typhoon_tts.txt", "a", encoding="utf-8") as file:
 
         file.write("In a level 1 typhoon: " + "\n")
         for item, _ in level1_typhoon:
@@ -174,7 +174,7 @@ def typhoon_flood_checklist(draw, fonts, scale, user, disaster_type):
 
 def earthquake_checklist(draw, fonts, scale):
     # Clear the text file for tts
-    with open("earthquake_tts.txt", "a") as file:
+    with open("earthquake_tts.txt", "a", encoding="utf-8") as file:
         file.write(gettext("Earthquake Safety Checklist:\n"))
 
     header_font = fonts['header']
@@ -252,7 +252,7 @@ def earthquake_checklist(draw, fonts, scale):
     ]
 
     # Writing checklist items to a text file for tts to read
-    with open("earthquake_tts.txt", "a") as file:
+    with open("earthquake_tts.txt", "a", encoding="utf-8") as file:
 
         file.write("In a level 0 earthquake: " + "\n")
         for item, _ in level0_earthquake:
@@ -335,14 +335,14 @@ def checklist_image(checklist, disaster_type, user):
 
     tasks = []
     # Append the title to the appropriate text file
-    with open(f"website/static/{disaster_type.lower()}_tts.txt", "w") as file:
+    with open(f"website/static/{disaster_type.lower()}_tts.txt", "w", encoding="utf-8") as file:
         big_header = ""
         if disaster_type == "Earthquake":
             big_header = f"{user.name}様への地震ポスター\n" if get_language().startswith("jp") else "Your Poster for Earthquakes\n"
         else:
             big_header = f"{user.name}様への台風ポスター\n" if get_language().startswith("jp") else "Your Poster for Typhoons\n"
         file.write(big_header)
-        file.write("Items to prepare:\n")
+        file.write(gettext("Items to prepare:\n"))
 
         if get_language().startswith("jp"):
             for item in checklist[gettext("Go Bag")]:
