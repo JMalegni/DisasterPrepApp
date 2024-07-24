@@ -1,4 +1,4 @@
-Your checklist for Typhoons
+Vegetaさんへの台風ポスター
 Items to prepare:
 <ruby>中型<rt>ちゅうがた</rt></ruby>のリュックサックまたはトートバッグ
 ２<ruby>本<rt>ほん</rt></ruby>１リットルボトル
@@ -18,17 +18,18 @@ In a level 1 typhoon:
 家の中の落ちる物に注意する
  
 In a level 2 typhoon: 
-Decide on evacuation center
-Recheck emergency bags
-Prepare for power outage
+避難所を決める
+非常持出袋を調べ直す
+停電に備える
 In a level 3 typhoon: 
-Elderly, people with disabilities, and
-families with children must evacuate
+お年寄りと障碍者と子供連れの家族
+が避難しなければなりません
 In a level 4 typhoon: 
-Go to an evacuation center
-immediately
+すぐ避難所に行く
+ 
 In a level 5 typhoon: 
-Save your life!
+上記のことをして、
+自分を助けましょう！
 Some general typhoon tips are: 
 Check your house before leaving (window, breaker,
 gas valve)

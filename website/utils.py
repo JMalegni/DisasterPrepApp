@@ -332,18 +332,25 @@ def checklist_image(checklist, disaster_type, user):
     tasks = []
     # Append the title to the appropriate text file
     with open(f"{disaster_type.lower()}_tts.txt", "w") as file:
-        file.write(gettext(f"Your checklist for {disaster_type}s\n"))
+        big_header = ""
+        if disaster_type == "Earthquake":
+            big_header = f"{user.name}さんへの地震ポスター\n" if get_language().startswith("jp") else "Your Poster for Earthquakes\n"
+        else:
+            big_header = f"{user.name}さんへの台風ポスター\n" if get_language().startswith("jp") else "Your Poster for Typhoons\n"
+        file.write(big_header)
         file.write("Items to prepare:\n")
         for item in checklist[gettext("Go Bag")]:
             file.write(f"{item}\n")
 
     if disaster_type == "Earthquake":
-        tasks.append((draw_text, (draw, gettext(f"Your checklist for {disaster_type}s"), fonts['title'], 190 * scale, 35 * scale)))
+        big_header = f"{user.name}さんへの地震ポスター" if get_language().startswith("jp") else "Your Poster for Earthquakes"
+        tasks.append((draw_text, (draw, gettext("Your Poster for Earthquakes"), fonts['title'], 190 * scale, 35 * scale)))
     
     else:
-        tasks.append((draw_text, (draw, gettext(f"Your checklist for {disaster_type}s"), fonts['title'], 260 * scale, 50 * scale)))
+        big_header = f"{user.name}さんへの台風ポスター" if get_language().startswith("jp") else "Your Poster for Typhoons"
+        tasks.append((draw_text, (draw, big_header, fonts['title'], 260 * scale, 50 * scale)))
 
-    tasks.append((draw_text, (draw, gettext(f"created by S.E.E.L.E on {datetime.now().date()}"), fonts['info'], 400 * scale, 140 * scale)))
+    tasks.append((draw_text, (draw, gettext(f"Created by S.E.E.L.E on {datetime.now().date()}"), fonts['info'], 400 * scale, 140 * scale)))
     tasks.append((draw_text, (draw, gettext("Items to prepare"), fonts['header'], 900 * scale, 220 * scale)))
 
     y = 310 * scale

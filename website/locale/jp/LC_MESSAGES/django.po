@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-24 01:36+0000\n"
+"POT-Creation-Date: 2024-07-23 23:11-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -553,7 +553,9 @@ msgid "Existing Users: Login"
 msgstr "<ruby>存在<rt>そんざい</rt></ruby>するユーザーのログイン"
 
 #: utils.py:55
-msgid "Typhoon and Safety Checklist:"
+#, fuzzy
+#| msgid "Typhoon and Safety Checklist:"
+msgid "Typhoon and Safety Checklist:\n"
 msgstr "台風と安全チェックリスト："
 
 #: utils.py:58
@@ -585,58 +587,46 @@ msgid "house"
 msgstr " "
 
 #: utils.py:70
-#, fuzzy
-#| msgid "Evacuation Shelter"
 msgid "Decide on evacuation center"
-msgstr "避難所（ひなんじょ）"
+msgstr "避難所を決める"
 
 #: utils.py:71
-#, fuzzy
-#| msgid "Prepare an emergency bag"
 msgid "Recheck emergency bags"
-msgstr ""
-"<ruby>非常持<rt>ひじょうも</rt></ruby>ち<ruby>出<rt>だ</rt></ruby>し<ruby>袋"
-"<rt>ぶくろ</rt></ruby>を<ruby>作<rt>つく</rt></ruby>る"
+msgstr "非常持出袋を調べ直す"
 
 #: utils.py:72
-#, fuzzy
-#| msgid "Prepare for potential aftershocks"
 msgid "Prepare for power outage"
-msgstr ""
-"<ruby>潜在的<rt>せんざいてき</rt></ruby>な<ruby>余震<rt>よしん</rt></ruby>に"
-"<ruby>備<rt>そな</rt></ruby>える"
+msgstr "停電に備える"
 
 #: utils.py:77
 msgid "Elderly, people with disabilities, and"
-msgstr ""
+msgstr "お年寄りと障碍者と子供連れの家族"
 
 #: utils.py:78
 msgid "families with children must evacuate"
-msgstr ""
+msgstr "が避難しなければなりません"
 
 #: utils.py:83
 msgid "Elderly & people with disabilities"
-msgstr ""
+msgstr "お年寄りと障碍者が避難"
 
 #: utils.py:84
 msgid "must evacuate"
-msgstr ""
+msgstr "しなければなりません"
 
 #: utils.py:88
-#, fuzzy
-#| msgid "Know your evacuation routes"
 msgid "Go to an evacuation center"
-msgstr ""
-"<ruby>避難経路<rt>ひなんけいろ</rt></ruby>に<ruby>気<rt>き</rt></ruby>を"
-"<ruby>付<rt>つ</rt></ruby>ける"
+msgstr "すぐ避難所に行く"
 
 #: utils.py:89
 msgid "immediately"
-msgstr ""
+msgstr " "
 
 #: utils.py:93
 msgid "Save your life!"
 msgstr ""
+"上記のことをして、\n"
+"自分を助けましょう！"
 
 #: utils.py:98
 msgid "Check your house before leaving (window, breaker,"
@@ -894,26 +884,20 @@ msgstr ""
 msgid "Safety Guidelines"
 msgstr ""
 
-#: utils.py:335
-#, python-brace-format
-msgid "Your checklist for {disaster_type}s\n"
-msgstr ""
-
-#: utils.py:337 utils.py:350 views.py:365 views.py:373 views.py:386
+#: utils.py:342 utils.py:357 views.py:365 views.py:373 views.py:386
 #: views.py:394 views.py:511 views.py:518
 msgid "Go Bag"
 msgstr "ゴーバッグ"
 
-#: utils.py:341 utils.py:344
-#, python-brace-format
-msgid "Your checklist for {disaster_type}s"
+#: utils.py:347
+msgid "Your checklist for earthquakes"
 msgstr ""
 
-#: utils.py:346
+#: utils.py:353
 msgid "created by S.E.E.L.E on {datetime.now().date()}"
 msgstr ""
 
-#: utils.py:347
+#: utils.py:354
 #, fuzzy
 #| msgid "Stay prepared!"
 msgid "Items to prepare"
@@ -1398,6 +1382,20 @@ msgstr ""
 #: views.py:797 views.py:804
 msgid "No user logged in"
 msgstr "ログインしているユーザーはいません"
+
+#, fuzzy
+#~| msgid "Your checklist for typhoons\n"
+#~ msgid "Your poster for typhoons\n"
+#~ msgstr "{user.name}への台風チェックリスト\n"
+
+#, fuzzy
+#~| msgid "Your checklist for earthquakes\n"
+#~ msgid "Your poster for earthquakes\n"
+#~ msgstr "あなたへの地震チェックリスト\n"
+
+#, python-format
+#~ msgid "Your checklist for typhoons"
+#~ msgstr "{user.name}への台風チェックリスト"
 
 #~ msgid "Flood"
 #~ msgstr "洪水（こうずい）"
