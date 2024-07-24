@@ -67,6 +67,13 @@ def signup(request):
             if Users.objects.filter(email=email).exists():
                 return render(request, 'signup.html', {'msg': _('Email address is already associated with an account'), 'tag': 'danger'})
 
+            if new_email.count('@') != 1:
+                return render(request, 'signup.html', {'msg': _('Please check email'), 'tag': 'danger'})
+
+            temp = new_email.split('@')
+            if len(temp[0]) == 0 or len(temp[1]) == 0 or not temp[1][-3:] in ['com', 'org', 'edu']:
+                return render(request, 'signup.html', {'msg': _('Please check email'), 'tag': 'danger'})
+
             if len(password) < 8:
                 return render(request, 'signup.html', {'msg': _('Password must be at least 8 characters'), 'tag': 'danger'})
 
