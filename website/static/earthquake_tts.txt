@@ -12,23 +12,23 @@ Begeta様への地震ポスター
 基本的な救急箱,
 マルチツールナイフまたはアーミーナイフ,
 地震のレベル：
-レベルlevel 0地震には：
-Imperceptible to people, but recorded by seismometers,
-レベルlevel 1地震には：
-Felt slightly by some people keeping quiet in buildings,
-レベルlevel 2地震には：
-Felt by many people keeping quiet in buildings,, Hanging objects swing slightly,
-レベルlevel 3地震には：
-Felt by most people in buildings and some walking,, Dishes rattle and electric wires swing.,
-レベルlevel 4地震には：
-Hanging objects swing significantly,, Unstable ornaments may fall and electric wires swing significantly,
-レベルlevel 5地震には：
-Unsecured furniture may move and fall,, Windows may break and roads may sustain damage, and some walls may collapse,
-レベルlevel 6地震には：
-Unsecured furniture moves and may topple,, Impossible to stand or move without crawling,, Walls may collapse,
-レベルlevel 7地震には：
-Most furniture topples; reinforced walls may collapse,
-Some general earthquake tips are:
+レベル0地震には：
+人には感知されないが、地震計 によって記録される,
+レベル1地震には：
+静か時間、たまに建物にいる人 も地震を感じる,
+レベル2地震には：
+多く人が静かな建物内で地震を感じる 　,, ぶら下げた物体がわずかに揺れる,
+レベル3地震には：
+建物内にいるほとんどの人がよく感じて、 歩いている人もたまに感じる,, 食器がガタガタして、電線が揺れる,
+レベル4地震には：
+吊り下げ物が大きく揺れる,, 不安定な装飾品が落下したり、電線が 大きく振れたりする可能性がある,
+レベル5地震には：
+固定されていない家具は移動して落ちる,, 窓ガラスが割れたり、道路が損傷したり、 壁が多少崩壊したりする,
+レベル6地震には：
+固定されていない家具は移動して、転倒する,, 這わないと立ったり移動したりできない,, 壁が崩壊する,
+レベル7地震には：
+ほとんどの家具は倒れて、補強された壁 でも崩壊する,
+全体的な地震コツについて：
 安全の確保する: 落ち着いて安全を 優先してください,,
 公共施設をオフにする: 他の人に警告して、 ガスと電気をすぐに止めてください,,
 出口を確保する: 渋滞している場合はドアや 窓を開けて避難経路を確保してください,,

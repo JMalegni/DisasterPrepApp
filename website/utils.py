@@ -182,8 +182,8 @@ def typhoon_flood_checklist(draw, fonts, scale, user, disaster_type):
 def earthquake_checklist(draw, fonts, scale):
 
     header_font = fonts['header']
-    draw_text(draw, gettext("During an earthquake,"), header_font, 230 * scale, 220 * scale)
-    draw_text(draw, gettext("follow these safety steps:"), header_font, 230 * scale, 260 * scale)
+    draw_text(draw, gettext("Earthquakes happen quick,"), header_font, 230 * scale, 220 * scale)
+    draw_text(draw, gettext("yo! Keep 'em at bay:"), header_font, 230 * scale, 260 * scale)
 
 #information from https://www.jma.go.jp/jma/en/Activities/inttable.html
     level0_earthquake = [
@@ -205,7 +205,7 @@ def earthquake_checklist(draw, fonts, scale):
     level3_earthquake = [
         (gettext("Felt by most people in buildings and some"), True),
         (gettext("walking"), False),
-        (gettext("Dishes rattle and electric wires swing."), True),
+        (gettext("Dishes rattle and electric wires swing"), True),
     ]
 
     level4_earthquake = [
@@ -273,16 +273,16 @@ def earthquake_checklist(draw, fonts, scale):
             if full_items:
                 file.write(", ".join(full_items) + ",\n")
 
-        write_level(file, "level 0", level0_earthquake)
-        write_level(file, "level 1", level1_earthquake)
-        write_level(file, "level 2", level2_earthquake)
-        write_level(file, "level 3", level3_earthquake)
-        write_level(file, "level 4", level4_earthquake)
-        write_level(file, "level 5", level5_earthquake)
-        write_level(file, "level 6", level6_earthquake)
-        write_level(file, "level 7", level7_earthquake)
+        write_level(file, "0", level0_earthquake)
+        write_level(file, "1", level1_earthquake)
+        write_level(file, "2", level2_earthquake)
+        write_level(file, "3", level3_earthquake)
+        write_level(file, "4", level4_earthquake)
+        write_level(file, "5", level5_earthquake)
+        write_level(file, "6", level6_earthquake)
+        write_level(file, "7", level7_earthquake)
 
-        file.write("Some general earthquake tips are:\n")
+        file.write(gettext("Some general earthquake tips are:\n"))
         full_tips = []
         for item, is_new in disaster_tips:
             if is_new:

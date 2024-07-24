@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-24 04:04-0400\n"
+"POT-Creation-Date: 2024-07-24 05:29-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -712,100 +712,96 @@ msgid "Some general typhoon tips are:\n"
 msgstr "全体的な台風コツについて：\n"
 
 #: utils.py:185
-msgid "During an earthquake,"
-msgstr ""
+msgid "Earthquakes happen quick,"
+msgstr "地震ってガチで突然だぞ！"
 
 #: utils.py:186
-msgid "follow these safety steps:"
-msgstr ""
+msgid "yo! Keep 'em at bay:"
+msgstr "そんな敵に気を付けろ："
 
 #: utils.py:190
 msgid "Imperceptible to people, but recorded"
-msgstr ""
+msgstr "人には感知されないが、地震計"
 
 #: utils.py:191
 msgid "by seismometers"
-msgstr ""
+msgstr "によって記録される"
 
 #: utils.py:195
 msgid "Felt slightly by some people keeping quiet"
-msgstr ""
+msgstr "静か時間、たまに建物にいる人"
 
 #: utils.py:196
 msgid "in buildings"
-msgstr ""
+msgstr "も地震を感じる"
 
 #: utils.py:200
 msgid "Felt by many people keeping quiet in"
-msgstr ""
+msgstr "多く人が静かな建物内で地震を感じる"
 
 #: utils.py:201
 msgid "buildings"
-msgstr ""
+msgstr "　"
 
 #: utils.py:202
 msgid "Hanging objects swing slightly"
-msgstr ""
+msgstr "ぶら下げた物体がわずかに揺れる"
 
 #: utils.py:206
 msgid "Felt by most people in buildings and some"
-msgstr ""
+msgstr "建物内にいるほとんどの人がよく感じて、"
 
 #: utils.py:207
 msgid "walking"
-msgstr ""
+msgstr "歩いている人もたまに感じる"
 
 #: utils.py:208
-msgid "Dishes rattle and electric wires swing."
-msgstr ""
+msgid "Dishes rattle and electric wires swing"
+msgstr "食器がガタガタして、電線が揺れる"
 
 #: utils.py:212
 msgid "Hanging objects swing significantly"
-msgstr ""
+msgstr "吊り下げ物が大きく揺れる"
 
 #: utils.py:213
 msgid "Unstable ornaments may fall and electric"
-msgstr ""
+msgstr "不安定な装飾品が落下したり、電線が"
 
 #: utils.py:214
 msgid "wires swing significantly"
-msgstr ""
+msgstr "大きく振れたりする可能性がある"
 
 #: utils.py:218
-#, fuzzy
-#| msgid "Secure heavy furniture to walls"
 msgid "Unsecured furniture may move and fall"
-msgstr ""
-"<ruby>重<rt>おも</rt></ruby>い<ruby>家具<rt>かぐ</rt></ruby>を<ruby>壁<rt>か"
-"ど</rt></ruby>に<ruby>固定<rt>こてい</rt></ruby>する"
+msgstr "固定されていない家具は移動して落ちる"
 
 #: utils.py:219
 msgid "Windows may break and roads may sustain"
-msgstr ""
+msgstr "窓ガラスが割れたり、道路が損傷したり、"
 
 #: utils.py:220
 msgid "damage, and some walls may collapse"
-msgstr ""
+msgstr "壁が多少崩壊したりする"
 
 #: utils.py:224
 msgid "Unsecured furniture moves and may topple"
-msgstr ""
+msgstr "固定されていない家具は移動して、転倒する"
 
 #: utils.py:225
 msgid "Impossible to stand or move without crawling"
-msgstr ""
+msgstr "這わないと立ったり移動したりできない"
 
 #: utils.py:226
 msgid "Walls may collapse"
-msgstr ""
+msgstr "壁が崩壊する"
 
 #: utils.py:230
 msgid "Most furniture topples; reinforced walls may"
-msgstr ""
+msgstr "ほとんどの家具は倒れて、補強された壁"
 
 #: utils.py:231
 msgid "collapse"
-msgstr ""
+msgstr "でも崩壊する"
 
 #: utils.py:236
 msgid "Ensure Safety: Stay calm and prioritize your"
@@ -896,6 +892,10 @@ msgstr "地震のレベル：\n"
 msgid "In a level %(level_num)s earthquake:\n"
 msgstr "レベル%(level_num)s地震には：\n"
 
+#: utils.py:285
+msgid "Some general earthquake tips are:\n"
+msgstr "全体的な地震コツについて：\n"
+
 #: utils.py:307
 msgid "Safety Guidelines"
 msgstr "安全ガイドライン"
@@ -904,23 +904,17 @@ msgstr "安全ガイドライン"
 msgid "Items to prepare:,\n"
 msgstr "備えるためのこと：,\n"
 
-#: utils.py:348 utils.py:351 utils.py:372 utils.py:377 views.py:429
+#: utils.py:348 utils.py:351 utils.py:373 utils.py:378 views.py:429
 #: views.py:437 views.py:450 views.py:458 views.py:575 views.py:582
 msgid "Go Bag"
 msgstr "ゴーバッグ"
 
-#: utils.py:356
-#, fuzzy
-#| msgid "Your checklist for earthquakes\n"
-msgid "Your Poster for Earthquakes"
-msgstr "あなたへの地震チェックリスト\n"
-
-#: utils.py:366
+#: utils.py:367
 #, python-format
 msgid "Created by S.E.E.L.E on %(date)s"
 msgstr "%(date)sにS.E.E.L.Eによって作成されました"
 
-#: utils.py:367
+#: utils.py:368
 msgid "Items to prepare"
 msgstr "備えるためのこと"
 
@@ -1421,6 +1415,17 @@ msgstr ""
 #: views.py:871 views.py:878
 msgid "No user logged in"
 msgstr "ログインしているユーザーはいません"
+
+#~ msgid "During an earthquake,"
+#~ msgstr "地震が発生した場合は、次の"
+
+#~ msgid "follow these safety steps:"
+#~ msgstr "安全手順に従ってください:"
+
+#, fuzzy
+#~| msgid "Your checklist for earthquakes\n"
+#~ msgid "Your Poster for Earthquakes"
+#~ msgstr "あなたへの地震チェックリスト\n"
 
 #, fuzzy
 #~| msgid "Password must have one special character or number"
