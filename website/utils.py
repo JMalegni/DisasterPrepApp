@@ -353,7 +353,8 @@ def checklist_image(checklist, disaster_type, user):
 
     if disaster_type == "Earthquake":
         big_header = f"{user.name}様への地震ポスター" if get_language().startswith("jp") else "Your Poster for Earthquakes"
-        tasks.append((draw_text, (draw, gettext("Your Poster for Earthquakes"), fonts['title'], 190 * scale, 35 * scale)))
+        title_offset = 190 if not get_language().startswith("jp") else 230
+        tasks.append((draw_text, (draw, big_header, fonts['title'], title_offset * scale, 35 * scale)))
     
     else:
         big_header = f"{user.name}様への台風ポスター" if get_language().startswith("jp") else "Your Poster for Typhoons"

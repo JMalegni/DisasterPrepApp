@@ -809,87 +809,83 @@ msgstr ""
 
 #: utils.py:236
 msgid "Ensure Safety: Stay calm and prioritize your"
-msgstr ""
+msgstr "安全の確保する: 落ち着いて安全を"
 
 #: utils.py:237
 msgid "safety"
-msgstr ""
+msgstr "優先してください"
 
 #: utils.py:238
 msgid "Turn Off Utilities: Alert others and turn off gas"
-msgstr ""
+msgstr "公共施設をオフにする: 他の人に警告して、"
 
 #: utils.py:239
 msgid "and electricity immediately"
-msgstr ""
+msgstr "ガスと電気をすぐに止めてください"
 
 #: utils.py:240
-#, fuzzy
-#| msgid "Seal gaps around doors and windows"
 msgid "Secure an Exit: Open doors and windows if"
-msgstr ""
-"ドアや<ruby>窓<rt>まど</rt></ruby>の<ruby>周<rt>まわ</rt></ruby>りの<ruby>隙"
-"間<rt>すきま</rt></ruby>を<ruby>塞<rt>ふさ</rt></ruby>ぐ"
+msgstr "出口を確保する: 渋滞している場合はドアや"
 
 #: utils.py:241
 msgid "jammed to create an escape route"
-msgstr ""
+msgstr "窓を開けて避難経路を確保してください"
 
 #: utils.py:242
 msgid "Handle Fires: Shout for help and extinguish"
-msgstr ""
+msgstr "火の取り扱う：大声で助けを求めて、"
 
 #: utils.py:243
 msgid "small fires immediately"
-msgstr ""
+msgstr "小さな火はすぐに消してください"
 
 #: utils.py:244
 msgid "Avoid Rush: Exit carefully, watch for"
-msgstr ""
+msgstr "急がない：慎重に脱出して、落下する"
 
 #: utils.py:245
 msgid "falling debris"
-msgstr ""
+msgstr "破片に注意してください"
 
 #: utils.py:246
 msgid "Stay Clear of Hazards: Avoid narrow alleys,"
-msgstr ""
+msgstr "危険を避ける: 狭い路地や崖や川を避けて、"
 
 #: utils.py:247
 msgid "cliffs, and rivers; watch for falling objects"
-msgstr ""
+msgstr "落下物に注意してください"
 
 #: utils.py:248
 msgid "Watch for Aftershocks: Prepare for landslides"
-msgstr ""
+msgstr "余震に注意する：山や海の近くでは"
 
 #: utils.py:249
 msgid "or tsunamis if near mountains or the sea"
-msgstr ""
+msgstr "地滑りや津波に備えてください"
 
 #: utils.py:250
 msgid "Evacuate on Foot: Go to the nearest shelter with"
-msgstr ""
+msgstr "徒歩で避難する：最小限の持ち物を持って"
 
 #: utils.py:251
 msgid "minimal belongings"
-msgstr ""
+msgstr "最寄りの避難所に行ってください"
 
 #: utils.py:252
 msgid "Help Others: Assist the elderly, disabled,"
-msgstr ""
+msgstr "人を助ける: 高齢者や障害者や"
 
 #: utils.py:253
 msgid "and injured"
-msgstr ""
+msgstr "負傷者を手伝ってください"
 
 #: utils.py:254
 msgid "Get Accurate Info: Follow reliable sources for"
-msgstr ""
+msgstr "情報を入手する: 信頼できる情報源に従って"
 
 #: utils.py:255
 msgid "updates and watch out for aftershocks"
-msgstr ""
+msgstr "最新情報を入手して、余震に注意してください。"
 
 #: utils.py:260
 msgid "Levels of earthquakes:\n"
