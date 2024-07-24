@@ -339,7 +339,7 @@ msgstr ""
 
 #: templates/home.html:62
 msgid "Hover or tap on our guides to learn additional information!"
-msgstr ""
+msgstr "情報を調べるために、ガイドたちにホバーしたりタップしてください！"
 
 #: templates/home.html:66
 msgid ""
