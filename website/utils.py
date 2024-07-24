@@ -139,11 +139,11 @@ def typhoon_flood_checklist(draw, fonts, scale, user, disaster_type):
 
     # Writing checklist items to a text file for tts to read
     with open("website/static/typhoon_tts.txt", "a", encoding="utf-8") as file:
-        file.write("Levels of typhoon preparedness:\n")
+        file.write(gettext("Levels of typhoon preparedness:\n"))
 
 
-        def write_level(file, level_name, items):
-            file.write(f"In a {level_name} typhoon:\n")
+        def write_level(file, level_num, items):
+            file.write(gettext("In a level %(level_num)s typhoon:\n") % {'level_num': level_num})
             full_items = []
             for item, is_new in items:
                 if is_new:
@@ -155,13 +155,13 @@ def typhoon_flood_checklist(draw, fonts, scale, user, disaster_type):
             if full_items:
                 file.write(", ".join(full_items) + ",\n")
 
-        write_level(file, "level 1", level1_typhoon)
-        write_level(file, "level 2", level2_typhoon)
-        write_level(file, "level 3", level3_typhoon)
-        write_level(file, "level 4", level4_typhoon)
-        write_level(file, "level 5", level5_typhoon)
+        write_level(file, "1", level1_typhoon)
+        write_level(file, "2", level2_typhoon)
+        write_level(file, "3", level3_typhoon)
+        write_level(file, "4", level4_typhoon)
+        write_level(file, "5", level5_typhoon)
 
-        file.write("Some general typhoon tips are:\n")
+        file.write(gettext("Some general typhoon tips are:\n"))
         full_tips = []
         for item, is_new in disaster_tips:
             if is_new:
@@ -182,8 +182,8 @@ def typhoon_flood_checklist(draw, fonts, scale, user, disaster_type):
 def earthquake_checklist(draw, fonts, scale):
 
     header_font = fonts['header']
-    draw_text(draw, gettext("During an earthquake,"), header_font, 230 * scale, 220 * scale)
-    draw_text(draw, gettext("follow these safety steps:"), header_font, 230 * scale, 260 * scale)
+    draw_text(draw, gettext("Earthquakes happen quick,"), header_font, 230 * scale, 220 * scale)
+    draw_text(draw, gettext("yo! Keep 'em at bay:"), header_font, 230 * scale, 260 * scale)
 
 #information from https://www.jma.go.jp/jma/en/Activities/inttable.html
     level0_earthquake = [
@@ -205,7 +205,7 @@ def earthquake_checklist(draw, fonts, scale):
     level3_earthquake = [
         (gettext("Felt by most people in buildings and some"), True),
         (gettext("walking"), False),
-        (gettext("Dishes rattle and electric wires swing."), True),
+        (gettext("Dishes rattle and electric wires swing"), True),
     ]
 
     level4_earthquake = [
@@ -257,11 +257,11 @@ def earthquake_checklist(draw, fonts, scale):
 
     # Writing checklist items to a text file for tts to read
     with open("website/static/earthquake_tts.txt", "a", encoding="utf-8") as file:
-        file.write("Levels of earthquakes:\n")
+        file.write(gettext("Levels of earthquakes:\n"))
 
 
-        def write_level(file, level_name, items):
-            file.write(f"In a {level_name} earthquake:\n")
+        def write_level(file, level_num, items):
+            file.write(gettext("In a level %(level_num)s earthquake:\n") % {'level_num': level_num})
             full_items = []
             for item, is_new in items:
                 if is_new:
@@ -273,16 +273,16 @@ def earthquake_checklist(draw, fonts, scale):
             if full_items:
                 file.write(", ".join(full_items) + ",\n")
 
-        write_level(file, "level 0", level0_earthquake)
-        write_level(file, "level 1", level1_earthquake)
-        write_level(file, "level 2", level2_earthquake)
-        write_level(file, "level 3", level3_earthquake)
-        write_level(file, "level 4", level4_earthquake)
-        write_level(file, "level 5", level5_earthquake)
-        write_level(file, "level 6", level6_earthquake)
-        write_level(file, "level 7", level7_earthquake)
+        write_level(file, "0", level0_earthquake)
+        write_level(file, "1", level1_earthquake)
+        write_level(file, "2", level2_earthquake)
+        write_level(file, "3", level3_earthquake)
+        write_level(file, "4", level4_earthquake)
+        write_level(file, "5", level5_earthquake)
+        write_level(file, "6", level6_earthquake)
+        write_level(file, "7", level7_earthquake)
 
-        file.write("Some general earthquake tips are:\n")
+        file.write(gettext("Some general earthquake tips are:\n"))
         full_tips = []
         for item, is_new in disaster_tips:
             if is_new:
@@ -342,7 +342,7 @@ def checklist_image(checklist, disaster_type, user):
         else:
             big_header = f"{user.name}様への台風ポスター\n" if get_language().startswith("jp") else "Your Poster for Typhoons\n"
         file.write(big_header)
-        file.write("Items to prepare:,\n")
+        file.write(gettext("Items to prepare:,\n"))
 
         if get_language().startswith("jp"):
             for item in checklist[gettext("Go Bag")]:
@@ -353,7 +353,8 @@ def checklist_image(checklist, disaster_type, user):
 
     if disaster_type == "Earthquake":
         big_header = f"{user.name}様への地震ポスター" if get_language().startswith("jp") else "Your Poster for Earthquakes"
-        tasks.append((draw_text, (draw, gettext("Your Poster for Earthquakes"), fonts['title'], 190 * scale, 35 * scale)))
+        title_offset = 190 if not get_language().startswith("jp") else 230
+        tasks.append((draw_text, (draw, big_header, fonts['title'], title_offset * scale, 35 * scale)))
     
     else:
         big_header = f"{user.name}様への台風ポスター" if get_language().startswith("jp") else "Your Poster for Typhoons"

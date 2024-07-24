@@ -1,66 +1,41 @@
-Your Poster for Earthquakes
-Items to prepare:
-Medium-sized backpack or sturdy tote
-Flashlight with extra batteries
-Two liters of water
-Work gloves
-Change of clothes
-Heavy coat and pants
-Photocopies of passport/residence card
-Portable charger
-Battery-operated radio
-Basic first aid kit
-Multi-tool or Swiss army knife
-Earthquake Safety Checklist:
-In a level 0 earthquake: 
-Imperceptible to people, but recorded
-by seismometers
-In a level 1 earthquake: 
-Felt slightly by some people keeping quiet
-in buildings
-In a level 2 earthquake: 
-Felt by many people keeping quiet in
-buildings
-Hanging objects swing slightly
-In a level 3 earthquake: 
-Felt by most people in buildings and some
-walking
-Dishes rattle and electric wires swing.
-In a level 4 earthquake: 
-Hanging objects swing significantly
-Unstable ornaments may fall and electric
-wires swing significantly
-In a level 5 earthquake: 
-Unsecured furniture may move and fall
-Windows may break and roads may sustain
-damage, and some walls may collapse
-In a level 6 earthquake: 
-Imperceptible to people, but recorded
-by seismometers
-In a level 6 earthquake: 
-Imperceptible to people, but recorded
-by seismometers
-In a level 7 earthquake: 
-Most furniture topples; reinforced walls may
-collapse
-Some general earthquake tips are: 
-Ensure Safety: Stay calm and prioritize your
-safety
-Turn Off Utilities: Alert others and turn off gas
-and electricity immediately
-Secure an Exit: Open doors and windows if
-jammed to create an escape route
-Handle Fires: Shout for help and extinguish
-small fires immediately
-Avoid Rush: Exit carefully, watch for
-falling debris
-Stay Clear of Hazards: Avoid narrow alleys,
-cliffs, and rivers; watch for falling objects
-Watch for Aftershocks: Prepare for landslides
-or tsunamis if near mountains or the sea
-Evacuate on Foot: Go to the nearest shelter with
-minimal belongings
-Help Others: Assist the elderly, disabled,
-and injured
-Get Accurate Info: Follow reliable sources for
-updates and watch out for aftershocks
+Begeta様への地震ポスター
+備えるためのこと：,
+中型のリュックサックまたはトートバッグ,
+懐中電灯と予備電池,
+２リットルの水,
+軍手,
+着替え,
+厚手の上着とズボン,
+パスポートや在留カードのコピー,
+モバイルバッテリー,
+電池式ラジオ,
+基本的な救急箱,
+マルチツールナイフまたはアーミーナイフ,
+地震のレベル：
+レベル0地震には：
+人には感知されないが、地震計 によって記録される,
+レベル1地震には：
+静か時間、たまに建物にいる人 も地震を感じる,
+レベル2地震には：
+多く人が静かな建物内で地震を感じる 　,, ぶら下げた物体がわずかに揺れる,
+レベル3地震には：
+建物内にいるほとんどの人がよく感じて、 歩いている人もたまに感じる,, 食器がガタガタして、電線が揺れる,
+レベル4地震には：
+吊り下げ物が大きく揺れる,, 不安定な装飾品が落下したり、電線が 大きく振れたりする可能性がある,
+レベル5地震には：
+固定されていない家具は移動して落ちる,, 窓ガラスが割れたり、道路が損傷したり、 壁が多少崩壊したりする,
+レベル6地震には：
+固定されていない家具は移動して、転倒する,, 這わないと立ったり移動したりできない,, 壁が崩壊する,
+レベル7地震には：
+ほとんどの家具は倒れて、補強された壁 でも崩壊する,
+全体的な地震コツについて：
+安全の確保する: 落ち着いて安全を 優先してください,,
+公共施設をオフにする: 他の人に警告して、 ガスと電気をすぐに止めてください,,
+出口を確保する: 渋滞している場合はドアや 窓を開けて避難経路を確保してください,,
+火の取り扱う：大声で助けを求めて、 小さな火はすぐに消してください,,
+急がない：慎重に脱出して、落下する 破片に注意してください,,
+危険を避ける: 狭い路地や崖や川を避けて、 落下物に注意してください,,
+余震に注意する：山や海の近くでは 地滑りや津波に備えてください,,
+徒歩で避難する：最小限の持ち物を持って 最寄りの避難所に行ってください,,
+人を助ける: 高齢者や障害者や 負傷者を手伝ってください,,
+情報を入手する: 信頼できる情報源に従って 最新情報を入手して、余震に注意してください。,

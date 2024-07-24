@@ -246,19 +246,19 @@ def profile(request):
         # Email Validation
         if new_email.count('@') != 1:
             if not error:
-                messages.error(request, _('Check if email is valid'), extra_tags='danger')
+                messages.error(request, _('Invalid email address'), extra_tags='danger')
                 error = True
 
         else:
             temp = new_email.split('@')
             if len(temp[0]) == 0 or len(temp[1]) == 0:
                 if not error:
-                    messages.error(request, _('Check if email is valid'), extra_tags='danger')
+                    messages.error(request, _('Invalid email address'), extra_tags='danger')
                     error = True
             else:
                 if not temp[1][-3:] in ['com', 'org', 'edu']:
                     if not error:
-                        messages.error(request, _('Check if email is valid'), extra_tags='danger')
+                        messages.error(request, _('Invalid email address'), extra_tags='danger')
                         error = True
                 else:
                     if Users.objects.filter(email=new_email).exists() and user.email != new_email:
