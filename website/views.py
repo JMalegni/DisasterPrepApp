@@ -360,7 +360,7 @@ def split_checklist(checklist):
 def generate_checklist(user, disaster_type, prepare_type):
     family_size = user.family_size
 
-    if disaster_type == _('Typhoon'):
+    if disaster_type == 'Typhoon':
         categories = {
             _("Go Bag"): [],
             _("Water and Food"): [],
@@ -506,7 +506,7 @@ def generate_checklist(user, disaster_type, prepare_type):
                     _("Cane or walker"),
                 ])
 
-    elif disaster_type == _('Earthquake'):
+    elif disaster_type == 'Earthquake':
         categories = {
             _("Go Bag"): [],
             _("Water and Food"): [],
