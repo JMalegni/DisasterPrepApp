@@ -225,6 +225,20 @@ def profile(request):
              'wheelchair': bool(wheelchair),
          }
 
+         # Email Validation
+         if new_email.count('@') != 1:
+             messages.error(request, _('Check if email is valid'), extra_tags='danger')
+             return render(request, 'profile.html', context)
+
+         temp = new_email.split('@')
+         if len(temp[0]) == 0 or len(temp[1]) == 0:
+             messages.error(request, _('Check if email is valid'), extra_tags='danger')
+             return render(request, 'profile.html', context)
+
+         if not temp[1][-3:] in ['com', 'org', 'edu']:
+             messages.error(request, _('Check if email is valid'), extra_tags='danger')
+             return render(request, 'profile.html', context)
+
          # Password validation
          if password:
              if len(password) < 8:
