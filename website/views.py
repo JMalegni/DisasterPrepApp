@@ -260,7 +260,7 @@ def profile(request):
                         messages.error(request, _('Check if email is valid'), extra_tags='danger')
                         error = True
                 else:
-                    if Users.objects.filter(email=new_email).exists():
+                    if Users.objects.filter(email=new_email).exists() and user.email != new_email:
                         if not error:
                             messages.error(request, _('Email already exists'), extra_tags='danger')
                             error = True
