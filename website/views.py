@@ -265,6 +265,11 @@ def profile(request):
             messages.error(request, _('Please enter valid coordinates'), extra_tags='danger')
             return render(request, 'profile.html', context)
 
+        # Family Size Validation
+        if int(family_size) > 20 or int(family_size) < 1:
+            messages.error(request, _('Please enter a family size between 1-20'), extra_tags='danger')
+            return render(request, 'profile.html', context)
+
         # Update other user data
         user.name = name
         user.email = new_email
