@@ -1,29 +1,29 @@
 Your checklist for Typhoons
 Items to prepare:
-Medium-sized backpack/sturdy tote
-Two 1-liter bottles
-High-calorie bars/instant food
-Small first aid kit, masks, hand sanitizer
-Rain poncho and towel
-A change of clothes
-Cash
-Plastic bags
-Photocopies of passport/residence card
-Portable charger
+<ruby>中型<rt>ちゅうがた</rt></ruby>のリュックサックまたはトートバッグ
+２<ruby>本<rt>ほん</rt></ruby>１リットルボトル
+<ruby>高<rt>こう</rt></ruby>カロリースナックまたはインスタント<ruby>食品<rt>しょくひん</rt></ruby>
+小さい<ruby>救急箱<rt>きゅうきゅうばこ</rt></ruby>やマスクやアルコール<ruby>消毒液<rt>しょうどくえき</rt></ruby>
+ポンチョやタオル
+<ruby>着替<rt>きが</rt></ruby>え
+<ruby>現金<rt>げんきん</rt></ruby>
+レジ<ruby>袋<rt>ぶくろ</rt></ruby>
+パスポートや<ruby>在留<rt>ざいりゅう</rt></ruby>カードのコピー
+モバイルバッテリー
 Typhoon and Safety Checklist:
 In a level 1 typhoon: 
-Check a hazard map
-Find evacuation centers
-Check items on checklist
-Beware of falling things in your
-house
+ハザードマップを見る
+避難所を見つける
+チェックリストを見て確認する
+家の中の落ちる物に注意する
+ 
 In a level 2 typhoon: 
 Decide on evacuation center
 Recheck emergency bags
 Prepare for power outage
 In a level 3 typhoon: 
-Elderly & people with disabilities
-must evacuate
+Elderly, people with disabilities, and
+families with children must evacuate
 In a level 4 typhoon: 
 Go to an evacuation center
 immediately
@@ -37,3 +37,8 @@ Follow the route avoiding dangerous areas
 While evacuating, watch out for flooding
 If you can't evacuate safely, stay inside and go to
 the highest floor
+Register people who need evacuation support
+Don't use a baby stroller
+Use a backpack and always hold your children's hand
+Use a lead, cage, and carry bag during evacuation
+Keep pets calm so they don't panic

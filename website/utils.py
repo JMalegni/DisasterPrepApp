@@ -2,7 +2,7 @@ import os
 import re
 from PIL import Image, ImageDraw, ImageFont
 from django.conf import settings
-from django.utils.translation import gettext as _, get_language
+from django.utils.translation import gettext, get_language
 from datetime import datetime
 import re
 from concurrent.futures import ThreadPoolExecutor
@@ -32,7 +32,7 @@ def bullet_spacing(draw, fonts, list, x, y, scale, bigList=False):
     for item, bullet_point in list:
         if bullet_point:
             draw_text(draw, "\u2022", bullet_font, x, y)
-            draw_text(draw, _(item), text_font, x + int(40 * scale), y + int(27 * scale))
+            draw_text(draw, gettext(item), text_font, x + int(40 * scale), y + int(27 * scale))
 
             if not bigList:
                 y += int(46 * scale)
@@ -40,7 +40,7 @@ def bullet_spacing(draw, fonts, list, x, y, scale, bigList=False):
             else:
                 y += int(42 * scale)
         else:
-            draw_text(draw, _(item), text_font, x + int(40 * scale), y + int(6 * scale))
+            draw_text(draw, gettext(item), text_font, x + int(40 * scale), y + int(6 * scale))
 
             if not bigList:
                 y += int(22 * scale)
@@ -52,80 +52,80 @@ def bullet_spacing(draw, fonts, list, x, y, scale, bigList=False):
 def typhoon_flood_checklist(draw, fonts, scale, user, disaster_type):
     # Clear the text file for tts
     with open("typhoon_tts.txt", "a") as file:
-        file.write("Typhoon and Safety Checklist:\n")
+        file.write(gettext("Typhoon and Safety Checklist:\n"))
 
     header_font = fonts['header']
-    draw_text(draw, "Typhoons come with", header_font, 230 * scale, 220 * scale)
-    draw_text(draw, "rains, floods, landslides", header_font, 230 * scale, 260 * scale)
+    draw_text(draw, gettext("Typhoons come with"), header_font, 230 * scale, 220 * scale)
+    draw_text(draw, gettext("rains, floods, landslides"), header_font, 230 * scale, 260 * scale)
 
     level1_typhoon = [
-        ("Check a hazard map", True),
-        ("Find evacuation centers", True),
-        ("Check items on checklist", True),
-        ("Beware of falling things in your", True),
-        ("house", False),
+        (gettext("Check a hazard map"), True),
+        (gettext("Find evacuation centers"), True),
+        (gettext("Check items on checklist"), True),
+        (gettext("Beware of falling things in your"), True),
+        (gettext("house"), False),
     ]
     
     level2_typhoon = [
-        ("Decide on evacuation center", True),
-        ("Recheck emergency bags", True),
-        ("Prepare for power outage", True),
+        (gettext("Decide on evacuation center"), True),
+        (gettext("Recheck emergency bags"), True),
+        (gettext("Prepare for power outage"), True),
     ]
     
     if user.child_bool:
         level3_typhoon = [
-            ("Elderly, people with disabilities, and", True),
-            ("families with children must evacuate", False),
+            (gettext("Elderly, people with disabilities, and"), True),
+            (gettext("families with children must evacuate"), False),
         ]
     
     else:
         level3_typhoon = [
-            ("Elderly & people with disabilities", True),
-            ("must evacuate", False),
+            (gettext("Elderly & people with disabilities"), True),
+            (gettext("must evacuate"), False),
         ]
     
     level4_typhoon = [
-        ("Go to an evacuation center", True),
-        ("immediately", False),
+        (gettext("Go to an evacuation center"), True),
+        (gettext("immediately"), False),
     ]
     
     level5_typhoon = [
-        ("Save your life!", True),
+        (gettext("Save your life!"), True),
     ]
     
     if disaster_type == "Typhoon":
         disaster_tips = [
-            ("Check your house before leaving (window, breaker,", True),
-            ("gas valve)", False),
-            ("Check yourself and your belongings", True),
-            ("Follow the route avoiding dangerous areas", True),
-            ("While evacuating, watch out for flooding", True),
-            ("If you can't evacuate safely, stay inside and go to", True),
-            ("the highest floor", False),
+            (gettext("Check your house before leaving (window, breaker,"), True),
+            (gettext("gas valve)"), False),
+            (gettext("Check yourself and your belongings"), True),
+            (gettext("Follow the route avoiding dangerous areas"), True),
+            (gettext("While evacuating, watch out for flooding"), True),
+            (gettext("If you can't evacuate safely, stay inside and go to"), True),
+            (gettext("the highest floor"), False),
         ]
-        
+
     else:
         disaster_tips = [
-            ("Close all windows in your house and make sure", True),
-            ("anything outside is moved indoors", False),
-            ("Be aware of strong winds as they will make things fly", True),
-            ("Avoid places with high water levels (50 cm or higher)", True),
-            ("Watch out for manholes, gutters, and irrigation canals", True),
-            ("If you can't evacuate safely, stay inside and go to", True),
-            ("the highest floor", False),
+            (gettext("Close all windows in your house and make sure"), True),
+            (gettext("anything outside is moved indoors"), False),
+            (gettext("Be aware of strong winds as they will make things fly"), True),
+            (gettext("Avoid places with high water levels (50 cm or higher)"), True),
+            (gettext("Watch out for manholes, gutters, and irrigation canals"), True),
+            (gettext("If you can't evacuate safely, stay inside and go to"), True),
+            (gettext("the highest floor"), False),
         ]
 
     if user.blind_bool or user.deaf_bool or user.wheelchair_bool:
-        disaster_tips.append(("Register people who need evacuation support", True))
+        disaster_tips.append((gettext("Register people who need evacuation support"), True))
 
     if user.child_bool or user.baby_bool:
-        disaster_tips.append(("Don't use a baby stroller", True))
-        disaster_tips.append(("Use a backpack and always hold your children's hand", True))
+        disaster_tips.append((gettext("Don't use a baby stroller"), True))
+        disaster_tips.append((gettext("Use a backpack and always hold your children's hand"), True))
 
     if user.pet_bool:
-        disaster_tips.append(("Use a lead, cage, and carry bag during evacuation", True))
-        disaster_tips.append(("Keep pets calm so they don't panic", True))
-    
+        disaster_tips.append((gettext("Use a lead, cage, and carry bag during evacuation"), True))
+        disaster_tips.append((gettext("Keep pets calm so they don't panic"), True))
+        
     y = bullet_spacing(draw, fonts, level1_typhoon, 145 * scale, 328 * scale, scale)
     y = bullet_spacing(draw, fonts, level2_typhoon, 145 * scale, y + int(10 * scale), scale)
     y = bullet_spacing(draw, fonts, level3_typhoon, 145 * scale, y + int(40 * scale), scale)
@@ -171,80 +171,80 @@ def typhoon_flood_checklist(draw, fonts, scale, user, disaster_type):
 def earthquake_checklist(draw, fonts, scale):
     # Clear the text file for tts
     with open("earthquake_tts.txt", "a") as file:
-        file.write("Earthquake Safety Checklist:\n")
+        file.write(gettext("Earthquake Safety Checklist:\n"))
 
     header_font = fonts['header']
-    draw_text(draw, "During an earthquake,", header_font, 230 * scale, 220 * scale)
-    draw_text(draw, "follow these safety steps:", header_font, 230 * scale, 260 * scale)
+    draw_text(draw, gettext("During an earthquake,"), header_font, 230 * scale, 220 * scale)
+    draw_text(draw, gettext("follow these safety steps:"), header_font, 230 * scale, 260 * scale)
 
 #information from https://www.jma.go.jp/jma/en/Activities/inttable.html
     level0_earthquake = [
-        ("Imperceptible to people, but recorded", True),
-        ("by seismometers", False),
+        (gettext("Imperceptible to people, but recorded"), True),
+        (gettext("by seismometers"), False),
     ]
 
     level1_earthquake = [
-        ("Felt slightly by some people keeping quiet", True),
-        ("in buildings", False),
+        (gettext("Felt slightly by some people keeping quiet"), True),
+        (gettext("in buildings"), False),
     ]
 
     level2_earthquake = [
-        ("Felt by many people keeping quiet in", True),
-        ("buildings", False),
-        ("Hanging objects swing slightly", True),
+        (gettext("Felt by many people keeping quiet in"), True),
+        (gettext("buildings"), False),
+        (gettext("Hanging objects swing slightly"), True),
     ]
 
     level3_earthquake = [
-        ("Felt by most people in buildings and some", True),
-        ("walking", False),
-        ("Dishes rattle and electric wires swing.", True),
+        (gettext("Felt by most people in buildings and some"), True),
+        (gettext("walking"), False),
+        (gettext("Dishes rattle and electric wires swing."), True),
     ]
 
     level4_earthquake = [
-        ("Hanging objects swing significantly", True),
-        ("Unstable ornaments may fall and electric", True),
-        ("wires swing significantly", False),
+        (gettext("Hanging objects swing significantly"), True),
+        (gettext("Unstable ornaments may fall and electric"), True),
+        (gettext("wires swing significantly"), False),
     ]
 
     level5_earthquake = [
-        ("Unsecured furniture may move and fall", True),
-        ("Windows may break and roads may sustain", True),
-        ("damage, and some walls may collapse", False),
+        (gettext("Unsecured furniture may move and fall"), True),
+        (gettext("Windows may break and roads may sustain"), True),
+        (gettext("damage, and some walls may collapse"), False),
     ]
 
     level6_earthquake = [
-        ("Unsecured furniture moves and may topple", True),
-        ("Impossible to stand or move without crawling", True),
-        ("crawling; walls may collapse", False),
+        (gettext("Unsecured furniture moves and may topple"), True),
+        (gettext("Impossible to stand or move without crawling"), True),
+        (gettext("crawling; walls may collapse"), False),
     ]
 
     level7_earthquake = [
-        ("Most furniture topples; reinforced walls may", True),
-        ("collapse", False),
+        (gettext("Most furniture topples; reinforced walls may"), True),
+        (gettext("collapse"), False),
     ]
 
-#information from https://www.kcif.or.jp/web/en/livingguide/emergency/
+    # information from https://www.kcif.or.jp/web/en/livingguide/emergency/
     disaster_tips = [
-        ("Ensure Safety: Stay calm and prioritize your", True),
-        ("safety", False),
-        ("Turn Off Utilities: Alert others and turn off gas", True),
-        ("and electricity immediately", False),
-        ("Secure an Exit: Open doors and windows if", True),
-        ("jammed to create an escape route", False),
-        ("Handle Fires: Shout for help and extinguish", True),
-        ("small fires immediately", False),
-        ("Avoid Rush: Exit carefully, watch for", True),
-        ("falling debris", False),
-        ("Stay Clear of Hazards: Avoid narrow alleys,", True),
-        ("cliffs, and rivers; watch for falling objects", False),
-        ("Watch for Aftershocks: Prepare for landslides", True),
-        ("or tsunamis if near mountains or the sea", False),
-        ("Evacuate on Foot: Go to the nearest shelter with", True),
-        ("minimal belongings", False),
-        ("Help Others: Assist the elderly, disabled,", True),
-        ("and injured", False),
-        ("Get Accurate Info: Follow reliable sources for", True),
-        ("updates and watch out for aftershocks", False),
+        (gettext("Ensure Safety: Stay calm and prioritize your"), True),
+        (gettext("safety"), False),
+        (gettext("Turn Off Utilities: Alert others and turn off gas"), True),
+        (gettext("and electricity immediately"), False),
+        (gettext("Secure an Exit: Open doors and windows if"), True),
+        (gettext("jammed to create an escape route"), False),
+        (gettext("Handle Fires: Shout for help and extinguish"), True),
+        (gettext("small fires immediately"), False),
+        (gettext("Avoid Rush: Exit carefully, watch for"), True),
+        (gettext("falling debris"), False),
+        (gettext("Stay Clear of Hazards: Avoid narrow alleys,"), True),
+        (gettext("cliffs, and rivers; watch for falling objects"), False),
+        (gettext("Watch for Aftershocks: Prepare for landslides"), True),
+        (gettext("or tsunamis if near mountains or the sea"), False),
+        (gettext("Evacuate on Foot: Go to the nearest shelter with"), True),
+        (gettext("minimal belongings"), False),
+        (gettext("Help Others: Assist the elderly, disabled,"), True),
+        (gettext("and injured"), False),
+        (gettext("Get Accurate Info: Follow reliable sources for"), True),
+        (gettext("updates and watch out for aftershocks"), False),
     ]
 
     # Writing checklist items to a text file for tts to read
@@ -300,7 +300,7 @@ def earthquake_checklist(draw, fonts, scale):
     bullet_spacing(draw, fonts, level7_earthquake, 810 * scale, y + int(8 * scale), scale)
 
     guideline_font = fonts['guideline']
-    draw_text(draw, "Safety Guidelines", guideline_font, 210 * scale, 328 * scale)
+    draw_text(draw, gettext("Safety Guidelines"), guideline_font, 210 * scale, 328 * scale)
     bullet_spacing(draw, fonts, disaster_tips, 55 * scale, 368 * scale, scale)
 
 def checklist_image(checklist, disaster_type, user):
@@ -332,22 +332,22 @@ def checklist_image(checklist, disaster_type, user):
     tasks = []
     # Append the title to the appropriate text file
     with open(f"{disaster_type.lower()}_tts.txt", "w") as file:
-        file.write(f"Your checklist for {disaster_type}s\n")
+        file.write(gettext(f"Your checklist for {disaster_type}s\n"))
         file.write("Items to prepare:\n")
-        for item in checklist["Go Bag"]:
+        for item in checklist[gettext("Go Bag")]:
             file.write(f"{item}\n")
 
     if disaster_type == "Earthquake":
-        tasks.append((draw_text, (draw, _(f"Your checklist for {disaster_type}s"), fonts['title'], 190 * scale, 35 * scale)))
+        tasks.append((draw_text, (draw, gettext(f"Your checklist for {disaster_type}s"), fonts['title'], 190 * scale, 35 * scale)))
     
     else:
-        tasks.append((draw_text, (draw, _(f"Your checklist for {disaster_type}s"), fonts['title'], 260 * scale, 50 * scale)))
+        tasks.append((draw_text, (draw, gettext(f"Your checklist for {disaster_type}s"), fonts['title'], 260 * scale, 50 * scale)))
 
-    tasks.append((draw_text, (draw, f"created by S.E.E.L.E on {datetime.now().date()}", fonts['info'], 400 * scale, 140 * scale)))
-    tasks.append((draw_text, (draw, "Items to prepare", fonts['header'], 900 * scale, 220 * scale)))
+    tasks.append((draw_text, (draw, gettext(f"created by S.E.E.L.E on {datetime.now().date()}"), fonts['info'], 400 * scale, 140 * scale)))
+    tasks.append((draw_text, (draw, gettext("Items to prepare"), fonts['header'], 900 * scale, 220 * scale)))
 
     y = 310 * scale
-    for i, item in enumerate(checklist[_("Go Bag")]):
+    for i, item in enumerate(checklist[gettext("Go Bag")]):
         x = 750 * scale
         if get_language().startswith("jp"):
             sentence_furi = parse_furigana(item)

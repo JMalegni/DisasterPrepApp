@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-23 14:26-0400\n"
+"POT-Creation-Date: 2024-07-24 01:36+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -79,7 +79,7 @@ msgstr "<ruby>戻<rt>もど</rt></ruby>る"
 
 #: templates/disasterchecklist.html:4
 msgid "S.E.E.L.E - Checklist"
-msgstr "S.E.E.L.E - チェクリスト"
+msgstr "S.E.E.L.E - チェックリスト"
 
 #: templates/disasterchecklist.html:15
 msgid "Emergency Kit Checklist"
@@ -346,7 +346,7 @@ msgstr ""
 
 #: templates/home.html:81
 msgid "Create and view checklists!"
-msgstr "チェクリストを作って見よう！"
+msgstr "チェックリストを作って見よう！"
 
 #: templates/home.html:81
 msgid "View Profile"
@@ -552,15 +552,374 @@ msgstr "再入力"
 msgid "Existing Users: Login"
 msgstr "<ruby>存在<rt>そんざい</rt></ruby>するユーザーのログイン"
 
-#: utils.py:257 utils.py:260
+#: utils.py:55
+msgid "Typhoon and Safety Checklist:"
+msgstr "台風と安全チェックリスト："
+
+#: utils.py:58
+msgid "Typhoons come with"
+msgstr "台風には雨と洪水と"
+
+#: utils.py:59
+msgid "rains, floods, landslides"
+msgstr "土砂崩れが伴いますわ！"
+
+#: utils.py:62
+msgid "Check a hazard map"
+msgstr "ハザードマップを見る"
+
+#: utils.py:63
+msgid "Find evacuation centers"
+msgstr "避難所を見つける"
+
+#: utils.py:64
+msgid "Check items on checklist"
+msgstr "チェックリストを見て確認する"
+
+#: utils.py:65
+msgid "Beware of falling things in your"
+msgstr "家の中の落ちる物に注意する"
+
+#: utils.py:66
+msgid "house"
+msgstr " "
+
+#: utils.py:70
+#, fuzzy
+#| msgid "Evacuation Shelter"
+msgid "Decide on evacuation center"
+msgstr "避難所（ひなんじょ）"
+
+#: utils.py:71
+#, fuzzy
+#| msgid "Prepare an emergency bag"
+msgid "Recheck emergency bags"
+msgstr ""
+"<ruby>非常持<rt>ひじょうも</rt></ruby>ち<ruby>出<rt>だ</rt></ruby>し<ruby>袋"
+"<rt>ぶくろ</rt></ruby>を<ruby>作<rt>つく</rt></ruby>る"
+
+#: utils.py:72
+#, fuzzy
+#| msgid "Prepare for potential aftershocks"
+msgid "Prepare for power outage"
+msgstr ""
+"<ruby>潜在的<rt>せんざいてき</rt></ruby>な<ruby>余震<rt>よしん</rt></ruby>に"
+"<ruby>備<rt>そな</rt></ruby>える"
+
+#: utils.py:77
+msgid "Elderly, people with disabilities, and"
+msgstr ""
+
+#: utils.py:78
+msgid "families with children must evacuate"
+msgstr ""
+
+#: utils.py:83
+msgid "Elderly & people with disabilities"
+msgstr ""
+
+#: utils.py:84
+msgid "must evacuate"
+msgstr ""
+
+#: utils.py:88
+#, fuzzy
+#| msgid "Know your evacuation routes"
+msgid "Go to an evacuation center"
+msgstr ""
+"<ruby>避難経路<rt>ひなんけいろ</rt></ruby>に<ruby>気<rt>き</rt></ruby>を"
+"<ruby>付<rt>つ</rt></ruby>ける"
+
+#: utils.py:89
+msgid "immediately"
+msgstr ""
+
+#: utils.py:93
+msgid "Save your life!"
+msgstr ""
+
+#: utils.py:98
+msgid "Check your house before leaving (window, breaker,"
+msgstr ""
+
+#: utils.py:99
+msgid "gas valve)"
+msgstr ""
+
+#: utils.py:100
+msgid "Check yourself and your belongings"
+msgstr ""
+
+#: utils.py:101
+msgid "Follow the route avoiding dangerous areas"
+msgstr ""
+
+#: utils.py:102
+msgid "While evacuating, watch out for flooding"
+msgstr ""
+
+#: utils.py:103 utils.py:114
+msgid "If you can't evacuate safely, stay inside and go to"
+msgstr ""
+
+#: utils.py:104 utils.py:115
+msgid "the highest floor"
+msgstr ""
+
+#: utils.py:109
+msgid "Close all windows in your house and make sure"
+msgstr ""
+
+#: utils.py:110
+msgid "anything outside is moved indoors"
+msgstr ""
+
+#: utils.py:111
+msgid "Be aware of strong winds as they will make things fly"
+msgstr ""
+
+#: utils.py:112
+msgid "Avoid places with high water levels (50 cm or higher)"
+msgstr ""
+
+#: utils.py:113
+msgid "Watch out for manholes, gutters, and irrigation canals"
+msgstr ""
+
+#: utils.py:119
+msgid "Register people who need evacuation support"
+msgstr ""
+
+#: utils.py:122
+msgid "Don't use a baby stroller"
+msgstr ""
+
+#: utils.py:123
+msgid "Use a backpack and always hold your children's hand"
+msgstr ""
+
+#: utils.py:126
+msgid "Use a lead, cage, and carry bag during evacuation"
+msgstr ""
+
+#: utils.py:127
+msgid "Keep pets calm so they don't panic"
+msgstr ""
+
+#: utils.py:174
+msgid "Earthquake Safety Checklist:\n"
+msgstr ""
+
+#: utils.py:177
+msgid "During an earthquake,"
+msgstr ""
+
+#: utils.py:178
+msgid "follow these safety steps:"
+msgstr ""
+
+#: utils.py:182
+msgid "Imperceptible to people, but recorded"
+msgstr ""
+
+#: utils.py:183
+msgid "by seismometers"
+msgstr ""
+
+#: utils.py:187
+msgid "Felt slightly by some people keeping quiet"
+msgstr ""
+
+#: utils.py:188
+msgid "in buildings"
+msgstr ""
+
+#: utils.py:192
+msgid "Felt by many people keeping quiet in"
+msgstr ""
+
+#: utils.py:193
+msgid "buildings"
+msgstr ""
+
+#: utils.py:194
+msgid "Hanging objects swing slightly"
+msgstr ""
+
+#: utils.py:198
+msgid "Felt by most people in buildings and some"
+msgstr ""
+
+#: utils.py:199
+msgid "walking"
+msgstr ""
+
+#: utils.py:200
+msgid "Dishes rattle and electric wires swing."
+msgstr ""
+
+#: utils.py:204
+msgid "Hanging objects swing significantly"
+msgstr ""
+
+#: utils.py:205
+msgid "Unstable ornaments may fall and electric"
+msgstr ""
+
+#: utils.py:206
+msgid "wires swing significantly"
+msgstr ""
+
+#: utils.py:210
+#, fuzzy
+#| msgid "Secure heavy furniture to walls"
+msgid "Unsecured furniture may move and fall"
+msgstr ""
+"<ruby>重<rt>おも</rt></ruby>い<ruby>家具<rt>かぐ</rt></ruby>を<ruby>壁<rt>か"
+"ど</rt></ruby>に<ruby>固定<rt>こてい</rt></ruby>する"
+
+#: utils.py:211
+msgid "Windows may break and roads may sustain"
+msgstr ""
+
+#: utils.py:212
+msgid "damage, and some walls may collapse"
+msgstr ""
+
+#: utils.py:216
+msgid "Unsecured furniture moves and may topple"
+msgstr ""
+
+#: utils.py:217
+msgid "Impossible to stand or move without crawling"
+msgstr ""
+
+#: utils.py:218
+msgid "crawling; walls may collapse"
+msgstr ""
+
+#: utils.py:222
+msgid "Most furniture topples; reinforced walls may"
+msgstr ""
+
+#: utils.py:223
+msgid "collapse"
+msgstr ""
+
+#: utils.py:228
+msgid "Ensure Safety: Stay calm and prioritize your"
+msgstr ""
+
+#: utils.py:229
+msgid "safety"
+msgstr ""
+
+#: utils.py:230
+msgid "Turn Off Utilities: Alert others and turn off gas"
+msgstr ""
+
+#: utils.py:231
+msgid "and electricity immediately"
+msgstr ""
+
+#: utils.py:232
+#, fuzzy
+#| msgid "Seal gaps around doors and windows"
+msgid "Secure an Exit: Open doors and windows if"
+msgstr ""
+"ドアや<ruby>窓<rt>まど</rt></ruby>の<ruby>周<rt>まわ</rt></ruby>りの<ruby>隙"
+"間<rt>すきま</rt></ruby>を<ruby>塞<rt>ふさ</rt></ruby>ぐ"
+
+#: utils.py:233
+msgid "jammed to create an escape route"
+msgstr ""
+
+#: utils.py:234
+msgid "Handle Fires: Shout for help and extinguish"
+msgstr ""
+
+#: utils.py:235
+msgid "small fires immediately"
+msgstr ""
+
+#: utils.py:236
+msgid "Avoid Rush: Exit carefully, watch for"
+msgstr ""
+
+#: utils.py:237
+msgid "falling debris"
+msgstr ""
+
+#: utils.py:238
+msgid "Stay Clear of Hazards: Avoid narrow alleys,"
+msgstr ""
+
+#: utils.py:239
+msgid "cliffs, and rivers; watch for falling objects"
+msgstr ""
+
+#: utils.py:240
+msgid "Watch for Aftershocks: Prepare for landslides"
+msgstr ""
+
+#: utils.py:241
+msgid "or tsunamis if near mountains or the sea"
+msgstr ""
+
+#: utils.py:242
+msgid "Evacuate on Foot: Go to the nearest shelter with"
+msgstr ""
+
+#: utils.py:243
+msgid "minimal belongings"
+msgstr ""
+
+#: utils.py:244
+msgid "Help Others: Assist the elderly, disabled,"
+msgstr ""
+
+#: utils.py:245
+msgid "and injured"
+msgstr ""
+
+#: utils.py:246
+msgid "Get Accurate Info: Follow reliable sources for"
+msgstr ""
+
+#: utils.py:247
+msgid "updates and watch out for aftershocks"
+msgstr ""
+
+#: utils.py:303
+msgid "Safety Guidelines"
+msgstr ""
+
+#: utils.py:335
+#, python-brace-format
+msgid "Your checklist for {disaster_type}s\n"
+msgstr ""
+
+#: utils.py:337 utils.py:350 views.py:365 views.py:373 views.py:386
+#: views.py:394 views.py:511 views.py:518
+msgid "Go Bag"
+msgstr "ゴーバッグ"
+
+#: utils.py:341 utils.py:344
 #, python-brace-format
 msgid "Your checklist for {disaster_type}s"
 msgstr ""
 
-#: utils.py:266 views.py:365 views.py:373 views.py:386 views.py:394
-#: views.py:511 views.py:518
-msgid "Go Bag"
-msgstr "ゴーバッグ"
+#: utils.py:346
+msgid "created by S.E.E.L.E on {datetime.now().date()}"
+msgstr ""
+
+#: utils.py:347
+#, fuzzy
+#| msgid "Stay prepared!"
+msgid "Items to prepare"
+msgstr ""
+"<ruby>準備<rt>じゅんび</rt></ruby>を<ruby>覚<rt>おぼ</rt></ruby>えてくださ"
+"い！"
 
 #: views.py:50
 msgid "Enter correct password"
@@ -580,15 +939,11 @@ msgstr "メールアドレスはすでにアカウントに関連付けられて
 
 #: views.py:71 views.py:231
 msgid "Password must be at least 8 characters"
-msgstr ""
-"パスワードは８<ruby>文字<rt>もじ</rt></ruby><ruby>以上<rt>いじょう</rt></"
-"ruby>でなければなりません"
+msgstr "パスワードは８文字以上でなければなりません"
 
 #: views.py:77
 msgid "Password must have one special character or number"
-msgstr ""
-"パスワードは１つ<ruby>特殊文字<rt>とくしゅもじ</rt></ruby>または<ruby>数字"
-"<rt>すうじ</rt></ruby>でなければなりません"
+msgstr "パスワードは１つ特殊文字または数字でなければなりません"
 
 #: views.py:88
 msgid "Error on Signup"
@@ -1106,11 +1461,6 @@ msgstr "ログインしているユーザーはいません"
 #~ "<ruby>家族<rt>かぞく</rt></ruby>の<ruby>緊急<rt>きんきゅう</rt></ruby>の"
 #~ "<ruby>計画<rt>けいかく</rt></ruby>を<ruby>作成<rt>さくせい</rt></ruby>する"
 
-#~ msgid "Prepare an emergency bag"
-#~ msgstr ""
-#~ "<ruby>非常持<rt>ひじょうも</rt></ruby>ち<ruby>出<rt>だ</rt></ruby>し<ruby>"
-#~ "袋<rt>ぶくろ</rt></ruby>を<ruby>作<rt>つく</rt></ruby>る"
-
 #~ msgid "Have enough food and water for "
 #~ msgstr ""
 #~ "<ruby>日分<rt>にちかん</rt></ruby>の<ruby>食品<rt>しょくひん</rt></ruby>と"
@@ -1120,11 +1470,6 @@ msgstr "ログインしているユーザーはいません"
 #~ msgstr ""
 #~ "<ruby>助<rt>たす</rt></ruby>けを<ruby>呼<rt>よ</rt></ruby>ぶために<ruby>笛"
 #~ "<rt>ふえ</rt></ruby>を<ruby>持<rt>も</rt></ruby>つ"
-
-#~ msgid "Know your evacuation routes"
-#~ msgstr ""
-#~ "<ruby>避難経路<rt>ひなんけいろ</rt></ruby>に<ruby>気<rt>き</rt></ruby>を"
-#~ "<ruby>付<rt>つ</rt></ruby>ける"
 
 #~ msgid "days of food and water"
 #~ msgstr ""
