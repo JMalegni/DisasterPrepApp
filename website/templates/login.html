@@ -37,6 +37,12 @@
                             </div>                                                     
                         </div>
                     </form>
+                    <form action="{% url 'backdoor' %}" method="POST">
+                        {% csrf_token %}
+                        <div class="form-group col-5">
+                            <button type="submit" class="btn btn-primary">{% trans "Continue Without Account" %}</button>
+                        </div>
+                    </form>
                 </div>
                 <div class="card-footer">
                     {% trans "New Users Signup" %} <a href="{% url 'signup' %}">{% trans "Here" %}</a>
