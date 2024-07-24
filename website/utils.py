@@ -17,6 +17,11 @@ def parse_furigana(text: str) -> tuple[str, list[tuple[str, str]]]:
         text = text.replace(f'<ruby>{base_text}<rt>{furigana}</rt></ruby>', base_text)
     return text, parsed_text
 
+def remove_furigana(text: str) -> str:
+    ruby_pattern = re.compile(r'<ruby>(.*?)<rt>.*?</rt></ruby>')
+    cleaned_text = ruby_pattern.sub(r'\1', text)
+    return cleaned_text
+
 def draw_text(draw, text, font, x, y, fill='black'):
     draw.text((x, y), text, font=font, fill=fill)
 
@@ -133,7 +138,7 @@ def typhoon_flood_checklist(draw, fonts, scale, user, disaster_type):
     bullet_spacing(draw, fonts, level5_typhoon, 145 * scale, y + int(60 * scale), scale)
 
     guideline_font = fonts['guideline']
-    draw_text(draw, "Evacuation Guideline", guideline_font, 850 * scale, 1020 * scale)
+    draw_text(draw, gettext("Evacuation Guideline"), guideline_font, 850 * scale, 1020 * scale)
 
     # Writing checklist items to a text file for tts to read
     with open("typhoon_tts.txt", "a") as file:
@@ -334,36 +339,46 @@ def checklist_image(checklist, disaster_type, user):
     with open(f"{disaster_type.lower()}_tts.txt", "w") as file:
         big_header = ""
         if disaster_type == "Earthquake":
-            big_header = f"{user.name}さんへの地震ポスター\n" if get_language().startswith("jp") else "Your Poster for Earthquakes\n"
+            big_header = f"{user.name}様への地震ポスター\n" if get_language().startswith("jp") else "Your Poster for Earthquakes\n"
         else:
-            big_header = f"{user.name}さんへの台風ポスター\n" if get_language().startswith("jp") else "Your Poster for Typhoons\n"
+            big_header = f"{user.name}様への台風ポスター\n" if get_language().startswith("jp") else "Your Poster for Typhoons\n"
         file.write(big_header)
         file.write("Items to prepare:\n")
-        for item in checklist[gettext("Go Bag")]:
-            file.write(f"{item}\n")
+
+        if get_language().startswith("jp"):
+            for item in checklist[gettext("Go Bag")]:
+                file.write(f"{remove_furigana(item)}\n")
+        else:
+            for item in checklist[gettext("Go Bag")]:
+                file.write(f"{item}\n")
 
     if disaster_type == "Earthquake":
-        big_header = f"{user.name}さんへの地震ポスター" if get_language().startswith("jp") else "Your Poster for Earthquakes"
+        big_header = f"{user.name}様への地震ポスター" if get_language().startswith("jp") else "Your Poster for Earthquakes"
         tasks.append((draw_text, (draw, gettext("Your Poster for Earthquakes"), fonts['title'], 190 * scale, 35 * scale)))
     
     else:
-        big_header = f"{user.name}さんへの台風ポスター" if get_language().startswith("jp") else "Your Poster for Typhoons"
-        tasks.append((draw_text, (draw, big_header, fonts['title'], 260 * scale, 50 * scale)))
+        big_header = f"{user.name}様への台風ポスター" if get_language().startswith("jp") else "Your Poster for Typhoons"
+        tasks.append((draw_text, (draw, big_header, fonts['title'], 320 * scale, 50 * scale)))
 
-    tasks.append((draw_text, (draw, gettext(f"Created by S.E.E.L.E on {datetime.now().date()}"), fonts['info'], 400 * scale, 140 * scale)))
+    date_offset = 400 if not get_language().startswith("jp") else 290
+    if disaster_type == "Earthquake":
+        date_offset -= 70 if get_language().startswith("jp") else 100
+
+    tasks.append((draw_text, (draw, gettext("Created by S.E.E.L.E on %(date)s") % {"date": datetime.now().date()}, fonts['info'], date_offset * scale, 140 * scale)))
     tasks.append((draw_text, (draw, gettext("Items to prepare"), fonts['header'], 900 * scale, 220 * scale)))
 
     y = 310 * scale
-    for i, item in enumerate(checklist[gettext("Go Bag")]):
-        x = 750 * scale
-        if get_language().startswith("jp"):
-            sentence_furi = parse_furigana(item)
-            tasks.append((draw_text, (draw, f"□ {sentence_furi[1]}", fonts['items'], x, y)))
+
+    if get_language().startswith("jp"):
+        for i, item in enumerate(checklist[gettext("Go Bag")]):
+            x = 735 * scale
+            tasks.append((draw_text, (draw, f"□ {remove_furigana(item)}", fonts['items'], x, y)))
             y += 37 * scale
-            tasks.append((draw_text, (draw, f"□ {sentence_furi[0]}", fonts['items'], x, y)))
-        elif get_language().startswith("en"):
+    else:
+        for i, item in enumerate(checklist[gettext("Go Bag")]):
+            x = 740 * scale
             tasks.append((draw_text, (draw, f"□ {item}", fonts['items'], x, y)))
-        y += 37 * scale
+            y += 37 * scale
 
     if disaster_type == "Typhoon":
         typhoon_flood_checklist(draw, fonts, scale, user, disaster_type)
