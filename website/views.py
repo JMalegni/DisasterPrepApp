@@ -795,7 +795,7 @@ def thread_closest(user_cord, shelter_cords, result):
 
 def closest_shelter(user_cord):
     n = 5  # Number of threads to create
-    with open("Coordinates.txt", encoding="utf-8") as file:
+    with open("website/static/information/Coordinates.txt", encoding="utf-8") as file:
         addrs = file.readlines()
 
         # Get the coordinates and split them into n equal lists
