@@ -333,7 +333,7 @@ def disasterprep(request):
         if not email:
             return redirect('login')
 
-        if disaster_type == '(None)' or prepare_type == '(None)':
+        if disaster_type == _('(None)') or prepare_type == _('(None)'):
             msg = _("Both fields are required.")
             tag = "danger"
             return render(request, 'disasterprep.html', {'msg': msg, 'tag': tag})
@@ -360,7 +360,7 @@ def split_checklist(checklist):
 def generate_checklist(user, disaster_type, prepare_type):
     family_size = user.family_size
 
-    if disaster_type == 'Typhoon':
+    if disaster_type == _('Typhoon'):
         categories = {
             _("Go Bag"): [],
             _("Water and Food"): [],
@@ -506,7 +506,7 @@ def generate_checklist(user, disaster_type, prepare_type):
                     _("Cane or walker"),
                 ])
 
-    elif disaster_type == 'Earthquake':
+    elif disaster_type == _('Earthquake'):
         categories = {
             _("Go Bag"): [],
             _("Water and Food"): [],
