@@ -5,8 +5,8 @@
 {% block content %}
 <div class="container" style="margin-top: 20px">
     <div class="row">
-        <div class="col-md-1"></div>
-        <div class="col-md-10">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
             {% if msg %}
             <div class="alert alert-{{ tag }}">{{ msg }}</div>
             {% endif %}
@@ -15,7 +15,19 @@
                     <h5 class="card-title">{% trans "Emergency Kit Checklist" %}</h5>
                 </div>
                 <div class="card-body">
-                    <div class="row">
+                    <div class="col">
+                        <div class="safety-guides row mt-6">
+                            <div class="col mt-3">
+                                <img src="{% static 'images/girl_safety.png' %}" alt="Safety Girl Image" id="safety-girl" class="small-image img-fluid mt-4 float-right">
+                            </div>
+
+                            <div class="col mt-3 align-self-center">
+                                <p class="text-start" id="safety-msg-1"><b>{% trans "Prepare a go bag for each family member in case you must evacuate in the event of disaster!" %}</b></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center">
                         {% for category, items in categories.items %}
                         <div class="col-md-6" style="background-color: {% cycle '#ffcccc' '#ccffcc' '#ccccff' '#ffffcc' %}; margin: 5px; padding: 10px; border-radius: 5px;">
                             <h5>{{category | safe }}</h5>
@@ -33,17 +45,32 @@
                             {% endif %}
                         </div>
                         {% endfor %}
+
                     </div>
-                    <form action="{% url 'disasterposter' %}" method="POST">
-                        {% csrf_token %}
-                        <div class="form-group" style="margin-top: 20px;">
-                            <button type="submit" class="btn btn-success">{% trans "Generate Poster" %}</button>
+                    <div class="col">
+                        <div class="safety-guides row mt-6">
+                            <div class="col mt-3 align-self-center">
+                                <p class="text-end" id="safety-msg-2"><b>{% trans "Carefully go over all items on the checklist to ensure maximum preparedness!" %}</b></p>
+                            </div>
+
+                            <div class="col mt-3">
+                                <img src="{% static 'images/boy_safety.png' %}" alt="Safety Boy Image" id="safety-boy" class="small-image img-fluid mt-4 float-left">
+                            </div>
                         </div>
-                    </form>
+
+                    </div>
+                    <div class="row justify-content-center">
+                        <form action="{% url 'disasterposter' %}" method="POST">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-success">{% trans "Generate Poster" %}</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-1"></div>
+        <div class="col-md-2"></div>
     </div>
 </div>
 {% endblock %}
