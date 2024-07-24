@@ -30,10 +30,11 @@
                             <input type="password" placeholder="{% trans 'Password' %}" class="form-control" name="password" required>
                             <div class="row" id="pwd-info">
                                 <div class="col-9">
-                                    <label>Passwords must contain the following:</label>
+                                    <label>{% trans "Passwords must contain the following:" %}</label>
                                     <ul>
-                                        <li>At least <b>8 characters </b>in length.</li>
-                                        <li>At least <b>1 special character or number</b> - !"$%^@ 1234</li>
+                                        <li>{% trans "At least 8 characters in length." %}</li>
+                                        <li>{% trans "At least 1 special character or number." %}</li>
+
                                     </ul>
                                 </div>
                                 <div class="col">
