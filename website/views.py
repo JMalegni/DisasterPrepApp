@@ -225,57 +225,72 @@ def profile(request):
          'wheelchair': bool(wheelchair),
         }
 
+        error = False
+
         # Name Validation
         if name == "":
-            messages.error(request, _('Username cannot be blank'), extra_tags='danger')
-            return render(request, 'profile.html', context)
+            if not error:
+                messages.error(request, _('Username cannot be blank'), extra_tags='danger')
+                error = True
+        else:
+            user.name = name
 
         # Email Validation
         if new_email.count('@') != 1:
-            messages.error(request, _('Check if email is valid'), extra_tags='danger')
-            return render(request, 'profile.html', context)
+            if not error:
+                messages.error(request, _('Check if email is valid'), extra_tags='danger')
+                error = True
 
-        temp = new_email.split('@')
-        if len(temp[0]) == 0 or len(temp[1]) == 0:
-            messages.error(request, _('Check if email is valid'), extra_tags='danger')
-            return render(request, 'profile.html', context)
-
-        if not temp[1][-3:] in ['com', 'org', 'edu']:
-            messages.error(request, _('Check if email is valid'), extra_tags='danger')
-            return render(request, 'profile.html', context)
+        else:
+            temp = new_email.split('@')
+            if len(temp[0]) == 0 or len(temp[1]) == 0:
+                if not error:
+                    messages.error(request, _('Check if email is valid'), extra_tags='danger')
+                    error = True
+            else:
+                if not temp[1][-3:] in ['com', 'org', 'edu']:
+                    if not error:
+                        messages.error(request, _('Check if email is valid'), extra_tags='danger')
+                        error = True
+                else:
+                    user.email = new_email
+                    # Update session email
+                    request.session["user_email"] = new_email
 
         # Password validation
         if password:
             if len(password) < 8:
-                messages.error(request, _('Password must be at least 8 characters'), extra_tags='danger')
-                return render(request, 'profile.html', context)
+                if not error:
+                    messages.error(request, _('Password must be at least 8 characters'), extra_tags='danger')
+                    error = True
 
             special_chars = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '!', '\"', '#', '$', '%', '&', '\'', '(', ')', '*', '+',
                           ',', '-', '.', '/', ':', ';', '<', '=', '>', '?', '@', '[', ']', '\\', '^', '_', '{', '|', '}', '~', '`']
 
             if not any(char in special_chars for char in password):
-                messages.error(request, _('Password must have at least one special character or number'), extra_tags='danger')
-                return render(request, 'profile.html', context)
+                if not error:
+                    messages.error(request, _('Password must contain a special character'), extra_tags='danger')
+                    error = True
 
             # If password is valid, update it
             user.password = make_password(password)
 
         # Coordinate Validation
         if float(latitude) > 90.0 or float(latitude) < -90.0 or float(longitude) >= 180.0 or float(longitude) < -180.0:
-            messages.error(request, _('Please enter valid coordinates'), extra_tags='danger')
-            return render(request, 'profile.html', context)
+            if not error:
+                messages.error(request, _('Please enter valid coordinates'), extra_tags='danger')
+                error = True
+        else:
+            user.latitude = latitude
+            user.longitude = longitude
 
         # Family Size Validation
         if int(family_size) > 20 or int(family_size) < 1:
-            messages.error(request, _('Please enter a family size between 1-20'), extra_tags='danger')
-            return render(request, 'profile.html', context)
-
-        # Update other user data
-        user.name = name
-        user.email = new_email
-        user.latitude = latitude
-        user.longitude = longitude
-        user.family_size = family_size
+            if not error:
+                messages.error(request, _('Family size must be between 1-20'), extra_tags='danger')
+                error = True
+        else:
+            user.family_size = family_size
 
         if medicine != "no medicine" and int(dose) != 0:
             user.medication_amount = int(dose)
@@ -294,10 +309,10 @@ def profile(request):
 
         user.save()
 
-        # Update session email
-        request.session["user_email"] = new_email
-
-        messages.success(request, _('Profile updated successfully!'))
+        if not error:
+            messages.success(request, _('Profile updated successfully!'))
+        else:
+            return render(request, 'profile.html', context)
 
         return redirect('profile')
 
