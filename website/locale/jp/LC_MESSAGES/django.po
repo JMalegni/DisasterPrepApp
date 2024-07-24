@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-24 05:29-0400\n"
+"POT-Creation-Date: 2024-07-24 05:49-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -85,11 +85,22 @@ msgstr "S.E.E.L.E - チェックリスト"
 msgid "Emergency Kit Checklist"
 msgstr "<ruby>防災非常袋<rt>ぼうさいひじょうぶくろ</rt></ruby>のチェクリスト"
 
-#: templates/disasterchecklist.html:32
+#: templates/disasterchecklist.html:25
+msgid ""
+"Prepare a go bag for each family member in case you must evacuate in the "
+"event of a disaster."
+msgstr "<ruby>災害<rt>さいがい</rt></ruby>の<ruby>時<rt>とき</ruby></rt>の<ruby>避難<rt>ひなん</rt></ruby>に<ruby>備<rt>そな</rt></ruby>えて、<ruby>家族<rt>かぞく</rt></ruby>それぞれゴーバッグを<ruby>作<rt>つく</rt></ruby>ったらいいですわ。"
+
+#: templates/disasterchecklist.html:44
 msgid "No items available"
 msgstr "アイテムはありません"
 
-#: templates/disasterchecklist.html:40
+#: templates/disasterchecklist.html:53
+#, python-format
+msgid "Check out all the checklist items bro! 100%% preparedness only!!"
+msgstr "すべてチェックリストのアイテムを<ruby>絶対<rt>ぜったい</rt></ruby>にチェックしてよ！<ruby>準備<rt>じゅんび</ruby></rt>が１００パーセント<ruby>以下<rt>いか</rt></ruby>はいやだからなあ！！"
+
+#: templates/disasterchecklist.html:66
 msgid "Generate Poster"
 msgstr "ポスターを<ruby>生成<rt>さくせい</rt></ruby>"
 
@@ -326,7 +337,11 @@ msgstr ""
 "<ruby>私<rt>わたし</rt></ruby>たちのガイドに<ruby>会<rt>あ</rt></ruby>いま"
 "しょう！"
 
-#: templates/home.html:65
+#: templates/home.html:62
+msgid "Hover or tap on our guides to learn additional information!"
+msgstr ""
+
+#: templates/home.html:66
 msgid ""
 "Hello! My name is Kyoko, and it is my pleasure to help you stay prepared in "
 "the face of natural disasters."
@@ -336,31 +351,31 @@ msgstr ""
 "<ruby>対<rt>たい</rt></ruby>して、<ruby>喜<rt>よろ</rt></ruby>んで<ruby>準備"
 "<rt>じゅんび</rt></ruby>を<ruby>手伝<rt>てつだ</rt></ruby>いますわ。"
 
-#: templates/home.html:70
+#: templates/home.html:71
 msgid "Ya-ho! This is Seele, at your service against all disasters!"
 msgstr ""
 "ヤッホー！シールです！すべての<ruby>災害<rt>さいがい</rt></ruby>でサービスし"
 "ます！"
 
-#: templates/home.html:75
+#: templates/home.html:76
 msgid "What's up! The name's Ricky, and I got you covered for any disasters!"
 msgstr ""
 "おっす！リッキーだぜ。どんなとんでもねえ<ruby>災害<rt>さいがい</rt></ruby>で"
 "も、<ruby>俺<rt>おれ</rt></ruby>に<ruby>頼<rt>たの</rt></ruby>んでくれ！"
 
-#: templates/home.html:81
+#: templates/home.html:82
 msgid "Create and view checklists!"
 msgstr "チェックリストを作って見よう！"
 
-#: templates/home.html:81
+#: templates/home.html:82
 msgid "View Profile"
 msgstr "プロフィールを<ruby>見<rt>み</rt></ruby>る"
 
-#: templates/home.html:83
+#: templates/home.html:84
 msgid "Get started now!"
 msgstr "今始めよう！"
 
-#: templates/home.html:83
+#: templates/home.html:84
 msgid "Get Started"
 msgstr "<ruby>始<rt>はじ</rt></ruby>める"
 
