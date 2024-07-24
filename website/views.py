@@ -334,7 +334,7 @@ def disasterprep(request):
         if not email:
             return redirect('login')
 
-        if disaster_type == '(None)' or prepare_type == '(None)':
+        if disaster_type == _('(None)') or prepare_type == _('(None)'):
             msg = _("Both fields are required.")
             tag = "danger"
             return render(request, 'disasterprep.html', {'msg': msg, 'tag': tag})
