@@ -4,7 +4,6 @@ from PIL import Image, ImageDraw, ImageFont
 from django.conf import settings
 from django.utils.translation import gettext, get_language
 from datetime import datetime
-import re
 from concurrent.futures import ThreadPoolExecutor
 
 def parse_furigana(text: str) -> tuple[str, list[tuple[str, str]]]:
@@ -336,7 +335,7 @@ def checklist_image(checklist, disaster_type, user):
 
     tasks = []
     # Append the title to the appropriate text file
-    with open(f"{disaster_type.lower()}_tts.txt", "w") as file:
+    with open(f"website/static/{disaster_type.lower()}_tts.txt", "w") as file:
         big_header = ""
         if disaster_type == "Earthquake":
             big_header = f"{user.name}様への地震ポスター\n" if get_language().startswith("jp") else "Your Poster for Earthquakes\n"
