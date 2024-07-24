@@ -68,6 +68,13 @@ def signup(request):
             if Users.objects.filter(email=email).exists():
                 return render(request, 'signup.html', {'msg': _('Email address is already associated with an account'), 'tag': 'danger'})
 
+            if email.count('@') != 1:
+                return render(request, 'signup.html', {'msg': _('Please check email'), 'tag': 'danger'})
+
+            temp = email.split('@')
+            if len(temp[0]) == 0 or len(temp[1]) == 0 or not temp[1][-3:] in ['com', 'org', 'edu']:
+                return render(request, 'signup.html', {'msg': _('Please check email'), 'tag': 'danger'})
+
             if len(password) < 8:
                 return render(request, 'signup.html', {'msg': _('Password must be at least 8 characters'), 'tag': 'danger'})
 
@@ -181,97 +188,153 @@ def profile(request):
         return render(request, 'profile.html', context)
 
     if request.method == 'POST':
-         email = request.session.get("user_email")
-         if not email:
-             return redirect('login')
+        email = request.session.get("user_email")
+        if not email:
+            return redirect('login')
 
-         try:
-             user = Users.objects.get(email=email)
-         except Users.DoesNotExist:
-             return redirect('login')
+        try:
+            user = Users.objects.get(email=email)
+        except Users.DoesNotExist:
+            return redirect('login')
 
-         # Get updated data
-         name = request.POST.get('name')
-         new_email = request.POST.get('email')
-         password = request.POST.get('password')
-         latitude = request.POST.get('latitude')
-         longitude = request.POST.get('longitude')
-         family_size = request.POST.get('size')
-         dose = request.POST.get('dose')
-         medicine = request.POST.get('medicine')
-         women = request.POST.get('women')
-         child = request.POST.get('child')
-         baby = request.POST.get('baby')
-         pet = request.POST.get('pet')
-         blind = request.POST.get('blind')
-         deaf = request.POST.get('deaf')
-         wheelchair = request.POST.get('wheelchair')
+        # Get updated data
+        name = request.POST.get('name')
+        new_email = request.POST.get('email')
+        password = request.POST.get('password')
+        latitude = request.POST.get('latitude')
+        longitude = request.POST.get('longitude')
+        family_size = request.POST.get('size')
+        dose = request.POST.get('dose')
+        medicine = request.POST.get('medicine')
+        women = request.POST.get('women')
+        child = request.POST.get('child')
+        baby = request.POST.get('baby')
+        pet = request.POST.get('pet')
+        blind = request.POST.get('blind')
+        deaf = request.POST.get('deaf')
+        wheelchair = request.POST.get('wheelchair')
 
-         # Initialize context with the form data
-         context = {
-             'email': new_email,
-             'name': name,
-             'password': '',
-             'longitude': longitude,
-             'latitude': latitude,
-             'size': family_size,
-             'medical_issue': medicine if medicine != "no medicine" else '',
-             'amount': dose if medicine != "no medicine" else 0,
-             'women': bool(women),
-             'child': bool(child),
-             'baby': bool(baby),
-             'pet': bool(pet),
-             'blind': bool(blind),
-             'deaf': bool(deaf),
-             'wheelchair': bool(wheelchair),
-         }
+        # Initialize context with the form data
+        context = {
+         'email': new_email,
+         'name': name,
+         'password': '',
+         'longitude': longitude,
+         'latitude': latitude,
+         'size': family_size,
+         'medical_issue': medicine if medicine != "no medicine" else '',
+         'amount': dose if medicine != "no medicine" else 0,
+         'women': bool(women),
+         'child': bool(child),
+         'baby': bool(baby),
+         'pet': bool(pet),
+         'blind': bool(blind),
+         'deaf': bool(deaf),
+         'wheelchair': bool(wheelchair),
+        }
 
-         # Password validation
-         if password:
-             if len(password) < 8:
-                 messages.error(request, _('Password must be at least 8 characters'), extra_tags='danger')
-                 return render(request, 'profile.html', context)
+        error = False
 
-             special_chars = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '!', '\"', '#', '$', '%', '&', '\'', '(', ')', '*', '+',
-                              ',', '-', '.', '/', ':', ';', '<', '=', '>', '?', '@', '[', ']', '\\', '^', '_', '{', '|', '}', '~', '`']
+        # Name Validation
+        if name == "":
+            if not error:
+                messages.error(request, _('Username cannot be blank'), extra_tags='danger')
+                error = True
+        else:
+            user.name = name
 
-             if not any(char in special_chars for char in password):
-                 messages.error(request, _('Password must have at least one special character or number'), extra_tags='danger')
-                 return render(request, 'profile.html', context)
+        # Email Validation
+        if new_email.count('@') != 1:
+            if not error:
+                messages.error(request, _('Check if email is valid'), extra_tags='danger')
+                error = True
 
-             # If password is valid, update it
-             user.password = make_password(password)
+        else:
+            temp = new_email.split('@')
+            if len(temp[0]) == 0 or len(temp[1]) == 0:
+                if not error:
+                    messages.error(request, _('Check if email is valid'), extra_tags='danger')
+                    error = True
+            else:
+                if not temp[1][-3:] in ['com', 'org', 'edu']:
+                    if not error:
+                        messages.error(request, _('Check if email is valid'), extra_tags='danger')
+                        error = True
+                else:
+                    if Users.objects.filter(email=new_email).exists() and user.email != new_email:
+                        if not error:
+                            messages.error(request, _('Email already exists'), extra_tags='danger')
+                            error = True
+                    else:
+                        user.email = new_email
+                        # Update session email
+                        request.session["user_email"] = new_email
 
-         # Update other user data
-         user.name = name
-         user.email = new_email
-         user.latitude = latitude
-         user.longitude = longitude
-         user.family_size = family_size
+        # Password validation
+        if password:
+            if len(password) < 8:
+                if not error:
+                    messages.error(request, _('Password must be at least 8 characters'), extra_tags='danger')
+                    error = True
 
-         if medicine != "no medicine" and int(dose) != 0:
-             user.medication_amount = int(dose)
-             user.medical_issues = medicine
-         else:
-             user.medication_amount = 0
-             user.medical_issues = ""
+            special_chars = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '!', '\"', '#', '$', '%', '&', '\'', '(', ')', '*', '+',
+                          ',', '-', '.', '/', ':', ';', '<', '=', '>', '?', '@', '[', ']', '\\', '^', '_', '{', '|', '}', '~', '`']
 
-         user.women_bool = bool(women)
-         user.child_bool = bool(child)
-         user.baby_bool = bool(baby)
-         user.pet_bool = bool(pet)
-         user.blind_bool = bool(blind)
-         user.deaf_bool = bool(deaf)
-         user.wheelchair_bool = bool(wheelchair)
+            if not any(char in special_chars for char in password):
+                if not error:
+                    messages.error(request, _('Password must contain a special character'), extra_tags='danger')
+                    error = True
 
-         user.save()
+            # If password is valid, update it
+            user.password = make_password(password)
 
-         # Update session email
-         request.session["user_email"] = new_email
+        # Coordinate Validation
+        try:
+            if float(latitude) > 90.0 or float(latitude) < -90.0 or float(longitude) >= 180.0 or float(
+                    longitude) < -180.0:
+                if not error:
+                    messages.error(request, _('Please enter valid coordinates'), extra_tags='danger')
+                    error = True
+        except:
+            if not error:
+                messages.error(request, _('Please enter valid coordinates'), extra_tags='danger')
+                error = True
 
-         messages.success(request, _('Profile updated successfully!'))
+        else:
+            user.latitude = latitude
+            user.longitude = longitude
 
-         return redirect('profile')
+        # Family Size Validation
+        if int(family_size) > 20 or int(family_size) < 1:
+            if not error:
+                messages.error(request, _('Family size must be between 1-20'), extra_tags='danger')
+                error = True
+        else:
+            user.family_size = family_size
+
+        if medicine != "no medicine" and int(dose) != 0:
+            user.medication_amount = int(dose)
+            user.medical_issues = medicine
+        else:
+            user.medication_amount = 0
+            user.medical_issues = ""
+
+        user.women_bool = bool(women)
+        user.child_bool = bool(child)
+        user.baby_bool = bool(baby)
+        user.pet_bool = bool(pet)
+        user.blind_bool = bool(blind)
+        user.deaf_bool = bool(deaf)
+        user.wheelchair_bool = bool(wheelchair)
+
+        user.save()
+
+        if not error:
+            messages.success(request, _('Profile updated successfully!'))
+        else:
+            return render(request, 'profile.html', context)
+
+        return redirect('profile')
 
 def delete_medical(request):
     if request.method == 'POST':
@@ -755,7 +818,7 @@ def thread_closest(user_cord, shelter_cords, result):
 
 def closest_shelter(user_cord):
     n = 5  # Number of threads to create
-    with open("Coordinates.txt", encoding="utf-8") as file:
+    with open("website/static/information/Coordinates.txt", encoding="utf-8") as file:
         addrs = file.readlines()
 
         # Get the coordinates and split them into n equal lists
