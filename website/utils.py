@@ -133,50 +133,39 @@ def typhoon_flood_checklist(draw, fonts, scale, user, disaster_type):
     draw_text(draw, "Evacuation Guideline", guideline_font, 850 * scale, 1020 * scale)
 
     # Writing checklist items to a text file for tts to read
-    with open("typhoon_tts.txt", "a") as file:
-        file.write("Levels of typhoons: .\n")
+    with open("website/static/typhoon_tts.txt", "a") as file:
+        file.write("Levels of typhoon preparedness:\n")
 
-        file.write("In a level 1 typhoon: ." + "\n")
-        for item, newline in level1_typhoon:
-            if not newline:
-                file.write(item + ",\n")
-            else:
-                file.write(item + " ")
+        def write_level(file, level_name, items):
+            file.write(f"In a {level_name} typhoon:\n")
+            full_items = []
+            for item, is_new in items:
+                if is_new:
+                    if full_items:
+                        full_items.append(full_items.pop() + ",")
+                    full_items.append(item)
+                else:
+                    full_items[-1] += " " + item
+            if full_items:
+                file.write(", ".join(full_items) + ",\n")
 
-        file.write("In a level 2 typhoon: ." + "\n")
-        for item, newline in level2_typhoon:
-            if not newline:
-                file.write(item + ",\n")
-            else:
-                file.write(item + " ")
+        write_level(file, "level 1", level1_typhoon)
+        write_level(file, "level 2", level2_typhoon)
+        write_level(file, "level 3", level3_typhoon)
+        write_level(file, "level 4", level4_typhoon)
+        write_level(file, "level 5", level5_typhoon)
 
-        file.write("In a level 3 typhoon: ." + "\n")
-        for item, newline in level3_typhoon:
-            if not newline:
-                file.write(item + ",\n")
+        file.write("Some general typhoon tips are:\n")
+        full_tips = []
+        for item, is_new in disaster_tips:
+            if is_new:
+                if full_tips:
+                    full_tips.append(full_tips.pop() + ",")
+                full_tips.append(item)
             else:
-                file.write(item + " ")
-
-        file.write("In a level 4 typhoon: ."+ "\n")
-        for item, newline in level4_typhoon:
-            if not newline:
-                file.write(item + ",\n")
-            else:
-                file.write(item + " ")
-
-        file.write("In a level 5 typhoon: ." + "\n")
-        for item, newline in level5_typhoon:
-            if not newline:
-                file.write(item + ",\n")
-            else:
-                file.write(item + " ")
-
-        file.write("Some general typhoon tips are: ." + "\n")
-        for item, newline in disaster_tips:
-            if not newline:
-                file.write(item + ",\n")
-            else:
-                file.write(item + " ")
+                full_tips[-1] += " " + item
+        if full_tips:
+            file.write(",\n".join(full_tips) + ",\n")
 
     if len(disaster_tips) > 11:
         bullet_spacing(draw, fonts, disaster_tips, 700 * scale, 1050 * scale, scale, True)
@@ -228,7 +217,7 @@ def earthquake_checklist(draw, fonts, scale):
     level6_earthquake = [
         ("Unsecured furniture moves and may topple", True),
         ("Impossible to stand or move without crawling", True),
-        ("crawling; walls may collapse", False),
+        ("Walls may collapse", True),
     ]
 
     level7_earthquake = [
@@ -261,71 +250,42 @@ def earthquake_checklist(draw, fonts, scale):
     ]
 
     # Writing checklist items to a text file for tts to read
-    with open("earthquake_tts.txt", "a") as file:
-        file.write("Levels of earthquakes: .\n")
+    with open("website/static/earthquake_tts.txt", "a") as file:
+        file.write("Levels of earthquakes:\n")
 
-        file.write("In a level 0 earthquake: ." + "\n")
-        for item, newline in level0_earthquake:
-            if not newline:
-                file.write(item + ",\n")
-            else:
-                file.write(item + " ")
+        def write_level(file, level_name, items):
+            file.write(f"In a {level_name} earthquake:\n")
+            full_items = []
+            for item, is_new in items:
+                if is_new:
+                    if full_items:
+                        full_items.append(full_items.pop() + ",")
+                    full_items.append(item)
+                else:
+                    full_items[-1] += " " + item
+            if full_items:
+                file.write(", ".join(full_items) + ",\n")
 
-        file.write("In a level 1 earthquake: ." + "\n")
-        for item, newline in level1_earthquake:
-            if not newline:
-                file.write(item + ",\n")
-            else:
-                file.write(item + " ")
+        write_level(file, "level 0", level0_earthquake)
+        write_level(file, "level 1", level1_earthquake)
+        write_level(file, "level 2", level2_earthquake)
+        write_level(file, "level 3", level3_earthquake)
+        write_level(file, "level 4", level4_earthquake)
+        write_level(file, "level 5", level5_earthquake)
+        write_level(file, "level 6", level6_earthquake)
+        write_level(file, "level 7", level7_earthquake)
 
-        file.write("In a level 2 earthquake: ." + "\n")
-        for item, newline in level2_earthquake:
-            if not newline:
-                file.write(item + ",\n")
+        file.write("Some general earthquake tips are:\n")
+        full_tips = []
+        for item, is_new in disaster_tips:
+            if is_new:
+                if full_tips:
+                    full_tips.append(full_tips.pop() + ",")
+                full_tips.append(item)
             else:
-                file.write(item + " ")
-
-        file.write("In a level 3 earthquake: ." + "\n")
-        for item, newline in level3_earthquake:
-            if not newline:
-                file.write(item + ",\n")
-            else:
-                file.write(item + " ")
-
-        file.write("In a level 4 earthquake: ." + "\n")
-        for item, newline in level4_earthquake:
-            if not newline:
-                file.write(item + ",\n")
-            else:
-                file.write(item + " ")
-
-        file.write("In a level 5 earthquake: ." + "\n")
-        for item, newline in level5_earthquake:
-            if not newline:
-                file.write(item + ",\n")
-            else:
-                file.write(item + " ")
-
-        file.write("In a level 6 earthquake: ." + "\n")
-        for item, newline in level6_earthquake:
-            if not newline:
-                file.write(item + ",\n")
-            else:
-                file.write(item + " ")
-
-        file.write("In a level 7 earthquake: ." + "\n")
-        for item, newline in level7_earthquake:
-            if not newline:
-                file.write(item + ",\n")
-            else:
-                file.write(item + " ")
-
-        file.write("Some general earthquake tips are: ." + "\n")
-        for item, newline in disaster_tips:
-            if not newline:
-                file.write(item + ",\n")
-            else:
-                file.write(item + " ")
+                full_tips[-1] += " " + item
+        if full_tips:
+            file.write(",\n".join(full_tips) + ",\n")
 
     y = bullet_spacing(draw, fonts, level0_earthquake, 810 * scale, 1050 * scale, scale)
     y = bullet_spacing(draw, fonts, level1_earthquake, 810 * scale, y + int(35 * scale), scale)
@@ -368,7 +328,7 @@ def checklist_image(checklist, disaster_type, user):
 
     tasks = []
     # Append the title to the appropriate text file
-    with open(f"{disaster_type.lower()}_tts.txt", "w") as file:
+    with open(f"website/static/{disaster_type.lower()}_tts.txt", "w") as file:
         file.write(f"Your infographic for {disaster_type}s,\n")
         file.write("Items to prepare:,\n")
         for item in checklist["Go Bag"]:
@@ -413,7 +373,7 @@ def checklist_image(checklist, disaster_type, user):
     return image_filename
 
 def tts_execute(disaster_type):
-    FLIST = open(f"{disaster_type.lower()}_tts.txt", "r").read().replace("\n", " ")
+    FLIST = open(f"website/static/{disaster_type.lower()}_tts.txt", "r").read().replace("\n", " ")
     #print("please wait...processing")
     TTS = gTTS(text=str(FLIST), lang='en-us')
 
