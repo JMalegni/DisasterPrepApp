@@ -180,111 +180,121 @@ def profile(request):
         return render(request, 'profile.html', context)
 
     if request.method == 'POST':
-         email = request.session.get("user_email")
-         if not email:
-             return redirect('login')
+        email = request.session.get("user_email")
+        if not email:
+            return redirect('login')
 
-         try:
-             user = Users.objects.get(email=email)
-         except Users.DoesNotExist:
-             return redirect('login')
+        try:
+            user = Users.objects.get(email=email)
+        except Users.DoesNotExist:
+            return redirect('login')
 
-         # Get updated data
-         name = request.POST.get('name')
-         new_email = request.POST.get('email')
-         password = request.POST.get('password')
-         latitude = request.POST.get('latitude')
-         longitude = request.POST.get('longitude')
-         family_size = request.POST.get('size')
-         dose = request.POST.get('dose')
-         medicine = request.POST.get('medicine')
-         women = request.POST.get('women')
-         child = request.POST.get('child')
-         baby = request.POST.get('baby')
-         pet = request.POST.get('pet')
-         blind = request.POST.get('blind')
-         deaf = request.POST.get('deaf')
-         wheelchair = request.POST.get('wheelchair')
+        # Get updated data
+        name = request.POST.get('name')
+        new_email = request.POST.get('email')
+        password = request.POST.get('password')
+        latitude = request.POST.get('latitude')
+        longitude = request.POST.get('longitude')
+        family_size = request.POST.get('size')
+        dose = request.POST.get('dose')
+        medicine = request.POST.get('medicine')
+        women = request.POST.get('women')
+        child = request.POST.get('child')
+        baby = request.POST.get('baby')
+        pet = request.POST.get('pet')
+        blind = request.POST.get('blind')
+        deaf = request.POST.get('deaf')
+        wheelchair = request.POST.get('wheelchair')
 
-         # Initialize context with the form data
-         context = {
-             'email': new_email,
-             'name': name,
-             'password': '',
-             'longitude': longitude,
-             'latitude': latitude,
-             'size': family_size,
-             'medical_issue': medicine if medicine != "no medicine" else '',
-             'amount': dose if medicine != "no medicine" else 0,
-             'women': bool(women),
-             'child': bool(child),
-             'baby': bool(baby),
-             'pet': bool(pet),
-             'blind': bool(blind),
-             'deaf': bool(deaf),
-             'wheelchair': bool(wheelchair),
-         }
+        # Initialize context with the form data
+        context = {
+         'email': new_email,
+         'name': name,
+         'password': '',
+         'longitude': longitude,
+         'latitude': latitude,
+         'size': family_size,
+         'medical_issue': medicine if medicine != "no medicine" else '',
+         'amount': dose if medicine != "no medicine" else 0,
+         'women': bool(women),
+         'child': bool(child),
+         'baby': bool(baby),
+         'pet': bool(pet),
+         'blind': bool(blind),
+         'deaf': bool(deaf),
+         'wheelchair': bool(wheelchair),
+        }
 
-         # Email Validation
-         if new_email.count('@') != 1:
-             messages.error(request, _('Check if email is valid'), extra_tags='danger')
-             return render(request, 'profile.html', context)
+        # Name Validation
+        if name == "":
+            messages.error(request, _('Username cannot be blank'), extra_tags='danger')
+            return render(request, 'profile.html', context)
 
-         temp = new_email.split('@')
-         if len(temp[0]) == 0 or len(temp[1]) == 0:
-             messages.error(request, _('Check if email is valid'), extra_tags='danger')
-             return render(request, 'profile.html', context)
+        # Email Validation
+        if new_email.count('@') != 1:
+            messages.error(request, _('Check if email is valid'), extra_tags='danger')
+            return render(request, 'profile.html', context)
 
-         if not temp[1][-3:] in ['com', 'org', 'edu']:
-             messages.error(request, _('Check if email is valid'), extra_tags='danger')
-             return render(request, 'profile.html', context)
+        temp = new_email.split('@')
+        if len(temp[0]) == 0 or len(temp[1]) == 0:
+            messages.error(request, _('Check if email is valid'), extra_tags='danger')
+            return render(request, 'profile.html', context)
 
-         # Password validation
-         if password:
-             if len(password) < 8:
-                 messages.error(request, _('Password must be at least 8 characters'), extra_tags='danger')
-                 return render(request, 'profile.html', context)
+        if not temp[1][-3:] in ['com', 'org', 'edu']:
+            messages.error(request, _('Check if email is valid'), extra_tags='danger')
+            return render(request, 'profile.html', context)
 
-             special_chars = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '!', '\"', '#', '$', '%', '&', '\'', '(', ')', '*', '+',
-                              ',', '-', '.', '/', ':', ';', '<', '=', '>', '?', '@', '[', ']', '\\', '^', '_', '{', '|', '}', '~', '`']
+        # Password validation
+        if password:
+            if len(password) < 8:
+                messages.error(request, _('Password must be at least 8 characters'), extra_tags='danger')
+                return render(request, 'profile.html', context)
 
-             if not any(char in special_chars for char in password):
-                 messages.error(request, _('Password must have at least one special character or number'), extra_tags='danger')
-                 return render(request, 'profile.html', context)
+            special_chars = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '!', '\"', '#', '$', '%', '&', '\'', '(', ')', '*', '+',
+                          ',', '-', '.', '/', ':', ';', '<', '=', '>', '?', '@', '[', ']', '\\', '^', '_', '{', '|', '}', '~', '`']
 
-             # If password is valid, update it
-             user.password = make_password(password)
+            if not any(char in special_chars for char in password):
+                messages.error(request, _('Password must have at least one special character or number'), extra_tags='danger')
+                return render(request, 'profile.html', context)
 
-         # Update other user data
-         user.name = name
-         user.email = new_email
-         user.latitude = latitude
-         user.longitude = longitude
-         user.family_size = family_size
+            # If password is valid, update it
+            user.password = make_password(password)
 
-         if medicine != "no medicine" and int(dose) != 0:
-             user.medication_amount = int(dose)
-             user.medical_issues = medicine
-         else:
-             user.medication_amount = 0
-             user.medical_issues = ""
+        # Coordinate Validation
+        if float(latitude) > 90.0 or float(latitude) < -90.0 or float(longitude) >= 180.0 or float(longitude) < -180.0:
+            messages.error(request, _('Please enter valid coordinates'), extra_tags='danger')
+            return render(request, 'profile.html', context)
 
-         user.women_bool = bool(women)
-         user.child_bool = bool(child)
-         user.baby_bool = bool(baby)
-         user.pet_bool = bool(pet)
-         user.blind_bool = bool(blind)
-         user.deaf_bool = bool(deaf)
-         user.wheelchair_bool = bool(wheelchair)
+        # Update other user data
+        user.name = name
+        user.email = new_email
+        user.latitude = latitude
+        user.longitude = longitude
+        user.family_size = family_size
 
-         user.save()
+        if medicine != "no medicine" and int(dose) != 0:
+            user.medication_amount = int(dose)
+            user.medical_issues = medicine
+        else:
+            user.medication_amount = 0
+            user.medical_issues = ""
 
-         # Update session email
-         request.session["user_email"] = new_email
+        user.women_bool = bool(women)
+        user.child_bool = bool(child)
+        user.baby_bool = bool(baby)
+        user.pet_bool = bool(pet)
+        user.blind_bool = bool(blind)
+        user.deaf_bool = bool(deaf)
+        user.wheelchair_bool = bool(wheelchair)
 
-         messages.success(request, _('Profile updated successfully!'))
+        user.save()
 
-         return redirect('profile')
+        # Update session email
+        request.session["user_email"] = new_email
+
+        messages.success(request, _('Profile updated successfully!'))
+
+        return redirect('profile')
 
 def delete_medical(request):
     if request.method == 'POST':
