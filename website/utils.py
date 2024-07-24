@@ -404,9 +404,21 @@ def checklist_image(checklist, disaster_type, user):
     return image_filename
 
 def tts_execute(disaster_type):
-    FLIST = open(f"website/static/{disaster_type.lower()}_tts.txt", "r").read().replace("\n", " ")
-    #print("please wait...processing")
-    TTS = gTTS(text=str(FLIST), lang='en-us')
+    file_path = f"website/static/{disaster_type.lower()}_tts.txt"
 
-    file_path = os.path.join(settings.STATIC_ROOT, 'voice.mp3')
-    TTS.save(file_path)
+    if not os.path.exists(file_path):
+        raise FileNotFoundError(f"The file {file_path} does not exist.")
+    
+    try:
+        with open(file_path, "r", encoding="utf-8") as file:
+            text_content = file.read().replace("\n", " ")
+
+        current_language = get_language()
+        lang = 'ja' if current_language.startswith('jp') else 'en'
+        tts = gTTS(text=text_content, lang=lang)
+        output_path = os.path.join(settings.STATIC_ROOT, 'voice.mp3')
+        tts.save(output_path)
+        return output_path
+    
+    except Exception as e:
+        raise RuntimeError(f"An error occurred while generating the TTS audio: {e}")
