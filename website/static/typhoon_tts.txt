@@ -16,7 +16,7 @@ Check a hazard map,, Find evacuation centers,, Check items on checklist,, Beware
 In a level 2 typhoon:
 Decide on evacuation center,, Recheck emergency bags,, Prepare for power outage,
 In a level 3 typhoon:
-Elderly, people with disabilities, and families with children must evacuate,
+Elderly & people with disabilities must evacuate,
 In a level 4 typhoon:
 Go to an evacuation center immediately,
 In a level 5 typhoon:
@@ -27,8 +27,5 @@ Check yourself and your belongings,,
 Follow the route avoiding dangerous areas,,
 While evacuating, watch out for flooding,,
 If you can't evacuate safely, stay inside and go to the highest floor,,
-Register people who need evacuation support,,
 Don't use a baby stroller,,
-Use a backpack and always hold your children's hand,,
-Use a lead, cage, and carry bag during evacuation,,
-Keep pets calm so they don't panic,
+Use a backpack and always hold your children's hand,

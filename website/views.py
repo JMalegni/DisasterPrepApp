@@ -785,10 +785,20 @@ def disasterposter(request):
     elif request.method == 'POST':
         #Find the closest shelter first
         email = request.session.get("user_email")
-        user = Users.objects.get(email=email)
-        user_location = [user.latitude, user.longitude]
-        shelter_coord = closest_shelter(user_location)
-        middle_coord = [(user_location[0] + shelter_coord[0]) / 2.0, (user_location[1] + shelter_coord[1]) / 2.0]
+        back = False
+        if not email:
+            email = request.session.get("b_email")
+            back = True
+
+        if back:
+            user_location = [35, 135]
+            shelter_coord = closest_shelter(user_location)
+            middle_coord = [(user_location[0] + shelter_coord[0]) / 2.0, (user_location[1] + shelter_coord[1]) / 2.0]
+        else:
+            user = Users.objects.get(email=email)
+            user_location = [user.latitude, user.longitude]
+            shelter_coord = closest_shelter(user_location)
+            middle_coord = [(user_location[0] + shelter_coord[0]) / 2.0, (user_location[1] + shelter_coord[1]) / 2.0]
 
         #GeoJSON Information
         result = []
@@ -798,12 +808,15 @@ def disasterposter(request):
         # Gets disaster type and checklist based on whats saved in the session
         disaster_type = request.session.get('disaster_type')
         checklist = request.session.get('checklist')
-        user = Users.objects.get(email=email)
+        if not back:
+            user = Users.objects.get(email=email)
+        else:
+            user = "None"
 
         if not disaster_type or not checklist:
             return redirect('disasterprep')
 
-        image_name = checklist_image(checklist, disaster_type, user)
+        image_name = checklist_image(checklist, disaster_type, user, back)
         if image_name and settings.STATIC_URL:
             image_url = f"{settings.STATIC_URL}images/{image_name}"
             api_thread.join()
@@ -912,7 +925,11 @@ def download_poster(request):
 
 def logout(request):
     try:
-        del request.session["user_email"]
+        email = request.session.get("user_email")
+        if email:
+            del request.session["user_email"]
+        else:
+            del request.session["b_email"]
     except KeyError as err:
         return HttpResponse(_("No user logged in"), status=404)
     return redirect("login")

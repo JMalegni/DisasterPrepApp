@@ -54,7 +54,7 @@ def bullet_spacing(draw, fonts, list, x, y, scale, bigList=False):
                 y += int(9 * scale)
     return y
 
-def typhoon_flood_checklist(draw, fonts, scale, user, disaster_type):
+def typhoon_flood_checklist(draw, fonts, scale, user, disaster_type, using_backdoor):
 
     header_font = fonts['header']
     draw_text(draw, gettext("Typhoons come with"), header_font, 230 * scale, 220 * scale)
@@ -73,13 +73,19 @@ def typhoon_flood_checklist(draw, fonts, scale, user, disaster_type):
         (gettext("Recheck emergency bags"), True),
         (gettext("Prepare for power outage"), True),
     ]
-    
-    if user.child_bool:
-        level3_typhoon = [
-            (gettext("Elderly, people with disabilities, and"), True),
-            (gettext("families with children must evacuate"), False),
-        ]
-    
+
+    if not using_backdoor:
+        if user.child_bool:
+            level3_typhoon = [
+                (gettext("Elderly, people with disabilities, and"), True),
+                (gettext("families with children must evacuate"), False),
+            ]
+
+        else:
+            level3_typhoon = [
+                (gettext("Elderly & people with disabilities"), True),
+                (gettext("must evacuate"), False),
+            ]
     else:
         level3_typhoon = [
             (gettext("Elderly & people with disabilities"), True),
@@ -117,16 +123,22 @@ def typhoon_flood_checklist(draw, fonts, scale, user, disaster_type):
             (gettext("the highest floor"), False),
         ]
 
-    if user.blind_bool or user.deaf_bool or user.wheelchair_bool:
-        disaster_tips.append((gettext("Register people who need evacuation support"), True))
+    if not using_backdoor:
+        if user.blind_bool or user.deaf_bool or user.wheelchair_bool:
+            disaster_tips.append((gettext("Register people who need evacuation support"), True))
 
-    if user.child_bool or user.baby_bool:
+    if not using_backdoor:
+        if user.child_bool or user.baby_bool:
+            disaster_tips.append((gettext("Don't use a baby stroller"), True))
+            disaster_tips.append((gettext("Use a backpack and always hold your children's hand"), True))
+    else:
         disaster_tips.append((gettext("Don't use a baby stroller"), True))
         disaster_tips.append((gettext("Use a backpack and always hold your children's hand"), True))
 
-    if user.pet_bool:
-        disaster_tips.append((gettext("Use a lead, cage, and carry bag during evacuation"), True))
-        disaster_tips.append((gettext("Keep pets calm so they don't panic"), True))
+    if not using_backdoor:
+        if user.pet_bool:
+            disaster_tips.append((gettext("Use a lead, cage, and carry bag during evacuation"), True))
+            disaster_tips.append((gettext("Keep pets calm so they don't panic"), True))
         
     y = bullet_spacing(draw, fonts, level1_typhoon, 145 * scale, 328 * scale, scale)
     y = bullet_spacing(draw, fonts, level2_typhoon, 145 * scale, y + int(10 * scale), scale)
@@ -307,7 +319,7 @@ def earthquake_checklist(draw, fonts, scale):
     draw_text(draw, gettext("Safety Guidelines"), guideline_font, 210 * scale, 328 * scale)
     bullet_spacing(draw, fonts, disaster_tips, 55 * scale, 368 * scale, scale)
 
-def checklist_image(checklist, disaster_type, user):
+def checklist_image(checklist, disaster_type, user, using_backdoor):
     if disaster_type == "Typhoon":
         background_path = os.path.join(settings.STATIC_ROOT, 'images', 'typhoon_template.png')
         background = Image.open(background_path).convert('RGB')
@@ -338,9 +350,17 @@ def checklist_image(checklist, disaster_type, user):
     with open(f"website/static/{disaster_type.lower()}_tts.txt", "w", encoding="utf-8") as file:
         big_header = ""
         if disaster_type == "Earthquake":
-            big_header = f"{user.name}様への地震ポスター\n" if get_language().startswith("jp") else "Your Poster for Earthquakes\n"
+            if using_backdoor:
+                big_header = f"TestName様への地震ポスター\n" if get_language().startswith(
+                    "jp") else "Your Poster for Earthquakes\n"
+            else:
+                big_header = f"{user.name}様への地震ポスター\n" if get_language().startswith("jp") else "Your Poster for Earthquakes\n"
         else:
-            big_header = f"{user.name}様への台風ポスター\n" if get_language().startswith("jp") else "Your Poster for Typhoons\n"
+            if using_backdoor:
+                big_header = f"TestName様への台風ポスター\n" if get_language().startswith(
+                    "jp") else "Your Poster for Typhoons\n"
+            else:
+                big_header = f"{user.name}様への台風ポスター\n" if get_language().startswith("jp") else "Your Poster for Typhoons\n"
         file.write(big_header)
         file.write(gettext("Items to prepare:,\n"))
 
@@ -352,12 +372,18 @@ def checklist_image(checklist, disaster_type, user):
                 file.write(f"{item},\n")
 
     if disaster_type == "Earthquake":
-        big_header = f"{user.name}様への地震ポスター" if get_language().startswith("jp") else "Your Poster for Earthquakes"
+        if using_backdoor:
+            big_header = f"TestName様への地震ポスター" if get_language().startswith("jp") else "Your Poster for Earthquakes"
+        else:
+            big_header = f"{user.name}様への地震ポスター" if get_language().startswith("jp") else "Your Poster for Earthquakes"
         title_offset = 190 if not get_language().startswith("jp") else 230
         tasks.append((draw_text, (draw, big_header, fonts['title'], title_offset * scale, 35 * scale)))
     
     else:
-        big_header = f"{user.name}様への台風ポスター" if get_language().startswith("jp") else "Your Poster for Typhoons"
+        if using_backdoor:
+            big_header = f"TestName様への台風ポスター" if get_language().startswith("jp") else "Your Poster for Typhoons"
+        else:
+            big_header = f"{user.name}様への台風ポスター" if get_language().startswith("jp") else "Your Poster for Typhoons"
         tasks.append((draw_text, (draw, big_header, fonts['title'], 320 * scale, 50 * scale)))
 
     date_offset = 400 if not get_language().startswith("jp") else 290
@@ -381,7 +407,7 @@ def checklist_image(checklist, disaster_type, user):
             y += 37 * scale
 
     if disaster_type == "Typhoon":
-        typhoon_flood_checklist(draw, fonts, scale, user, disaster_type)
+        typhoon_flood_checklist(draw, fonts, scale, user, disaster_type, using_backdoor)
 
     elif disaster_type == "Earthquake":
         earthquake_checklist(draw, fonts, scale)
