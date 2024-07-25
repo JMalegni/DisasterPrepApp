@@ -791,7 +791,7 @@ def disasterposter(request):
             back = True
 
         if back:
-            user_location = [35, 135]
+            user_location = [35.0257152, 135.774208]
             shelter_coord = closest_shelter(user_location)
             middle_coord = [(user_location[0] + shelter_coord[0]) / 2.0, (user_location[1] + shelter_coord[1]) / 2.0]
         else:
