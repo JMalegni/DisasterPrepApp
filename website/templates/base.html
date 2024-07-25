@@ -36,6 +36,17 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'logout' %}">{% trans "Logout" %}</a>
                 </li>
+                {% elif request.session.b_email %}
+                <!-- Display these links if user is logged in backdoor -->
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'home' %}">{% trans "Home" %}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'disasterprep' %}">{% trans "Disaster Prep" %}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">{% trans "Logout" %}</a>
+                </li>
                 {% else %}
                 <!-- Display these links if user is not logged in -->
                 <li class="nav-item">
