@@ -1,2 +1,0 @@
-seele_app
-website

@@ -1,2 +1,0 @@
-[console_scripts]
-seele_start = seele_app.entrypoint:main
