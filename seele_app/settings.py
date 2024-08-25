@@ -38,7 +38,7 @@ USE_TZ = True
 SECRET_KEY = '2139#0e%$v=7p+o8$8#g2g%(m)!i4bp-#x8mm7(0nlswpj5ewn'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['seele-h8uw.onrender.com', '127.0.0.1']
 
